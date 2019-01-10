@@ -67,12 +67,14 @@ class City2X3D {
   		«FOR entity : entities»
 			«IF entity.type == "FAMIX.Namespace"  || entity.type == "reportDistrict"
 				|| entity.type == "classDistrict" || entity.type == "functionGroupDistrict" 
-				|| entity.type == "tableDistrict" || entity.type == "dcDataDistrict"»
+				|| entity.type == "tableDistrict" || entity.type == "dcDataDistrict"
+				|| entity.type == "domainDistrict" || entity.type == "structureDistrict"»
 				«toDistrict(entity)»
 			«ENDIF»
 			«IF entity.type == "FAMIX.Class" || entity.type == "FAMIX.Interface"|| entity.type == "FAMIX.DataElement" 
 				|| entity.type == "FAMIX.Report" || entity.type == "FAMIX.FunctionGroup" 
-				|| entity.type == "FAMIX.ABAPStruc"	|| entity.type == "FAMIX.Table" 
+				|| entity.type == "FAMIX.ABAPStruc"	|| entity.type == "FAMIX.StrucElement" 
+				|| entity.type == "FAMIX.Table" 
 				|| entity.type == "FAMIX.Domain" || entity.type == "FAMIX.TableType"
 				|| entity.type == "FAMIX.Method" || entity.type == "FAMIX.Attribute" || entity.type == "typeNames" 
 				|| entity.type == "FAMIX.FunctionModule" || entity.type == "FAMIX.Formroutine"»
@@ -133,7 +135,7 @@ class City2X3D {
 				<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
 			«ENDIF»
 			<Appearance>
-				«IF(config.abapShowTextures && entity.textureURL !== null && entity.textureURL != "")»
+			«IF(config.abapShowTextures && entity.textureURL !== null && entity.textureURL != "")»
 					<ImageTexture url='«entity.textureURL»'></ImageTexture>
 				«ELSE»
 					<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
@@ -180,34 +182,49 @@ class City2X3D {
 				</Transform>
 			</Group>
 
+
 		«ELSEIF entity.type == "FAMIX.Domain"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-					<Shape>
-					
-						<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
-						<Appearance>
-							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
-			</Group>
-			
-		«ELSEIF entity.type == "FAMIX.VirtualDomain"»
 		<Group DEF='«entity.id»'>
-		   				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-		   					<Shape>
-		   					
-		   						<Cylinder radius='«entity.width/2»' height='«entity.height*3»'></Cylinder>	
-		   						<Appearance>
-		   							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-		   						</Appearance>
-		   					</Shape>
-		   				</Transform>
-		   				</Group>
-		   				
-		«ELSEIF entity.type == "FAMIX.Method"»
+						<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+							<Shape>
+								
+								<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
+								<Appearance>
+									<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+								</Appearance>
+							</Shape>
+						</Transform>
+					</Group>
+			
+		
+		«ELSEIF entity.type == "FAMIX.StrucElement"»
+					<Group DEF='«entity.id»'>
+						<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+							<Shape>
+								<Box size='«entity.width +" "+ entity.height*3 +" "+ entity.length»'></Box>
+								
+								<Appearance>
+									<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+								</Appearance>
+							</Shape>
+						</Transform>
+					</Group>
+			   				
+			«ELSEIF entity.type == "FAMIX.TableType"»
 			<Group DEF='«entity.id»'>
+			   				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+			   					<Shape>
+			
+			   						<Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
+			<Appearance>
+			   						   	<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+			   						</Appearance>
+			</Shape>
+			</Transform>
+			</Group>
+			   						   				
+			«ELSEIF entity.type == "FAMIX.Method"»
+				<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
 						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 						   rotation='0.000000 0.707107 0.707107 3.141593'>
@@ -298,6 +315,7 @@ class City2X3D {
 					</Shape>
 				</Transform>
 			</Group>
+			
 		«ENDIF»		
 	'''
 		
@@ -318,8 +336,8 @@ class City2X3D {
 			<Box size='«entity.width/4 +" "+ entity.height +" "+ entity.length/4»'></Box>
 		«ELSEIF entity.type == "FAMIX.TableType"»
 			<Cylinder radius='«entity.width/2»' height='«entity.height»'></Cylinder>
-		«ELSEIF entity.type == "FAMIX.Table"»
-			<Cylinder radius='«entity.width/2»' height='«entity.height»'></Cylinder>
+			«ELSEIF entity.type == "FAMIX.Table"»
+			<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>
 		«ELSE»
 			<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>				
 		«ENDIF»
@@ -389,8 +407,8 @@ class City2X3D {
 			<Cone bottomRadius='«floor.width»' height='«floor.height»'></Cone>
 		«ELSEIF floor.parentType == "FAMIX.TableType"»
 			<Cone bottomRadius='«floor.width»' height='«floor.height»'></Cone>
-		«ELSEIF floor.parentType == "FAMIX.Table"»
-			<Cylinder height='«floor.height»' radius='«floor.width»'></Cylinder>
+			«ELSEIF floor.parentType == "FAMIX.Table"»
+				<Cylinder height='«floor.height»' radius='«floor.width»'></Cylinder>
 		«ELSE»
 			<Box size='«floor.width +" "+ floor.height +" "+ floor.length»'></Box>
 		«ENDIF»

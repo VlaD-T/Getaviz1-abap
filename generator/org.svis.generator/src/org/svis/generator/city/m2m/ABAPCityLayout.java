@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.svis.generator.SettingsConfiguration;
 import org.svis.generator.SettingsConfiguration.BuildingType;
 import org.svis.generator.SettingsConfiguration.FamixParser;
+import org.svis.xtext.city.Building;
 import org.svis.xtext.city.CityFactory;
 import org.svis.xtext.city.Document;
 import org.svis.xtext.city.Entity;
@@ -132,7 +133,8 @@ public class ABAPCityLayout {
 			} else {
 				if (child.getType().equals("FAMIX.Namespace")  || child.getType().equals("reportDistrict") || child.getType().equals("classDistrict")
 						|| child.getType().equals("functionGroupDistrict") || child.getType().equals("tableDistrict") 
-						|| child.getType().equals("dcDataDistrict")) {
+						|| child.getType().equals("dcDataDistrict") || child.getType().equals("domainDistrict")
+						|| child.getType().equals("structureDistrict")) {
 					if (DEBUG) {
 						System.out.println("\t\t\t" + info + "layOut(" + child.getFqn() + ")-call, recursive.");
 					}
@@ -280,7 +282,8 @@ public class ABAPCityLayout {
 					arrangeChildren(child);
 				}
 			} else {
-				if (child.getType().equals("FAMIX.Namespace") || child.getType().equals("tableDistrict") || child.getType().equals("dcDataDistrict")) {
+				if (child.getType().equals("FAMIX.Namespace") || child.getType().equals("tableDistrict") || child.getType().equals("structureDistrict")
+					|| child.getType().equals("dcDataDistrict")) {
 					if (DEBUG) {
 						System.out.println("\t\t\t" + info + "layOut(" + child.getFqn() + ")-call, recursive.");
 					}
@@ -291,7 +294,12 @@ public class ABAPCityLayout {
 					arrangeFunctionGroupDistrict(child);
 				} else if (child.getType().equals("reportDistrict")) {
 					arrangeReportDistrict(child);
-				}  
+				} else if (child.getType().equals("domainDistrict")) {
+				    arrangeDomainDistrict(child);
+				} 
+//				    else if (child.getType().equals("structureDistrict")) {
+//				    arrangeStructureDistrict(child);
+//				}
 			}
 			sum_width += child.getWidth() + config.getBuildingHorizontalGap();
 			sum_length += child.getLength() + config.getBuildingHorizontalGap();
@@ -540,7 +548,8 @@ public class ABAPCityLayout {
 			
 			if (e.getType().equals("FAMIX.Namespace") || e.getType().equals("reportDistrict")
 					|| e.getType().equals("classDistrict") || e.getType().equals("functionGroupDistrict")
-					|| e.getType().equals("tableDistrict") || e.getType().equals("dcDataDistrict")) {
+					|| e.getType().equals("tableDistrict") || e.getType().equals("dcDataDistrict")|| e.getType().equals("domainDistrict")
+					|| e.getType().equals("structureDistrict")) {
 				double newUpperLeftX = e.getPosition().getX() - e.getWidth() / 2;
 				double newUpperLeftZ = e.getPosition().getZ() - e.getLength() / 2;
 				adjustPositions(e.getEntities(), newUpperLeftX, newUpperLeftZ);
@@ -677,6 +686,8 @@ public class ABAPCityLayout {
 		moveElementsToPosition(privateMembers, position, reportDistrictSquare, unitSize, squareSize, false);
 		moveElementsToPosition(publicMembers, position, reportDistrictSquare, unitSize, squareSize, true);
 	}
+	
+	
 	
 	private static List<String> getPositionList(Double squareSize) {
 		int counter = 0;
@@ -851,4 +862,109 @@ public class ABAPCityLayout {
 			break;
 		}
 	}
+
+// NEW LAYOUT PROCESSING FOR DCDATA // 
+	
+private static void arrangeDomainDistrict(Entity domainDistrict) {
+	Double squareSize = Math.ceil((domainDistrict.getEntities().size() - 1)/8.0)* 2 + 1;
+	double size = squareSize * (config.getAbapDomainMemberSideLength() + config.getBuildingHorizontalGap());		
+	domainDistrict.setWidth(size + 2 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
+	domainDistrict.setLength(size + 2 * config.getBuildingHorizontalMargin());
+	//Rectangle dcDataDistrictSquare = new Rectangle(0, 0, size, size);
+	
+	EList<Entity> members = domainDistrict.getEntities();
+	
+	List<Rectangle> dataElements = new ArrayList<Rectangle>();
+	List<Rectangle> domains = new ArrayList<Rectangle>();
+	
+	double unitSize = config.getAbapDomainMemberSideLength() + config.getBuildingHorizontalGap();
+	
+	// ordering the members as rectangles by type
+	for (Entity member : members) {
+		Rectangle square = new Rectangle(0, 0, unitSize, unitSize);
+		square.setEntityLink(member);
+		
+		switch (member.getType()) {
+		case "FAMIX.DataElement":
+			dataElements.add(square);
+			break;
+		case "FAMIX.Domain":
+			domains.add(square);
+			break;
+		default:
+			dataElements.add(square);
+			break;
+		}
+	}
+	
+	// start algorithm
+	//List<String> position = getPositionListDcData(squareSize);
+	Position centerPos = cityFactory.createPosition();
+	
+	centerPos.setX(size / 2.0);
+	centerPos.setZ(size / 2.0);
+	
+	if(!domains.isEmpty()) {
+		domains.get(0).getEntityLink().setPosition(centerPos);
+	}
+	
+
+	
+	int counter = 1; 
+	String direction = "R";
+	
+	Position lastPos = cityFactory.createPosition();
+	
+	
+	for (Rectangle dataElement : dataElements) {
+		Position newPos = cityFactory.createPosition();
+		if (counter == 1) {
+			//newPos.setX(unitSize / 2.0);
+			newPos.setX(size - (unitSize / 2.0));
+			newPos.setZ(size - (unitSize / 2.0));
+			dataElement.getEntityLink().setPosition(newPos);
+			lastPos = newPos;
+			counter++; 
+			
+		} else {
+			switch (direction) {
+			case "R" : 
+				newPos.setX(lastPos.getX() - unitSize);
+				newPos.setZ(lastPos.getZ());
+				break;
+			case "D" : 
+				newPos.setX(lastPos.getX());
+				newPos.setZ(lastPos.getZ() - unitSize);
+				break; 
+			case "L" : 
+				newPos.setX(lastPos.getX() + unitSize);
+				newPos.setZ(lastPos.getZ());
+				break; 
+			case "U" : 
+				newPos.setX(lastPos.getX());
+				newPos.setZ(lastPos.getZ() + unitSize);				
+				break; 
+			}
+		
+			dataElement.getEntityLink().setPosition(newPos);
+			lastPos = newPos;
+			
+			if (counter % (squareSize - 1) == 1) {
+				switch (direction) {
+				case "R" : 
+					direction = "D"; 
+					break; 
+				case "D" : 
+					direction = "L"; 
+					break; 
+				case "L" : 
+					direction = "U"; 
+					break; 
+				}
+			}
+			
+			counter++;
+		}
+	}  
+}
 }

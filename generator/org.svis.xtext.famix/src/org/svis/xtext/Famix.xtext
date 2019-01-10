@@ -33,7 +33,7 @@ FAMIXStructure:
 FAMIXDictionaryData:
 	FAMIXDomain | FAMIXDataElement | FAMIXTable | FAMIXTableElement | FAMIXABAPStruc | FAMIXStrucElement | 
 	FAMIXTableType | FAMIXTableTypeElement 
-	//| FAMIXVirtualDomain
+
 
 ;
 
@@ -73,6 +73,10 @@ FAMIXClass:
 	('(' 'fqn' fqn = MSESTRING ')')?
 	('(' 'container' container=IntegerReference ')')?
 	('(' 'isInterface' isInterface=Boolean ')')?
+	('(' 'creator' creator=MSESTRING  ')')?
+	('(' 'created' created=MSESTRING  ')')?
+	('(' 'lastChangedBy' lastChangedBy=MSESTRING  ')')?
+	('(' 'lastChanged' lastChanged+=MSESTRING*  ')')?
 	('(' 'isStub' isStub=Boolean ')')?
 	('(' 'modifiers' modifiers+=MSESTRING* ')')?
 	('(' 'antipattern' antipattern+=IntegerReference* ')')?
@@ -121,6 +125,10 @@ FAMIXMethod:
 	('(' 'sourceAnchor' sourceAnchor=IntegerReference ')')?
 	('(' 'accessesVariable' accessesVar = IntegerReference ')')?
 	('(' 'iteration' iteration=INT ')')? //ABAP
+	('(' 'creator' creator = MSESTRING ')')?
+	('(' 'created' created = MSESTRING ')')?
+	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
+	('(' 'lastChanged' lastChanged = MSESTRING ')')?
 	')';
 
 FAMIXInvocation:
@@ -150,6 +158,10 @@ FAMIXAttribute:
 	('(' 'dataElement' dataElement=MSESTRING ')')? //ABAP
 	('(' 'sourceCodeDefined' sourceCodeDefined=Boolean ')')? //ABAP
 	('(' 'iteration' iteration=INT ')')? //ABAP
+	('(' 'creator' creator = MSESTRING ')')?
+	('(' 'created' created = MSESTRING ')')?
+	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
+	('(' 'lastChanged' lastChanged = MSESTRING ')')?
 	')';	
 
 FAMIXAccess:
@@ -400,7 +412,11 @@ FAMIXReport:
     ('(' 'fqn' fqn = MSESTRING ')')?
     '(' 'container' container=IntegerReference ')'
     ('(' 'numberOfStatements' numberOfStatements=INT ')')?
-    ('(' 'iteration' iteration=INT ')')? 
+    ('(' 'iteration' iteration=INT ')')?
+	('(' 'creator' creator = MSESTRING ')')?
+	('(' 'created' created = MSESTRING ')')?
+	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
+	('(' 'lastChanged' lastChanged = MSESTRING ')')?
     ')';
 
 FAMIXFormroutine:
@@ -426,19 +442,7 @@ FAMIXDataElement:
     ('(' 'domain' domain=MSESTRING ')')? 
     ('(' 'iteration' iteration=INT ')')? 
     ')';  
-    
-/*FAMIXVirtualDomain:
-	'(FAMIXVirtualDomain'
-	'(' 'id:' name=INT_ID ')'
-	'(' 'name' value=MSESTRING ')'
-	('(' 'hash' id = STRING ')')?
-    ('(' 'fqn' fqn = MSESTRING ')')?
-    '(' 'container' container=IntegerReference ')'
-    ('(' 'dataElement' dataElement=IntegerReference ')')?    
-	('(' 'iteration' iteration=INT ')')?
-    ')';	
-    */
-
+   
 FAMIXDomain:
     '(FAMIX.Domain'
     '(' 'id:' name=INT_ID ')'
@@ -535,6 +539,10 @@ FAMIXFunctionGroup:
     ('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')? // for structures class, not used in ABAP
 	('(' 'STK-Rank' stkRank = MSESTRING ')')? // for structures class, not used in ABAP
     ('(' 'iteration' iteration=INT ')')? 
+	('(' 'creator' creator = MSESTRING ')')?
+	('(' 'created' created = MSESTRING ')')?
+	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
+	('(' 'lastChanged' lastChanged = MSESTRING ')')?
     ')';    
 
 FAMIXFunctionModule:
@@ -547,6 +555,10 @@ FAMIXFunctionModule:
     ('(' 'numberOfStatements' numberOfStatements=INT ')')?
     '(' 'parentType' parentType=IntegerReference ')'
     ('(' 'iteration' iteration=INT ')')?
+	('(' 'creator' creator = MSESTRING ')')?
+	('(' 'created' created = MSESTRING ')')?
+	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
+	('(' 'lastChanged' lastChanged = MSESTRING ')')?
     ')';
 	
 FAMIXMacro:

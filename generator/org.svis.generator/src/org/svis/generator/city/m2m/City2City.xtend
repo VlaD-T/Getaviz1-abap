@@ -223,13 +223,17 @@ class City2City extends WorkflowComponentWithModelSlot {
 					b.height = b.height - (1 + config.getAbapAdvBuildingScale(b.type))
 					
 				} else if(b.type == "FAMIX.Domain"){
-					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 					
-				} else if(b.type == "typeNames"){
-					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+				} else if(b.type == "FAMIX.StrucElement"){
+					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
+					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+					
+				} else if(b.type == "FAMIX.TableType"){
+					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
-          
+					  
 				} else if(b.type == "FAMIX.Attribute") {
           			b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
@@ -321,7 +325,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 				}
 											
 							
-				// Use custom colors form settings
+				// Use custom colors from settings
 				if(config.getAbapBuildingColor(b.type) !== null){
 					b.color = new RGBColor(config.getAbapBuildingColor(b.type)).asPercentage;
 				}
@@ -607,6 +611,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 					floor.position.y = newYPos + 0.5
 					
 				}else if(b.type == "FAMIX.Table"){
+					floor.height = 0.4
 					floor.width = bWidth * 0.55
 				}
 						
