@@ -1393,7 +1393,7 @@ public class SettingsConfiguration {
 			if(config.getString("city.abap.interfaces.color").equals("")) return null;
 			return getColor(config.getString("city.abap.interfaces.color", "#c5cae9"));
 			
-		}else if(type.equals("FAMIX.ABAPStructure")) {
+		}else if(type.equals("FAMIX.ABAPStruc")) {
 			if(config.getString("city.abap.structure.color").equals("")) return null;
 			return getColor(config.getString("city.abap.structure.color", "#c5cae9"));
 			
