@@ -336,7 +336,7 @@ class City2X3D {
 		«ELSEIF entity.type == "FAMIX.TableType"»
 			<Cylinder radius='«entity.width/2»' height='«entity.height»'></Cylinder>
 			«ELSEIF entity.type == "FAMIX.Table"»
-			<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>
+			<Cylinder radius='«entity.width/2»' height='«entity.height»'></Cylinder>
 		«ELSE»
 			<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>				
 		«ENDIF»
