@@ -1359,6 +1359,14 @@ public class SettingsConfiguration {
 			if(config.getString("city.abap.dictionaryDataDistrict.color").equals("")) return null;
 			return getColor(config.getString("city.abap.dictionaryDataDistrict.color", "#9499b7"));
 			
+		}else if(type.equals("domainDistrict")){			
+			if(config.getString("city.abap.domainDistrict.color").equals("")) return null;
+			return getColor(config.getString("city.abap.domainDistrict.color", "#9499b7"));	
+			
+		}else if(type.equals("structureDistrict")){			
+			if(config.getString("city.abap.structureDistrict.color").equals("")) return null;
+			return getColor(config.getString("city.abap.structureDistrict.color", "#9499b7"));		
+			
 		}else if(type.equals("functionGroupDistrict")){			
 			if(config.getString("city.abap.functionGroupDistrict.color").equals("")) return null;
 			return getColor(config.getString("city.abap.functionGroupDistrict.color", "#9499b7"));
@@ -1388,6 +1396,10 @@ public class SettingsConfiguration {
 		}else if(type.equals("FAMIX.ABAPStructure")) {
 			if(config.getString("city.abap.structure.color").equals("")) return null;
 			return getColor(config.getString("city.abap.structure.color", "#c5cae9"));
+			
+		}else if(type.equals("FAMIX.ABAPStrucElement")) {
+			if(config.getString("city.abap.strucElem.color").equals("")) return null;
+			return getColor(config.getString("city.abap.strucElem.color", "#c5cae9"));	
 			
 		}else if(type.equals("FAMIX.TableType")) {
 			if(config.getString("city.abap.table_type.color").equals("")) return null;
@@ -1431,7 +1443,7 @@ public class SettingsConfiguration {
 			if(config.getString("city.abap.fumo.color").equals("")) return null;
 			return getColor(config.getString("city.abap.fumo.color", "#c5cae9"));
 			
-		}else if(type.equals("FAMIX.ABAPStruc")) {
+		}else if(type.equals("FAMIX.ABAPStrucElem")) {
 			if(config.getString("city.abap.structure_elem.color").equals("")) return null;
 			return getColor(config.getString("city.abap.structure_elem.color", "#c5cae9"));
 			
@@ -1480,6 +1492,12 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Domain")) {
 			return config.getDouble("city.abap.adv_domain_def_size", 20);
 			
+		} else if (type.equals("FAMIX.StrucElement")) {
+			return config.getDouble("city.abap.adv_strucElem_def_size", 20);
+			
+		} else if (type.equals("FAMIX.TableType")) {
+			return config.getDouble("city.abap.adv_tabletype_def_size", 20);	
+			
 		} else if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abap.adv_method_def_size", 20);
 			
@@ -1502,10 +1520,19 @@ public class SettingsConfiguration {
 	
 	public double getAbapAdvBuildingScale(String type) {
 		if(type.equals("FAMIX.DataElement")){
-			return config.getDouble("city.abap.adv_dataElement_scale", 0.241931);
+			return config.getDouble("city.abap.adv_dataElement_scale", 0.1);
 			
 		} else if(type.equals("FAMIX.Domain")){
-			return config.getDouble("city.abap.adv_domain_scale", 0.008199);
+			return config.getDouble("city.abap.adv_domain_scale", 0.1);
+			
+		} else if(type.equals("FAMIX.StrucElement")){
+			return config.getDouble("city.abap.adv_strucElem_scale", 0.1);
+		
+		} else if(type.equals("FAMIX.TableType")){
+			return config.getDouble("city.abap.adv_tableType_scale", 0.1);	
+			
+		} else if(type.equals("FAMIX.Table")){
+				return config.getDouble("city.abap.adv_table_scale", 0.1);	
 			
 		} else if(type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abap.adv_method_scale", 0.1);
@@ -1537,6 +1564,14 @@ public class SettingsConfiguration {
 	
 	public double getAbapReportMemberSideLength() {
 		return config.getDouble("city.abap.report_member_side_length", 32);
+	}
+	
+	public double getAbapStrucMemberSideLength() {
+		return config.getDouble("city.abap.struc_member_side_length", 32);
+	}
+	
+	public double getAbapDomainMemberSideLength() {
+		return config.getDouble("city.abap.domain_member_side_length", 32);
 	}
 	
 	public double getAbapMethodBaseHeight() {
