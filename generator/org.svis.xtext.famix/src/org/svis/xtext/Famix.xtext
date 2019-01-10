@@ -531,6 +531,9 @@ FAMIXFunctionGroup:
     ('(' 'hash' id = STRING ')')?
     ('(' 'fqn' fqn = MSESTRING ')')?
     '(' 'container' container=IntegerReference ')'
+    ('(' 'modifiers' modifiers+=MSESTRING* ')')? // for structures class, not used in ABAP
+    ('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')? // for structures class, not used in ABAP
+	('(' 'STK-Rank' stkRank = MSESTRING ')')? // for structures class, not used in ABAP
     ('(' 'iteration' iteration=INT ')')? 
     ')';    
 
@@ -579,6 +582,9 @@ FAMIXMessageClass:
     ('(' 'hash' id = STRING ')')?
     ('(' 'fqn' fqn = MSESTRING ')')?
     '(' 'container' container=IntegerReference ')'
+    ('(' 'modifiers' modifiers+=MSESTRING* ')')? // for structures class, not used in ABAP
+    ('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')? // for structures class, not used in ABAP
+	('(' 'STK-Rank' stkRank = MSESTRING ')')? // for structures class, not used in ABAP
     ('(' 'numberOfMessages' numberOfMessages=INT ')')?
     ('(' 'iteration' iteration=INT ')')? 
     ')';    
