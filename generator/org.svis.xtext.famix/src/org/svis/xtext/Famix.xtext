@@ -81,6 +81,7 @@ FAMIXClass:
 	('(' 'numberOfAntipattern' noa=INT ')')?
 	('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')?
 	('(' 'STK-Rank' stkRank = MSESTRING ')')?
+	('(' 'local' local=Boolean ')')? //ABAP
 	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 
