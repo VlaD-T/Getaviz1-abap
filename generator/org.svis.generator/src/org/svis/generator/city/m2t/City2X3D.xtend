@@ -26,6 +26,14 @@ class City2X3D {
 	var defineCMSimpleHouse = true
 	var defineCMSkyScraper = true
 	var defineCMRadioTower = true
+	var defineCMApartmentBuilding = true
+	var defineCMBoat = true
+	var defineCMCarPark = true
+	var defineCMTableType = true
+	var defineCMTownHall = true
+	var defineCMFactoryBuilding = true
+	var defineCMFactoryHall = true
+	var defineCMFactoryBuildingFumo = true
 
 	def toX3DBody(Resource resource) {
 		log.info("City2X3D has started.")
@@ -185,41 +193,113 @@ class City2X3D {
 
 
 		«ELSEIF entity.type == "FAMIX.Domain"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-					<Shape>
-						<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
-						<Appearance>
-							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
-			</Group>
-		
-		«ELSEIF entity.type == "FAMIX.StrucElement"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-					<Shape>
-						<Box size='«entity.width +" "+ entity.height*3 +" "+ entity.length»'></Box>
-						
-						<Appearance>
-							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
-			</Group>
-			   				
-		«ELSEIF entity.type == "FAMIX.TableType"»
-			<Group DEF='«entity.id»'>
-   				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-   					<Shape>
-   						<Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
-						<Appearance>
-						   	<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
-			</Group>
+            <Group DEF='«entity.id»'>
+                <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+                    <Shape>
+                        <Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
+                        <Appearance>
+                            <Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+                        </Appearance>
+                    </Shape>
+                </Transform>
+            </Group>
+        
+        «ELSEIF entity.type == "FAMIX.StrucElement"»
+            <Group DEF='«entity.id»'>
+                <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+                            scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+                            rotation='0 0.707107 0.707107 3.141593'>
+                    «IF defineCMApartmentBuilding»
+                        «defineCMApartmentBuilding = false»
+                        «CustomModel_ApartmentBuilding::defineApartmentBuildingBase»
+                        «FOR n : 1..entity.height.intValue»
+                            «CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
+                        «ENDFOR»
+                        «CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
+                    «ELSE»
+                        «CustomModel_ApartmentBuilding::createApartmentBuildingBase»
+                        «FOR n : 1..entity.height.intValue»
+                            «CustomModel_ApartmentBuilding::createApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
+                        «ENDFOR»
+                        «CustomModel_ApartmentBuilding::createApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
+                    «ENDIF»
+                </Transform>
+            </Group>
+
+
+«««		<Group DEF='«entity.id»'>
+«««						<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+«««							<Shape>
+«««								
+«««								<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
+«««								<Appearance>
+«««									<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+«««								</Appearance>
+«««							</Shape>
+«««						</Transform>
+«««					</Group>
+					
+					<Group DEF='«entity.id»'>
+									<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
+											   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+											   rotation='0.000000 0.707107 0.707107 3.141593'>
+										«IF defineCMTownHall»
+											«CustomModel_TownHall::defineTownHallShape»
+											«defineCMTownHall = false»
+										«ELSE»
+											«CustomModel_TownHall::createTownHallShape»
+										«ENDIF»					
+									</Transform>
+								</Group>
+					
+			«ELSEIF entity.type == "FAMIX.Table"»
+								<Group DEF='«entity.id»'>
+												<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+														   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+														   rotation='0 0.707107 0.707107 3.141593'>
+													«IF defineCMBoat»
+														«defineCMBoat = false»
+														«CustomModel_Boat::defineBoatFront»
+														«FOR n : 1..entity.height.intValue»
+															«CustomModel_Boat::defineBoatMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
+														«ENDFOR»
+														«CustomModel_Boat::defineBoatBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
+													«ELSE»
+														«CustomModel_Boat::createBoatFront»
+														«FOR n : 1..entity.height.intValue»
+															«CustomModel_Boat::createBoatMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
+														«ENDFOR»
+														«CustomModel_Boat::createBoatBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
+													«ENDIF»
+												</Transform>
+											</Group>
+								
+								
+			«ELSEIF entity.type == "FAMIX.TableType"»
+                <Group DEF='«entity.id»'>
+                    <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+                        <Shape>
+                            <Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
+                            <Appearance>
+                                <Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+                            </Appearance>
+                        </Shape>
+                    </Transform>
+                </Group>
+			
+			
+«««						<Group DEF='«entity.id»'>
+«««							<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
+«««									   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+«««									   rotation='0.000000 0.707107 0.707107 3.141593'>
+«««								«IF defineCMTableType»
+«««									«CustomModel_TableType::defineTableTypeShape»
+«««									«defineCMTableType = false»
+«««								«ELSE»
+«««									«CustomModel_TableType::createTableTypeShape»
+«««								«ENDIF»					
+«««							</Transform>
+«««						</Group>
 			   						   				
 		«ELSEIF entity.type == "FAMIX.Method"»
 			<Group DEF='«entity.id»'>
@@ -254,64 +334,153 @@ class City2X3D {
 			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Attribute"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
-					«IF defineCMRadioTower»
-						«defineCMRadioTower = false»
-						«CustomModel_RadioTower::defineRadioTowerBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
-						«ENDFOR»
-						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
-					«ELSE»
-						«CustomModel_RadioTower::createRadioTowerBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
-						«ENDFOR»
-						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
-					«ENDIF»
-				</Transform>
-			</Group>
+«««			<Group DEF='«entity.id»'>
+«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+«««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+«««						   rotation='0 0.707107 0.707107 3.141593'>
+«««					«IF defineCMRadioTower»
+«««						«defineCMRadioTower = false»
+«««						«CustomModel_RadioTower::defineRadioTowerBase»
+«««						«FOR n : 1..entity.height.intValue»
+«««							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
+«««						«ENDFOR»
+«««						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
+«««					«ELSE»
+«««						«CustomModel_RadioTower::createRadioTowerBase»
+«««						«FOR n : 1..entity.height.intValue»
+«««							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
+«««						«ENDFOR»
+«««						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
+«««					«ENDIF»
+«««				</Transform>
+«««			</Group>
+			
+«««			«ELSEIF entity.type == "FAMIX.Attribute"»
+						<Group DEF='«entity.id»'>
+							<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+									   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+									   rotation='0 0.707107 0.707107 3.141593'>
+								«IF defineCMCarPark»
+									«defineCMCarPark = false»
+									«CustomModel_CarPark::defineCarParkBase»
+									«FOR n : 1..entity.height.intValue»
+										«CustomModel_CarPark::defineCarParkFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
+									«ENDFOR»
+									«CustomModel_CarPark::defineCarParkRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
+								«ELSE»
+									«CustomModel_CarPark::createCarParkBase»
+									«FOR n : 1..entity.height.intValue»
+										«CustomModel_CarPark::createCarParkFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
+									«ENDFOR»
+									«CustomModel_CarPark::createCarParkRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
+								«ENDIF»
+							</Transform>
+						</Group>
+
+«««<Group DEF='«entity.id»'>
+«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
+«««						
+«««						<Appearance>
+«««							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
+«««			</Group>
 
 		«ELSEIF entity.type == "FAMIX.FunctionModule"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-					<Shape>
-						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
-						
-						<Appearance>
-							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
-			</Group>
-
+«««			<Group DEF='«entity.id»'>
+«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
+«««						
+«««						<Appearance>
+«««							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
+«««			</Group>
+<Group DEF='«entity.id»'>
+									<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+											   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+											   rotation='0 0.707107 0.707107 3.141593'>
+										«IF defineCMFactoryBuildingFumo»
+											«defineCMFactoryBuildingFumo = false»
+											«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase»
+											«FOR n : 1..entity.height.intValue»
+												«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
+											«ENDFOR»
+											«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
+										«ELSE»
+											«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoBase»
+											«FOR n : 1..entity.height.intValue»
+												«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
+											«ENDFOR»
+											«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
+										«ENDIF»
+									</Transform>
+								</Group>
+								
+           
 		«ELSEIF entity.type == "FAMIX.Report"»
+«««			<Group DEF='«entity.id»'>
+«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
+«««						
+«««						<Appearance>
+«««							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
+«««			</Group>
+			
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-					<Shape>
-						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
-						
-						<Appearance>
-							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+						   rotation='0.000000 0.707107 0.707107 3.141593'>
+							«IF defineCMFactoryHall»
+								«CustomModel_FactoryHall::defineFactoryHallShape»
+								«defineCMFactoryHall = false»
+							«ELSE»
+								«CustomModel_FactoryHall::createFactoryHallShape»
+							«ENDIF»					
 				</Transform>
 			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Formroutine"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-					<Shape>
-						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
-						
-						<Appearance>
-							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
+«««			<Group DEF='«entity.id»'>
+«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
+«««						
+«««						<Appearance>
+«««							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
+«««			</Group>
+			
+			 <Group DEF='«entity.id»'>
+			     <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+			           		scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+			           		rotation='0 0.707107 0.707107 3.141593'>
+			           		«IF defineCMFactoryBuilding»
+			           		«defineCMFactoryBuilding = false»
+			           		«CustomModel_FactoryBuilding::defineFactoryBuildingBase»
+			           		«FOR n : 1..entity.height.intValue»
+			           			«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
+			           		«ENDFOR»
+			           			«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
+			           		«ELSE»
+			           			«CustomModel_FactoryBuilding::createFactoryBuildingBase»
+			           			«FOR n : 1..entity.height.intValue»
+			           				«CustomModel_FactoryBuilding::createFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
+			           			«ENDFOR»
+			           				«CustomModel_FactoryBuilding::createFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
+			           			«ENDIF»
+			     </Transform>
 			</Group>
 			
 		«ENDIF»		
