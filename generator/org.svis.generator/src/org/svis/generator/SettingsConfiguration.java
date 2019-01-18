@@ -1272,7 +1272,7 @@ public class SettingsConfiguration {
 	//ABAP specific settings
 
 	public static enum AbapCityRepresentation {
-		SIMPLE, ADVANCED;
+		SIMPLE, ADVANCED, COMBINED;
 	}
 	
 	public String getAbapRepresentation() {
@@ -1283,6 +1283,8 @@ public class SettingsConfiguration {
 		switch (getAbapRepresentation()) {
 		case "advanced":
 			return AbapCityRepresentation.ADVANCED;
+		case "combined":
+			return AbapCityRepresentation.COMBINED;
 		default:
 			return AbapCityRepresentation.SIMPLE;
 		}
@@ -1298,12 +1300,12 @@ public class SettingsConfiguration {
 	  }
 	  
 	  public DataElementSorting getDtel_Sorting() {
-	  switch (getDtelSorting()){
-	  case "sorted":
-	    return DataElementSorting.SORTED;
-	  default: 
-	    return DataElementSorting.UNSORTED;
-	    }
+		  switch (getDtelSorting()){
+		  	case "sorted":
+		  		return DataElementSorting.SORTED;
+		  	default: 
+		  		return DataElementSorting.UNSORTED;
+		  }
 	   }
 	
 	public boolean isAbapCityTestMode() {

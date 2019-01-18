@@ -31,7 +31,8 @@ class City2X3D {
 		log.info("City2X3D has started.")
 		val entities = EcoreUtil2::getAllContentsOfType(resource.contents.head, Entity)
 		var rootEntity = CityLayout::rootRectangle
-		if (config.parser == FamixParser::ABAP && config.abap_representation == AbapCityRepresentation::ADVANCED) {
+		if (config.parser == FamixParser::ABAP && (config.abap_representation == AbapCityRepresentation::ADVANCED
+													|| config.abap_representation == AbapCityRepresentation::COMBINED)) {
 			rootEntity = ABAPCityLayout::rootRectangle // CityLayout::rootRectangle
 		}
 		
@@ -126,7 +127,7 @@ class City2X3D {
 		</Group>
 	'''
 	
-	// Own logic for ABAP Districts
+	// ABAP Districts
 	def String toAbapDistrict(Entity entity) '''
 		<Shape>
 			«IF entity.type == "tableDistrict"»	
@@ -184,47 +185,44 @@ class City2X3D {
 
 
 		«ELSEIF entity.type == "FAMIX.Domain"»
-		<Group DEF='«entity.id»'>
-						<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-							<Shape>
-								
-								<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
-								<Appearance>
-									<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-								</Appearance>
-							</Shape>
-						</Transform>
-					</Group>
-			
+			<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+					<Shape>
+						<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
+						<Appearance>
+							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+						</Appearance>
+					</Shape>
+				</Transform>
+			</Group>
 		
 		«ELSEIF entity.type == "FAMIX.StrucElement"»
-					<Group DEF='«entity.id»'>
-						<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-							<Shape>
-								<Box size='«entity.width +" "+ entity.height*3 +" "+ entity.length»'></Box>
-								
-								<Appearance>
-									<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-								</Appearance>
-							</Shape>
-						</Transform>
-					</Group>
-			   				
-			«ELSEIF entity.type == "FAMIX.TableType"»
 			<Group DEF='«entity.id»'>
-			   				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-			   					<Shape>
-			
-			   						<Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
-			<Appearance>
-			   						   	<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-			   						</Appearance>
-			</Shape>
-			</Transform>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+					<Shape>
+						<Box size='«entity.width +" "+ entity.height*3 +" "+ entity.length»'></Box>
+						
+						<Appearance>
+							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+						</Appearance>
+					</Shape>
+				</Transform>
+			</Group>
+			   				
+		«ELSEIF entity.type == "FAMIX.TableType"»
+			<Group DEF='«entity.id»'>
+   				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+   					<Shape>
+   						<Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
+						<Appearance>
+						   	<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+						</Appearance>
+					</Shape>
+				</Transform>
 			</Group>
 			   						   				
-			«ELSEIF entity.type == "FAMIX.Method"»
-				<Group DEF='«entity.id»'>
+		«ELSEIF entity.type == "FAMIX.Method"»
+			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
 						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 						   rotation='0.000000 0.707107 0.707107 3.141593'>
@@ -325,8 +323,7 @@ class City2X3D {
 	'''
 
 	
-	// Own logic for ABAP buildings shapes
-	//
+	// Simple ABAP buildings
 	def String abapBuildingShape(Entity entity)'''
 		«IF entity.type == "FAMIX.Interface"»
 			<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
@@ -336,7 +333,7 @@ class City2X3D {
 			<Box size='«entity.width/4 +" "+ entity.height +" "+ entity.length/4»'></Box>
 		«ELSEIF entity.type == "FAMIX.TableType"»
 			<Cylinder radius='«entity.width/2»' height='«entity.height»'></Cylinder>
-			«ELSEIF entity.type == "FAMIX.Table"»
+		«ELSEIF entity.type == "FAMIX.Table"»
 			<Cylinder radius='«entity.width/2»' height='«entity.height»'></Cylinder>
 		«ELSE»
 			<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>				
@@ -401,14 +398,14 @@ class City2X3D {
 		</Group>
 	'''
 	
-	// Own logic for ABAP floors (Methods, forms)
+	// ABAP floors (Methods, forms)
 	def toAbapFloor(BuildingSegment floor) '''
 		«IF floor.parentType == "FAMIX.ABAPStruc"»
 			<Cone bottomRadius='«floor.width»' height='«floor.height»'></Cone>
 		«ELSEIF floor.parentType == "FAMIX.TableType"»
 			<Cone bottomRadius='«floor.width»' height='«floor.height»'></Cone>
-			«ELSEIF floor.parentType == "FAMIX.Table"»
-				<Cylinder height='«floor.height»' radius='«floor.width»'></Cylinder>
+		«ELSEIF floor.parentType == "FAMIX.Table"»
+			<Cylinder height='«floor.height»' radius='«floor.width»'></Cylinder>
 		«ELSE»
 			<Box size='«floor.width +" "+ floor.height +" "+ floor.length»'></Box>
 		«ENDIF»
