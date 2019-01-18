@@ -175,7 +175,7 @@ class Famix2City_abap {
 		// Run transformation 
 		if (config.abap_representation == AbapCityRepresentation::SIMPLE) {
 			simpleModel()
-		} else if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
+		} else if (config.abap_representation == AbapCityRepresentation::ADVANCED || config.abap_representation == AbapCityRepresentation::COMBINED) {
 			advancedModel()
 		}		
 		
@@ -190,9 +190,9 @@ class Famix2City_abap {
 	
 	/**
 	 * Transform famix to City, SIMPLE representation
-	 * 1. Group objects by type and art
-	 * 2. Create district for groups
-	 * 3. Use simple forms (city2X3D)
+	 * 1. Groups objects by type and art
+	 * 2. Creates district for groups
+	 * 3. Uses simple forms (city2X3D)
 	 */
 	def simpleModel(){
 		rootPackages.forEach[toDistrict(1)]
@@ -201,8 +201,8 @@ class Famix2City_abap {
 	
 	/**
 	 * Transform famix to City, ADVANCED representation
-	 * 1. Build city using dependencies
-	 * 2. Use more complex buildings (city2X3D)
+	 * 1. Builds city using dependencies
+	 * 2. Uses more complex buildings (city2X3D)
 	 */
 	def advancedModel(){
 		rootPackages.forEach[toAdvancedDistrict(1)]

@@ -70,7 +70,8 @@ class City2City extends WorkflowComponentWithModelSlot {
 			districts.forEach[setDistrictAttributes]
 			buildings.forEach[setBuildingAttributes]
 			
-			if (config.parser == FamixParser::ABAP && config.abap_representation == AbapCityRepresentation::ADVANCED) {
+			if (config.parser == FamixParser::ABAP && (config.abap_representation == AbapCityRepresentation::ADVANCED 
+													   || config.abap_representation == AbapCityRepresentation::COMBINED)) {
 				ABAPCityLayout::cityLayout(cityRoot)
 				CityHeightLayout::cityHeightLayout(cityRoot)
 			} else {
@@ -213,28 +214,28 @@ class City2City extends WorkflowComponentWithModelSlot {
 		}
 
 		// ABAP Logic
-		if(config.parser == FamixParser::ABAP){
-			if(config.abap_representation == AbapCityRepresentation::ADVANCED){		
+		if (config.parser == FamixParser::ABAP){
+			if (config.abap_representation == AbapCityRepresentation::ADVANCED) {		
 				
 				// We use custom models in advanced mode. Adjust sizes: 
-				if(b.type == "FAMIX.DataElement"){
+				if (b.type == "FAMIX.DataElement") {
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 					b.height = b.height - (1 + config.getAbapAdvBuildingScale(b.type))
 					
-				} else if(b.type == "FAMIX.Domain"){
+				} else if (b.type == "FAMIX.Domain") {
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 					
-				} else if(b.type == "FAMIX.StrucElement"){
+				} else if (b.type == "FAMIX.StrucElement") {
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 					
-				} else if(b.type == "FAMIX.TableType"){
+				} else if (b.type == "FAMIX.TableType") {
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
 					  
-				} else if(b.type == "FAMIX.Attribute") {
+				} else if (b.type == "FAMIX.Attribute") {
           			b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
           			
@@ -300,6 +301,26 @@ class City2City extends WorkflowComponentWithModelSlot {
 						
 				}						
 			 // End of AbapCityRepresentation::ADVANCED
+			} else if (config.abap_representation == AbapCityRepresentation::COMBINED) {
+				
+				// Adjust height and width
+				b.width = 40
+				b.length = 40
+				if (b.methodCounter != 0) {
+					b.height = b.methodCounter * 5
+				}
+				
+				// Use custom colors from settings
+				if(config.getAbapBuildingColor(b.type) !== null){
+					b.color = new RGBColor(config.getAbapBuildingColor(b.type)).asPercentage;
+				}
+	
+				// Edit transparency 	
+				if (config.isNotInOriginTransparent() && b.notInOrigin == "true") {
+					b.transparency = config.getNotInOriginTransparentValue()
+				}
+			
+			// End of AbapCityRepresentation::COMBINED	
 			} else { //AbapCityRepresentation::SIMPLE
 				
 				// Edit height and width
@@ -322,25 +343,10 @@ class City2City extends WorkflowComponentWithModelSlot {
 						|| b.type == "FAMIX.FunctionGroup") && b.height < config.getNotInOriginSCBuildingHeight()){
 						b.height = config.getNotInOriginSCBuildingHeight()
 					}
-				}
-											
+				}											
 							
 				// Use custom colors from settings
 				if(config.getAbapBuildingColor(b.type) !== null){
-					b.color = new RGBColor(config.getAbapBuildingColor(b.type)).asPercentage;
-				}
-
-
-				// If not in origin, set new min height
-				if (b.notInOrigin == "true") {
-					if ((b.type == "FAMIX.Class" || b.type == "FAMIX.Interface" || b.type == "FAMIX.Report" ||
-						b.type == "FAMIX.FunctionGroup") && b.height < config.getNotInOriginSCBuildingHeight()) {
-						b.height = config.getNotInOriginSCBuildingHeight()
-					}
-				}
-
-				// Use color for building, if it's set
-				if (config.getAbapBuildingColor(b.type) !== null) {
 					b.color = new RGBColor(config.getAbapBuildingColor(b.type)).asPercentage;
 				}
 	
