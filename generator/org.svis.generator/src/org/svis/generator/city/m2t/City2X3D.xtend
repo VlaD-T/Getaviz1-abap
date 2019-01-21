@@ -39,8 +39,7 @@ class City2X3D {
 		log.info("City2X3D has started.")
 		val entities = EcoreUtil2::getAllContentsOfType(resource.contents.head, Entity)
 		var rootEntity = CityLayout::rootRectangle
-		if (config.parser == FamixParser::ABAP && (config.abap_representation == AbapCityRepresentation::ADVANCED
-													|| config.abap_representation == AbapCityRepresentation::COMBINED)) {
+		if (config.parser == FamixParser::ABAP && config.abap_representation == AbapCityRepresentation::ADVANCED) {
 			rootEntity = ABAPCityLayout::rootRectangle // CityLayout::rootRectangle
 		}
 		
@@ -135,7 +134,7 @@ class City2X3D {
 		</Group>
 	'''
 	
-	// ABAP Districts
+	// Own logic for ABAP Districts
 	def String toAbapDistrict(Entity entity) '''
 		<Shape>
 			«IF entity.type == "tableDistrict"»	
@@ -144,7 +143,7 @@ class City2X3D {
 				<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
 			«ENDIF»
 			<Appearance>
-			«IF(config.abapShowTextures && entity.textureURL !== null && entity.textureURL != "")»
+				«IF(config.abapShowTextures && entity.textureURL !== null && entity.textureURL != "")»
 					<ImageTexture url='«entity.textureURL»'></ImageTexture>
 				«ELSE»
 					<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
@@ -193,40 +192,6 @@ class City2X3D {
 
 
 		«ELSEIF entity.type == "FAMIX.Domain"»
-            <Group DEF='«entity.id»'>
-                <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-                    <Shape>
-                        <Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
-                        <Appearance>
-                            <Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-                        </Appearance>
-                    </Shape>
-                </Transform>
-            </Group>
-        
-        «ELSEIF entity.type == "FAMIX.StrucElement"»
-            <Group DEF='«entity.id»'>
-                <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-                            scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-                            rotation='0 0.707107 0.707107 3.141593'>
-                    «IF defineCMApartmentBuilding»
-                        «defineCMApartmentBuilding = false»
-                        «CustomModel_ApartmentBuilding::defineApartmentBuildingBase»
-                        «FOR n : 1..entity.height.intValue»
-                            «CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
-                        «ENDFOR»
-                        «CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
-                    «ELSE»
-                        «CustomModel_ApartmentBuilding::createApartmentBuildingBase»
-                        «FOR n : 1..entity.height.intValue»
-                            «CustomModel_ApartmentBuilding::createApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
-                        «ENDFOR»
-                        «CustomModel_ApartmentBuilding::createApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
-                    «ENDIF»
-                </Transform>
-            </Group>
-
-
 «««		<Group DEF='«entity.id»'>
 «««						<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
 «««							<Shape>
@@ -274,18 +239,40 @@ class City2X3D {
 												</Transform>
 											</Group>
 								
+		«ELSEIF entity.type == "FAMIX.StrucElement"»
+					<Group DEF='«entity.id»'>
+									<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+											   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+											   rotation='0 0.707107 0.707107 3.141593'>
+										«IF defineCMApartmentBuilding»
+											«defineCMApartmentBuilding = false»
+											«CustomModel_ApartmentBuilding::defineApartmentBuildingBase»
+											«FOR n : 1..entity.height.intValue»
+												«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
+											«ENDFOR»
+											«CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
+										«ELSE»
+											«CustomModel_ApartmentBuilding::createApartmentBuildingBase»
+											«FOR n : 1..entity.height.intValue»
+												«CustomModel_ApartmentBuilding::createApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
+											«ENDFOR»
+											«CustomModel_ApartmentBuilding::createApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
+										«ENDIF»
+									</Transform>
+								</Group>
 								
 			«ELSEIF entity.type == "FAMIX.TableType"»
-                <Group DEF='«entity.id»'>
-                    <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-                        <Shape>
-                            <Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
-                            <Appearance>
-                                <Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-                            </Appearance>
-                        </Shape>
-                    </Transform>
-                </Group>
+			<Group DEF='«entity.id»'>
+			   				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+			   					<Shape>
+			
+			   						<Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
+			<Appearance>
+			   						   	<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+			   						</Appearance>
+			</Shape>
+			</Transform>
+			</Group>
 			
 			
 «««						<Group DEF='«entity.id»'>
@@ -301,8 +288,8 @@ class City2X3D {
 «««							</Transform>
 «««						</Group>
 			   						   				
-		«ELSEIF entity.type == "FAMIX.Method"»
-			<Group DEF='«entity.id»'>
+			«ELSEIF entity.type == "FAMIX.Method"»
+				<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
 						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 						   rotation='0.000000 0.707107 0.707107 3.141593'>
@@ -401,26 +388,26 @@ class City2X3D {
 «««					</Shape>
 «««				</Transform>
 «««			</Group>
-<Group DEF='«entity.id»'>
-									<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-											   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-											   rotation='0 0.707107 0.707107 3.141593'>
-										«IF defineCMFactoryBuildingFumo»
-											«defineCMFactoryBuildingFumo = false»
-											«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase»
-											«FOR n : 1..entity.height.intValue»
-												«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
-											«ENDFOR»
-											«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
-										«ELSE»
-											«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoBase»
-											«FOR n : 1..entity.height.intValue»
-												«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
-											«ENDFOR»
-											«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
-										«ENDIF»
-									</Transform>
-								</Group>
+			<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+						   rotation='0 0.707107 0.707107 3.141593'>
+					«IF defineCMFactoryBuildingFumo»
+						«defineCMFactoryBuildingFumo = false»
+						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
+						«ENDFOR»
+						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
+					«ELSE»
+						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
+						«ENDFOR»
+						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
+					«ENDIF»
+				</Transform>
+			</Group>
 								
            
 		«ELSEIF entity.type == "FAMIX.Report"»
@@ -492,7 +479,7 @@ class City2X3D {
 	'''
 
 	
-	// Simple ABAP buildings
+	// Own logic for ABAP buildings shapes
 	def String abapBuildingShape(Entity entity)'''
 		«IF entity.type == "FAMIX.Interface"»
 			<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
@@ -567,7 +554,7 @@ class City2X3D {
 		</Group>
 	'''
 	
-	// ABAP floors (Methods, forms)
+	// Own logic for ABAP floors (Methods, forms)
 	def toAbapFloor(BuildingSegment floor) '''
 		«IF floor.parentType == "FAMIX.ABAPStruc"»
 			<Cone bottomRadius='«floor.width»' height='«floor.height»'></Cone>
