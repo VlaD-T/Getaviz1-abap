@@ -1353,6 +1353,10 @@ public class SettingsConfiguration {
 			if(config.getString("city.abap.classDistrict.color").equals("")) return null;
 			return getColor(config.getString("city.abap.classDistrict.color", "#9499b7"));
 			
+		}else if(type.equals("interfaceDistrict")) {
+			if(config.getString("city.abap.interfaceDistrict.color").equals("")) return null;
+			return getColor(config.getString("city.abap.interfaceDistrict.color", "#9499b7"));
+					
 		}else if(type.equals("reportDistrict")){			
 			if(config.getString("city.abap.reportDistrict.color").equals("")) return null;
 			return getColor(config.getString("city.abap.reportDistrict.color", "#9499b7"));
@@ -1509,8 +1513,11 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Attribute")) {
 			return config.getDouble("city.abap.adv_attribute_def_size", 20);
 			
+		} else if (type.equals("FAMIX.Class")) {
+			return config.getDouble("city.abap.adv_class_def_size", 20);
+		
 		} else if (type.equals("FAMIX.FunctionModule")) {
-			return config.getDouble("city.abap.adv_functionModule_def_size", 20);
+			return config.getDouble("city.abap.adv_fumo_def_size", 20);
 			
 		} else if (type.equals("FAMIX.Report")) {
 			return config.getDouble("city.abap.adv_report_def_size", 20);
@@ -1545,8 +1552,11 @@ public class SettingsConfiguration {
 		} else if(type.equals("FAMIX.Attribute")) {
 			return config.getDouble("city.abap.adv_attribute_scale", 0.1);
 			
+		} else if (type.equals("FAMIX.Class")) {
+			return config.getDouble("city.abap.adv_class_scale", 0.1);
+		
 		} else if (type.equals("FAMIX.FunctionModule")) {
-			return config.getDouble("city.abap.adv_functionModule_scale", 0.1);
+			return config.getDouble("city.abap.adv_fumo_scale", 0.1);
 			
 		} else if (type.equals("FAMIX.Report")) {
 			return config.getDouble("city.abap.adv_report_scale", 0.1);
@@ -1591,17 +1601,21 @@ public class SettingsConfiguration {
 		return config.getDouble("city.abap_method_roof_height", 7);
 	}
 	
-//	public double getAbapAttributeBaseHeight() {
-//		return config.getDouble("city.abap_attribute_base_height", 21);
-//	}
-//	
-//	public double getAbapAttributeFloorHeight() {
-//		return config.getDouble("city.abap_attribute_floor_height", 3);
-//	}
-//	
-//	public double getAbapAttributeRoofHeight() {
-//		return config.getDouble("city.abap_attribute_roof_height", 12);
-//	}
+	public double getAbapClassBaseHeight() {
+		return config.getDouble("city.abap_class_base_height", 21);
+	}
+	
+	public double getAbapClassFloorHeight() {
+		return config.getDouble("city.abap_class_floor_height", 3);
+	}
+	
+	public double getClassRoofHeight() {
+		return config.getDouble("city.abap_class_roof_height", 1);
+	}
+	
+	public double getClassRoofAntennaHeight() {
+		return config.getDouble("city.abap_class_roof-antenna_height", 7);
+	}
 	
 	public double getAbapAttributeBaseHeight() {
 		return config.getDouble("city.abap_attribute_base_height", 4);

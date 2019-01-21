@@ -454,8 +454,9 @@ class Famix2City_abap {
              newDistrict.entities.add(newDataElementDistrict)
              }
 		  }]
-
-		classes.filter[container.ref == elem].forEach[ class |
+  
+        // for classes
+		classes.filter[container.ref == elem].filter[isInterface == "false"].forEach[ class |
 			val newClassDistrict = cityFactory.createDistrict
 			newClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 			newClassDistrict.type = "classDistrict"
@@ -468,6 +469,22 @@ class Famix2City_abap {
 			attributes.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
 		
 			newDistrict.entities.add(newClassDistrict)
+		]
+		
+		// for interfaces
+		classes.filter[container.ref == elem].filter[isInterface == "true"].forEach[ class |
+			val newInterfaceDistrict = cityFactory.createDistrict
+			newInterfaceDistrict.name = newDistrict.name + "_interfaceDistrict"                                                           
+			newInterfaceDistrict.type = "interfaceDistrict"
+			newInterfaceDistrict.id   = elem.id + "_00004"
+			newInterfaceDistrict.level = level + 1
+			
+			newInterfaceDistrict.entities += toAdvBuilding(class, level + 2)
+
+//			methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
+//			attributes.filter[parentType.ref == class].forEach[newInterfaceDistrict.entities += toBuilding(level + 2)]
+		
+			newDistrict.entities.add(newInterfaceDistrict)
 		]
 		
 		functionGroups.filter[container.ref == elem].forEach[ functionGroup |
@@ -824,6 +841,25 @@ class Famix2City_abap {
 		return newBuilding		
 	}
 	
+	def private Building toAdvBuilding(FAMIXClass elem, int level) {
+		val newBuilding = cityFactory.createBuilding
+		newBuilding.name = elem.name
+		newBuilding.value = elem.value
+		newBuilding.fqn = elem.fqn
+		newBuilding.type = CityUtils.getFamixClassString(elem.class.simpleName)
+		newBuilding.level = level
+		newBuilding.id = elem.id
+		if(elem.iteration >= 1){
+			newBuilding.notInOrigin = "true"
+		}
+		
+		newBuilding.methodCounter = methods.filter[parentType.ref == elem].length
+//		methods.filter[parentType.ref == elem].forEach[newBuilding.methods.add(toChimney)]
+		
+        
+		return newBuilding		
+	}
+	
 	def private Building toAdvBuilding(FAMIXTable elem, int level) {
 		val newBuilding = cityFactory.createBuilding
 		newBuilding.name = elem.name
@@ -922,6 +958,13 @@ class Famix2City_abap {
 		newBuildingSegment.fqn = famixFormroutine.fqn
 		newBuildingSegment.id = famixFormroutine.id
 	} 
+	//	def BuildingSegment create newBuildingSegment: cityFactory.createBuildingSegment toChimney(FAMIXClass famixClass) {
+//		newBuildingSegment.name = famixFormroutine.name
+//		newBuildingSegment.value = famixFormroutine.value
+//		newBuildingSegment.fqn = famixFormroutine.fqn
+//		newBuildingSegment.id = famixFormroutine.id
+//	} 
+
 	
 	def BuildingSegment create newBuildingSegment: cityFactory.createBuildingSegment toFloor(FAMIXFunctionModule famixFuncModule) {
 		newBuildingSegment.name = famixFuncModule.name
