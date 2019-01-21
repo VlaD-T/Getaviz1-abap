@@ -29,7 +29,7 @@ class City2X3D {
 	var defineCMApartmentBuilding = true
 	var defineCMBoat = true
 	var defineCMCarPark = true
-	var defineCMTableType = true
+	var defineCMParkingSlot = true
 	var defineCMTownHall = true
 	var defineCMFactoryBuilding = true
 	var defineCMFactoryHall = true
@@ -262,31 +262,31 @@ class City2X3D {
 								</Group>
 								
 			«ELSEIF entity.type == "FAMIX.TableType"»
-			<Group DEF='«entity.id»'>
-			   				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-			   					<Shape>
+«««			<Group DEF='«entity.id»'>
+«««			   				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+«««			   					<Shape>
+«««			
+«««			   						<Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
+«««			<Appearance>
+«««			   						   	<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+«««			   						</Appearance>
+«««			</Shape>
+«««			</Transform>
+«««			</Group>
 			
-			   						<Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
-			<Appearance>
-			   						   	<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-			   						</Appearance>
-			</Shape>
-			</Transform>
-			</Group>
 			
-			
-«««						<Group DEF='«entity.id»'>
-«««							<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-«««									   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-«««									   rotation='0.000000 0.707107 0.707107 3.141593'>
-«««								«IF defineCMTableType»
-«««									«CustomModel_TableType::defineTableTypeShape»
-«««									«defineCMTableType = false»
-«««								«ELSE»
-«««									«CustomModel_TableType::createTableTypeShape»
-«««								«ENDIF»					
-«««							</Transform>
-«««						</Group>
+						<Group DEF='«entity.id»'>
+							<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
+									   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+									   rotation='0.000000 0.707107 0.707107 3.141593'>
+								«IF defineCMParkingSlot»
+									«CustomModel_ParkingSlot::defineParkingSlotShape»
+									«defineCMParkingSlot = false»
+								«ELSE»
+									«CustomModel_ParkingSlot::createParkingSlotShape»
+								«ENDIF»					
+							</Transform>
+						</Group>
 			   						   				
 			«ELSEIF entity.type == "FAMIX.Method"»
 				<Group DEF='«entity.id»'>

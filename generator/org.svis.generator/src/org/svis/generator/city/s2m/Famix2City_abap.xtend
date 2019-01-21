@@ -853,7 +853,7 @@ class Famix2City_abap {
 			newBuilding.notInOrigin = "true"
 		}
 		
-		newBuilding.methodCounter = methods.filter[parentType.ref == elem].length
+		newBuilding.methodCounter = methods.filter[parentType.ref == elem].length + 1
 //		methods.filter[parentType.ref == elem].forEach[newBuilding.methods.add(toChimney)]
 		
         
