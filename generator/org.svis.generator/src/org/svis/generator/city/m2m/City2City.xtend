@@ -233,7 +233,11 @@ class City2City extends WorkflowComponentWithModelSlot {
 				} else if(b.type == "FAMIX.TableType"){
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
-					  
+		
+//				} else if(b.type == "FAMIX.Table"){
+//					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
+//					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
+					  	  
 				} else if(b.type == "FAMIX.Attribute") {
           			b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
@@ -274,14 +278,19 @@ class City2City extends WorkflowComponentWithModelSlot {
 						b.buildingParts.add(roof)
 					}
 					
+				} else if(b.type == "FAMIX.Class"){
+					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
+					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
+			
+					
 				} else if (b.type == "FAMIX.FunctionModule") {
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //* 1.5
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 					if (b.methodCounter != 0)
-						b.height = b.methodCounter * 10
+						b.height = b.methodCounter // * 10
 					else
 						b.height = config.getHeightMin
-						
+									
 				} else if (b.type == "FAMIX.Report") {
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //* 1.5
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
