@@ -1290,23 +1290,39 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	public static enum AbapAdvCitySet {
+		DEFAULT, SIMPLE_FORMS;
+	}
 	
-	  public static enum DataElementSorting { 
-	       SORTED, UNSORTED;
-	  }
-	  
-	  public String getDtelSorting() {
-	        return config.getString("city.abap_dtelsorting_mode", "unsorted");
-	  }
-	  
-	  public DataElementSorting getDtel_Sorting() {
-		  switch (getDtelSorting()){
-		  	case "sorted":
-		  		return DataElementSorting.SORTED;
-		  	default: 
-		  		return DataElementSorting.UNSORTED;
-		  }
-	   }
+	public String getAbapAdvCitySet() {
+		return config.getString("city.abapAdvCity_set", "default");
+	}
+	
+	public AbapAdvCitySet getAbapAdvCity_set() {
+		switch (getAbapAdvCitySet()) {
+		case "simple_forms":
+			return AbapAdvCitySet.SIMPLE_FORMS;
+		default:
+			return AbapAdvCitySet.DEFAULT;
+		}
+	}
+	
+	public static enum DataElementSorting { 
+		SORTED, UNSORTED;
+	}
+  
+	public String getDtelSorting() {
+        return config.getString("city.abap_dtelsorting_mode", "unsorted");
+	}
+  
+	public DataElementSorting getDtel_Sorting() {
+		switch (getDtelSorting()){
+	  		case "sorted":
+	  			return DataElementSorting.SORTED;
+	  		default: 
+	  			return DataElementSorting.UNSORTED;
+		}
+	}
 	
 	public boolean isAbapCityTestMode() {
 		return config.getBoolean("city.abap_test_mode", false);

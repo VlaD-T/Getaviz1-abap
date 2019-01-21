@@ -175,7 +175,7 @@ class Famix2City_abap {
 		// Run transformation 
 		if (config.abap_representation == AbapCityRepresentation::SIMPLE) {
 			simpleModel()
-		} else if (config.abap_representation == AbapCityRepresentation::ADVANCED || config.abap_representation == AbapCityRepresentation::COMBINED) {
+		} else if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
 			advancedModel()
 		}		
 		
@@ -394,21 +394,20 @@ class Famix2City_abap {
 		]
 		
 	
-		if(config.getDtel_Sorting == DataElementSorting::UNSORTED){
-	        if(domains.filter[iteration == 1].length != 0){	 
+		if (config.getDtel_Sorting == DataElementSorting::UNSORTED) {
+	        if (domains.filter[iteration == 1].length != 0) {	 
 			val newDomainDistrict = cityFactory.createDistrict
 			newDomainDistrict.name = newDistrict.name + "_domainDistrict"
 			newDomainDistrict.type = "domainDistrict"
 			newDomainDistrict.id = elem.id + "_00002"
 			newDomainDistrict.level = level + 1
-			if(elem.iteration >= 1){
+			if (elem.iteration >= 1) {
 					newDomainDistrict.notInOrigin = "true"				
-				 }			
-			else {
-				 domains.filter[iteration == 1].forEach[ doma |
-				 dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]
-			     newDistrict.entities.add(newDomainDistrict)
-			     ]}
+			} else {
+				domains.filter[iteration == 1].forEach[ doma |
+				dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]
+			    newDistrict.entities.add(newDomainDistrict)
+			 ]}
 		 }}
 
  		else if(config.getDtel_Sorting == DataElementSorting::SORTED){
@@ -574,10 +573,10 @@ class Famix2City_abap {
 		}
 		
 		//TableType segments
-//		if(newBuilding.type == "FAMIX.TableType"){
-//			newBuilding.methodCounter = ttyElements.filter[tableType.ref == elem].length
-//			ttyElements.filter[tableType.ref == elem].forEach[newBuilding.methods.add(toFloor)]
-//		}
+		if(newBuilding.type == "FAMIX.TableType"){
+			newBuilding.methodCounter = ttyElements.filter[tableType.ref == elem].length
+			ttyElements.filter[tableType.ref == elem].forEach[newBuilding.methods.add(toFloor)]
+		}
 		
 		//Table segments
 		if(newBuilding.type == "FAMIX.Table"){
