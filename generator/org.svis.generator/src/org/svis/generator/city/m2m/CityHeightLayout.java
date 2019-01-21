@@ -23,7 +23,9 @@ public class CityHeightLayout {
 					|| e.getType().equals("FAMIX.Report") || e.getType().equals("FAMIX.Formroutine")
 					|| e.getType().equals("FAMIX.DataElement")|| e.getType().equals("FAMIX.Table")
 					|| e.getType().equals("FAMIX.TableType")|| e.getType().equals("FAMIX.ABAPStruc")
-					|| e.getType().equals("FAMIX.Domain") || e.getType().equals("FAMIX.Class") /*they have simple shape yet*/) {
+          || e.getType().equals("FAMIX.Domain") || e.getType().equals("FAMIX.Class")
+          || e.getType().equals("FAMIX.Method")
+          
 				y = e.getHeight() / 2;
 			}
 			

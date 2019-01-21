@@ -894,7 +894,7 @@ public class ABAPCityLayout {
 				if (counter != 0) {
 					for (int i = 0; i < position.get(counter).length(); ++i) {
 						char direction = position.get(counter).charAt(i);			
-						makeStep(newPos, direction, unitSize);					
+						doOneStep(newPos, direction, unitSize);					
 					}
 				}
 				
@@ -911,7 +911,7 @@ public class ABAPCityLayout {
 				if (counter > 4) {
 					for (int i = 0; i < position.get(counter).length(); ++i) {
 						char direction = position.get(counter).charAt(i);			
-						makeStep(newPos, direction, unitSize);					
+						doOneStep(newPos, direction, unitSize);					
 					}
 				}
 				
@@ -922,36 +922,36 @@ public class ABAPCityLayout {
 	}
 	
 	private static Position getCenterPosition(Double squareSize, Rectangle districtSquare, int counter, double unitSize) {
-		Position newPos = cityFactory.createPosition();
+		Position centerPos = cityFactory.createPosition();
 		
-		newPos.setX(districtSquare.getCenterX());
-		newPos.setZ(districtSquare.getCenterY());
+		centerPos.setX(districtSquare.getCenterX());
+		centerPos.setZ(districtSquare.getCenterY());
 		
 		if (squareSize.intValue() % 2 == 0) {
 			switch (counter % 4) {
 			case 1:
-				newPos.setX(newPos.getX() + unitSize / 2);
-				newPos.setZ(newPos.getZ() + unitSize / 2);
+				centerPos.setX(centerPos.getX() + unitSize / 2);
+				centerPos.setZ(centerPos.getZ() + unitSize / 2);
 				break;
 			case 2:
-				newPos.setX(newPos.getX() + unitSize / 2);
-				newPos.setZ(newPos.getZ() - unitSize / 2);
+				centerPos.setX(centerPos.getX() + unitSize / 2);
+				centerPos.setZ(centerPos.getZ() - unitSize / 2);
 				break;
 			case 3:
-				newPos.setX(newPos.getX() - unitSize / 2);
-				newPos.setZ(newPos.getZ() - unitSize / 2);
+				centerPos.setX(centerPos.getX() - unitSize / 2);
+				centerPos.setZ(centerPos.getZ() - unitSize / 2);
 				break;
 			case 0:
-				newPos.setX(newPos.getX() - unitSize / 2);
-				newPos.setZ(newPos.getZ() + unitSize / 2);
+				centerPos.setX(centerPos.getX() - unitSize / 2);
+				centerPos.setZ(centerPos.getZ() + unitSize / 2);
 				break;
 			}
 		}
 		
-		return newPos;
+		return centerPos;
 	}
 	
-	private static void makeStep(Position pos, char direction, double length) {
+	private static void doOneStep(Position pos, char direction, double length) {
 		switch (direction) {
 		case 'U':
 			pos.setZ(pos.getZ() + length);
