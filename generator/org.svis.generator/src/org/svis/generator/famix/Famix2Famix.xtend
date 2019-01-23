@@ -97,8 +97,7 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 	
 	//ABAP
 	val List<FAMIXReport> reports = newArrayList 
-	val List<FAMIXDataElement> dataElements = newArrayList 
-	//val List<FAMIXDataElementDatatype> datatyElements = newArrayList
+	val List<FAMIXDataElement> dataElements = newArrayList
 	val List<FAMIXDomain> domains = newArrayList
 	val List<FAMIXTable> tables = newArrayList 
 	val List<FAMIXABAPStruc> abapStrucs = newArrayList 
@@ -152,9 +151,6 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 		val famixDocument = famixRoot.document
 		famixDocument.elements.removeAll(Collections::singleton(null))
 		
-		val Set<FAMIXNamespace> packages = newLinkedHashSet
-		val List<FAMIXABAPStruc> abapStrucsTmp = newArrayList
-		
 		famixDocument.elements.filter(FAMIXPath).forEach[path|
 			path.id = createID(path.name + path.start.ref.name + path.end.ref.name);
 		]
@@ -170,8 +166,7 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 			} else {
 				addElementToList(element)
 			}			
-		]
-		
+		]		
 		
 		
 		val allPackages = famixDocument.elements.filter(FAMIXNamespace).toSet
@@ -190,9 +185,8 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 		macros.forEach[updParameters]
 		tables.forEach[updParameters]
 		tableElements.forEach[updParameters]
-		abapStrucsTmp.forEach[updParameters]
+		abapStrucs.forEach[updParameters]
 		abapStrucElem.forEach[updParameters]
-		abapStrucsTmp.forEach[updateAbapStrucs]
 		tableTypes.forEach[ tty | 
 			updParameters(tty)
 			createTableTypeElements(tty)
@@ -240,7 +234,6 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 		dataElements.clear
 		domains.clear
 		tables.clear
-		abapStrucsTmp.clear
 		abapStrucs.clear
 		abapStrucElem.clear
 		tableTypes.clear
@@ -269,7 +262,6 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 			FAMIXDataElement: dataElements.add(element)
 			FAMIXDomain: domains.add(element)
 			FAMIXTable: tables.add(element)
-			//FAMIXABAPStruc: abapStrucsTmp.add(element)
 			FAMIXABAPStruc: abapStrucs.add(element)
 			FAMIXStrucElement: abapStrucElem.add(element)
 			FAMIXTableType: tableTypes.add(element)
@@ -645,12 +637,21 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 	}
 
 	def private void getPackages(FAMIXNamespace namespace) {
-		if (namespace.parentScope === null) {
+		if ((config.abapNotInOrigin_filter == AbapNotInOriginFilter::FILTERED && namespace.iteration == 0) || 
+			(config.abapNotInOrigin_filter !== AbapNotInOriginFilter::FILTERED)) {
+			if (namespace.parentScope === null) {
+				rootPackages += namespace
+			} else {
+				subPackages += namespace
+				getPackages(namespace.parentScope.ref as FAMIXNamespace)
+			}
+		}
+		/*if (namespace.parentScope === null) {
 			rootPackages += namespace
 		} else {
 			subPackages += namespace
 			getPackages(namespace.parentScope.ref as FAMIXNamespace)
-		}
+		}*/
 	}
 
 	/**
