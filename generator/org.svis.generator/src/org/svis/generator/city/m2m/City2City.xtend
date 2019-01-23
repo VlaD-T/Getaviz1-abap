@@ -24,6 +24,7 @@ import org.codehaus.plexus.logging.console.ConsoleLogger
 import org.svis.generator.SettingsConfiguration.FamixParser
 import org.eclipse.emf.common.util.EList
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
+import org.svis.generator.SettingsConfiguration.AbapNotInOriginFilter
 
 class City2City extends WorkflowComponentWithModelSlot {
 
@@ -70,8 +71,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 			districts.forEach[setDistrictAttributes]
 			buildings.forEach[setBuildingAttributes]
 			
-			if (config.parser == FamixParser::ABAP && (config.abap_representation == AbapCityRepresentation::ADVANCED 
-													   || config.abap_representation == AbapCityRepresentation::COMBINED)) {
+			if (config.parser == FamixParser::ABAP && config.abap_representation == AbapCityRepresentation::ADVANCED) {
 				ABAPCityLayout::cityLayout(cityRoot)
 				CityHeightLayout::cityHeightLayout(cityRoot)
 			} else {
@@ -130,20 +130,24 @@ class City2City extends WorkflowComponentWithModelSlot {
 		} else if (config.outputFormat == OutputFormat::AFrame) {
 			d.color = config.packageColorHex
 		} else {
-			if (config.parser == FamixParser::ABAP) {
-
-				// Set color, if defined
-				if (config.getAbapDistrictColor(d.type) !== null) {
-					d.color = new RGBColor(config.getAbapDistrictColor(d.type)).asPercentage;
-					d.textureURL = config.getAbapDistrictTexture(d.type);
+			if (config.parser == FamixParser::ABAP) {				
+				//for not origin packages
+				if (d.notInOrigin == "true") {
+					switch (config.abapNotInOrigin_filter) {
+						case AbapNotInOriginFilter::TRANSPARENT: d.transparency = config.getNotInOriginTransparentValue()
+						case AbapNotInOriginFilter::COLORED: d.color = new RGBColor(config.getAbapDistrictColor("notInOrigin")).asPercentage
+						case AbapNotInOriginFilter::DEFAULT: d.color = PCKG_colors.get(0).asPercentage
+					}
+				//for origin packages	
 				} else {
-					d.color = PCKG_colors.get(d.level - 1).asPercentage
-				}
-
-				// Set transparency
-				if (config.isNotInOriginTransparent() && d.notInOrigin == "true") {
-					d.transparency = config.getNotInOriginTransparentValue()
-				}
+					// Set color, if defined
+					if (config.getAbapDistrictColor(d.type) !== null) {
+						d.color = new RGBColor(config.getAbapDistrictColor(d.type)).asPercentage;
+						d.textureURL = config.getAbapDistrictTexture(d.type);
+					} else {
+						d.color = PCKG_colors.get(d.level - 1).asPercentage
+					}
+				}				
 			} else {
 				d.color = PCKG_colors.get(d.level - 1).asPercentage
 			}
@@ -240,16 +244,17 @@ class City2City extends WorkflowComponentWithModelSlot {
 //					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
 					  	  
 				} else if(b.type == "FAMIX.Attribute") {
-          	b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
-					  b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+          			b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
+					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
           			
-          	if (b.dataCounter == 2.0) {
-						  b.height = 4
-					  }	else if (b.dataCounter == 3.0) {
-						  b.height = 7
-					  }	else if (b.dataCounter == 4.0) {
-						  b.height = 10
-					  }
+          			if (b.dataCounter == 2.0) {
+						b.height = 4
+					} else if (b.dataCounter == 3.0) {
+						b.height = 7
+					} else if (b.dataCounter == 4.0) {
+						b.height = 10
+					}
+					
 				} else if (b.type == "FAMIX.Method") {
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
 					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
@@ -279,8 +284,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 					
 				} else if(b.type == "FAMIX.Class"){
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
-					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
-			
+					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)			
 					
 				} else if (b.type == "FAMIX.FunctionModule") {
 					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //* 1.5
@@ -307,27 +311,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 						b.height = config.getHeightMin
 						
 				}						
-			 // End of AbapCityRepresentation::ADVANCED
-			} else if (config.abap_representation == AbapCityRepresentation::COMBINED) {
-				
-				// Adjust height and width
-				b.width = 40
-				b.length = 40
-				if (b.methodCounter != 0) {
-					b.height = b.methodCounter * 5
-				}
-				
-				// Use custom colors from settings
-				if(config.getAbapBuildingColor(b.type) !== null){
-					b.color = new RGBColor(config.getAbapBuildingColor(b.type)).asPercentage;
-				}
-	
-				// Edit transparency 	
-				if (config.isNotInOriginTransparent() && b.notInOrigin == "true") {
-					b.transparency = config.getNotInOriginTransparentValue()
-				}
-			
-			// End of AbapCityRepresentation::COMBINED	
+			 // End of AbapCityRepresentation::ADVANCED		
 			} else { //AbapCityRepresentation::SIMPLE
 				
 				// Edit height and width
@@ -358,7 +342,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 				}
 	
 				// Edit transparency 	
-				if (config.isNotInOriginTransparent() && b.notInOrigin == "true") {
+				if (config.abapNotInOrigin_filter == AbapNotInOriginFilter::TRANSPARENT && b.notInOrigin == "true") {
 					b.transparency = config.getNotInOriginTransparentValue()
 				}
 

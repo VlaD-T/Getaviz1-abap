@@ -1270,9 +1270,10 @@ public class SettingsConfiguration {
 	
 	
 	//ABAP specific settings
-
+	
+	//Representation mode, defines the whole model.
 	public static enum AbapCityRepresentation {
-		SIMPLE, ADVANCED, COMBINED;
+		SIMPLE, ADVANCED;
 	}
 	
 	public String getAbapRepresentation() {
@@ -1283,13 +1284,12 @@ public class SettingsConfiguration {
 		switch (getAbapRepresentation()) {
 		case "advanced":
 			return AbapCityRepresentation.ADVANCED;
-		case "combined":
-			return AbapCityRepresentation.COMBINED;
 		default:
 			return AbapCityRepresentation.SIMPLE;
 		}
 	}
 	
+	//Shapes for advanced mode. Currently only city2x3d affected.
 	public static enum AbapAdvCitySet {
 		DEFAULT, SIMPLE_FORMS;
 	}
@@ -1305,6 +1305,36 @@ public class SettingsConfiguration {
 		default:
 			return AbapAdvCitySet.DEFAULT;
 		}
+	}
+	
+	//Filter for objects, that are not in main package. 
+	public static enum AbapNotInOriginFilter {
+		TRANSPARENT, COLORED , FILTERED, DEFAULT;
+	}
+	
+	public String getAbapNotInOriginFilter() {
+		return config.getString("city.abap.notInOrigin_filter", "transparent");
+	}
+	
+	public AbapNotInOriginFilter getAbapNotInOrigin_filter() {
+		switch (getAbapNotInOriginFilter()) {
+		case "transparent":
+			return AbapNotInOriginFilter.TRANSPARENT;
+		case "colored":
+			return AbapNotInOriginFilter.COLORED;
+		case "filtered":
+			return AbapNotInOriginFilter.FILTERED;
+		default:
+			return AbapNotInOriginFilter.DEFAULT;			
+		}
+	}
+	
+	public double getNotInOriginTransparentValue() {
+		return config.getDouble("city.abap.notInOrigin_transparent_value", 0.4);
+	}
+	
+	public double getNotInOriginSCBuildingHeight() {
+		return config.getDouble("city.abap.notInOrigin_min_scBuilding_height", 4);
 	}
 	
 	public static enum DataElementSorting { 
@@ -1352,18 +1382,6 @@ public class SettingsConfiguration {
 		return config.getDouble("city.abap.strucElemHeight", 1);
 	}
 	
-	public boolean isNotInOriginTransparent() {
-		return config.getBoolean("city.abap.notInOrigin_transparent", true);
-	}
-	
-	public double getNotInOriginTransparentValue() {
-		return config.getDouble("city.abap.notInOrigin_transparent_value", 0.4);
-	}
-	
-	public double getNotInOriginSCBuildingHeight() {
-		return config.getDouble("city.abap.notInOrigin_min_scBuilding_height", 4);
-	}
-	
 	public Color getAbapDistrictColor(String type) {
 		if(type.equals("classDistrict")) {
 			if(config.getString("city.abap.classDistrict.color").equals("")) return null;
@@ -1396,6 +1414,10 @@ public class SettingsConfiguration {
 		}else if(type.equals("tableDistrict")){
 			if(config.getString("city.abap.tableDistrict.color").equals("")) return null;
 			return getColor(config.getString("city.abap.tableDistrict.color", "#9499b7"));
+		
+		} else if(type.equals("notInOrigin")) {
+			if(config.getString("city.abap.notInOrigin_color").equals("")) return null;
+			return getColor(config.getString("city.abap.notInOrigin_color", "#9499b7"));
 			
 		}else {
 			return null;
@@ -1530,7 +1552,7 @@ public class SettingsConfiguration {
 			return config.getDouble("city.abap.adv_attribute_def_size", 20);
 			
 		} else if (type.equals("FAMIX.Class")) {
-			return config.getDouble("city.abap.adv_class_def_size", 20);
+			return config.getDouble("city.abap.adv_class_def_size", 15);
 		
 		} else if (type.equals("FAMIX.FunctionModule")) {
 			return config.getDouble("city.abap.adv_fumo_def_size", 20);
@@ -1583,26 +1605,6 @@ public class SettingsConfiguration {
 		} else {
 			return 0;
 		}
-	}
-	
-	public double getAbapClassMemberSideLength() {
-		return config.getDouble("city.abap.class_member_side_length", 32);
-	}
-	
-	public double getAbapFunctionGroupMemberSideLength() {
-		return config.getDouble("city.abap.function_group_member_side_length", 32);
-	}
-	
-	public double getAbapReportMemberSideLength() {
-		return config.getDouble("city.abap.report_member_side_length", 32);
-	}
-	
-	public double getAbapStrucMemberSideLength() {
-		return config.getDouble("city.abap.struc_member_side_length", 32);
-	}
-	
-	public double getAbapDomainMemberSideLength() {
-		return config.getDouble("city.abap.domain_member_side_length", 32);
 	}
 	
 	public double getAbapMethodBaseHeight() {
