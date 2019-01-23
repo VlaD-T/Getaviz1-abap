@@ -86,6 +86,7 @@ FAMIXClass:
 	('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')?
 	('(' 'STK-Rank' stkRank = MSESTRING ')')?
 	('(' 'local' local=Boolean ')')? //ABAP
+	('(' 'include' include=MSESTRING ')')? //ABAP
 	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 
@@ -129,7 +130,8 @@ FAMIXMethod:
 	('(' 'creator' creator = MSESTRING ')')?
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
-	('(' 'lastChanged' lastChanged = MSESTRING ')')?
+	('(' 'lastChanged' lastChanged = MSESTRING ')')?	
+	('(' 'include' include=MSESTRING ')')? //ABAP
 	')';
 
 FAMIXInvocation:
@@ -163,6 +165,7 @@ FAMIXAttribute:
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?
+	('(' 'include' include=MSESTRING ')')? //ABAP
 	')';	
 
 FAMIXAccess:
@@ -418,6 +421,7 @@ FAMIXReport:
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?
+	('(' 'include' include=MSESTRING ')')?
     ')';
 
 FAMIXFormroutine:
@@ -429,6 +433,7 @@ FAMIXFormroutine:
     ('(' 'declaredType' declaredType=IntegerReference ')')?
     ('(' 'numberOfStatements' numberOfStatements=INT ')')?
     '(' 'parentType' parentType=IntegerReference ')'
+    ('(' 'include' include=MSESTRING ')')?
     ('(' 'iteration' iteration=INT ')')?
 	')';
 	    
@@ -544,6 +549,7 @@ FAMIXFunctionGroup:
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?
+	('(' 'include' include=MSESTRING ')')?
     ')';    
 
 FAMIXFunctionModule:
@@ -560,6 +566,7 @@ FAMIXFunctionModule:
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?
+	('(' 'include' include=MSESTRING ')')?
     ')';
 	
 FAMIXMacro:
@@ -576,6 +583,7 @@ FAMIXMacro:
     '(' 'amountOfCalls' amountOfCalls=INT ')'
     '(' 'redefined' redefined=Boolean ')'
     '(' 'nested' nested=Boolean ')'
+    ('(' 'include' include=MSESTRING ')')?
     ('(' 'iteration' iteration=INT ')')?
 	')';
 	
