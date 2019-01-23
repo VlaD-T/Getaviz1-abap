@@ -1439,11 +1439,7 @@ public class SettingsConfiguration {
 			
 		}else if(type.equals("FAMIX.ABAPStruc")) {
 			if(config.getString("city.abap.structure.color").equals("")) return null;
-			return getColor(config.getString("city.abap.structure.color", "#c5cae9"));
-			
-		}else if(type.equals("FAMIX.ABAPStrucElement")) {
-			if(config.getString("city.abap.strucElem.color").equals("")) return null;
-			return getColor(config.getString("city.abap.strucElem.color", "#c5cae9"));	
+			return getColor(config.getString("city.abap.structure.color", "#c5cae9"));	
 			
 		}else if(type.equals("FAMIX.TableType")) {
 			if(config.getString("city.abap.table_type.color").equals("")) return null;
@@ -1487,7 +1483,7 @@ public class SettingsConfiguration {
 			if(config.getString("city.abap.fumo.color").equals("")) return null;
 			return getColor(config.getString("city.abap.fumo.color", "#c5cae9"));
 			
-		}else if(type.equals("FAMIX.ABAPStrucElem")) {
+		}else if(type.equals("FAMIX.ABAPStruc")) {
 			if(config.getString("city.abap.structure_elem.color").equals("")) return null;
 			return getColor(config.getString("city.abap.structure_elem.color", "#c5cae9"));
 			

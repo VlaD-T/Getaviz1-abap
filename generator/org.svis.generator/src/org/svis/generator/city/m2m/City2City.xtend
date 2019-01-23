@@ -138,12 +138,17 @@ class City2City extends WorkflowComponentWithModelSlot {
 						case AbapNotInOriginFilter::COLORED: d.color = new RGBColor(config.getAbapDistrictColor("notInOrigin")).asPercentage
 						case AbapNotInOriginFilter::DEFAULT: d.color = PCKG_colors.get(0).asPercentage
 					}
+					
+					//Set color for custom districts
+					if (config.getAbapDistrictColor(d.type) !== null) {
+						d.color = new RGBColor(config.getAbapDistrictColor(d.type)).asPercentage
+					}
 				//for origin packages	
 				} else {
 					// Set color, if defined
 					if (config.getAbapDistrictColor(d.type) !== null) {
-						d.color = new RGBColor(config.getAbapDistrictColor(d.type)).asPercentage;
-						d.textureURL = config.getAbapDistrictTexture(d.type);
+						d.color = new RGBColor(config.getAbapDistrictColor(d.type)).asPercentage
+						d.textureURL = config.getAbapDistrictTexture(d.type)
 					} else {
 						d.color = PCKG_colors.get(d.level - 1).asPercentage
 					}
