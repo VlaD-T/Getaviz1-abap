@@ -11,30 +11,26 @@ Document:
 	'(' elements+=FAMIXElement* ')';
 	
 FAMIXElement:
-	FAMIXStructure | FAMIXDictionaryData | FAMIXFileAnchor | FAMIXInvocation | FAMIXAttribute | FAMIXInheritance |
-	FAMIXAccess | FAMIXNamespace | FAMIXMethod | FAMIXPrimitiveType | FAMIXComment | FAMIXParameter | FAMIXReference |
-	FAMIXParameterizedType | FAMIXAnnotationInstance | FAMIXAnnotationInstanceAttribute | FAMIXAnnotationTypeAttribute |
-	FAMIXLocalVariable | FAMIXImplicitVariable | FAMIXType | FAMIXParameterType |
-	FAMIXJavaSourceLanguage | FAMIXDeclaredException | FAMIXThrownException | FAMIXCaughtException | FAMIXEnumValue | 
-	FAMIXAntipattern | FAMIXPath | FAMIXRole | FAMIXComponent | 
-	
-	//ABAP
-	FAMIXReport | FAMIXFormroutine | FAMIXFunctionModule | FAMIXTypeOf | FAMIXMacro 
+	FAMIXABAPElements | FAMIXFileAnchor | FAMIXInvocation | FAMIXAccess | FAMIXRole | FAMIXComponent |
+	FAMIXPrimitiveType | FAMIXComment | FAMIXParameter | FAMIXParameterizedType | FAMIXAnnotationInstance | 
+	FAMIXAnnotationInstanceAttribute | FAMIXAnnotationTypeAttribute | FAMIXLocalVariable | FAMIXImplicitVariable | 
+	FAMIXType | FAMIXParameterType | FAMIXJavaSourceLanguage | FAMIXDeclaredException | FAMIXThrownException | 
+	FAMIXCaughtException | FAMIXEnumValue | FAMIXAntipattern | FAMIXPath  
 ;
 	
+FAMIXABAPElements:
+	FAMIXDictionaryData | FAMIXStructure |  FAMIXMethod | FAMIXAttribute | FAMIXNamespace | FAMIXReport | 
+	FAMIXFormroutine | FAMIXFunctionModule | FAMIXTypeOf | FAMIXMacro | FAMIXReference | FAMIXInheritance
+;
+
 FAMIXStructure:
 	FAMIXClass | FAMIXParameterizableClass | FAMIXEnum | FAMIXAnnotationType |
-	
-	//ABAP
 	FAMIXMessageClass | FAMIXFunctionGroup
 ;
 
-//ABAP
 FAMIXDictionaryData:
 	FAMIXDomain | FAMIXDataElement | FAMIXTable | FAMIXTableElement | FAMIXABAPStruc | FAMIXStrucElement | 
 	FAMIXTableType | FAMIXTableTypeElement 
-
-
 ;
 
 /** Explanation of different identifiers
@@ -104,6 +100,7 @@ FAMIXParameterizableClass:
 	('(' 'antipattern' antipattern+=IntegerReference* ')')?
 	('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')?
 	('(' 'STK-Rank' stkRank = MSESTRING ')')?
+	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 
 FAMIXMethod:
@@ -206,6 +203,7 @@ FAMIXInheritance:
 	('(' 'previous' previous=IntegerReference ')')?
 	'(' 'subclass' subclass=IntegerReference ')'
 	'(' 'superclass' superclass=IntegerReference ')'
+	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 
 FAMIXReference:
@@ -213,6 +211,7 @@ FAMIXReference:
 	'(' 'id:' name=INT_ID ')'
 	'(' 'source' source=IntegerReference ')'
 	'(' 'target' target=IntegerReference ')'
+	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 
 FAMIXParameterizedType:
@@ -258,6 +257,7 @@ FAMIXAnnotationType:
 	('(' 'antipattern' antipattern+=IntegerReference* ')')?
 	('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')?
 	('(' 'STK-Rank' stkRank = MSESTRING ')')?
+	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 
 FAMIXAnnotationTypeAttribute:
@@ -344,6 +344,7 @@ FAMIXEnum:
 	('(' 'antipattern' antipattern+=IntegerReference* ')')?
 	('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')?
 	('(' 'STK-Rank' stkRank = MSESTRING ')')?
+	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 
 FAMIXEnumValue:
@@ -585,6 +586,7 @@ FAMIXTypeOf:
 	('(' 'fqn' fqn = MSESTRING ')')?
 	('(' 'element' element=IntegerReference ')')
 	('(' 'typeOf' typeOf=IntegerReference ')')
+	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 	
 

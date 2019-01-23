@@ -49,9 +49,11 @@ import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot
 import org.apache.commons.logging.LogFactory
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.FamixParser
+import org.svis.generator.SettingsConfiguration.AbapNotInOriginFilter
 import org.svis.xtext.famix.FAMIXReference
 
 //ABAP
+import org.svis.xtext.famix.FAMIXABAPElements
 import org.svis.xtext.famix.FAMIXReport 
 import org.svis.xtext.famix.FAMIXFormroutine
 import org.svis.xtext.famix.FAMIXFunctionGroup
@@ -157,34 +159,17 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 			path.id = createID(path.name + path.start.ref.name + path.end.ref.name);
 		]
 		
-		
+		//Select elements only from parent package
 		famixDocument.elements.forEach[element|
-			switch element {
-				FAMIXAttribute: attributes.add(element)					
-				FAMIXMethod: methods.add(element)
-				FAMIXReport: reports.add(element)
-				FAMIXDataElement: dataElements.add(element)
-				FAMIXDomain: domains.add(element)
-				FAMIXTable: tables.add(element)
-				FAMIXABAPStruc: abapStrucsTmp.add(element)
-				FAMIXStrucElement: abapStrucElem.add(element)
-				FAMIXTableType: tableTypes.add(element)
-				FAMIXFunctionModule: functionModules.add(element)
-				FAMIXFormroutine: formroutines.add(element)
-				FAMIXMacro: macros.add(element)
-				FAMIXMessageClass: messageClasses.add(element)
-				FAMIXFunctionGroup: functionGroups.add(element)
-				FAMIXTableElement: tableElements.add(element)
-				FAMIXTypeOf: typeOf.add(element)
-				FAMIXReference: references.add(element)
-				FAMIXInheritance: inheritances.add(element)
-				FAMIXStructure: {
-					if(element.container !== null){
-						structures.add(element)
+			if (config.abapNotInOrigin_filter == AbapNotInOriginFilter::FILTERED) {
+				if (element instanceof FAMIXABAPElements) {
+					if (element.iteration == 0) {
+						addElementToList(element)
 					}
 				}
-			}
-			
+			} else {
+				addElementToList(element)
+			}			
 		]
 		
 		
@@ -275,6 +260,35 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 		typeOf.clear
 		return famixRoot
 	} //End of ABAP logic
+	
+	def private addElementToList(FAMIXElement element) {
+		switch element {
+			FAMIXAttribute: attributes.add(element)					
+			FAMIXMethod: methods.add(element)
+			FAMIXReport: reports.add(element)
+			FAMIXDataElement: dataElements.add(element)
+			FAMIXDomain: domains.add(element)
+			FAMIXTable: tables.add(element)
+			//FAMIXABAPStruc: abapStrucsTmp.add(element)
+			FAMIXABAPStruc: abapStrucs.add(element)
+			FAMIXStrucElement: abapStrucElem.add(element)
+			FAMIXTableType: tableTypes.add(element)
+			FAMIXFunctionModule: functionModules.add(element)
+			FAMIXFormroutine: formroutines.add(element)
+			FAMIXMacro: macros.add(element)
+			FAMIXMessageClass: messageClasses.add(element)
+			FAMIXFunctionGroup: functionGroups.add(element)
+			FAMIXTableElement: tableElements.add(element)
+			FAMIXTypeOf: typeOf.add(element)
+			FAMIXReference: references.add(element)
+			FAMIXInheritance: inheritances.add(element)
+			FAMIXStructure: {
+				if(element.container !== null){
+					structures.add(element)
+				}
+			}
+		}
+	}
 		
 	
 	//Default 

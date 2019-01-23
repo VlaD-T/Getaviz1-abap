@@ -607,18 +607,19 @@ public class ABAPCityLayout {
 	
 	
 	private static void arrangeInterfaceDistrict(Entity interfaceDistrict) {
-		Double squareSize = Math.ceil((interfaceDistrict.getEntities().size() - 1)/8.0)* 2 + 1;
-		double size = squareSize * (config.getAbapDomainMemberSideLength() + config.getBuildingHorizontalGap());		
-		interfaceDistrict.setWidth(size + 2 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
-		interfaceDistrict.setLength(size + 2 * config.getBuildingHorizontalMargin());
-		//Rectangle dcDataDistrictSquare = new Rectangle(0, 0, size, size);
+		Double squareSize = Math.ceil(interfaceDistrict.getEntities().size());
+		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.Class") * config.getAbapAdvBuildingScale("FAMIX.Class"));
+		//double size = (config.getAbapAdvBuildingDefSize("FAMIX.Class") * config.getAbapAdvBuildingScale("FAMIX.Class"));		
+		interfaceDistrict.setWidth(size + 3 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
+		interfaceDistrict.setLength(size + 5 * config.getBuildingHorizontalMargin());
+		Rectangle interfaceDistrictSquare = new Rectangle(0, 0, interfaceDistrict.getWidth(), interfaceDistrict.getLength());
 		
 		EList<Entity> members = interfaceDistrict.getEntities();
 		
 		List<Rectangle> classes = new ArrayList<Rectangle>();
 		List<Rectangle> attributes = new ArrayList<Rectangle>();
 		
-		double unitSize = config.getAbapDomainMemberSideLength() + config.getBuildingHorizontalGap();
+		double unitSize = config.getAbapAdvBuildingDefSize("FAMIX.Class") * config.getAbapAdvBuildingScale("FAMIX.Class");
 		
 		// ordering the members as rectangles by type
 		for (Entity member : members) {
@@ -639,11 +640,14 @@ public class ABAPCityLayout {
 		}
 		
 		// start algorithm
-		//List<String> position = getPositionListDcData(squareSize);
+		List<String> position = getPositionList(squareSize);
+		//moveElementsToPosition(classes, position, interfaceDistrictSquare, unitSize, squareSize, false);
 		Position centerPos = cityFactory.createPosition();
 		
-		centerPos.setX(size / 2.0);
-		centerPos.setZ(size / 2.0);
+		/*centerPos.setX(getCenterPosition(squareSize, interfaceDistrictSquare, 1, unitSize).getX());
+		centerPos.setZ(getCenterPosition(squareSize, interfaceDistrictSquare, 1, unitSize).getZ());*/
+		centerPos.setX(size - (unitSize / 2.0));
+		centerPos.setZ(size - (unitSize / 2.0));
 		
 		if(!classes.isEmpty()) {
 			classes.get(0).getEntityLink().setPosition(centerPos);
@@ -651,7 +655,7 @@ public class ABAPCityLayout {
 		
 
 		
-		int counter = 1; 
+		/*int counter = 1; 
 		String direction = "R";
 		
 		Position lastPos = cityFactory.createPosition();
@@ -706,7 +710,7 @@ public class ABAPCityLayout {
 				
 				counter++;
 			}
-		}  
+		}  */
 	}
 	
 	private static void arrangeFunctionGroupDistrict(Entity functionGroupDistrict) {
@@ -1077,7 +1081,7 @@ private static void arrangeStructureDistrict(Entity structureDistrict) {
 	Double squareSizeTtyp = Math.ceil(Math.sqrt(structureDistrict.getEntities().size()));
 	Double squareSizeStruc = Math.ceil((structureDistrict.getEntities().size() - 1)/8.0)* 2 + 1;
 	double sizeStruc = squareSizeStruc * (config.getAbapAdvBuildingDefSize("FAMIX.StrucElement") * config.getAbapAdvBuildingScale("FAMIX.StrucElement")/* + config.getBuildingHorizontalGap()*/);	
-	double sizeTtyp = squareSizeTtyp * (config.getAbapAdvBuildingDefSize("FAMIX.StrucElement") * config.getAbapAdvBuildingScale("FAMIX.StrucElement") /*+ config.getBuildingHorizontalGap()*/);
+	double sizeTtyp = squareSizeTtyp * (config.getAbapAdvBuildingDefSize("FAMIX.TableType") * config.getAbapAdvBuildingScale("FAMIX.TableType") /*+ config.getBuildingHorizontalGap()*/);
 	//structureDistrict.setWidth(120); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
 	structureDistrict.setWidth(sizeStruc + 4.5 * config.getBuildingHorizontalMargin());
 	structureDistrict.setLength(sizeStruc + 3 * config.getBuildingHorizontalMargin());
@@ -1119,8 +1123,6 @@ private static void arrangeStructureDistrict(Entity structureDistrict) {
 	for (Rectangle abapStruc : abapStrucs) {
 		Position newPos = cityFactory.createPosition();
 		if (counter == 1) {
-			/*newPos.setX(unitSize / 2.0);
-			newPos.setZ(unitSize / 2.0);*/
 			newPos.setX(sizeStruc - (unitSize / 2.0));
 			newPos.setZ(sizeStruc - (unitSize / 2.0));
 			abapStruc.getEntityLink().setPosition(newPos);
@@ -1175,7 +1177,7 @@ private static void arrangeStructureDistrict(Entity structureDistrict) {
 //	
 //	// moving the entities to the right place
 //moveElementsToPositionStructure(tableTypes, position, structureDistrictSquareT, unitSize, squareSizeTtyp, true);
-moveElementsToPositionStructure(tableTypes, position, structureDistrictSquareT, unitSize, squareSizeTtyp, false);
+	moveElementsToPositionStructure(tableTypes, position, structureDistrictSquareT, unitSize, squareSizeTtyp, false);
 //	moveElementsToPositionStructure(abapStrucs, position, structureDistrictSquare, unitSize, squareSize, true);
 
 }	
