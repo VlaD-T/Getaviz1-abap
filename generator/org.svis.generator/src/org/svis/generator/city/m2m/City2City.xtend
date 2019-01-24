@@ -34,7 +34,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 
 	override protected invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
 		log.info("City2City has started.")
-		var City2City_abap c2c_abap = new City2City_abap()
+		val City2City_abap c2c_abap = new City2City_abap()
 
 		// receive input from CITY-slot and proceed with required parser mode
 		var city = ctx.get("CITY") as Root
