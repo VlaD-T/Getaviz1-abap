@@ -1,55 +1,21 @@
 package org.svis.generator.famix
 
 import java.util.List
-import org.eclipse.emf.mwe.core.WorkflowContext
-import org.eclipse.emf.mwe.core.issues.Issues
-import org.eclipse.emf.mwe.core.monitor.ProgressMonitor
 import org.svis.xtext.famix.FAMIXNamespace
 import java.util.Set
 import org.svis.xtext.famix.FAMIXClass
-import org.svis.xtext.famix.FAMIXParameterizableClass
 import org.svis.xtext.famix.FAMIXMethod
-import org.svis.xtext.famix.FAMIXEnum
-import org.svis.xtext.famix.FAMIXParameter
-import org.svis.xtext.famix.FAMIXParameterizedType
 import org.svis.xtext.famix.FAMIXInheritance
-import org.svis.xtext.famix.FAMIXEnumValue
 import org.svis.xtext.famix.FAMIXAttribute
 import org.svis.xtext.famix.FAMIXStructure
 import org.svis.xtext.famix.Root
 import java.util.Collections
-import org.svis.xtext.famix.FAMIXComment
-import org.svis.xtext.famix.FAMIXLocalVariable
-import org.svis.xtext.famix.FAMIXAnnotationType
-import org.svis.xtext.famix.FAMIXAnnotationTypeAttribute
-import org.svis.xtext.famix.FAMIXFileAnchor
-import org.svis.xtext.famix.FAMIXAccess
-import org.svis.xtext.famix.FAMIXInvocation
-import org.svis.xtext.famix.FAMIXPrimitiveType
-import org.svis.xtext.famix.FAMIXType
-import org.svis.xtext.famix.FAMIXParameterType
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl
-import org.apache.commons.beanutils.BeanComparator
-import org.eclipse.emf.common.util.ECollections
 import static org.apache.commons.codec.digest.DigestUtils.sha1Hex
-import org.eclipse.xtext.linking.lazy.LazyLinkingResource
-import java.util.Map
 import org.svis.xtext.famix.impl.FamixFactoryImpl
-import java.util.Comparator
-import org.svis.xtext.famix.MethodType
-import org.svis.xtext.famix.FAMIXAntipattern
-import org.svis.xtext.famix.FAMIXPath
-import org.svis.xtext.famix.FAMIXComponent
 import org.svis.xtext.famix.IntegerReference
-import org.neo4j.graphdb.GraphDatabaseService
-import org.svis.lib.database.Database
-import org.neo4j.graphdb.Node
 import org.svis.xtext.famix.FAMIXElement
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot
 import org.apache.commons.logging.LogFactory
 import org.svis.generator.SettingsConfiguration
-import org.svis.generator.SettingsConfiguration.FamixParser
 import org.svis.generator.SettingsConfiguration.AbapNotInOriginFilter
 import org.svis.xtext.famix.FAMIXReference
 
@@ -82,7 +48,6 @@ class Famix2Famix_abap {
 	val List<FAMIXMethod> methods = newArrayList
 	val List<FAMIXAttribute> attributes = newArrayList
 	val List<FAMIXStructure> structures = newArrayList
-	val List<FAMIXNamespace> packagesToMerge = newArrayList
 	val List<FAMIXReference> references = newArrayList
 	val List<FAMIXInheritance> inheritances = newArrayList
 	val List<FAMIXReport> reports = newArrayList 

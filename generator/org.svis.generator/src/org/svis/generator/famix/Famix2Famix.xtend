@@ -49,7 +49,6 @@ import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot
 import org.apache.commons.logging.LogFactory
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.FamixParser
-import org.svis.xtext.famix.FAMIXReference
 
 class Famix2Famix extends WorkflowComponentWithModelSlot {
 	val log = LogFactory::getLog(class)
@@ -110,7 +109,6 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 		log.info("Famix2Famix has finished.")
 	}	
 	
-	//Default 
 	def private toInvocation(FAMIXMethod m1, FAMIXMethod m2) {
 		val invocation = famixFactory.createFAMIXInvocation
 		invocation.name = m2.name + 2000000
@@ -298,8 +296,6 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 		Collections::sort(structures, comparator)
 		Collections::sort(enumValues, comparator)
 
-		val comparator2 = new BeanComparator("numberOfStatements")
-		Collections::sort(methods, comparator2)
 		rootPackages.clear
 		subPackages.clear
 		packages.forEach[getPackages]
