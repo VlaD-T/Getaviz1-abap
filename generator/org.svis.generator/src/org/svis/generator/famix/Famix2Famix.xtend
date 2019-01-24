@@ -73,7 +73,7 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 	val config = SettingsConfiguration.instance;
 	
 	//Logic for ABAP code
-	var Famix2Famix_abap f2f_abap = new Famix2Famix_abap()
+	val Famix2Famix_abap f2f_abap = new Famix2Famix_abap()
 	
 	
 	override protected invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {

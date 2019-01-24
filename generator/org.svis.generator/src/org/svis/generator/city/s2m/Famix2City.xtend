@@ -73,7 +73,7 @@ class Famix2City extends WorkflowComponentWithModelSlot {
 		fileAnchors += famixDocument.elements.filter(FAMIXFileAnchor).filterNull
 		
 		//Logic for ABAP code
-		var Famix2City_abap f2c_abap = new Famix2City_abap(cityDocument, famixDocument)
+		val Famix2City_abap f2c_abap = new Famix2City_abap(cityDocument, famixDocument)
 
 		rootPackages += famixDocument.elements.filter(FAMIXNamespace).filter[parentScope === null]
 		subPackages += famixDocument.elements.filter(FAMIXNamespace).filter[parentScope !== null]
