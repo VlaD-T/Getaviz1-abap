@@ -87,7 +87,7 @@ class AdvSet_SimpleBlocks {
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
 					<Shape>
-						<Box size='«2 +" "+ 2 +" "+ 2»'></Box>
+						<Box size='«entity.width +" "+ 2 +" "+ entity.length»'></Box>
 						<Appearance>
 							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
 						</Appearance>
