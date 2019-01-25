@@ -209,7 +209,11 @@ class City2City_abap {
 					b.height = b.methodCounter //* 10
 				else
 					b.height = config.getHeightMin					
-				}						
+				}	
+			
+			// Use custom colors from settings -> go to x3d file.
+			// It's set there, because we do not use floor or chimneys
+							
 		 // End of AbapCityRepresentation::ADVANCED		
 		} else { //AbapCityRepresentation::SIMPLE
 			
