@@ -1291,19 +1291,23 @@ public class SettingsConfiguration {
 	
 	//Shapes for advanced mode. Currently only city2x3d affected.
 	public static enum AbapAdvCitySet {
-		DEFAULT, SIMPLE_FORMS;
+		CustomModels, SimpleBlocks, SimpleTexturedBlocks;
 	}
 	
 	public String getAbapAdvCitySet() {
-		return config.getString("city.abapAdvCity_set", "default");
+		return config.getString("city.abapAdvCity_set", "CustomModels");
 	}
 	
 	public AbapAdvCitySet getAbapAdvCity_set() {
 		switch (getAbapAdvCitySet()) {
-		case "simple_forms":
-			return AbapAdvCitySet.SIMPLE_FORMS;
+		case "CustomModels":
+			return AbapAdvCitySet.CustomModels;
+		case "SimpleBlocks":
+			return AbapAdvCitySet.SimpleBlocks;
+		case "SimpleTexturedBlocks":
+			return AbapAdvCitySet.SimpleTexturedBlocks;
 		default:
-			return AbapAdvCitySet.DEFAULT;
+			return AbapAdvCitySet.CustomModels;
 		}
 	}
 	

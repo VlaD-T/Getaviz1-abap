@@ -15,8 +15,10 @@ import org.svis.xtext.city.PanelSeparatorCylinder
 import org.svis.xtext.city.District
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.BuildingType
-import org.svis.generator.SettingsConfiguration.FamixParser
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
+import org.svis.generator.SettingsConfiguration.AbapAdvCitySet
+import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_CustomModels
+import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_SimpleBlocks
 import org.svis.generator.city.m2m.customModels.*
 
 class City2X3D_abap {
@@ -36,10 +38,33 @@ class City2X3D_abap {
 	
 	def run(List<Entity> entities) {
 		var rootEntity = CityLayout::rootRectangle
+		var Body = new String()
 		if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
 			rootEntity = ABAPCityLayout::rootRectangle
+			
+			//Use selected set
+			switch (config.abapAdvCity_set) {
+				case AbapAdvCitySet::CustomModels: {
+					val AdvSet_CustomModels customModels_set = new AdvSet_CustomModels()
+					Body = viewports(rootEntity) + customModels_set.set(entities)
+				}
+				case AbapAdvCitySet::SimpleBlocks: {
+					val AdvSet_SimpleBlocks simpleBlocks_set = new AdvSet_SimpleBlocks()
+					Body = viewports(rootEntity) + simpleBlocks_set.set(entities)
+				}
+				case AbapAdvCitySet::SimpleTexturedBlocks: {
+					//TODO
+					Body = viewports(rootEntity) + entities.toX3DModel()
+				}
+				default: {
+					val AdvSet_CustomModels customModels_set = new AdvSet_CustomModels()
+					Body = viewports(rootEntity) + customModels_set.set(entities)
+				}
+			} 
+			
+		} else {
+			Body = viewports(rootEntity) + entities.toX3DModel()
 		}
-		val Body = viewports(rootEntity) + entities.toX3DModel()
 		log.info("City2X3D has finished.")
 		return Body
 	}
@@ -50,7 +75,6 @@ class City2X3D_abap {
 			BrickLayout='«config.brickLayout»'
 		«ELSEIF config.buildingType == BuildingType.CITY_PANELS»
 			AttributesAsCylinders='«config.showAttributesAsCylinders»' PanelSeparatorMode='«config.panelSeparatorMode»'
-		«ELSE»
 		«ENDIF»
 		/>
 	'''
@@ -119,276 +143,17 @@ class City2X3D_abap {
 	'''
 	
 	def String toBuilding(Entity entity)'''
-		«IF config.abap_representation == AbapCityRepresentation::ADVANCED»
-			«abapAdvancedBuildings(entity)»
-		«ELSE»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-					<Shape>
-						«abapBuildingShape(entity)»
-						<Appearance>
-							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
-			</Group>
-		«ENDIF»
-
+		<Group DEF='«entity.id»'>
+			<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+				<Shape>
+					«abapBuildingShape(entity)»
+					<Appearance>
+						<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+					</Appearance>
+				</Shape>
+			</Transform>
+		</Group>
 	'''
-	
-	//Advanced ABAP buildings
-	def String abapAdvancedBuildings(Entity entity)'''
-		«IF entity.type == "FAMIX.DataElement"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
-					«IF defineCMSimpleHouse»
-						«CustomModel_SimpleHouse::defineSimpleHouseShape»
-						«defineCMSimpleHouse = false»
-					«ELSE»
-						«CustomModel_SimpleHouse::createSimpleHouseShape»
-					«ENDIF»					
-				</Transform>
-			</Group>
-
-		«ELSEIF entity.type == "FAMIX.Domain"»
-«««		<Group DEF='«entity.id»'>
-«««						<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-«««							<Shape>
-«««								
-«««								<Cylinder radius='«entity.width/2»' height='«entity.height*4»'></Cylinder>	
-«««								<Appearance>
-«««									<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-«««								</Appearance>
-«««							</Shape>
-«««						</Transform>
-«««					</Group>
-					
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
-					«IF defineCMTownHall»
-						«CustomModel_TownHall::defineTownHallShape»
-						«defineCMTownHall = false»
-					«ELSE»
-						«CustomModel_TownHall::createTownHallShape»
-					«ENDIF»					
-				</Transform>
-			</Group>
-					
-		«ELSEIF entity.type == "FAMIX.Table"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
-					«IF defineCMBoat»
-						«defineCMBoat = false»
-						«CustomModel_Boat::defineBoatFront»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_Boat::defineBoatMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
-						«ENDFOR»
-						«CustomModel_Boat::defineBoatBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
-					«ELSE»
-						«CustomModel_Boat::createBoatFront»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_Boat::createBoatMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
-						«ENDFOR»
-						«CustomModel_Boat::createBoatBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
-					«ENDIF»
-				</Transform>
-			</Group>
-								
-		«ELSEIF entity.type == "FAMIX.StrucElement"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
-					«IF defineCMApartmentBuilding»
-						«defineCMApartmentBuilding = false»
-						«CustomModel_ApartmentBuilding::defineApartmentBuildingBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
-						«ENDFOR»
-						«CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
-					«ELSE»
-						«CustomModel_ApartmentBuilding::createApartmentBuildingBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_ApartmentBuilding::createApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
-						«ENDFOR»
-						«CustomModel_ApartmentBuilding::createApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
-					«ENDIF»
-				</Transform>
-			</Group>
-								
-		«ELSEIF entity.type == "FAMIX.TableType"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-					<Shape>
-   						<Cylinder radius='«entity.width»' height='«entity.height*4»'></Cylinder>	
-						<Appearance>
-   						   	<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-   						</Appearance>
-					</Shape>
-				</Transform>
-			</Group>
-			
-		«ELSEIF entity.type == "FAMIX.Method"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
-					«IF defineCMSkyScraper»
-«««						«CustomModel_SkyScraper::defineSkyScraperShape(config.getAbapAdvBuildingScale(entity.type), entity.numberOfStatements, entity.position.y)»
-						«defineCMSkyScraper = false»
-						«FOR part : entity.getBuildingParts»
-							«IF part.type == "Base"»
-								«CustomModel_SkyScraper::defineSkyScraperBase(part.height)»
-							«ELSEIF part.type == "Roof"»
-								«CustomModel_SkyScraper::defineSkyScraperRoof(part.height)»
-							«ELSEIF part.type == "Floor"»
-								«CustomModel_SkyScraper::defineSkyScraperFloor(part.height)»
-							«ENDIF»						
-						«ENDFOR»
-					«ELSE»
-«««						«CustomModel_SkyScraper::createSkyScraperShape(config.getAbapAdvBuildingScale(entity.type), entity.numberOfStatements, entity.position.y)»
-						«FOR part : entity.getBuildingParts»
-							«IF part.type == "Base"»
-								«CustomModel_SkyScraper::createSkyScraperBase(part.height)»
-							«ELSEIF part.type == "Roof"»
-								«CustomModel_SkyScraper::createSkyScraperRoof(part.height)»
-							«ELSEIF part.type == "Floor"»
-								«CustomModel_SkyScraper::createSkyScraperFloor(part.height)»
-							«ENDIF»						
-						«ENDFOR»
-					«ENDIF»	
-				</Transform>
-			</Group>
-
-		«ELSEIF entity.type == "FAMIX.Class"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
-					«IF defineCMRadioTower»
-						«defineCMRadioTower = false»
-						«CustomModel_RadioTower::defineRadioTowerBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
-						«ENDFOR»
-						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-					«ELSE»
-						«CustomModel_RadioTower::createRadioTowerBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
-						«ENDFOR»
-						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-					«ENDIF»
-				</Transform>
-			</Group>
-		
-		«ELSEIF entity.type == "FAMIX.Attribute"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
-					«IF defineCMCarPark»
-						«defineCMCarPark = false»
-						«CustomModel_CarPark::defineCarParkBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_CarPark::defineCarParkFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
-						«ENDFOR»
-						«CustomModel_CarPark::defineCarParkRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
-					«ELSE»
-						«CustomModel_CarPark::createCarParkBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_CarPark::createCarParkFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
-						«ENDFOR»
-						«CustomModel_CarPark::createCarParkRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
-					«ENDIF»
-				</Transform>
-			</Group>
-
-
-		«ELSEIF entity.type == "FAMIX.FunctionModule"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
-					«IF defineCMFactoryBuildingFumo»
-						«defineCMFactoryBuildingFumo = false»
-						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
-						«ENDFOR»
-						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
-					«ELSE»
-						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
-						«ENDFOR»
-						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
-					«ENDIF»
-				</Transform>
-			</Group>
-
-		«ELSEIF entity.type == "FAMIX.Report"»		
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
-					«IF defineCMFactoryHall»
-						«CustomModel_FactoryHall::defineFactoryHallShape»
-						«defineCMFactoryHall = false»
-					«ELSE»
-						«CustomModel_FactoryHall::createFactoryHallShape»
-					«ENDIF»					
-				</Transform>
-			</Group>
-			
-		«ELSEIF entity.type == "FAMIX.Formroutine"»
-«««			<Group DEF='«entity.id»'>
-«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-«««					<Shape>
-«««						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
-«««						
-«««						<Appearance>
-«««							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-«««						</Appearance>
-«««					</Shape>
-«««				</Transform>
-«««			</Group>
-			
-			 <Group DEF='«entity.id»'>
-			     <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-			           		scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-			           		rotation='0 0.707107 0.707107 3.141593'>
-			           		«IF defineCMFactoryBuilding»
-			           		«defineCMFactoryBuilding = false»
-			           		«CustomModel_FactoryBuilding::defineFactoryBuildingBase»
-			           		«FOR n : 1..entity.height.intValue»
-			           			«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
-			           		«ENDFOR»
-			           			«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
-			           		«ELSE»
-			           			«CustomModel_FactoryBuilding::createFactoryBuildingBase»
-			           			«FOR n : 1..entity.height.intValue»
-			           				«CustomModel_FactoryBuilding::createFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
-			           			«ENDFOR»
-			           				«CustomModel_FactoryBuilding::createFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
-		           			«ENDIF»
-			     </Transform>
-			</Group>
-			
-		«ENDIF»		
-	'''
-		
-	// Return scale for building
-	def String getAdvBuildingScale(double scale)'''
-		«scale + " " + scale +  " " + scale»
-	'''
-
 	
 	// Own logic for ABAP buildings shapes
 	def String abapBuildingShape(Entity entity)'''
@@ -467,7 +232,6 @@ class City2X3D_abap {
 			<Box size='«floor.width +" "+ floor.height +" "+ floor.length»'></Box>
 		«ENDIF»
 	'''
-	
 		
 	def toChimney(BuildingSegment chimney) '''
 		<Group DEF='«chimney.id»'>
