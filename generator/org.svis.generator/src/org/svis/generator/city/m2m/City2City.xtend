@@ -372,6 +372,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 		if (config.classElementsMode == ClassElementsModes::ATTRIBUTES_ONLY) {
 			areaUnit = b.methodCounter
 		} else {
+			//TODO
 			areaUnit = b.dataCounter
 		}
 		if (areaUnit <= 1) {
@@ -467,6 +468,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 		if (config.classElementsMode == ClassElementsModes::ATTRIBUTES_ONLY) {
 			areaUnit = b.methodCounter
 		} else {
+			//TODO
 			areaUnit = b.dataCounter
 		}
 		if (areaUnit <= 1) {
