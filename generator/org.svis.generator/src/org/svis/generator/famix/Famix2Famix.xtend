@@ -49,25 +49,6 @@ import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot
 import org.apache.commons.logging.LogFactory
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.FamixParser
-import org.svis.xtext.famix.FAMIXReference
-
-//ABAP
-import org.svis.xtext.famix.FAMIXReport 
-import org.svis.xtext.famix.FAMIXFormroutine
-import org.svis.xtext.famix.FAMIXFunctionGroup
-import org.svis.xtext.famix.FAMIXFunctionModule
-import org.svis.xtext.famix.FAMIXMacro
-import org.svis.xtext.famix.FAMIXDictionaryData
-import org.svis.xtext.famix.FAMIXDataElement
-import org.svis.xtext.famix.FAMIXDomain
-import org.svis.xtext.famix.FAMIXTable
-import org.svis.xtext.famix.FAMIXTableElement
-import org.svis.xtext.famix.FAMIXABAPStruc
-import org.svis.xtext.famix.FAMIXStrucElement
-import org.svis.xtext.famix.FAMIXTableType
-import org.svis.xtext.famix.FAMIXTableTypeElement
-import org.svis.xtext.famix.FAMIXTypeOf
-import org.svis.xtext.famix.FAMIXMessageClass
 
 class Famix2Famix extends WorkflowComponentWithModelSlot {
 	val log = LogFactory::getLog(class)
@@ -81,8 +62,6 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 	val List<FAMIXEnumValue> enumValues = newArrayList
 	val List<FAMIXStructure> structures = newArrayList
 	val List<FAMIXNamespace> packagesToMerge = newArrayList
-	val List<FAMIXReference> references = newArrayList
-	val List<FAMIXInheritance> inheritances = newArrayList
 	
 	val Map<FAMIXMethod, List<FAMIXParameter>> parameters = newHashMap 
 	val List<FAMIXInvocation> invocations = newArrayList
@@ -93,23 +72,8 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 	val Map<String, Node> nodes = newHashMap
 	val config = SettingsConfiguration.instance;
 	
-	//ABAP
-	val List<FAMIXReport> reports = newArrayList 
-	val List<FAMIXDataElement> dataElements = newArrayList 
-	//val List<FAMIXDataElementDatatype> datatyElements = newArrayList
-	val List<FAMIXDomain> domains = newArrayList
-	val List<FAMIXTable> tables = newArrayList 
-	val List<FAMIXABAPStruc> abapStrucs = newArrayList 
-	val List<FAMIXStrucElement> abapStrucElem = newArrayList 
-	val List<FAMIXFunctionModule> functionModules = newArrayList
-	val List<FAMIXFormroutine> formroutines = newArrayList
-	val List<FAMIXMacro> macros = newArrayList
-	val List<FAMIXMessageClass> messageClasses = newArrayList
-	val List<FAMIXFunctionGroup> functionGroups = newArrayList
-	val List<FAMIXTableType> tableTypes = newArrayList
-	val List<FAMIXTableTypeElement> ttypeElements = newArrayList
-	val List<FAMIXTableElement> tableElements = newArrayList
-	val List<FAMIXTypeOf> typeOf = newArrayList
+	//Logic for ABAP code
+	val Famix2Famix_abap f2f_abap = new Famix2Famix_abap()
 	
 	
 	override protected invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
@@ -119,7 +83,7 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 		if (resourceList.size == 1) {
 			var Root famixRoot
 			if(config.parser == FamixParser::ABAP){
-				famixRoot = runAbap((resourceList as List<Root>).head)
+				famixRoot = f2f_abap.run((resourceList as List<Root>).head)
 			}else{
 				famixRoot = run((resourceList as List<Root>).head)
 			}
@@ -143,141 +107,8 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 			ctx.set("famix", resources)
 		}
 		log.info("Famix2Famix has finished.")
-	}
+	}	
 	
-	//ABAP logic. Delete after updating extractor in CCLM
-	def private runAbap(Root famixRoot){
-		val famixDocument = famixRoot.document
-		famixDocument.elements.removeAll(Collections::singleton(null))
-		
-		val Set<FAMIXNamespace> packages = newLinkedHashSet
-		val List<FAMIXABAPStruc> abapStrucsTmp = newArrayList
-		
-		famixDocument.elements.filter(FAMIXPath).forEach[path|
-			path.id = createID(path.name + path.start.ref.name + path.end.ref.name);
-		]
-		
-		
-		famixDocument.elements.forEach[element|
-			switch element {
-				FAMIXAttribute: attributes.add(element)					
-				FAMIXMethod: methods.add(element)
-				FAMIXReport: reports.add(element)
-				FAMIXDataElement: dataElements.add(element)
-				FAMIXDomain: domains.add(element)
-				FAMIXTable: tables.add(element)
-				FAMIXABAPStruc: abapStrucsTmp.add(element)
-				FAMIXStrucElement: abapStrucElem.add(element)
-				FAMIXTableType: tableTypes.add(element)
-				FAMIXFunctionModule: functionModules.add(element)
-				FAMIXFormroutine: formroutines.add(element)
-				FAMIXMacro: macros.add(element)
-				FAMIXMessageClass: messageClasses.add(element)
-				FAMIXFunctionGroup: functionGroups.add(element)
-				FAMIXTableElement: tableElements.add(element)
-				FAMIXTypeOf: typeOf.add(element)
-				FAMIXReference: references.add(element)
-				FAMIXInheritance: inheritances.add(element)
-				FAMIXStructure: {
-					if(element.container !== null){
-						structures.add(element)
-					}
-				}
-			}
-			
-		]
-		
-		
-		
-		val allPackages = famixDocument.elements.filter(FAMIXNamespace).toSet
-		allStructures += famixDocument.elements.filter(FAMIXStructure).filter[container !== null]
-		
-		
-		allPackages.forEach[getPackages]
-		rootPackages.forEach[setQualifiedName]
-		methods.forEach[setQualifiedName]
-		enumValues.forEach[setQualifiedName]
-		messageClasses.forEach[setQualifiedName]
-		reports.forEach[updParameters]
-		formroutines.forEach[updParameters]
-		functionGroups.forEach[setQualifiedName]
-		functionModules.forEach[updParameters]
-		macros.forEach[updParameters]
-		tables.forEach[updParameters]
-		tableElements.forEach[updParameters]
-		abapStrucsTmp.forEach[updParameters]
-		abapStrucElem.forEach[updParameters]
-		abapStrucsTmp.forEach[updateAbapStrucs]
-		tableTypes.forEach[ tty | 
-			updParameters(tty)
-			createTableTypeElements(tty)
-		]
-		dataElements.forEach[updParameters]				
-		domains.forEach[updParameters]				
-		attributes.forEach[setQualifiedNameAbap]
-		
-		famixDocument.elements.clear
-		famixDocument.elements.addAll(rootPackages)
-		famixDocument.elements.addAll(subPackages)
-		famixDocument.elements.addAll(structures)
-		famixDocument.elements.addAll(references)
-		famixDocument.elements.addAll(inheritances)
-				
-		famixDocument.elements.addAll(methods)
-		famixDocument.elements.addAll(reports)
-		famixDocument.elements.addAll(attributes)
-		famixDocument.elements.addAll(dataElements)
-		famixDocument.elements.addAll(domains)
-		famixDocument.elements.addAll(tables)
-		famixDocument.elements.addAll(abapStrucs)
-		famixDocument.elements.addAll(abapStrucElem)
-		famixDocument.elements.addAll(tableTypes)
-		famixDocument.elements.addAll(enumValues)
-		famixDocument.elements.addAll(invocations)
-		famixDocument.elements.addAll(antipattern)
-		famixDocument.elements.addAll(components)
-		famixDocument.elements.addAll(functionModules)
-		famixDocument.elements.addAll(functionGroups)
-		famixDocument.elements.addAll(formroutines)
-		famixDocument.elements.addAll(macros)
-		famixDocument.elements.addAll(messageClasses)
-		famixDocument.elements.addAll(tableElements)
-		famixDocument.elements.addAll(ttypeElements)
-		famixDocument.elements.addAll(typeOf)
-		
-		rootPackages.clear
-		subPackages.clear
-		allStructures.clear
-		references.clear
-		inheritances.clear
-		methods.clear
-		reports.clear
-		dataElements.clear
-		domains.clear
-		tables.clear
-		abapStrucsTmp.clear
-		abapStrucs.clear
-		abapStrucElem.clear
-		tableTypes.clear
-		attributes.clear
-		enumValues.clear
-		structures.clear
-		antiMethods.clear
-		antipattern.clear
-		components.clear
-		functionModules.clear
-		functionGroups.clear
-		formroutines.clear
-		macros.clear
-		messageClasses.clear
-		tableElements.clear
-		ttypeElements.clear
-		typeOf.clear
-		return famixRoot
-	} //End of ABAP logic
-		
-	
-	//Default 
 	def private toInvocation(FAMIXMethod m1, FAMIXMethod m2) {
 		val invocation = famixFactory.createFAMIXInvocation
 		invocation.name = m2.name + 2000000
@@ -465,8 +296,6 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 		Collections::sort(structures, comparator)
 		Collections::sort(enumValues, comparator)
 
-		val comparator2 = new BeanComparator("numberOfStatements")
-		Collections::sort(methods, comparator2)
 		rootPackages.clear
 		subPackages.clear
 		packages.forEach[getPackages]
@@ -868,115 +697,16 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 			default: log.error("ERROR qualifiedName(FAMIXAttribute famixAttribute): " + attribute.value)
 		}
 		attribute.id = createID(attribute.fqn)
-	}
-	
-	
-	//ABAP
-	//Check if structure has elements. Proceed with those, that aren't empty 
-	def updateAbapStrucs(FAMIXABAPStruc struc){
-		if(abapStrucElem.filter[container.ref.name == struc.name].length != 0 || struc.iteration != 0){
-			abapStrucs.add(struc)
-		}
-	}
-	
+	}	
 	
 	def setQualifiedNameAbap(FAMIXAttribute attribute) {
 		val ref = attribute.parentType.ref
 		switch (ref) {
 			FAMIXClass: attribute.fqn = ref.fqn + "." + attribute.value
-			FAMIXReport: attribute.fqn = ref.fqn + "." + attribute.value
-			FAMIXFormroutine: attribute.fqn = ref.fqn + "." + attribute.value
-			FAMIXFunctionGroup: attribute.fqn = ref.fqn + "." + attribute.value
-			FAMIXFunctionModule: attribute.fqn = ref.fqn + "." + attribute.value
 			FAMIXMethod: attribute.fqn = ref.fqn + "." + attribute.value
 			default: log.error("ERROR qualifiedName(FAMIXAttribute famixAttribute): " + attribute.value)
 		}
 		attribute.id = createID(attribute.fqn + "Attribute")
-	}
-	
-	//ABAP	
-	def updParameters(FAMIXDictionaryData dd){
-		val ref = dd.container.ref
-		
-		// set right ref and id
-		if (ref instanceof FAMIXDictionaryData) {
-			dd.fqn = ref.fqn + "." + dd.value
-		} else if (ref instanceof FAMIXNamespace) {
-			dd.fqn = ref.fqn + "." + dd.value
-		}		
-		dd.id = createID(dd.fqn + dd.class.toString)
-	}  
-	
-	def createTableTypeElements(FAMIXTableType tt){
-		val tableTypeOf = typeOf.filter[element.ref == tt]
-				
-		// find "parent" elements and add them to the TableTypeElem Array
-		for(tty : tableTypeOf){
-			if (tty.typeOf.ref instanceof FAMIXABAPStruc) {
-				abapStrucElem.filter[container.ref == tty.typeOf.ref].forEach[ 
-					createTableTypeElement(tty.element)
-				]
-			} else if (tty.typeOf.ref instanceof FAMIXTable) {
-				tableElements.filter[container.ref == tty.typeOf.ref].forEach[ 
-					createTableTypeElement(tty.element)
-				]
-			}
-		}
-	}
-	
-	def createTableTypeElement(FAMIXDictionaryData dd, IntegerReference element){
-		var ttyElement  = famixFactory.createFAMIXTableTypeElement		
-		if (dd instanceof FAMIXStrucElement || dd instanceof FAMIXTableElement){
-			ttyElement.id = createID(dd.id + "TableTypeElement")
-			ttyElement.name = dd.name
-			ttyElement.value = dd.value
-			ttyElement.fqn = dd.fqn
-			ttyElement.container = famixFactory.createIntegerReference
-			ttyElement.container.ref = dd.container.ref
-			ttyElement.tableType = famixFactory.createIntegerReference
-			ttyElement.tableType.ref = element.ref
-			ttypeElements += ttyElement
-		}
-	}
-
-	def updParameters(FAMIXFunctionModule fm){
-		val ref = fm.parentType.ref
-		if (ref instanceof FAMIXFunctionGroup) {
-			fm.fqn = ref.fqn + "." + fm.value
-		}
-		fm.id = createID(fm.fqn + fm.class.toString)
-		if (fm.numberOfStatements >= 2) {
-			var nos = fm.numberOfStatements - 2
-			fm.numberOfStatements = nos
-		}
-	}
-  
-	def updParameters(FAMIXMacro ma){
-		var ref = ma.parentType.ref
-		if(ref instanceof FAMIXMethod){
-			ma.fqn = ref.fqn + "." + ma.value
-		}
-	}
-    
-	def updParameters(FAMIXReport re){
-		val ref = re.container.ref
-		if (ref instanceof FAMIXNamespace) {
-			re.fqn = ref.fqn + "." + re.value
-		}
-		re.id = createID(re.fqn + re.class.toString)
-	}
-	
-	def updParameters(FAMIXFormroutine fr){
-		var ref = fr.parentType.ref
-		if (ref instanceof FAMIXReport) {
-			fr.fqn = ref.fqn + "." + fr.value
-		}		
-		fr.id = createID(fr.fqn + fr.class.toString)
-		if (fr.numberOfStatements >= 2) {
-			var nos = fr.numberOfStatements - 2
-			fr.numberOfStatements = nos
-		}
-	
 	}
 
 	def private setQualifiedName(FAMIXEnumValue enumValue) {

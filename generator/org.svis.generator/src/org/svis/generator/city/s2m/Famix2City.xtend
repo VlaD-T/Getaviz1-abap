@@ -19,7 +19,6 @@ import org.svis.xtext.famix.FAMIXEnumValue
 import org.svis.xtext.famix.FAMIXFileAnchor
 import org.svis.xtext.famix.FAMIXInheritance
 import org.svis.xtext.famix.FAMIXLocalVariable
-import org.svis.xtext.famix.FAMIXClass
 import org.svis.xtext.famix.FAMIXMethod
 import org.svis.xtext.famix.FAMIXNamespace
 import org.svis.xtext.famix.FAMIXParameter
@@ -34,7 +33,6 @@ import org.svis.generator.SettingsConfiguration.BuildingType
 import org.svis.generator.SettingsConfiguration.ClassElementsModes
 import org.svis.generator.SettingsConfiguration.Original.BuildingMetric
 import org.svis.generator.SettingsConfiguration.FamixParser
-import static org.apache.commons.codec.digest.DigestUtils.sha1Hex
 
 
 class Famix2City extends WorkflowComponentWithModelSlot {
@@ -47,7 +45,6 @@ class Famix2City extends WorkflowComponentWithModelSlot {
 	val Set<FAMIXNamespace> rootPackages = newLinkedHashSet
 	val Set<FAMIXNamespace> subPackages = newLinkedHashSet
 	val List<FAMIXStructure> structures = newArrayList
-	val List<FAMIXClass> classes = newArrayList
 	val List<FAMIXMethod> methods = newArrayList
 	val List<FAMIXLocalVariable> localVariables = newArrayList
 	val List<FAMIXAttribute> attributes = newArrayList
@@ -76,7 +73,7 @@ class Famix2City extends WorkflowComponentWithModelSlot {
 		fileAnchors += famixDocument.elements.filter(FAMIXFileAnchor).filterNull
 		
 		//Logic for ABAP code
-		var Famix2City_abap f2c_abap = new Famix2City_abap(cityDocument, famixDocument)
+		val Famix2City_abap f2c_abap = new Famix2City_abap(cityDocument, famixDocument)
 
 		rootPackages += famixDocument.elements.filter(FAMIXNamespace).filter[parentScope === null]
 		subPackages += famixDocument.elements.filter(FAMIXNamespace).filter[parentScope !== null]
