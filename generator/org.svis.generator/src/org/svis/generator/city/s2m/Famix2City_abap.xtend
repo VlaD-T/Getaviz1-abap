@@ -491,7 +491,7 @@ class Famix2City_abap {
 			newFunctionGroupDistrict.level = level + 1
 			
 			functionModules.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toBuilding(level + 2)]
-			attributes.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toBuilding(level + 2)]
+			//attributes.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toBuilding(level + 2)]
 			
 			newDistrict.entities.add(newFunctionGroupDistrict)
 		]
@@ -511,7 +511,7 @@ class Famix2City_abap {
 		]
 		
 	    //shows tables at the main district (level) 
-		tables.filter[container.ref == elem].forEach[newDistrict.entities += toAdvBuilding(level + 2)]	
+		//tables.filter[container.ref == elem].forEach[newDistrict.entities += toAdvBuilding(level + 2)]	
 				
 		cityDocument.entities += newDistrict
 		return newDistrict

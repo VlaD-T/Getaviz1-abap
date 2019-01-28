@@ -3,7 +3,7 @@ package org.svis.generator.city.m2m.customModels
 class CustomModel_FactoryBuildingFumo {
 	def static String defineFactoryBuildingFumoRoof(double height) '''
 	    <Transform translation='0 0 «height»'>
-	    <Group DEF="group_ME_roof">
+	    <Group DEF="group_factory_building_fumo_roof">
 	        <Shape>
 	            <Appearance>
 	            <Material DEF="MA_Material_001"
@@ -29,7 +29,7 @@ class CustomModel_FactoryBuildingFumo {
 
    def static String defineFactoryBuildingFumoFloor (double height) '''
         <Transform translation='0 0 «height»'>
-        <Group DEF="group_ME_floor">
+        <Group DEF="group_factory_building_fumo_floor">
             <Shape>
                 <Appearance>      
                 <Material DEF="MA_Material_003"
@@ -55,7 +55,7 @@ class CustomModel_FactoryBuildingFumo {
 
    def static String defineFactoryBuildingFumoBase () '''
 
-        <Group DEF="group_ME_base">
+        <Group DEF="group_factory_building_fumo_base">
             <Shape>
                 <Appearance>
                 <Material DEF="MA_Material_001"
@@ -81,19 +81,19 @@ class CustomModel_FactoryBuildingFumo {
 
 def static String createFactoryBuildingFumoRoof(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_roof"/>
+			<Group USE="group_factory_building_fumo_roof"/>
 		</Transform>
 	'''
 	
 	def static String createFactoryBuildingFumoFloor(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_floor"/>
+			<Group USE="group_factory_building_fumo_floor"/>
 		</Transform>
 	'''
 	
 	def static String createFactoryBuildingFumoBase() '''
 
-	        <Group USE="group_ME_base"/>
+	        <Group USE="group_factory_building_fumo_base"/>
 
 	'''
 }
