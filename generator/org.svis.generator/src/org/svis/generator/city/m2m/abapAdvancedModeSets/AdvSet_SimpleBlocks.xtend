@@ -55,17 +55,6 @@ class AdvSet_SimpleBlocks {
 		</Group>
 	'''
 	
-	def String getColor(String type) {
-		if (config.getAbapBuildingColor(type) !== null) {
-			return new RGBColor(config.getAbapBuildingColor(type)).asPercentage
-		} else if (config.getAbapBuildingSegmentColor(type) !== null) {
-			return new RGBColor(config.getAbapBuildingSegmentColor(type)).asPercentage
-		} else {
-			return new RGBColor(config.getColor("#000000")).asPercentage
-		}
-	}
-	
-	//Advanced ABAP buildings
 	def String toBuilding(Entity entity)'''
 		«IF entity.type == "FAMIX.DataElement"»
 			<Group DEF='«entity.id»'>
@@ -183,26 +172,14 @@ class AdvSet_SimpleBlocks {
 						
 		«ENDIF»		
 	'''
-		
-	// Return scale for building
-	def String getAdvBuildingScale(double scale)'''
-		«scale + " " + scale +  " " + scale»
-	'''
 	
-	// Own logic for ABAP buildings shapes
-	def String abapBuildingShape(Entity entity)'''
-		«IF entity.type == "FAMIX.Interface"»
-			<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
-		«ELSEIF entity.type == "FAMIX.DataElement"»
-			<Cone bottomRadius='«entity.width»' height='«entity.height»' ></Cone>
-		«ELSEIF entity.type == "FAMIX.ABAPStruc"»
-			<Box size='«entity.width/4 +" "+ entity.height +" "+ entity.length/4»'></Box>
-		«ELSEIF entity.type == "FAMIX.TableType"»
-			<Cylinder radius='«entity.width/2»' height='«entity.height»'></Cylinder>
-		«ELSEIF entity.type == "FAMIX.Table"»
-			<Cylinder radius='«entity.width/2»' height='«entity.height»'></Cylinder>
-		«ELSE»
-			<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>				
-		«ENDIF»
-	'''
+	def String getColor(String type) {
+		if (config.getAbapBuildingColor(type) !== null) {
+			return new RGBColor(config.getAbapBuildingColor(type)).asPercentage
+		} else if (config.getAbapBuildingSegmentColor(type) !== null) {
+			return new RGBColor(config.getAbapBuildingSegmentColor(type)).asPercentage
+		} else {
+			return new RGBColor(config.getColor("#000000")).asPercentage
+		}
+	}	
 }
