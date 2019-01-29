@@ -1529,6 +1529,17 @@ public class SettingsConfiguration {
 		}
 	}	
 	
+	public double getAbapSimpleBlock_element_height(String type) {
+		if (type.equals("FAMIX.DataElement")) {
+			return config.getDouble("city.abap.adv_dataElement_def_size", 20);
+			
+		} else if (type.equals("FAMIX.Domain")) {
+			return config.getDouble("city.abap.adv_domain_def_size", 20);
+		} else {
+			return 0;
+		}
+	}
+	
 	public double getAbapAdvBuildingDefSize(String type) {
 		if (type.equals("FAMIX.DataElement")) {
 			return config.getDouble("city.abap.adv_dataElement_def_size", 20);
