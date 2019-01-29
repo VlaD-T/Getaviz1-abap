@@ -85,9 +85,9 @@ class AdvSet_SimpleBlocks {
 	def String toBuilding(Entity entity)'''
 		«IF entity.type == "FAMIX.DataElement"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+				<Transform translation='«entity.position.x +" "+ (entity.position.y + 4) +" "+ entity.position.z»'>
 					<Shape>
-						<Box size='«entity.width +" "+ 2 +" "+ entity.length»'></Box>
+						<Cylinder radius='«entity.width/2»' height='«8»'></Cylinder>
 						<Appearance>
 							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
 						</Appearance>
@@ -97,9 +97,9 @@ class AdvSet_SimpleBlocks {
 
 		«ELSEIF entity.type == "FAMIX.Domain"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
+				<Transform translation='«entity.position.x +" "+ (entity.position.y + 10) +" "+ entity.position.z»'>
 					<Shape>
-						<Cone bottomRadius='«entity.width/2»' height='«entity.height*4»' ></Cone>
+						<Cone bottomRadius='«entity.width/3»' height='«20»' ></Cone>
 						<Appearance>
 							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
 						</Appearance>

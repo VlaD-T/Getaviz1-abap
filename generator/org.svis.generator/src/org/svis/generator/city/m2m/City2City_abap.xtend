@@ -118,14 +118,12 @@ class City2City_abap {
 			b.height = b.methodCounter
 		}
 
-
-
 		if (config.abap_representation == AbapCityRepresentation::ADVANCED) {					
 			// We use custom models in advanced mode. Adjust sizes: 
 			if (b.type == "FAMIX.DataElement") {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				b.height = b.height - (1 + config.getAbapAdvBuildingScale(b.type))
+				//b.height = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //b.height - (1 + config.getAbapAdvBuildingScale(b.type))
 				
 			} else if (b.type == "FAMIX.Domain") {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
