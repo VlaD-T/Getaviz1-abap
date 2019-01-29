@@ -482,7 +482,7 @@ class Famix2JSON implements IGenerator2 {
 	def private getCalls(FAMIXElement element) {  
 		val tmp = newArrayList
 		invocations.filter[sender.ref === element].forEach[ tmp += candidates.ref.id ]
-		references.filter[source.ref.id == element.id].forEach[ tmp += target.ref.id ]
+	//	references.filter[source.ref.id == element.id].forEach[ tmp += target.ref.id ]
 		
 		return tmp.removeBrackets
 	}
@@ -490,21 +490,21 @@ class Famix2JSON implements IGenerator2 {
 	def private getCalledBy(FAMIXElement element) {
 		val tmp = newArrayList
 		invocations.filter[candidates.ref === element].forEach[ tmp += sender.ref.id ]
-		references.filter[target.ref.id == element.id].forEach[ tmp += source.ref.id ]
+	//	references.filter[target.ref.id == element.id].forEach[ tmp += source.ref.id ]
 
 		return tmp.removeBrackets
 	}
 	
 	def private getTypeOf(FAMIXElement famixElement) {
 		val tmp = newArrayList
-		typeOfs.filter[element.ref.id == famixElement.id].forEach[ tmp += typeOf.ref.id ]
+	//	typeOfs.filter[element.ref.id == famixElement.id].forEach[ tmp += typeOf.ref.id ]
 		return tmp.removeBrackets
 	}
 	
 	def private getTypeUsedBy(FAMIXElement famixElement) {
 		val tmp = newArrayList
-		typeOfs.filter[typeOf.ref.id == famixElement.id].forEach[ tmp += element.ref.id ]
-		references.filter[target.ref.id == famixElement.id].forEach[ tmp += source.ref.id ]
+	//	typeOfs.filter[typeOf.ref.id == famixElement.id].forEach[ tmp += element.ref.id ]
+	//	references.filter[target.ref.id == famixElement.id].forEach[ tmp += source.ref.id ]
 		return tmp.removeBrackets
 	}
 	
