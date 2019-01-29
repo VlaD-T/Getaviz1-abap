@@ -451,7 +451,7 @@ class Famix2City_abap {
              }
 		  }]
   
-        // for classes
+        // for global classes
 		classes.filter[container.ref == elem].filter[isInterface == "false"].forEach[ class |
 			val newClassDistrict = cityFactory.createDistrict
 			newClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
@@ -459,12 +459,24 @@ class Famix2City_abap {
 			newClassDistrict.id   = elem.id + "_00004"
 			newClassDistrict.level = level + 1
 			
-			//newClassDistrict.entities += toBuilding(class, level + 2)
-
 			methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
-			attributes.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
-		
+			attributes.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]		
+			
 			newDistrict.entities.add(newClassDistrict)
+			
+			// local classes
+			classes.filter[container.ref == class].forEach[ localClass | 
+				val newLocalClassDistrict = cityFactory.createDistrict
+				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
+				newLocalClassDistrict.type = "classDistrict"
+				newLocalClassDistrict.id   = elem.id + "_00004"
+				newLocalClassDistrict.level = level + 1
+			
+			methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+			attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+			
+			newDistrict.entities.add(newLocalClassDistrict)
+			]
 		]
 		
 		// for interfaces
@@ -494,6 +506,20 @@ class Famix2City_abap {
 			attributes.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toBuilding(level + 2)]
 			
 			newDistrict.entities.add(newFunctionGroupDistrict)
+			
+			// local classes
+			classes.filter[container.ref == functionGroup].forEach[ localClass | 
+				val newLocalClassDistrict = cityFactory.createDistrict
+				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
+				newLocalClassDistrict.type = "classDistrict"
+				newLocalClassDistrict.id   = elem.id + "_00004"
+				newLocalClassDistrict.level = level + 1
+			
+				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+			
+				newDistrict.entities.add(newLocalClassDistrict)
+			]
 		]
 		
 		reports.filter[container.ref == elem].forEach[ report |
@@ -508,6 +534,20 @@ class Famix2City_abap {
 			//attributes.filter[parentType.ref == report].forEach[newReportDistrict.entities += toRepoBuilding(level + 2)]
 			
 			newDistrict.entities.add(newReportDistrict)
+			
+			// local classes
+			classes.filter[container.ref == report].forEach[ localClass | 
+				val newLocalClassDistrict = cityFactory.createDistrict
+				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
+				newLocalClassDistrict.type = "classDistrict"
+				newLocalClassDistrict.id   = elem.id + "_00004"
+				newLocalClassDistrict.level = level + 1
+			
+				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+			
+				newDistrict.entities.add(newLocalClassDistrict)
+			]
 		]
 		
 	    //shows tables at the main district (level) 
