@@ -23,7 +23,7 @@ class CustomModel_TownHall {
 	          </IndexedFaceSet>
 	      </Shape>
 	  </Group>
-''' 
+	''' 
 
 	
 	def static String createTownHallShape() '''
