@@ -526,7 +526,7 @@ class Famix2City_abap {
 			val newReportDistrict = cityFactory.createDistrict
 			newReportDistrict.name = newDistrict.name + "_reportDistrict"
 			newReportDistrict.type = "reportDistrict"
-			newReportDistrict.id = elem.id  + "_00004"
+			newReportDistrict.id = elem.id  + "_00005"
 			newReportDistrict.level = level + 1
 			
 			newReportDistrict.entities += toAdvBuilding(report, level + 2)

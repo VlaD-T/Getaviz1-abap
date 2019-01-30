@@ -1358,6 +1358,28 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	//Kind of scaling the height of the Source Code Objects (SCO)
+	public static enum HeightScaling {
+		NOSCALING, INTERVAL, LOGARITHMIC;
+	}
+	
+	public String getHeightScaling() {
+		return config.getString("city.abap_height_scaling", "noscaling");
+	}
+	
+	public HeightScaling getHeight_Scaling() {
+		switch (getHeightScaling()) {
+			case "noscaling":
+				return HeightScaling.NOSCALING;
+			case "interval":
+				return HeightScaling.INTERVAL;
+			case "logarithmic":
+				return HeightScaling.LOGARITHMIC;
+			default:
+				return HeightScaling.NOSCALING;
+		}
+	}
+	
 	public boolean isAbapCityTestMode() {
 		return config.getBoolean("city.abap_test_mode", false);
 	}
@@ -1695,7 +1717,7 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapFumoBaseHeight() {
-		return config.getDouble("city.abap_fumo_base_height", 6);
+		return config.getDouble("city.abap_fumo_base_height", 4);
 	}
 	
 	public double getAbapFumoFloorHeight() {
@@ -1708,6 +1730,14 @@ public class SettingsConfiguration {
 	
 	public double getAbapReportShapeHeight() {
 		return config.getDouble("city.abap_report_shape_height", 9);
+	}
+	
+	public double getAbapScoMinHeight() {
+		return config.getDouble("city.abap_sco_min_height", 1);
+	}
+	
+	public double getAbapScoMaxHeight() {
+		return config.getDouble("city.abap_sco_max_height", 30);
 	}
 	
 }	
