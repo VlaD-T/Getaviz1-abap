@@ -42,10 +42,9 @@ class City2City_abap {
 				CityHeightLayout::cityHeightLayout(cityRoot)
 			} else {
 				CityLayout::cityLayout(cityRoot)
+				buildings.forEach[calculateFloors]
+				buildings.forEach[calculateChimneys]
 			}
-
-			buildings.forEach[calculateFloors]
-			buildings.forEach[calculateChimneys]
 		}
 
 		return cityRoot

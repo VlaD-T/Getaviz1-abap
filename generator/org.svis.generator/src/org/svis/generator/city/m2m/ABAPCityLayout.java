@@ -580,22 +580,21 @@ public class ABAPCityLayout {
 			Rectangle square = new Rectangle(0, 0, unitSize, unitSize);
 			square.setEntityLink(member);
 			
-			switch (member.getVisibility()) {
-			case "PRIVATE":
-				privateMembers.add(square);
-				break;
-			case "PROTECTED":
-				privateMembers.add(square);
-				break;
-			case "PUBLIC":
-				publicMembers.add(square);
-				break;
-			default:
-				publicMembers.add(square);
-				break;
-			}
-		}
-		
+				switch (member.getVisibility()) {
+				case "PRIVATE":
+					privateMembers.add(square);
+					break;
+				case "PROTECTED":
+					privateMembers.add(square);
+					break;
+				case "PUBLIC":
+					publicMembers.add(square);
+					break;
+				default:
+					publicMembers.add(square);
+					break;
+				}
+		}		
 		// start algorithm
 		List<String> position = getPositionList(squareSize);
 		
