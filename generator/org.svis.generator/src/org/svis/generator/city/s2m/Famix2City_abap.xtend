@@ -472,10 +472,10 @@ class Famix2City_abap {
 				newLocalClassDistrict.id   = elem.id + "_00004"
 				newLocalClassDistrict.level = level + 1
 			
-			methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
-			attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
 			
-			newDistrict.entities.add(newLocalClassDistrict)
+				newDistrict.entities.add(newLocalClassDistrict)
 			]
 		]
 		
@@ -508,7 +508,7 @@ class Famix2City_abap {
 			newDistrict.entities.add(newFunctionGroupDistrict)
 			
 			// local classes
-			classes.filter[container.ref == functionGroup].forEach[ localClass | 
+			classes.filter[it.container.ref == functionGroup].forEach[ localClass | 
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 				newLocalClassDistrict.type = "classDistrict"
