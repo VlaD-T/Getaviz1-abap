@@ -35,6 +35,7 @@ import org.svis.generator.FamixUtils
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.FamixParser
 import org.svis.xtext.famix.FAMIXReference
+import java.util.Map
 
 //ABAP
 import org.svis.xtext.famix.FAMIXReport
@@ -65,22 +66,56 @@ class Famix2JSON implements IGenerator2 {
 	val List<FAMIXInheritance> inheritances = newArrayList
 	val List<FAMIXTypeOf> typeOfs = newArrayList
 	val List<FAMIXReference> references = newArrayList
+	var Map<String, String> mapTypeOfs = newHashMap
+	var Map<String, String> mapTypeUsedBy = newHashMap
+	val Map<String, String> mapRefs = newHashMap
+	val Map<String, String> mapUsedByRefs = newHashMap
 	
 	override doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext ig) {
 		val elements = EcoreUtil2::getAllContentsOfType(resource.contents.head, FAMIXElement)
 		accesses.addAll(elements.filter(FAMIXAccess))
 		invocations.addAll(elements.filter(FAMIXInvocation))
 		inheritances.addAll(elements.filter(FAMIXInheritance))
-		references.addAll(elements.filter(FAMIXReference))
+		
 		typeOfs.addAll(elements.filter(FAMIXTypeOf))
+		elements.removeAll(typeOfs)
 		
-		elements.removeAll(elements.filter(FAMIXFileAnchor))
+		typeOfs.forEach[ typeOf | 
+			mapTypeOfs.put(typeOf.element.ref.id, typeOf.typeOf.ref.id)
+			//fill in typeUsedBy
+			if (mapTypeUsedBy.containsKey(typeOf.typeOf.ref.id)) {
+				val value = mapTypeUsedBy.get(typeOf.typeOf.ref.id)
+				mapTypeUsedBy.put(typeOf.typeOf.ref.id, value + ", " + typeOf.element.ref.id)
+			} else {
+				mapTypeUsedBy.put(typeOf.typeOf.ref.id, typeOf.element.ref.id)
+			}
+		]
+		typeOfs.clear()
 		
+		references.addAll(elements.filter(FAMIXReference))
+		elements.removeAll(references)
+		references.forEach[ reference | 
+			if (mapRefs.containsKey(reference.source.ref.id)) {
+				val value = mapRefs.get(reference.source.ref.id)
+				mapRefs.put(reference.source.ref.id, value + ", " + reference.target.ref.id)
+			} else {
+				mapRefs.put(reference.source.ref.id, reference.target.ref.id)
+			}
+			
+			//fill in calledBy
+			if (mapUsedByRefs.containsKey(reference.target.ref.id)) {
+				val value = mapUsedByRefs.get(reference.target.ref.id)
+				mapUsedByRefs.put(reference.target.ref.id, value + ", " + reference.source.ref.id)
+			} else {
+				mapUsedByRefs.put(reference.target.ref.id, reference.source.ref.id)
+			}
+		]
+		references.clear()
+		
+		elements.removeAll(elements.filter(FAMIXFileAnchor))		
 		elements.removeAll(accesses)
 		elements.removeAll(invocations)
 		elements.removeAll(inheritances)
-		elements.removeAll(typeOfs)
-		elements.removeAll(references)
 		
 		fsa.generateFile("metaData.json", elements.toJSON)
 	}
@@ -482,29 +517,42 @@ class Famix2JSON implements IGenerator2 {
 	def private getCalls(FAMIXElement element) {  
 		val tmp = newArrayList
 		invocations.filter[sender.ref === element].forEach[ tmp += candidates.ref.id ]
-	//	references.filter[source.ref.id == element.id].forEach[ tmp += target.ref.id ]
-		
+		val refs = mapRefs.get(element.id)
+		if (refs !== null) {
+			tmp += refs
+		}
 		return tmp.removeBrackets
 	}
 	
 	def private getCalledBy(FAMIXElement element) {
 		val tmp = newArrayList
 		invocations.filter[candidates.ref === element].forEach[ tmp += sender.ref.id ]
-	//	references.filter[target.ref.id == element.id].forEach[ tmp += source.ref.id ]
-
+		var refs = mapUsedByRefs.get(element.id)
+		if (refs !== null) {
+			tmp += refs.toString()
+		}  
 		return tmp.removeBrackets
 	}
 	
 	def private getTypeOf(FAMIXElement famixElement) {
 		val tmp = newArrayList
-	//	typeOfs.filter[element.ref.id == famixElement.id].forEach[ tmp += typeOf.ref.id ]
+		var type = mapTypeOfs.get(famixElement.id)
+		if (type !== null) {
+			tmp += type
+		}
 		return tmp.removeBrackets
 	}
 	
 	def private getTypeUsedBy(FAMIXElement famixElement) {
 		val tmp = newArrayList
-	//	typeOfs.filter[typeOf.ref.id == famixElement.id].forEach[ tmp += element.ref.id ]
-	//	references.filter[target.ref.id == famixElement.id].forEach[ tmp += source.ref.id ]
+		var typeUsedBy = mapTypeUsedBy.get(famixElement.id)
+		if (typeUsedBy !== null) {
+			tmp += typeUsedBy
+		}
+		var refs = mapUsedByRefs.get(famixElement.id)
+		if (refs !== null) {
+			tmp += refs.toString()
+		}  
 		return tmp.removeBrackets
 	}
 	
