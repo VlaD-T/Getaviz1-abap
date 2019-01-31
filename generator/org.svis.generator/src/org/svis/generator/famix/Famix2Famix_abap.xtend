@@ -218,17 +218,14 @@ class Famix2Famix_abap {
 	}
 	
 	def void setQualifiedName(FAMIXMethod method) {
-		//var parameters = parameters.getOrDefault(method, newLinkedList).sortBy[value]
 		val ref = method.parentType.ref
 		var result = ""
 		switch ref {
 			FAMIXClass: result += ref.fqn + "." + method.value
 			default: log.error("ERROR qualifiedName(FAMIXMethod famixMethod): " + method.value)
 		}
-		//result += parameters.toParameterList
-
 		method.fqn = result
-		method.id = createID(method.fqn)
+		method.id = createID(method.name) //name is ID from Famix file
 		if(method.numberOfStatements >= 2){
 			var nos = method.numberOfStatements - 2
 			method.numberOfStatements = nos
@@ -241,11 +238,12 @@ class Famix2Famix_abap {
 		switch ref {
 			FAMIXNamespace: name = ref.fqn
 			FAMIXStructure: name = ref.fqn
+			FAMIXReport: name = ref.fqn
 			FAMIXMethod: name = ref.fqn
 			default: log.error("ERROR qualifiedName(FAMIXStructure): " + el.value)
 		}
 		el.fqn = name + "." + el.value
-		el.id = createID(el.fqn)
+		el.id = createID(el.name) //name is ID from Famix file
 
 		allStructures.filter[container.ref.equals(el)].forEach[setQualifiedName]
 	}
@@ -255,27 +253,30 @@ class Famix2Famix_abap {
 		if (ref instanceof FAMIXNamespace) {
 			re.fqn = ref.fqn + "." + re.value
 		}
-		re.id = createID(re.fqn + re.class.toString)
+		re.id = createID(re.name) //name is ID from Famix file
 	}
 	
 	def updParameters(FAMIXFormroutine fr){
 		var ref = fr.parentType.ref
-		if (ref instanceof FAMIXReport) {
-			fr.fqn = ref.fqn + "." + fr.value
-		}		
-		fr.id = createID(fr.fqn + fr.class.toString)
+		switch ref {
+			FAMIXReport: fr.fqn = ref.fqn + "." + fr.value
+			FAMIXFunctionGroup: fr.fqn = ref.fqn + "." + fr.value
+			default: log.error("ERROR qualifiedName(FAMIXFormroutine): " + fr.value)
+		}	
+		fr.id = createID(fr.name) //name is ID from Famix file
 		if (fr.numberOfStatements >= 2) {
 			var nos = fr.numberOfStatements - 2
 			fr.numberOfStatements = nos
-		}
+		}		
 	}
 	
 	def updParameters(FAMIXFunctionModule fm){
 		val ref = fm.parentType.ref
-		if (ref instanceof FAMIXFunctionGroup) {
-			fm.fqn = ref.fqn + "." + fm.value
-		}
-		fm.id = createID(fm.fqn + fm.class.toString)
+		switch ref {
+			FAMIXFunctionGroup: fm.fqn = ref.fqn + "." + fm.value
+			default: log.error("ERROR qualifiedName(FAMIXFunctionModule): " + fm.value)
+		}	
+		fm.id = createID(fm.name) //name is ID from Famix file
 		if (fm.numberOfStatements >= 2) {
 			var nos = fm.numberOfStatements - 2
 			fm.numberOfStatements = nos
@@ -284,21 +285,27 @@ class Famix2Famix_abap {
 	
 	def updParameters(FAMIXMacro ma){
 		var ref = ma.parentType.ref
-		if(ref instanceof FAMIXMethod){
-			ma.fqn = ref.fqn + "." + ma.value
+		switch ref {
+			FAMIXReport: ma.fqn = ref.fqn + "." + ma.value
+			FAMIXFormroutine: ma.fqn = ref.fqn + "." + ma.value
+			FAMIXFunctionGroup: ma.fqn = ref.fqn + "." + ma.value
+			FAMIXFunctionModule: ma.fqn = ref.fqn + "." + ma.value
+			FAMIXStructure: ma.fqn = ref.fqn + "." + ma.value
+			FAMIXMethod: ma.fqn = ref.fqn + "." + ma.value
+			FAMIXNamespace: ma.fqn = ref.fqn + "." + ma.value
+			default: log.error("ERROR qualifiedName(FAMIXMacro): " + ma.value) 
 		}
+		ma.id = createID(ma.name) //name is ID from Famix file
 	}
 	
 	def updParameters(FAMIXDictionaryData dd){
 		val ref = dd.container.ref
-		
-		// set right ref and id
-		if (ref instanceof FAMIXDictionaryData) {
-			dd.fqn = ref.fqn + "." + dd.value
-		} else if (ref instanceof FAMIXNamespace) {
-			dd.fqn = ref.fqn + "." + dd.value
-		}		
-		dd.id = createID(dd.fqn + dd.class.toString)
+		switch ref {
+			FAMIXDictionaryData: dd.fqn = ref.fqn + "." + dd.value
+			FAMIXNamespace: dd.fqn = ref.fqn + "." + dd.value
+			default: log.error("ERROR qualifiedName(FAMIXDictionaryData): " + dd.value)
+		}
+		dd.id = createID(dd.name) //name is ID from Famix file
 	}
 	
 	def setQualifiedName(FAMIXAttribute attribute) {
@@ -312,7 +319,7 @@ class Famix2Famix_abap {
 			FAMIXMethod: attribute.fqn = ref.fqn + "." + attribute.value
 			default: log.error("ERROR qualifiedName(FAMIXAttribute famixAttribute): " + attribute.value)
 		}
-		attribute.id = createID(attribute.fqn + "Attribute")
+		attribute.id = createID(attribute.name) //name is ID from Famix file
 	}
 	
 	def createTableTypeElements(FAMIXTableType tt){

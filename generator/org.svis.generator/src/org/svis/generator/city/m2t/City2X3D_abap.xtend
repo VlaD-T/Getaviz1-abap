@@ -2,8 +2,6 @@ package org.svis.generator.city.m2t
 
 import java.util.List
 import org.apache.commons.logging.LogFactory
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.EcoreUtil2
 import org.svis.generator.city.m2m.CityLayout
 import org.svis.generator.city.m2m.ABAPCityLayout
 import org.svis.generator.city.m2m.Rectangle
@@ -12,29 +10,17 @@ import org.svis.xtext.city.BuildingSegment
 import org.svis.xtext.city.Entity
 import org.svis.xtext.city.PanelSeparatorBox
 import org.svis.xtext.city.PanelSeparatorCylinder
-import org.svis.xtext.city.District
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.BuildingType
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
 import org.svis.generator.SettingsConfiguration.AbapAdvCitySet
 import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_CustomModels
 import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_SimpleBlocks
-import org.svis.generator.city.m2m.customModels.*
+import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_SimpleTexturedBlocks
 
 class City2X3D_abap {
 	val log = LogFactory::getLog(getClass)
 	val config = SettingsConfiguration.instance
-	var defineCMSimpleHouse = true
-	var defineCMSkyScraper = true
-	var defineCMRadioTower = true
-	var defineCMApartmentBuilding = true
-	var defineCMBoat = true
-	var defineCMCarPark = true
-	var defineCMTableType = true
-	var defineCMTownHall = true
-	var defineCMFactoryBuilding = true
-	var defineCMFactoryHall = true
-	var defineCMFactoryBuildingFumo = true
 	
 	def run(List<Entity> entities) {
 		var rootEntity = CityLayout::rootRectangle
@@ -53,8 +39,8 @@ class City2X3D_abap {
 					Body = viewports(rootEntity) + simpleBlocks_set.set(entities)
 				}
 				case AbapAdvCitySet::SimpleTexturedBlocks: {
-					//TODO
-					Body = viewports(rootEntity) + entities.toX3DModel()
+					val AdvSet_SimpleTexturedBlocks simpleTexturedBlocks_set = new AdvSet_SimpleTexturedBlocks()
+					Body = viewports(rootEntity) + simpleTexturedBlocks_set.set(entities)
 				}
 				default: {
 					val AdvSet_CustomModels customModels_set = new AdvSet_CustomModels()
