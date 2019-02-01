@@ -1380,6 +1380,26 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	//Kind of scaling the height of the Source Code Objects (SCO)
+	public static enum DistrictLayoutVersion {
+		OLD, NEW;
+	}
+	
+	public String getDistrictLayoutVersion() {
+		return config.getString("city.abap_district_layout", "new");
+	}
+	
+	public DistrictLayoutVersion getDistrictLayout_Version() {
+		switch (getHeightScaling()) {
+			case "old":
+				return DistrictLayoutVersion.OLD;
+			case "interval":
+				return DistrictLayoutVersion.NEW;
+			default:
+				return DistrictLayoutVersion.NEW;
+		}
+	}
+	
 	public boolean isAbapCityTestMode() {
 		return config.getBoolean("city.abap_test_mode", false);
 	}

@@ -15,6 +15,7 @@ public class CityHeightLayout {
 	
 	public static void adjustHeight(EList<Entity> children, double parentY) {
 		for (Entity e : children) {
+			
 			double y = e.getPosition().getY();
 			if (e.getType().equals("FAMIX.Namespace") || e.getType().equals("reportDistrict") || e.getType().equals("classDistrict")
 					|| e.getType().equals("functionGroupDistrict") || e.getType().equals("tableDistrict") || e.getType().equals("interfaceDistrict")
