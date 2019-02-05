@@ -1760,4 +1760,8 @@ public class SettingsConfiguration {
 		return config.getDouble("city.abap_sco_max_height", 30);
 	}
 	
+	public double getAbapLogarithmBase() {
+		return config.getDouble("city.abap_logarithm_base", 2);
+	}
+	
 }	

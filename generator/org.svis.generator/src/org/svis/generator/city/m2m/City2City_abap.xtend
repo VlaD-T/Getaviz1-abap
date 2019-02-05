@@ -11,6 +11,7 @@ import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.Original.BuildingMetric
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
 import org.svis.generator.SettingsConfiguration.AbapNotInOriginFilter
+import java.lang.Math
 
 class City2City_abap {
 	val cityFactory = new CityFactoryImpl()
@@ -390,7 +391,7 @@ class City2City_abap {
 	def double getScaledHeightofSco(double unscaledHeight) {
 		switch (config.height_Scaling) {
 			case INTERVAL: {
-				if (unscaledHeight < config.getAbapScoMinHeight)
+				if (unscaledHeight < config.getAbapScoMinHeight) 
 					return config.getAbapScoMinHeight
 				else if (unscaledHeight > config.getAbapScoMaxHeight)
 					return config.getAbapScoMaxHeight
@@ -398,9 +399,14 @@ class City2City_abap {
 					return unscaledHeight
 			}
 			case LOGARITHMIC: {
-				return unscaledHeight
+				if (unscaledHeight < 1)
+					return 1.0
+				return Math.floor(Math.log(unscaledHeight) / Math.log(config.getAbapLogarithmBase) + 1) //muss so sein, weil sonst höhe = log(NOS = 1) = 0 wird
 			}
 			case NOSCALING: {
+				return unscaledHeight
+			}
+			default: {
 				return unscaledHeight
 			}
 		}

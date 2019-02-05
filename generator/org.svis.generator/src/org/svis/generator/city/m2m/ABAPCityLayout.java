@@ -132,11 +132,7 @@ public class ABAPCityLayout {
 					arrangeChildren(child);
 				}
 			} else {
-				if (child.getType().equals("FAMIX.Namespace") || child.getType().equals("reportDistrict")
-						|| child.getType().equals("classDistrict") || child.getType().equals("functionGroupDistrict")
-						|| child.getType().equals("tableDistrict") || child.getType().equals("dcDataDistrict")
-						|| child.getType().equals("domainDistrict") || child.getType().equals("interfaceDistrict")
-						|| child.getType().equals("structureDistrict")) {
+				if (child.getType().equals("FAMIX.Namespace")) {
 					if (DEBUG) {
 						System.out.println("\t\t\t" + info + "layOut(" + child.getFqn() + ")-call, recursive.");
 					}
@@ -146,6 +142,15 @@ public class ABAPCityLayout {
 					} else if (config.getDistrictLayout_Version() == DistrictLayoutVersion.NEW) {
 						arrangeChildrenOfNamespace(child);
 					}
+				} else if (child.getType().equals("reportDistrict")	|| child.getType().equals("classDistrict") 
+						|| child.getType().equals("functionGroupDistrict") || child.getType().equals("tableDistrict") 
+						|| child.getType().equals("dcDataDistrict") || child.getType().equals("domainDistrict") 
+						|| child.getType().equals("interfaceDistrict")	|| child.getType().equals("structureDistrict")) {
+					if (DEBUG) {
+						System.out.println("\t\t\t" + info + "layOut(" + child.getFqn() + ")-call, recursive.");
+					}
+					
+					arrangeChildren(child);
 				}
 			}
 			sum_width += child.getWidth() + config.getBuildingHorizontalGap();
@@ -387,39 +392,27 @@ public class ABAPCityLayout {
 			}
 		}
 		
-		Rectangle classRec = doAlgorithm(classes, ptree, covrec);
+		Rectangle classRec = doAlgorithm(classes, ptree, covrec);		
 		
-		functionGroups.add(0, classRec);
+		functionGroups.add(0, classRec);		
+		ptree = new CityKDTree(entityRec);		
+		Rectangle fuGrRec = doAlgorithm(functionGroups, ptree, covrec);
 		
-		CityKDTree ptree1 = new CityKDTree(entityRec);
+		reports.add(0, fuGrRec);		
+		ptree = new CityKDTree(entityRec);		
+		Rectangle repRec = doAlgorithm(reports, ptree, covrec);
 		
-		Rectangle fuGrRec = doAlgorithm(functionGroups, ptree1, covrec);
+		structures.add(0, repRec);		
+		ptree = new CityKDTree(entityRec);
+		Rectangle strucRec = doAlgorithm(structures, ptree, covrec);
 		
-		reports.add(0, fuGrRec);
+		dataElements.add(0, strucRec);		
+		ptree = new CityKDTree(entityRec);
+		Rectangle dataElemRec = doAlgorithm(dataElements, ptree, covrec);	
 		
-		CityKDTree ptree2 = new CityKDTree(entityRec);
-		
-		Rectangle repRec = doAlgorithm(reports, ptree2, covrec);
-		
-		structures.add(0, repRec);
-		
-		CityKDTree ptree3 = new CityKDTree(entityRec);
-
-		Rectangle strucRec = doAlgorithm(structures, ptree3, covrec);
-		
-		dataElements.add(0, strucRec);
-		
-		CityKDTree ptree4 = new CityKDTree(entityRec);
-
-		Rectangle deRec = doAlgorithm(dataElements, ptree4, covrec);
-		
-		tables.add(0, deRec);
-		
-		CityKDTree ptree5 = new CityKDTree(entityRec);
-
-		Rectangle tableRec = doAlgorithm(tables, ptree5, covrec);
-
-		
+		tables.add(0, dataElemRec);		
+		ptree = new CityKDTree(entityRec);
+		doAlgorithm(tables, ptree, covrec);		
 		
 		entity.setWidth(covrec.getBottomRightX()
 				+ (config.getBuildingHorizontalMargin() - config.getBuildingHorizontalGap() / 2) * 2);
