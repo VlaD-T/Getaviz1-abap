@@ -1,16 +1,14 @@
 package org.svis.generator.city.m2m.customModels
 
+import org.svis.generator.city.CityUtils
+
 class CustomModel_CarPark {
 	def static String defineCarParkRoof(double height) '''
 	    <Transform translation='0 0 «height»'>
 	    <Group DEF="group_ME_roof">
 	        <Shape>
 	            <Appearance>
-	                <Material DEF="MA_Material_001"
-	                          diffuseColor="0.800 0.800 0.800"
-	                          specularColor="0.401 0.401 0.401"
-	                          emissiveColor="0.000 0.000 0.000"
-	                          ambientIntensity="0.333"
+	                <Material diffuseColor="«CityUtils.getCustomModelColor("wall_grey_dark")»"
 	                          shininess="0.098"
 	                          transparency="0.0"
 	                          />
@@ -25,18 +23,14 @@ class CustomModel_CarPark {
 	        </Shape>
 	    </Group>
 	    </Transform>
-'''
+	'''
 
    def static String defineCarParkFloor (double height) '''
         <Transform translation=' 0 0 «height»'>
         <Group DEF="group_ME_floor">
             <Shape>
                 <Appearance>
-                    <Material DEF="MA_Material_001"  
-                              diffuseColor="0.800 0.800 0.800"
-                              specularColor="0.401 0.401 0.401"
-                              emissiveColor="0.000 0.000 0.000"
-                              ambientIntensity="0.333"
+                    <Material diffuseColor="«CityUtils.getCustomModelColor("wall_grey_dark")»"
                               shininess="0.098" 
                               transparency="0.0"
                               />
@@ -51,18 +45,13 @@ class CustomModel_CarPark {
              </Shape>            
          </Group>
          </Transform>                     
-'''   
+	'''   
 
    def static String defineCarParkBase () '''
-
         <Group DEF="group_ME_base">
             <Shape>
                 <Appearance>
-                    <Material DEF="MA_Material_001"
-                              diffuseColor="0.800 0.800 0.800"
-                              specularColor="0.401 0.401 0.401"
-                              emissiveColor="0.000 0.000 0.000"
-                              ambientIntensity="0.333"
+                    <Material diffuseColor="«CityUtils.getCustomModelColor("wall_grey_dark")»"
                               shihiness="0.098"
                               transparency="0.0"
                               />
@@ -76,8 +65,7 @@ class CustomModel_CarPark {
                 </IndexedFaceSet>
             </Shape>
         </Group>
-        
-''' 
+	''' 
 
 def static String createCarParkRoof(double height) '''
 		<Transform translation='0 0 «height»'>

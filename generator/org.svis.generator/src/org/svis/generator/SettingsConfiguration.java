@@ -1386,6 +1386,80 @@ public class SettingsConfiguration {
 		return config.getDouble("city.abap.strucElemHeight", 1);
 	}
 	
+	public Color getCustomModelColor(String color_name) {
+		if (color_name.equals("roof_red")) {
+			if (config.getString("city.customModel_roof_red").equals("")) return null;
+			return getColor(config.getString("city.customModel_roof_red", "#a80405"));
+			
+		} else if (color_name.equals("roof_grey")) {
+			if (config.getString("city.customModel_roof_grey").equals("")) return null;
+			return getColor(config.getString("city.customModel_roof_grey", "#cac1bb"));
+		
+		} else if (color_name.equals("wall_grey")) {
+			if (config.getString("city.customModel_wall_grey").equals("")) return null;
+			return getColor(config.getString("city.customModel_wall_grey", "#908991"));
+			
+		} else if (color_name.equals("wall_grey_light")) {
+			if (config.getString("city.customModel_wall_grey_light").equals("")) return null;
+			return getColor(config.getString("city.customModel_wall_grey_light", "#908991"));
+		
+		} else if (color_name.equals("wall_grey_dark")) {
+			if (config.getString("city.customModel_wall_grey_dark").equals("")) return null;
+			return getColor(config.getString("city.customModel_wall_grey_dark", "#66615d"));
+			
+		} else if (color_name.equals("wall_brown")) {
+			if (config.getString("city.customModel_wall_brown").equals("")) return null;
+			return getColor(config.getString("city.customModel_wall_brown", "#eedaa7"));
+		
+		} else if (color_name.equals("wall_brown_light")) {
+			if (config.getString("city.customModel_wall_brown_light").equals("")) return null;
+			return getColor(config.getString("city.customModel_wall_brown_light", "#fff0b5"));
+		
+		} else if (color_name.equals("window_blue")) {
+			if (config.getString("city.customModel_window_blue").equals("")) return null;
+			return getColor(config.getString("city.customModel_window_blue", "#85a3a2"));
+			
+		} else if (color_name.equals("window_blue_light")) {
+			if (config.getString("city.customModel_window_blue_light").equals("")) return null;
+			return getColor(config.getString("city.customModel_window_blue_light", "#7bccd5"));
+		
+		} else if (color_name.equals("window_grey")) {
+			if (config.getString("city.customModel_window_grey").equals("")) return null;
+			return getColor(config.getString("city.customModel_window_grey", "#605b5e"));
+		
+		} else if (color_name.equals("window_grey_light")) {
+			if (config.getString("city.customModel_window_grey_light").equals("")) return null;
+			return getColor(config.getString("city.customModel_window_grey_light", "#e6d1be"));
+		
+		} else if (color_name.equals("window_grey_dark")) {
+			if (config.getString("city.customModel_window_grey_dark").equals("")) return null;
+			return getColor(config.getString("city.customModel_window_grey_dark", "#312f32"));
+			
+		} else if (color_name.equals("ground_green")) {
+			if (config.getString("city.customModel_ground_green").equals("")) return null;
+			return getColor(config.getString("city.customModel_ground_green", "#88ab45"));
+			
+		} else if (color_name.equals("ground_grey")) {
+			if (config.getString("city.customModel_ground_grey").equals("")) return null;
+			return getColor(config.getString("city.customModel_ground_grey", "#817171"));
+			
+		} else if (color_name.equals("ground_grey_light")) {
+			if (config.getString("city.customModel_ground_grey_light").equals("")) return null;
+			return getColor(config.getString("city.customModel_ground_grey_light", "#a6918e"));
+			
+		} else if (color_name.equals("ground_grey_dark")) {
+			if (config.getString("city.customModel_ground_grey_dark").equals("")) return null;
+			return getColor(config.getString("city.customModel_ground_grey_dark", "#8b7971"));
+		
+		} else if (color_name.equals("ground_brown")) {
+			if (config.getString("city.customModel_ground_brown").equals("")) return null;
+			return getColor(config.getString("city.customModel_ground_brown", "#cb8436"));
+			
+		} else {
+			return null;
+		}
+	}
+	
 	public Color getAbapDistrictColor(String type) {
 		if(type.equals("classDistrict")) {
 			if(config.getString("city.abap.classDistrict.color").equals("")) return null;
@@ -1528,8 +1602,7 @@ public class SettingsConfiguration {
 			return null;
 		}
 	}	
-	
-	
+		
 	public double getAbapSimpleBlock_element_height(String type) {
 		if (type.equals("FAMIX.DataElement")) {
 			return config.getDouble("city.abapSimpleBlocks_de_height", 8);

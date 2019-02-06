@@ -447,7 +447,7 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 
 	def private deletePrivates() {
 		methods.removeIf([modifiers.contains("private")])
-		structures.removeIf([modifiers.contains("private")])
+	//	structures.removeIf([modifiers.contains("private")])
 		if (!config.methodTypeMode) {
 			attributes.removeIf([modifiers.contains("private")])
 		}
@@ -815,9 +815,9 @@ class Famix2Famix extends WorkflowComponentWithModelSlot {
 			}
 		}
 		node.setProperty("sourceFileName", fileName)
-		if (structure.modifiers.size != 0) {
+	/*	if (structure.modifiers.size != 0) {
 			setModifierProperties(node, structure.modifiers)
-		}
+		}  */
 		nodes.put(structure.id, node)
 		parent.createRelationshipTo(node, Rels.CONTAINS)
 		structures.filter[container.ref.equals(structure)].forEach[toDB(node)]

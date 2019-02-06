@@ -50,7 +50,6 @@ class Famix2Famix_abap {
 	val List<FAMIXStructure> structures = newArrayList
 	val List<FAMIXReference> references = newArrayList
 	val List<FAMIXInheritance> inheritances = newArrayList
-	val List<FAMIXReport> reports = newArrayList 
 	val List<FAMIXDataElement> dataElements = newArrayList
 	val List<FAMIXDomain> domains = newArrayList
 	val List<FAMIXTable> tables = newArrayList 
@@ -94,7 +93,6 @@ class Famix2Famix_abap {
 		rootPackages.forEach[setQualifiedName]
 		methods.forEach[setQualifiedName]
 		messageClasses.forEach[setQualifiedName]
-		reports.forEach[updParameters]
 		formroutines.forEach[updParameters]
 		functionGroups.forEach[setQualifiedName]
 		functionModules.forEach[updParameters]
@@ -110,7 +108,7 @@ class Famix2Famix_abap {
 		dataElements.forEach[updParameters]				
 		domains.forEach[updParameters]				
 		attributes.forEach[setQualifiedName]
-		
+
 		famixDocument.elements.clear
 		famixDocument.elements.addAll(rootPackages)
 		famixDocument.elements.addAll(subPackages)
@@ -119,7 +117,6 @@ class Famix2Famix_abap {
 		famixDocument.elements.addAll(inheritances)
 				
 		famixDocument.elements.addAll(methods)
-		famixDocument.elements.addAll(reports)
 		famixDocument.elements.addAll(attributes)
 		famixDocument.elements.addAll(dataElements)
 		famixDocument.elements.addAll(domains)
@@ -142,7 +139,6 @@ class Famix2Famix_abap {
 		references.clear
 		inheritances.clear
 		methods.clear
-		reports.clear
 		dataElements.clear
 		domains.clear
 		tables.clear
@@ -168,7 +164,6 @@ class Famix2Famix_abap {
 		switch element {
 			FAMIXAttribute: attributes.add(element)					
 			FAMIXMethod: methods.add(element)
-			FAMIXReport: reports.add(element)
 			FAMIXDataElement: dataElements.add(element)
 			FAMIXDomain: domains.add(element)
 			FAMIXTable: tables.add(element)
@@ -234,15 +229,15 @@ class Famix2Famix_abap {
 	
 	def void setQualifiedName(FAMIXStructure el) {
 		val ref = el.container.ref
-		var name = ""
+		var name = "null"
 		switch ref {
 			FAMIXNamespace: name = ref.fqn
 			FAMIXStructure: name = ref.fqn
-			FAMIXReport: name = ref.fqn
 			FAMIXMethod: name = ref.fqn
 			default: log.error("ERROR qualifiedName(FAMIXStructure): " + el.value)
-		}
-		el.fqn = name + "." + el.value
+		}		
+		
+		el.fqn = name + "." + el.value	
 		el.id = createID(el.name) //name is ID from Famix file
 
 		allStructures.filter[container.ref.equals(el)].forEach[setQualifiedName]
