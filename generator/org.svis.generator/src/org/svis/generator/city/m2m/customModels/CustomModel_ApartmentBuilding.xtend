@@ -5,7 +5,7 @@ import org.svis.generator.city.CityUtils
 class CustomModel_ApartmentBuilding {
 	def static String defineApartmentBuildingRoof(double height) '''
 	    <Transform translation='0 0 «height»'>
-	    <Group DEF="group_ME_roof">
+	    <Group DEF="group_apartment_building_roof">
 	        <Shape>
 				<Appearance>
 					<Material diffuseColor="«CityUtils.getRGBFromHEX("#85a3a2")»" ««« window: blue
@@ -62,7 +62,7 @@ class CustomModel_ApartmentBuilding {
 
 	def static String defineApartmentBuildingFloor (double height) '''
     	<Transform translation=' 0 0 «height»'>
-    		<Group DEF="group_ME_floor">
+    		<Group DEF="group_apartment_building_floor">
     			<Shape>
     				<Appearance>
 						<Material diffuseColor="«CityUtils.getRGBFromHEX("#85a3a2")»" ««« window: blue
@@ -94,7 +94,7 @@ class CustomModel_ApartmentBuilding {
 	'''   
 
 	def static String defineApartmentBuildingBase () '''
-		<Group DEF="group_ME_base">
+		<Group DEF="group_apartment_building_base">
 			<Shape>
 				<Appearance>
 					<Material diffuseColor="«CityUtils.getRGBFromHEX("#cf7000")»" ««« door: orange - brown
@@ -136,19 +136,20 @@ class CustomModel_ApartmentBuilding {
 		</Group>
 	''' 
 
+
 	def static String createApartmentBuildingRoof(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_roof"/>
+			<Group USE="group_apartment_building_roof"/>
 		</Transform>
 	'''
 	
 	def static String createApartmentBuildingFloor(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_floor"/>
+			<Group USE="group_apartment_building_floor"/>
 		</Transform>
 	'''
 	
 	def static String createApartmentBuildingBase() '''
-        <Group USE="group_ME_base"/>
+        <Group USE="group_apartment_building_base"/>
 	'''
 }

@@ -390,14 +390,5 @@ public class CityUtils {
 		}
 		
 		return new RGBColor(config.getColor(hex_color)).asPercentage(); 
-	}
-	
-	public static String getCustomModelColor(String color_name) {
-		if (config.getCustomModelColor(color_name) != null) {
-			return new RGBColor(config.getCustomModelColor(color_name)).asPercentage();
-		} else {
-			return new RGBColor(config.getColor("#000000")).asPercentage();
-		}
-	}	
-		
+	}		
 }

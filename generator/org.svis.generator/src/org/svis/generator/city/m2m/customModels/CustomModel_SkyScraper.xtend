@@ -3,7 +3,6 @@ package org.svis.generator.city.m2m.customModels
 import org.svis.generator.city.CityUtils
 
 class CustomModel_SkyScraper {
-	
 	def static String defineSkyScraperRoof(double height)'''
 		<Transform translation='0 0 «height»'>
 		<Group DEF="group_ME_method-roof">
