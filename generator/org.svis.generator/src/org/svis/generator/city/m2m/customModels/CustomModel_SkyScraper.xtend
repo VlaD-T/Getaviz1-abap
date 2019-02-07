@@ -9,7 +9,7 @@ class CustomModel_SkyScraper {
 				<Appearance>
 					<Material DEF="MA_Material_001"
 					          diffuseColor="0.738 0.776 0.708"
-					          specularColor="0.401 0.401 0.401"
+		 			          specularColor="0.401 0.401 0.401"
 					          emissiveColor="0.000 0.000 0.000"
 					          ambientIntensity="0.333"
 					          shininess="0.098"

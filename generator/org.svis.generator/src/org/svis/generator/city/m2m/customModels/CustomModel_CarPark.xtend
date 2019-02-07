@@ -3,7 +3,7 @@ package org.svis.generator.city.m2m.customModels
 class CustomModel_CarPark {
 	def static String defineCarParkRoof(double height) '''
 	    <Transform translation='0 0 «height»'>
-	    <Group DEF="group_ME_roof">
+	    <Group DEF="group_CarPark_roof">
 	        <Shape>
 	            <Appearance>
 	                <Material DEF="MA_Material_001"
@@ -29,7 +29,7 @@ class CustomModel_CarPark {
 
    def static String defineCarParkFloor (double height) '''
         <Transform translation=' 0 0 «height»'>
-        <Group DEF="group_ME_floor">
+        <Group DEF="group_CarPark_floor">
             <Shape>
                 <Appearance>
                     <Material DEF="MA_Material_001"  
@@ -55,7 +55,7 @@ class CustomModel_CarPark {
 
    def static String defineCarParkBase () '''
 
-        <Group DEF="group_ME_base">
+        <Group DEF="group_CarPark_base">
             <Shape>
                 <Appearance>
                     <Material DEF="MA_Material_001"
@@ -81,19 +81,19 @@ class CustomModel_CarPark {
 
 def static String createCarParkRoof(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_roof"/>
+			<Group USE="group_CarPark_roof"/>
 		</Transform>
 	'''
 	
 	def static String createCarParkFloor(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_floor"/>
+			<Group USE="group_CarPark_floor"/>
 		</Transform>
 	'''
 	
 	def static String createCarParkBase() '''
 
-	        <Group USE="group_ME_base"/>
+	        <Group USE="group_CarPark_base"/>
 
 	'''
 }

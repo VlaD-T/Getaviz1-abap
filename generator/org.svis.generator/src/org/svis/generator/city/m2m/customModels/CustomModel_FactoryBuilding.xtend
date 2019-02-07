@@ -3,7 +3,7 @@ package org.svis.generator.city.m2m.customModels
 class CustomModel_FactoryBuilding {
 	def static String defineFactoryBuildingRoof(double height) '''
 	    <Transform translation='0 0 «height»'>
-	    <Group DEF="group_ME_roof">
+	    <Group DEF="group_factory_building_roof">
 	        <Shape>
 	            <Appearance>
 	                <Material DEF="MA_Material_001"
@@ -29,7 +29,7 @@ class CustomModel_FactoryBuilding {
 
    def static String defineFactoryBuildingFloor (double height) '''
         <Transform translation=' 0 0 «height»'>
-        <Group DEF="group_ME_floor">
+        <Group DEF="group_factory_building_floor">
             <Shape>
                 <Appearance>  
                     <Material DEF="MA_Material_001"
@@ -55,7 +55,7 @@ class CustomModel_FactoryBuilding {
 
    def static String defineFactoryBuildingBase () '''
 
-        <Group DEF="group_ME_base">
+        <Group DEF="group_factory_building_base">
             <Shape>
                 <Appearance>
                     <Material DEF="MA_Material_001"
@@ -81,19 +81,19 @@ class CustomModel_FactoryBuilding {
 
 def static String createFactoryBuildingRoof(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_roof"/>
+			<Group USE="group_factory_building_roof"/>
 		</Transform>
 	'''
 	
 	def static String createFactoryBuildingFloor(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_floor"/>
+			<Group USE="group_factory_building_floor"/>
 		</Transform>
 	'''
 	
 	def static String createFactoryBuildingBase() '''
 
-	        <Group USE="group_ME_base"/>
+	        <Group USE="group_factory_building_base"/>
 
 	'''
 }

@@ -336,6 +336,8 @@ class City2City_abap {
 		var chimneyCounter = 0
 
 		for (chimney : chimneys) {
+			
+			chimney.parent = b
 	
 			if(config.showAttributesBelowBuildings){
 				chimney.height = config.attributesBelowBuildingsHeight - 0.5
