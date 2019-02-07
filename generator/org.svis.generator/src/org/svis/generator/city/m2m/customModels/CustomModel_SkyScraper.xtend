@@ -8,7 +8,7 @@ class CustomModel_SkyScraper {
 		<Group DEF="group_ME_method-roof">
 			<Shape>
 				<Appearance>
-					<Material diffuseColor="«CityUtils.getRGBFromHEX("#e7e3d0")»" ««« wall: light grey
+					<Material diffuseColor="«CityUtils.getRGBFromHEX("#ebe8d9")»" ««« wall: light grey
 					          transparency="0.0"
 					          />
 				</Appearance>
@@ -27,7 +27,7 @@ class CustomModel_SkyScraper {
 			</Shape>
 			<Shape>
 				<Appearance>
-					<Material diffuseColor="«CityUtils.getRGBFromHEX("#e7e3d0")»" ««« window: grey
+					<Material diffuseColor="«CityUtils.getRGBFromHEX("#ebe8d9")»" ««« window: grey
 					          transparency="0.0"
 					          />
 				</Appearance>
@@ -58,7 +58,7 @@ class CustomModel_SkyScraper {
 		<Group DEF="group_ME_method-floor">
 			<Shape>
 				<Appearance>
-					<Material diffuseColor="«CityUtils.getRGBFromHEX("#e7e3d0")»" ««« wall: light grey
+					<Material diffuseColor="«CityUtils.getRGBFromHEX("#ebe8d9")»" ««« wall: light grey
 					          transparency="0.0"
 					          />
 				</Appearance>
@@ -94,7 +94,7 @@ class CustomModel_SkyScraper {
 		<Group DEF="group_ME_method-base">
 			<Shape>
 				<Appearance>
-					<Material diffuseColor="«CityUtils.getRGBFromHEX("#e7e3d0")»" ««« Wall: grey
+					<Material diffuseColor="«CityUtils.getRGBFromHEX("#ebe8d9")»" ««« Wall: grey
 					          transparency="0.0"
 					          />
 				</Appearance>
