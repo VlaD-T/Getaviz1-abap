@@ -17,7 +17,7 @@ import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.BuildingType
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
 import org.svis.generator.city.m2m.customModels.*
-
+import org.svis.generator.city.CityUtils
 
 class AdvSet_CustomModels {
 	val log = LogFactory::getLog(getClass)
@@ -85,12 +85,23 @@ class AdvSet_CustomModels {
 							<ImageTexture url='«entity.textureURL»'></ImageTexture>
 						«ELSE»
 							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
+«««							<Material diffuseColor='«setDistrictColor(entity.type)»' transparency='«entity.transparency»'></Material>
 						«ENDIF»
 					</Appearance>
 				</Shape>
 			</Transform>
 		</Group>
 	'''
+	
+	def String setDistrictColor(String districtType) {
+		if (districtType == "domainDistrict" || districtType == "structureDistrict") {
+			return CityUtils.getRGBFromHEX("#92d164")
+		} else if (districtType == "classDistrict") {
+			return CityUtils.getRGBFromHEX("#d7cabc")
+		} else {
+			return CityUtils.getRGBFromHEX("#474444")
+		}
+	}
 	
 	//Advanced ABAP buildings
 	def String toBuilding(Entity entity)'''
@@ -144,27 +155,27 @@ class AdvSet_CustomModels {
 «««				</Transform>
 «««			</Group>
 «««			
-						<Group DEF='«entity.id»'>
-							<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-									   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-									   rotation='0 0.707107 0.707107 3.141593'>
-								«IF defineCMContainerShip»
-									«defineCMContainerShip = false»
-									«CustomModel_ContainerShip::defineContainerShipFront»
-									«FOR n : 1..entity.width.intValue»
-										«CustomModel_ContainerShip::defineContainerShipMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
-									«ENDFOR»
-									«CustomModel_ContainerShip::defineContainerShipBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
-								«ELSE»
-									«CustomModel_ContainerShip::createContainerShipFront»
-									«FOR n : 1..entity.width.intValue»
-										«CustomModel_ContainerShip::createContainerShipMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
-									«ENDFOR»
-									«CustomModel_ContainerShip::createContainerShipBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
-								«ENDIF»
-							</Transform>
-						</Group>
-								
+			<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+						   rotation='0 0.707107 0.707107 3.141593'>
+					«IF defineCMContainerShip»
+						«defineCMContainerShip = false»
+						«CustomModel_ContainerShip::defineContainerShipFront»
+						«FOR n : 1..entity.width.intValue»
+							«CustomModel_ContainerShip::defineContainerShipMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
+						«ENDFOR»
+						«CustomModel_ContainerShip::defineContainerShipBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
+					«ELSE»
+						«CustomModel_ContainerShip::createContainerShipFront»
+						«FOR n : 1..entity.width.intValue»
+							«CustomModel_ContainerShip::createContainerShipMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
+						«ENDFOR»
+						«CustomModel_ContainerShip::createContainerShipBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
+					«ENDIF»
+				</Transform>
+			</Group>
+
 		«ELSEIF entity.type == "FAMIX.StrucElement"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
@@ -234,26 +245,26 @@ class AdvSet_CustomModels {
 			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Class"»
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
-					«IF defineCMRadioTower»
-						«defineCMRadioTower = false»
-						«CustomModel_RadioTower::defineRadioTowerBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
-						«ENDFOR»
-						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-					«ELSE»
-						«CustomModel_RadioTower::createRadioTowerBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
-						«ENDFOR»
-						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-					«ENDIF»
-				</Transform>
-			</Group>
+«««			<Group DEF='«entity.id»'>
+«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+«««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+«««						   rotation='0 0.707107 0.707107 3.141593'>
+«««					«IF defineCMRadioTower»
+«««						«defineCMRadioTower = false»
+«««						«CustomModel_RadioTower::defineRadioTowerBase»
+«««						«FOR n : 1..entity.height.intValue»
+«««							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
+«««						«ENDFOR»
+«««						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
+«««					«ELSE»
+«««						«CustomModel_RadioTower::createRadioTowerBase»
+«««						«FOR n : 1..entity.height.intValue»
+«««							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
+«««						«ENDFOR»
+«««						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
+«««					«ENDIF»
+«««				</Transform>
+«««			</Group>
 		
 		«ELSEIF entity.type == "FAMIX.Attribute"»
 			«IF entity.parentType == "FAMIX.Report"»
@@ -317,7 +328,7 @@ class AdvSet_CustomModels {
 				</Transform>
 			</Group>
             «ENDIF»
-
+            
 		«ELSEIF entity.type == "FAMIX.FunctionModule"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
@@ -374,16 +385,16 @@ class AdvSet_CustomModels {
 «««					«ENDIF»
 «««				</Transform>
 «««			</Group>
-«««
 «««			<Group DEF='«entity.id»'>
-«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'>
-«««					<Shape>
-«««						<Box size='«entity.width +" "+ entity.height +" "+ entity.length»'></Box>
-«««						
-«««						<Appearance>
-«««							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
-«««						</Appearance>
-«««					</Shape>
+«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
+«««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+«««						   rotation='0.000000 0.707107 0.707107 3.141593'>
+«««					«IF defineCMFactoryHall»
+«««						«CustomModel_FactoryHall::defineFactoryHallShape»
+«««						«defineCMFactoryHall = false»
+«««					«ELSE»
+«««						«CustomModel_FactoryHall::createFactoryHallShape»
+«««					«ENDIF»					
 «««				</Transform>
 «««			</Group>
 			
@@ -408,7 +419,7 @@ class AdvSet_CustomModels {
 		           			«ENDIF»
 			     </Transform>
 			</Group>
-			
+						
 		«ENDIF»		
 	'''
 		

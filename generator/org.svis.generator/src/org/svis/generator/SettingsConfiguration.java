@@ -1600,8 +1600,7 @@ public class SettingsConfiguration {
 			return null;
 		}
 	}	
-	
-	
+		
 	public double getAbapSimpleBlock_element_height(String type) {
 		if (type.equals("FAMIX.DataElement")) {
 			return config.getDouble("city.abapSimpleBlocks_de_height", 8);
