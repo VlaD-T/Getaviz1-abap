@@ -19,12 +19,12 @@ FAMIXElement:
 ;
 	
 FAMIXABAPElements:
-	FAMIXDictionaryData | FAMIXStructure |  FAMIXMethod | FAMIXAttribute | FAMIXNamespace | FAMIXReport | 
+	FAMIXDictionaryData | FAMIXStructure |  FAMIXMethod | FAMIXAttribute | FAMIXNamespace |  
 	FAMIXFormroutine | FAMIXFunctionModule | FAMIXTypeOf | FAMIXMacro | FAMIXReference | FAMIXInheritance
 ;
 
 FAMIXStructure:
-	FAMIXClass | FAMIXParameterizableClass | FAMIXEnum | FAMIXAnnotationType |
+	FAMIXClass | FAMIXParameterizableClass | FAMIXReport | FAMIXEnum | FAMIXAnnotationType |
 	FAMIXMessageClass | FAMIXFunctionGroup
 ;
 

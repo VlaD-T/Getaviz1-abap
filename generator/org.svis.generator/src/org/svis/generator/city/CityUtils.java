@@ -383,4 +383,21 @@ public class CityUtils {
 		for (BuildingSegmentComparator bsc : sortedList)
 			bsList.add(bsc.getBuildingSegment());
 	}
+	
+	public static String getRGBFromHEX(String hex_color) {
+		if (hex_color == null) {
+			return new RGBColor(config.getColor("#000000")).asPercentage();
+		}
+		
+		return new RGBColor(config.getColor(hex_color)).asPercentage(); 
+	}
+	
+	public static String getCustomModelColor(String color_name) {
+		if (config.getCustomModelColor(color_name) != null) {
+			return new RGBColor(config.getCustomModelColor(color_name)).asPercentage();
+		} else {
+			return new RGBColor(config.getColor("#000000")).asPercentage();
+		}
+	}	
+		
 }
