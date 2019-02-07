@@ -308,26 +308,26 @@ class AdvSet_CustomModels {
             «ENDIF»
             
 		«ELSEIF entity.type == "FAMIX.FunctionModule"»
-«««			<Group DEF='«entity.id»'>
-«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-«««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-«««						   rotation='0 0.707107 0.707107 3.141593'>
-«««					«IF defineCMFactoryBuildingFumo»
-«««						«defineCMFactoryBuildingFumo = false»
-«««						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase»
-«««						«FOR n : 1..entity.height.intValue»
-«««							«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
-«««						«ENDFOR»
-«««						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
-«««					«ELSE»
-«««						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoBase»
-«««						«FOR n : 1..entity.height.intValue»
-«««							«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
-«««						«ENDFOR»
-«««						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
-«««					«ENDIF»
-«««				</Transform>
-«««			</Group>
+			<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+						   rotation='0 0.707107 0.707107 3.141593'>
+					«IF defineCMFactoryBuildingFumo»
+						«defineCMFactoryBuildingFumo = false»
+						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
+						«ENDFOR»
+						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
+					«ELSE»
+						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
+						«ENDFOR»
+						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
+					«ENDIF»
+				</Transform>
+			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Report"»		
 «««			<Group DEF='«entity.id»'>
