@@ -30,13 +30,13 @@ Workflow {
 	}
 	
 	// write metaData
-//	component = org.eclipse.xtext.generator.GeneratorComponent {
-//		register = org.svis.generator.famix.Famix2JSONStandaloneSetup {}
-//		slot = 'metadata'
-//		outlet = {
-//			path = "${outputPath}"
-//		}
-//	}
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = org.svis.generator.famix.Famix2JSONStandaloneSetup {}
+		slot = 'metadata'
+		outlet = {
+			path = "${outputPath}"
+		}
+	}
 
 	//transformation 1: from FAMIX to CITY
 	component = org.svis.generator.city.s2m.Famix2City {
