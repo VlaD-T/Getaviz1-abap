@@ -1458,6 +1458,7 @@ public class SettingsConfiguration {
 		return config.getBoolean("city.abap.showForm", false);
 	}
 	
+
 	public Color getAbapDistrictColor(String type) {
 		if(type.equals("classDistrict")) {
 			if(config.getString("city.abap.classDistrict.color").equals("")) return null;
@@ -1725,7 +1726,7 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapClassBaseHeight() {
-		return config.getDouble("city.abap_class_base_height", 21);
+		return config.getDouble("city.abap_class_base_height", 19);
 	}
 	
 	public double getAbapClassFloorHeight() {
