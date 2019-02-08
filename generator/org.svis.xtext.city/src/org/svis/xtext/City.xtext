@@ -40,6 +40,7 @@ District: // no LOC, height has to be static
 		('(' 'entities' entities+=Entity* ')')?
 		('(' 'instances' instances+=Instance* ')')? //dynamix
 		('(' 'parent' parent=[Entity] ')')?
+		('(' 'parentType' parentType=MSESTRING ')')?
 		('(' 'notInOrigin' notInOrigin=BOOLEAN ')')? //ABAP
 		('(' 'hasDatabases' hasDatabases=BOOLEAN ')')? //ABAP
 		('(' 'abapReferences' abapReferences+=ABAPReference* ')')? //ABAP
@@ -82,6 +83,7 @@ Building:
 		('(' 'notInOrigin' notInOrigin=BOOLEAN ')')? //ABAP
 		('(' 'abapReferences' abapReferences+=ABAPReference* ')')? //ABAP
 		('(' 'dataCounter' dataCounter=DECIMAL ')')?
+		('(' 'parentType' parentType=MSESTRING ')')?
 		('(' 'visibility' visibility=MSESTRING ')')?
 		('(' 'buildingParts' buildingParts+=Entity* ')')? //for ABAPCity
 	')';

@@ -79,7 +79,7 @@ class AdvSet_SimpleBlocks {
 					</Shape>
 				</Transform>
 			</Group>
-								
+			
 		«ELSEIF entity.type == "FAMIX.Table"»
 ««« TODO
 		
@@ -130,7 +130,7 @@ class AdvSet_SimpleBlocks {
 					</Shape>
 				</Transform>
 			</Group>
-
+			
 		«ELSEIF entity.type == "FAMIX.Attribute"»
 ««« TODO
 
@@ -169,7 +169,7 @@ class AdvSet_SimpleBlocks {
 					</Shape>
 				</Transform>
 			</Group>
-						
+			
 		«ENDIF»		
 	'''
 	

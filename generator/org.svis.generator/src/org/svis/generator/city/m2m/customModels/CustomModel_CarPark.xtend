@@ -1,17 +1,14 @@
 package org.svis.generator.city.m2m.customModels
 
+import org.svis.generator.city.CityUtils
+
 class CustomModel_CarPark {
 	def static String defineCarParkRoof(double height) '''
 	    <Transform translation='0 0 «height»'>
-	    <Group DEF="group_ME_roof">
+	    <Group DEF="group_CarPark_roof">
 	        <Shape>
 	            <Appearance>
-	                <Material DEF="MA_Material_001"
-	                          diffuseColor="0.800 0.800 0.800"
-	                          specularColor="0.401 0.401 0.401"
-	                          emissiveColor="0.000 0.000 0.000"
-	                          ambientIntensity="0.333"
-	                          shininess="0.098"
+	                <Material diffuseColor="«CityUtils.getRGBFromHEX("#d0d0d0")»" ««« wall: light grey
 	                          transparency="0.0"
 	                          />
 	            </Appearance>
@@ -25,19 +22,14 @@ class CustomModel_CarPark {
 	        </Shape>
 	    </Group>
 	    </Transform>
-'''
+	'''
 
    def static String defineCarParkFloor (double height) '''
         <Transform translation=' 0 0 «height»'>
-        <Group DEF="group_ME_floor">
+        <Group DEF="group_CarPark_floor">
             <Shape>
                 <Appearance>
-                    <Material DEF="MA_Material_001"  
-                              diffuseColor="0.800 0.800 0.800"
-                              specularColor="0.401 0.401 0.401"
-                              emissiveColor="0.000 0.000 0.000"
-                              ambientIntensity="0.333"
-                              shininess="0.098" 
+                    <Material diffuseColor="«CityUtils.getRGBFromHEX("#d0d0d0")»" ««« wall: light grey
                               transparency="0.0"
                               />
                 </Appearance>
@@ -51,19 +43,13 @@ class CustomModel_CarPark {
              </Shape>            
          </Group>
          </Transform>                     
-'''   
+	'''   
 
    def static String defineCarParkBase () '''
-
-        <Group DEF="group_ME_base">
+        <Group DEF="group_CarPark_base">
             <Shape>
                 <Appearance>
-                    <Material DEF="MA_Material_001"
-                              diffuseColor="0.800 0.800 0.800"
-                              specularColor="0.401 0.401 0.401"
-                              emissiveColor="0.000 0.000 0.000"
-                              ambientIntensity="0.333"
-                              shihiness="0.098"
+                    <Material diffuseColor="«CityUtils.getRGBFromHEX("#d0d0d0")»" ««« wall: light grey
                               transparency="0.0"
                               />
                 </Appearance>
@@ -76,24 +62,21 @@ class CustomModel_CarPark {
                 </IndexedFaceSet>
             </Shape>
         </Group>
-        
-''' 
+	''' 
 
-def static String createCarParkRoof(double height) '''
+	def static String createCarParkRoof(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_roof"/>
+			<Group USE="group_CarPark_roof"/>
 		</Transform>
 	'''
 	
 	def static String createCarParkFloor(double height) '''
 		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_floor"/>
+			<Group USE="group_CarPark_floor"/>
 		</Transform>
 	'''
 	
 	def static String createCarParkBase() '''
-
-	        <Group USE="group_ME_base"/>
-
+        <Group USE="group_CarPark_base"/>
 	'''
 }
