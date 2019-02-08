@@ -224,26 +224,26 @@ class AdvSet_CustomModels {
 			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Class"»
-«««			<Group DEF='«entity.id»'>
-«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-«««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-«««						   rotation='0 0.707107 0.707107 3.141593'>
-«««					«IF defineCMRadioTower»
-«««						«defineCMRadioTower = false»
-«««						«CustomModel_RadioTower::defineRadioTowerBase»
-«««						«FOR n : 1..entity.height.intValue»
-«««							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
-«««						«ENDFOR»
-«««						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-«««					«ELSE»
-«««						«CustomModel_RadioTower::createRadioTowerBase»
-«««						«FOR n : 1..entity.height.intValue»
-«««							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
-«««						«ENDFOR»
-«««						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-«««					«ENDIF»
-«««				</Transform>
-«««			</Group>
+			<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+						   rotation='0 0.707107 0.707107 3.141593'>
+					«IF defineCMRadioTower»
+						«defineCMRadioTower = false»
+						«CustomModel_RadioTower::defineRadioTowerBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
+						«ENDFOR»
+						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
+					«ELSE»
+						«CustomModel_RadioTower::createRadioTowerBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
+						«ENDFOR»
+						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
+					«ENDIF»
+				</Transform>
+			</Group>
 		
 		«ELSEIF entity.type == "FAMIX.Attribute"»
 			«IF entity.parentType == "FAMIX.Report"»

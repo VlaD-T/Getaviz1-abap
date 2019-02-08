@@ -1726,7 +1726,7 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapClassBaseHeight() {
-		return config.getDouble("city.abap_class_base_height", 21);
+		return config.getDouble("city.abap_class_base_height", 19);
 	}
 	
 	public double getAbapClassFloorHeight() {
