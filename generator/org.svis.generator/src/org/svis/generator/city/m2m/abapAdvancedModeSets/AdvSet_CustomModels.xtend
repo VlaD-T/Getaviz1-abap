@@ -344,27 +344,27 @@ class AdvSet_CustomModels {
 «««			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Formroutine"»
-«««			 <Group DEF='«entity.id»'>
-«««			     <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-«««			           		scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-«««			           		rotation='0 0.707107 0.707107 3.141593'>
-«««			           		«IF defineCMFactoryBuilding»
-«««			           		«defineCMFactoryBuilding = false»
-«««			           		«CustomModel_FactoryBuilding::defineFactoryBuildingBase»
-«««			           		«FOR n : 1..entity.height.intValue»
-«««			           			«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
-«««			           		«ENDFOR»
-«««			           			«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
-«««			           		«ELSE»
-«««			           			«CustomModel_FactoryBuilding::createFactoryBuildingBase»
-«««			           			«FOR n : 1..entity.height.intValue»
-«««			           				«CustomModel_FactoryBuilding::createFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
-«««			           			«ENDFOR»
-«««			           				«CustomModel_FactoryBuilding::createFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
-«««		           			«ENDIF»
-«««			     </Transform>
-«««			</Group>
-						
+			 <Group DEF='«entity.id»'>
+			     <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+			           		scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+			           		rotation='0 0.707107 0.707107 3.141593'>
+		           		«IF defineCMFactoryBuilding»
+		           		«defineCMFactoryBuilding = false»
+		           		«CustomModel_FactoryBuilding::defineFactoryBuildingBase»
+		           		«FOR n : 1..entity.height.intValue»
+		           			«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
+		           		«ENDFOR»
+		           			«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
+		           		«ELSE»
+		           			«CustomModel_FactoryBuilding::createFactoryBuildingBase»
+		           			«FOR n : 1..entity.height.intValue»
+		           				«CustomModel_FactoryBuilding::createFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
+		           			«ENDFOR»
+		           			«CustomModel_FactoryBuilding::createFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
+	           			«ENDIF»
+			     </Transform>
+			</Group>
+		
 		«ENDIF»		
 	'''
 		
