@@ -1358,6 +1358,48 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	//Kind of scaling the height of the Source Code Objects (SCO)
+	public static enum HeightScaling {
+		NOSCALING, INTERVAL, LOGARITHMIC;
+	}
+	
+	public String getHeightScaling() {
+		return config.getString("city.abap_height_scaling", "noscaling");
+	}
+	
+	public HeightScaling getHeight_Scaling() {
+		switch (getHeightScaling()) {
+			case "noscaling":
+				return HeightScaling.NOSCALING;
+			case "interval":
+				return HeightScaling.INTERVAL;
+			case "logarithmic":
+				return HeightScaling.LOGARITHMIC;
+			default:
+				return HeightScaling.NOSCALING;
+		}
+	}
+	
+	//Kind of scaling the height of the Source Code Objects (SCO)
+	public static enum DistrictLayoutVersion {
+		OLD, NEW;
+	}
+	
+	public String getDistrictLayoutVersion() {
+		return config.getString("city.abap_district_layout", "new");
+	}
+	
+	public DistrictLayoutVersion getDistrictLayout_Version() {
+		switch (getDistrictLayoutVersion()) {
+			case "old":
+				return DistrictLayoutVersion.OLD;
+			case "new":
+				return DistrictLayoutVersion.NEW;
+			default:
+				return DistrictLayoutVersion.NEW;
+		}
+	}
+	
 	public boolean isAbapCityTestMode() {
 		return config.getBoolean("city.abap_test_mode", false);
 	}
@@ -1458,6 +1500,7 @@ public class SettingsConfiguration {
 		return config.getBoolean("city.abap.showForm", false);
 	}
 	
+
 	public Color getAbapDistrictColor(String type) {
 		if(type.equals("classDistrict")) {
 			if(config.getString("city.abap.classDistrict.color").equals("")) return null;
@@ -1725,7 +1768,11 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapClassBaseHeight() {
+<<<<<<< HEAD
 		return config.getDouble("city.abap.class_base_height", 21);
+=======
+		return config.getDouble("city.abap_class_base_height", 19);
+>>>>>>> refs/heads/master
 	}
 	
 	public double getAbapClassFloorHeight() {
@@ -1789,7 +1836,11 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapFumoBaseHeight() {
+<<<<<<< HEAD
 		return config.getDouble("city.abap.fumo_base_height", 7);
+=======
+		return config.getDouble("city.abap_fumo_base_height", 4);
+>>>>>>> refs/heads/master
 	}
 	
 	public double getAbapFumoFloorHeight() {
@@ -1803,11 +1854,25 @@ public class SettingsConfiguration {
 	public double getAbapReportBaseHeight() {
 		return config.getDouble("city.abap.report_base_height", 6);
 	}
+<<<<<<< HEAD
 
 	public double getAbapReportFloorHeight() {
 		return config.getDouble("city.abap.report_floor_height", 4);
 	}
 
+=======
+	public double getAbapScoMinHeight() {
+		return config.getDouble("city.abap_sco_min_height", 1);
+	}
+	
+	public double getAbapScoMaxHeight() {
+		return config.getDouble("city.abap_sco_max_height", 30);
+	}
+	
+	public double getAbapLogarithmBase() {
+		return config.getDouble("city.abap_logarithm_base", 2);
+	}
+>>>>>>> refs/heads/master
 	public double getAbapReportRoofHeight() {
 		return config.getDouble("city.abap.report_roof_height", 1);
 	}

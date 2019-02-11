@@ -120,10 +120,9 @@ class CustomModel_ContainerShip {
 	            </IndexedFaceSet>
 	        </Shape>
 	    </Group>
-'''
+	'''
 
-def static String createContainerShipShape() '''
+	def static String createContainerShipShape() '''
 			<Group USE="group_ContainerShip_Shape"/>
 	'''
-	
 }

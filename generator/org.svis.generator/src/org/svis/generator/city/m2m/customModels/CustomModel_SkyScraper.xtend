@@ -75,7 +75,7 @@ class CustomModel_SkyScraper {
 			</Shape>
 			<Shape>
 				<Appearance>
-					<Material diffuseColor="«CityUtils.getRGBFromHEX("#302d3d")»" ««« Window: dark blue
+					<Material diffuseColor="«CityUtils.getRGBFromHEX("#444250")»" ««« Window: dark blue
 					          transparency="0.0"
 					          />
 				</Appearance>
@@ -113,7 +113,7 @@ class CustomModel_SkyScraper {
 			</Shape>
 			<Shape>
 				<Appearance>
-					<Material diffuseColor="«CityUtils.getRGBFromHEX("#302d3d")»" ««« Door + window: dark blue
+					<Material diffuseColor="«CityUtils.getRGBFromHEX("#444250")»" ««« Door + window: dark blue
 					          transparency="0.0"
 					          />
 				</Appearance>

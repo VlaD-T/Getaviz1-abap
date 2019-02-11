@@ -1,17 +1,13 @@
 package org.svis.generator.city.m2m.customModels
 
-class CustomModel_Tube {
+import org.svis.generator.city.CityUtils
 
+class CustomModel_Tube {
     def static String defineTubeShape()'''
 		<Group DEF="Tube">
 			<Shape>
 				<Appearance>
-				    <Material DEF="MA_Material_001"
-							  diffuseColor="0.087 0.087 0.087"
-							  specularColor="0.401 0.401 0.401"
-							  emissiveColor="0.000 0.000 0.000"
-							  ambientIntensity="0.333"
-							  shininess="0.098"
+				    <Material diffuseColor="«CityUtils.getRGBFromHEX("#717171")»" ««« black 
 							  transparency="0.0"
 							  />
 				</Appearance>
@@ -25,13 +21,8 @@ class CustomModel_Tube {
 			</Shape>
 			<Shape>
 			    <Appearance>
-					<Material DEF="MA_Material_002"
-							  diffuseColor="0.800 0.800 0.800"
-		     		          specularColor="0.401 0.401 0.401"
-		     		          emissiveColor="0.000 0.000 0.000"
-			    	          ambientIntensity="0.333"
-						      shininess="0.098"
-					          transparency="0.0"
+					<Material diffuseColor="«CityUtils.getRGBFromHEX("#d0d0d0")»" ««« grey
+							  transparency="0.0"
 					          />
 				</Appearance>
 				<IndexedFaceSet solid="true"
