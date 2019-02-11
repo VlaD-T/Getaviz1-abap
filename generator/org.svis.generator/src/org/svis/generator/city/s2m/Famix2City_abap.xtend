@@ -450,7 +450,7 @@ class Famix2City_abap {
              }
 		  }]
 		  }
-  
+		  
         // for classes
         if(config.showClassDistrict){
 		classes.filter[container.ref == elem].filter[isInterface == "false"].forEach[ class |
@@ -462,11 +462,24 @@ class Famix2City_abap {
 			
 			//newClassDistrict.entities += toBuilding(class, level + 2)
 
-            if(config.showMethod){
-			methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
-			} if(config.showClassAttributes){
-			attributes.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2, true)]
-		    }
+            if (config.showMethod)
+				methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
+			if (config.showClassAttributes) 
+				attributes.filter[parentType.ref == class].forEach [newClassDistrict.entities += toBuilding(level + 2, true)]
+					    
+		    			// local classes
+			classes.filter[container.ref == class].forEach[ localClass | 
+				val newLocalClassDistrict = cityFactory.createDistrict
+				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
+				newLocalClassDistrict.type = "classDistrict"
+				newLocalClassDistrict.id   = elem.id + "_00004"
+				newLocalClassDistrict.level = level + 1
+			
+				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2, true)]
+			
+				newClassDistrict.entities.add(newLocalClassDistrict)
+			]
 		    
 			newDistrict.entities.add(newClassDistrict)
 		]}
@@ -496,12 +509,26 @@ class Famix2City_abap {
 			newFunctionGroupDistrict.id = elem.id + "_00003"
 			newFunctionGroupDistrict.level = level + 1
 			
-			if(config.showFumo){
-			functionModules.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toBuilding(level + 2)]
-			} if(config.showFuGrAttributes){
-			attributes.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toFumoBuilding(level + 2)]
-			}
+			if(config.showFumo)
+				functionModules.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toBuilding(level + 2)]
+			 
+			if(config.showFuGrAttributes)
+				attributes.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toFumoBuilding(level + 2)]
+						
+			// local classes
+			classes.filter[it.container.ref == functionGroup].forEach[ localClass | 
+				val newLocalClassDistrict = cityFactory.createDistrict
+				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
+				newLocalClassDistrict.type = "classDistrict"
+				newLocalClassDistrict.id   = elem.id + "_00004"
+				newLocalClassDistrict.level = level + 1
 			
+				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2, true)]
+			
+				newFunctionGroupDistrict.entities.add(newLocalClassDistrict)
+			]
+						
 			newDistrict.entities.add(newFunctionGroupDistrict)
 		]}
 		
@@ -510,16 +537,30 @@ class Famix2City_abap {
 			val newReportDistrict = cityFactory.createDistrict
 			newReportDistrict.name = newDistrict.name + "_reportDistrict"
 			newReportDistrict.type = "reportDistrict"
-			newReportDistrict.id = elem.id  + "_00004"
+			newReportDistrict.id = elem.id  + "_00005"
 			newReportDistrict.level = level + 1
 			
-            if(config.showReport){
-			newReportDistrict.entities += toAdvBuilding(report, level + 2)			
-			}
-			if(config.showForm){
-			formroutines.filter[parentType.ref == report].forEach[newReportDistrict.entities += toBuilding(level + 2)]
+            if(config.showReport)
+				newReportDistrict.entities += toAdvBuilding(report, level + 2)			
+			
+			if(config.showForm)
+				formroutines.filter[parentType.ref == report].forEach[newReportDistrict.entities += toBuilding(level + 2)]
 //			attributes.filter[parentType.ref == report].forEach[newReportDistrict.entities += toRepoBuilding(level + 2)]
-			}
+						
+				
+			// local classes
+			classes.filter[container.ref == report].forEach[ localClass | 
+				val newLocalClassDistrict = cityFactory.createDistrict
+				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
+				newLocalClassDistrict.type = "classDistrict"
+				newLocalClassDistrict.id   = elem.id + "_00004"
+				newLocalClassDistrict.level = level + 1
+			
+				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2, true)]
+			
+				newReportDistrict.entities.add(newLocalClassDistrict)
+			]
 			
 			newDistrict.entities.add(newReportDistrict)
 		]}
