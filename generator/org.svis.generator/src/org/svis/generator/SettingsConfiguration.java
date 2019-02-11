@@ -1832,7 +1832,7 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapFumoBaseHeight() {
-		return config.getDouble("city.abap.fumo_base_height", 7);
+		return config.getDouble("city.abap.fumo_base_height", 8);
 	}
 	
 	public double getAbapFumoFloorHeight() {
