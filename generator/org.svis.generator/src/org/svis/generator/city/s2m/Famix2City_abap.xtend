@@ -450,13 +450,9 @@ class Famix2City_abap {
              }
 		  }]
 		  }
-  
-<<<<<<< HEAD
-        // for global classes
-=======
+		  
         // for classes
         if(config.showClassDistrict){
->>>>>>> branch 'master' of https://github.com/VlaD-T/Getaviz.git
 		classes.filter[container.ref == elem].filter[isInterface == "false"].forEach[ class |
 			val newClassDistrict = cityFactory.createDistrict
 			newClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
@@ -464,17 +460,14 @@ class Famix2City_abap {
 			newClassDistrict.id   = elem.id + "_00004"
 			newClassDistrict.level = level + 1
 			
-<<<<<<< HEAD
-=======
 			//newClassDistrict.entities += toBuilding(class, level + 2)
 
-            if(config.showMethod){
->>>>>>> branch 'master' of https://github.com/VlaD-T/Getaviz.git
-			methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
-<<<<<<< HEAD
-			attributes.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]		
-									
-			// local classes
+            if (config.showMethod)
+				methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
+			if (config.showClassAttributes) 
+				attributes.filter[parentType.ref == class].forEach [newClassDistrict.entities += toBuilding(level + 2, true)]
+					    
+		    			// local classes
 			classes.filter[container.ref == class].forEach[ localClass | 
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
@@ -483,17 +476,11 @@ class Famix2City_abap {
 				newLocalClassDistrict.level = level + 1
 			
 				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
-				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2, true)]
 			
 				newClassDistrict.entities.add(newLocalClassDistrict)
 			]
-			
-=======
-			} if(config.showClassAttributes){
-			attributes.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2, true)]
-		    }
 		    
->>>>>>> branch 'master' of https://github.com/VlaD-T/Getaviz.git
 			newDistrict.entities.add(newClassDistrict)
 		]}
 		
@@ -522,12 +509,12 @@ class Famix2City_abap {
 			newFunctionGroupDistrict.id = elem.id + "_00003"
 			newFunctionGroupDistrict.level = level + 1
 			
-			if(config.showFumo){
-			functionModules.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toBuilding(level + 2)]
-			} if(config.showFuGrAttributes){
-			attributes.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toFumoBuilding(level + 2)]
-			}
-			
+			if(config.showFumo)
+				functionModules.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toBuilding(level + 2)]
+			 
+			if(config.showFuGrAttributes)
+				attributes.filter[parentType.ref == functionGroup].forEach[newFunctionGroupDistrict.entities += toFumoBuilding(level + 2)]
+						
 			// local classes
 			classes.filter[it.container.ref == functionGroup].forEach[ localClass | 
 				val newLocalClassDistrict = cityFactory.createDistrict
@@ -537,7 +524,7 @@ class Famix2City_abap {
 				newLocalClassDistrict.level = level + 1
 			
 				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
-				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2, true)]
 			
 				newFunctionGroupDistrict.entities.add(newLocalClassDistrict)
 			]
@@ -553,14 +540,13 @@ class Famix2City_abap {
 			newReportDistrict.id = elem.id  + "_00005"
 			newReportDistrict.level = level + 1
 			
-            if(config.showReport){
-			newReportDistrict.entities += toAdvBuilding(report, level + 2)			
-			}
-			if(config.showForm){
-			formroutines.filter[parentType.ref == report].forEach[newReportDistrict.entities += toBuilding(level + 2)]
-//			attributes.filter[parentType.ref == report].forEach[newReportDistrict.entities += toRepoBuilding(level + 2)]
-			}
+            if(config.showReport)
+				newReportDistrict.entities += toAdvBuilding(report, level + 2)			
 			
+			if(config.showForm)
+				formroutines.filter[parentType.ref == report].forEach[newReportDistrict.entities += toBuilding(level + 2)]
+//			attributes.filter[parentType.ref == report].forEach[newReportDistrict.entities += toRepoBuilding(level + 2)]
+						
 				
 			// local classes
 			classes.filter[container.ref == report].forEach[ localClass | 
@@ -571,7 +557,7 @@ class Famix2City_abap {
 				newLocalClassDistrict.level = level + 1
 			
 				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
-				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
+				attributes.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2, true)]
 			
 				newReportDistrict.entities.add(newLocalClassDistrict)
 			]

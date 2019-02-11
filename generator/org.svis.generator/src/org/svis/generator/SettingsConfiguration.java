@@ -1390,10 +1390,10 @@ public class SettingsConfiguration {
 	}
 	
 	public DistrictLayoutVersion getDistrictLayout_Version() {
-		switch (getHeightScaling()) {
+		switch (getDistrictLayoutVersion()) {
 			case "old":
 				return DistrictLayoutVersion.OLD;
-			case "interval":
+			case "new":
 				return DistrictLayoutVersion.NEW;
 			default:
 				return DistrictLayoutVersion.NEW;
@@ -1832,11 +1832,7 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapFumoBaseHeight() {
-<<<<<<< HEAD
 		return config.getDouble("city.abap_fumo_base_height", 4);
-=======
-		return config.getDouble("city.abap_fumo_base_height", 7);
->>>>>>> branch 'master' of https://github.com/VlaD-T/Getaviz.git
 	}
 	
 	public double getAbapFumoFloorHeight() {
@@ -1850,8 +1846,6 @@ public class SettingsConfiguration {
 	public double getAbapReportShapeHeight() {
 		return config.getDouble("city.abap_report_shape_height", 9);
 	}
-	
-<<<<<<< HEAD
 	public double getAbapScoMinHeight() {
 		return config.getDouble("city.abap_sco_min_height", 1);
 	}
@@ -1863,8 +1857,6 @@ public class SettingsConfiguration {
 	public double getAbapLogarithmBase() {
 		return config.getDouble("city.abap_logarithm_base", 2);
 	}
-	
-=======
 	public double getAbapReportRoofHeight() {
 		return config.getDouble("city.abap_report_roof_height", 1);
 	}
@@ -1872,5 +1864,4 @@ public class SettingsConfiguration {
 	public double getAbapRFumoShapeHeight() {
 		return config.getDouble("city.abap_fumo_shape_height", 19);
 	}
->>>>>>> branch 'master' of https://github.com/VlaD-T/Getaviz.git
 }	

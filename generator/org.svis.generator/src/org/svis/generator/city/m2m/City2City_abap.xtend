@@ -317,15 +317,10 @@ class City2City_abap {
 		var chimneyCounter = 0
 
 		for (chimney : chimneys) {
-<<<<<<< HEAD
-
-			if (config.showAttributesBelowBuildings) {
-=======
 			
 			chimney.parent = b
 	
 			if(config.showAttributesBelowBuildings){
->>>>>>> branch 'master' of https://github.com/VlaD-T/Getaviz.git
 				chimney.height = config.attributesBelowBuildingsHeight - 0.5
 			} else {
 				chimney.height = config.attributesHeight
