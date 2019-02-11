@@ -1800,15 +1800,23 @@ public class SettingsConfiguration {
 		return config.getDouble("city.abap_fumo_roof_height", 3);
 	}
 	
-	public double getAbapReportShapeHeight() {
-		return config.getDouble("city.abap_report_shape_height", 9);
+	public double getAbapReportBaseHeight() {
+		return config.getDouble("city.abap_report_base_height", 6);
 	}
-	
+
+	public double getAbapReportFloorHeight() {
+		return config.getDouble("city.abap_report_floor_height", 4);
+	}
+
 	public double getAbapReportRoofHeight() {
 		return config.getDouble("city.abap_report_roof_height", 1);
 	}
 	
 	public double getAbapRFumoShapeHeight() {
 		return config.getDouble("city.abap_fumo_shape_height", 19);
+	}
+	
+	public double getAbapTableShapeHeight() {
+		return config.getDouble("city.abap_table_shape_height", 24);
 	}
 }	

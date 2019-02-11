@@ -56,7 +56,6 @@ class CustomModel_Boat {
 '''   
 
    def static String defineBoatFront () '''
-
         <Group DEF="group_ME_base">
             <Shape>
                 <Appearance>
@@ -81,14 +80,12 @@ class CustomModel_Boat {
         
 ''' 
 
-//def static String createBoatBack() '''
 def static String createBoatBack(double width) '''
 		<Transform translation='0 0 «width»'>
 			<Group USE="group_ME_roof"/>
 		</Transform>
 	'''
 	
-//    def static String createBoatMiddle() '''
 	def static String createBoatMiddle(double width) '''
 		<Transform translation='0 0 «width»'>
 			<Group USE="group_ME_floor"/>
@@ -96,8 +93,6 @@ def static String createBoatBack(double width) '''
 	'''
 	
 	def static String createBoatFront() '''
-
 	        <Group USE="group_ME_base"/>
-
 	'''
 }

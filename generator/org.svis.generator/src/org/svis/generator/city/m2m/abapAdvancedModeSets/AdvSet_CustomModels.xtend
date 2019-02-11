@@ -138,41 +138,33 @@ class AdvSet_CustomModels {
 «««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
 «««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 «««						   rotation='0 0.707107 0.707107 3.141593'>
-«««					«IF defineCMBoat»
-«««						«defineCMBoat = false»
-«««						«CustomModel_Boat::defineBoatFront»
-«««						«FOR n : 1..entity.height.intValue»
-«««							«CustomModel_Boat::defineBoatMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
+«««					«IF defineCMContainerShip»
+«««						«defineCMContainerShip = false»
+«««						«CustomModel_ContainerShip::defineContainerShipFront»
+«««						«FOR n : 1..entity.width.intValue»
+«««							«CustomModel_ContainerShip::defineContainerShipMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
 «««						«ENDFOR»
-«««						«CustomModel_Boat::defineBoatBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
+«««						«CustomModel_ContainerShip::defineContainerShipBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
 «««					«ELSE»
-«««						«CustomModel_Boat::createBoatFront»
-«««						«FOR n : 1..entity.height.intValue»
-«««							«CustomModel_Boat::createBoatMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
+«««						«CustomModel_ContainerShip::createContainerShipFront»
+«««						«FOR n : 1..entity.width.intValue»
+«««							«CustomModel_ContainerShip::createContainerShipMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
 «««						«ENDFOR»
-«««						«CustomModel_Boat::createBoatBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
+«««						«CustomModel_ContainerShip::createContainerShipBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
 «««					«ENDIF»
 «««				</Transform>
 «««			</Group>
-«««			
-			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+
+	<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
 						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
+						   rotation='0.000000 0.707107 0.707107 3.141593'>
 					«IF defineCMContainerShip»
+						«CustomModel_ContainerShip::defineContainerShipShape»
 						«defineCMContainerShip = false»
-						«CustomModel_ContainerShip::defineContainerShipFront»
-						«FOR n : 1..entity.width.intValue»
-							«CustomModel_ContainerShip::defineContainerShipMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
-						«ENDFOR»
-						«CustomModel_ContainerShip::defineContainerShipBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
 					«ELSE»
-						«CustomModel_ContainerShip::createContainerShipFront»
-						«FOR n : 1..entity.width.intValue»
-							«CustomModel_ContainerShip::createContainerShipMiddle(config.getAbapTableFrontWidth + (n - 1) * config.getAbapTableMiddleWidth)»
-						«ENDFOR»
-						«CustomModel_ContainerShip::createContainerShipBack(config.getAbapTableFrontWidth + entity.width * config.getAbapTableMiddleWidth)»
-					«ENDIF»
+						«CustomModel_ContainerShip::createContainerShipShape»
+					«ENDIF»					
 				</Transform>
 			</Group>
 
@@ -245,26 +237,26 @@ class AdvSet_CustomModels {
 			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Class"»
-«««			<Group DEF='«entity.id»'>
-«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-«««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-«««						   rotation='0 0.707107 0.707107 3.141593'>
-«««					«IF defineCMRadioTower»
-«««						«defineCMRadioTower = false»
-«««						«CustomModel_RadioTower::defineRadioTowerBase»
-«««						«FOR n : 1..entity.height.intValue»
-«««							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
-«««						«ENDFOR»
-«««						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-«««					«ELSE»
-«««						«CustomModel_RadioTower::createRadioTowerBase»
-«««						«FOR n : 1..entity.height.intValue»
-«««							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
-«««						«ENDFOR»
-«««						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-«««					«ENDIF»
-«««				</Transform>
-«««			</Group>
+			<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+						   rotation='0 0.707107 0.707107 3.141593'>
+					«IF defineCMRadioTower»
+						«defineCMRadioTower = false»
+						«CustomModel_RadioTower::defineRadioTowerBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
+						«ENDFOR»
+						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
+					«ELSE»
+						«CustomModel_RadioTower::createRadioTowerBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
+						«ENDFOR»
+						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
+					«ENDIF»
+				</Transform>
+			</Group>
 		
 		«ELSEIF entity.type == "FAMIX.Attribute"»
 			«IF entity.parentType == "FAMIX.Report"»
@@ -353,39 +345,6 @@ class AdvSet_CustomModels {
 
 		«ELSEIF entity.type == "FAMIX.Report"»		
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
-					«IF defineCMFactoryHall»
-						«CustomModel_FactoryHall::defineFactoryHallShape»
-						«defineCMFactoryHall = false»
-					«ELSE»
-						«CustomModel_FactoryHall::createFactoryHallShape»
-					«ENDIF»					
-				</Transform>
-			</Group>
-
-«««            <Group DEF='«entity.id»'>
-«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-«««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-«««						   rotation='0 0.707107 0.707107 3.141593'>
-«««					«IF defineCMFactoryHall»
-«««						«defineCMFactoryHall = false»
-«««						«CustomModel_FactoryHall::defineFactoryHallShape»
-««««««						«FOR n : 1..entity.height.intValue»
-««««««							«CustomModel_FactoryHall::defineFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
-««««««						«ENDFOR»
-«««						«CustomModel_FactoryHall::defineFactoryHallRoof(config.getAbapReportShapeHeight + entity.height/* * config.getAbapFumoFloorHeight*/)»
-«««					«ELSE»
-«««						«CustomModel_FactoryHall::createFactoryHallShape»
-««««««						«FOR n : 1..entity.height.intValue»
-««««««							«CustomModel_FactoryHall::createFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
-««««««						«ENDFOR»
-«««						«CustomModel_FactoryHall::createFactoryHallRoof(config.getAbapReportShapeHeight + entity.height /* * config.getAbapFumoFloorHeight*/)»
-«««					«ENDIF»
-«««				</Transform>
-«««			</Group>
-«««			<Group DEF='«entity.id»'>
 «««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
 «««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 «««						   rotation='0.000000 0.707107 0.707107 3.141593'>
@@ -397,6 +356,27 @@ class AdvSet_CustomModels {
 «««					«ENDIF»					
 «««				</Transform>
 «««			</Group>
+
+«««            <Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+						   rotation='0 0.707107 0.707107 3.141593'>
+					«IF defineCMFactoryHall»
+						«defineCMFactoryHall = false»
+						«CustomModel_FactoryHall::defineFactoryHallBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_FactoryHall::defineFactoryHallFloor(config.getAbapReportBaseHeight + (n - 1) * config.getAbapReportFloorHeight)»
+						«ENDFOR»
+						«CustomModel_FactoryHall::defineFactoryHallRoof(config.getAbapReportBaseHeight + entity.height * config.getAbapReportFloorHeight)»
+					«ELSE»
+						«CustomModel_FactoryHall::createFactoryHallBase»
+						«FOR n : 1..entity.height.intValue»
+							«CustomModel_FactoryHall::createFactoryHallFloor(config.getAbapReportBaseHeight + (n - 1) * config.getAbapReportFloorHeight)»
+						«ENDFOR»
+						«CustomModel_FactoryHall::createFactoryHallRoof(config.getAbapReportBaseHeight + entity.height * config.getAbapReportFloorHeight)»
+					«ENDIF»
+				</Transform>
+			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Formroutine"»
 			 <Group DEF='«entity.id»'>
@@ -487,11 +467,24 @@ class AdvSet_CustomModels {
 «««		<Group DEF='«chimney.id»'>
 «««		«««			<Transform translation='«chimney.position.x +" "+ calcChimneyPosY(chimney) +" "+ chimney.position.z»'>
 «««					<Transform translation='«chimney.position.x +" "+ chimney.position.y +" "+ chimney.position.z»'>
+«««					 <Appearance>
 «««						<Shape>
-«««							<Cylinder height='«chimney.height * 2»' radius='«chimney.width»'></Cylinder>
-«««							<Appearance>
-«««								<Material diffuseColor='«chimney.color»'></Material>
-«««							</Appearance>
+«««							<Material DEF="MA_Material_001"
+«««							          diffuseColor="0.800 0.800 0.800"
+«««							          specularColor="0.401 0.401 0.401"
+«««							          emissiveColor="0.000 0.000 0.000"
+«««							          ambientIntensity="0.333"
+«««							          shininess="0.098"
+«««							          transparency="0.0"
+«««							          />
+«««						</Appearance>
+«««						<IndexedFaceSet solid="true"
+«««						                coordIndex="0 1 2 3 -1 4 5 6 7 -1 8 9 10 11 -1 12 13 14 15 -1 16 17 18 19 -1 20 21 22 23 -1 24 25 26 27 -1 28 29 30 31 -1 32 33 34 35 -1 36 37 38 39 -1 40 41 42 43 -1 44 45 46 47 -1 48 49 50 51 -1 52 53 54 55 -1 56 57 58 59 -1 60 61 62 63 -1 64 65 66 67 -1 68 69 70 71 -1 72 73 74 75 -1 76 77 78 79 -1 80 81 82 83 -1 84 85 86 87 -1 88 89 90 91 -1 92 93 94 95 -1 96 97 98 99 -1 100 101 102 103 -1 104 105 106 107 -1 108 109 110 111 -1 112 113 114 115 -1 116 117 118 119 -1 "
+«««						                >
+«««							<Coordinate DEF="coords_ME_report-roof"
+«««							            point="-1.000000 -6.000000 0.000000 -1.000000 -6.000000 1.000000 -1.000000 -5.000000 1.000000 -1.000000 -5.000000 0.000000 -1.000000 -5.000000 0.000000 -1.000000 -5.000000 1.000000 -1.000000 -4.000000 1.000000 -1.000000 -4.000000 0.000000 -1.000000 -4.000000 0.000000 -1.000000 -4.000000 1.000000 -1.000000 -3.000000 1.000000 -1.000000 -3.000000 0.000000 2.000000 -6.000000 0.000000 2.000000 -5.000000 0.000000 2.000000 -5.000000 1.000000 2.000000 -6.000000 1.000000 2.000000 -5.000000 0.000000 2.000000 -4.000000 0.000000 2.000000 -4.000000 1.000000 2.000000 -5.000000 1.000000 2.000000 -4.000000 0.000000 2.000000 -3.000000 0.000000 2.000000 -3.000000 1.000000 2.000000 -4.000000 1.000000 -1.000000 -6.000000 0.000000 0.000000 -6.000000 0.000000 0.000000 -6.000000 1.000000 -1.000000 -6.000000 1.000000 0.000000 -6.000000 0.000000 1.000000 -6.000000 0.000000 1.000000 -6.000000 1.000000 0.000000 -6.000000 1.000000 1.000000 -6.000000 0.000000 2.000000 -6.000000 0.000000 2.000000 -6.000000 1.000000 1.000000 -6.000000 1.000000 -1.000000 -3.000000 0.000000 -1.000000 -3.000000 1.000000 0.000000 -3.000000 1.000000 0.000000 -3.000000 0.000000 0.000000 -3.000000 0.000000 0.000000 -3.000000 1.000000 1.000000 -3.000000 1.000000 1.000000 -3.000000 0.000000 1.000000 -3.000000 0.000000 1.000000 -3.000000 1.000000 2.000000 -3.000000 1.000000 2.000000 -3.000000 0.000000 -1.000000 -6.000000 0.000000 -1.000000 -5.000000 0.000000 0.000000 -5.000000 0.000000 0.000000 -6.000000 0.000000 0.000000 -6.000000 0.000000 0.000000 -5.000000 0.000000 1.000000 -5.000000 0.000000 1.000000 -6.000000 0.000000 1.000000 -6.000000 0.000000 1.000000 -5.000000 0.000000 2.000000 -5.000000 0.000000 2.000000 -6.000000 0.000000 -1.000000 -5.000000 0.000000 -1.000000 -4.000000 0.000000 0.000000 -4.000000 0.000000 0.000000 -5.000000 0.000000 0.000000 -5.000000 0.000000 0.000000 -4.000000 0.000000 1.000000 -4.000000 0.000000 1.000000 -5.000000 0.000000 1.000000 -5.000000 0.000000 1.000000 -4.000000 0.000000 2.000000 -4.000000 0.000000 2.000000 -5.000000 0.000000 -1.000000 -4.000000 0.000000 -1.000000 -3.000000 0.000000 0.000000 -3.000000 0.000000 0.000000 -4.000000 0.000000 0.000000 -4.000000 0.000000 0.000000 -3.000000 0.000000 1.000000 -3.000000 0.000000 1.000000 -4.000000 0.000000 1.000000 -4.000000 0.000000 1.000000 -3.000000 0.000000 2.000000 -3.000000 0.000000 2.000000 -4.000000 0.000000 -1.000000 -6.000000 1.000000 0.000000 -6.000000 1.000000 0.000000 -5.000000 1.000000 -1.000000 -5.000000 1.000000 0.000000 -6.000000 1.000000 1.000000 -6.000000 1.000000 1.000000 -5.000000 1.000000 0.000000 -5.000000 1.000000 1.000000 -6.000000 1.000000 2.000000 -6.000000 1.000000 2.000000 -5.000000 1.000000 1.000000 -5.000000 1.000000 -1.000000 -5.000000 1.000000 0.000000 -5.000000 1.000000 0.000000 -4.000000 1.000000 -1.000000 -4.000000 1.000000 0.000000 -5.000000 1.000000 1.000000 -5.000000 1.000000 1.000000 -4.000000 1.000000 0.000000 -4.000000 1.000000 1.000000 -5.000000 1.000000 2.000000 -5.000000 1.000000 2.000000 -4.000000 1.000000 1.000000 -4.000000 1.000000 -1.000000 -4.000000 1.000000 0.000000 -4.000000 1.000000 0.000000 -3.000000 1.000000 -1.000000 -3.000000 1.000000 0.000000 -4.000000 1.000000 1.000000 -4.000000 1.000000 1.000000 -3.000000 1.000000 0.000000 -3.000000 1.000000 1.000000 -4.000000 1.000000 2.000000 -4.000000 1.000000 2.000000 -3.000000 1.000000 1.000000 -3.000000 1.000000 "
+«««							            />
+«««						</IndexedFaceSet>
 «««						</Shape>
 «««					</Transform>
 «««				</Group>

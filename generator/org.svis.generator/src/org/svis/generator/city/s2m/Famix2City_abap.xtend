@@ -63,8 +63,6 @@ class Famix2City_abap {
 	                          "DATS","DEC","FLTP","INT1","INT2","INT8","LANG","LCHR","LRAW","QUAN","RAW","RAWSTRING", "SSTRING",
 	                          "STRING","TIMS","UNIT"]
 	                           
-	 
-	
 	//Import: cityDocument, to store all elements from famixDocument
 	
 	new(org.svis.xtext.city.Document imp_cityDocument, Document imp_famixDocument){
@@ -352,7 +350,7 @@ class Famix2City_abap {
                newStructureDistrict.notInOrigin = "true"
             }
           
-//           newStructureDistrict.entities += toBuilding(struc, level + 2)
+//         newStructureDistrict.entities += toBuilding(struc, level + 2)
            if(config.showStructure){
            abapStrucElem.filter[container.ref == struc].forEach[newStructureDistrict.entities += toBuilding(level + 2)]
            } if(config.showTableType){
@@ -397,10 +395,11 @@ class Famix2City_abap {
 			if (elem.iteration >= 1) {
 					newDomainDistrict.notInOrigin = "true"				
 			} else {
-				domains.filter[iteration == 1].forEach[ doma |
-				dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]
+				if(config.showDtel){
+				domains.filter[iteration == 1].forEach[ doma |					
+				dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]			    
 			    newDistrict.entities.add(newDomainDistrict)
-			 ]}
+			 ]}}
 		 }}
 		 
 
@@ -433,7 +432,9 @@ class Famix2City_abap {
 					if(config.showDtel){
 					dataElements.filter[container.ref == elem].filter[domain === null].filter[datatype == typeName].forEach[newDataElementDistrict.entities += toBuilding( level + 2)]}
 				} else {
+					if(config.showDtel){
 					dataElements.filter[container.ref == elem].filter[domain === null].filter[datatype == typeName].forEach[newDataElementDistrict.entities += toBuilding( level + 2)]
+					}
 					val domainBuilding = cityFactory.createBuilding
 						domainBuilding.name = elem.name
 						domainBuilding.type = "FAMIX.Domain"
@@ -480,8 +481,10 @@ class Famix2City_abap {
 			newInterfaceDistrict.id   = elem.id + "_00004"
 			newInterfaceDistrict.level = level + 1
 			
+			if(config.showInterface){
 			newInterfaceDistrict.entities += toAdvBuilding(class, level + 2)
-
+            }
+            
 //			methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
 //			attributes.filter[parentType.ref == class].forEach[newInterfaceDistrict.entities += toBuilding(level + 2, false)]
 		
@@ -518,17 +521,33 @@ class Famix2City_abap {
 			}
 			if(config.showForm){
 			formroutines.filter[parentType.ref == report].forEach[newReportDistrict.entities += toBuilding(level + 2)]
-//			attributes.filter[parentType.ref == report].forEach[newReportDistrict.entities += toRepoBuilding(level + 2)]
 			}
 			
 			newDistrict.entities.add(newReportDistrict)
 		]}
 		
 	    //shows tables at the main district (level) 
-		 if(config.showTables){
-		 tables.filter[container.ref == elem].forEach[newDistrict.entities += toAdvBuilding(level + 2)]	
-	     }
+//		 if(config.showTables){
+//		 tables.filter[container.ref == elem].forEach[newDistrict.entities += toAdvBuilding(level + 2)]	
+//	     }
+	     
+	   // table District  
+	   tables.filter[container.ref == elem].forEach[ table |
+	     val newTableDistrict = cityFactory.createDistrict
+			 newTableDistrict.name = newDistrict.name + "_tableDistrict"
+			 newTableDistrict.type = "tableDistrict"
+			 newTableDistrict.level = level + 1
+			 newTableDistrict.id = elem.id + "_00006"
+			 if(elem.iteration >= 1){
+					newTableDistrict.notInOrigin = "true"
+				}
 				
+			newTableDistrict.entities += toAdvBuilding(table, level + 2)	
+				
+	        newDistrict.entities.add(newTableDistrict)			
+	        ]
+	   
+	     
 		cityDocument.entities += newDistrict
 		return newDistrict
 	}
@@ -864,7 +883,7 @@ class Famix2City_abap {
 			newBuilding.notInOrigin = "true"
 		}
 		
-//		newBuilding.methodCounter = elem.numberOfStatements
+		newBuilding.methodCounter = elem.numberOfStatements
 		
 		if(config.showReportAdvAttributes){
 		newBuilding.dataCounter = attributes.filter[parentType.ref == elem].length 
@@ -938,7 +957,7 @@ class Famix2City_abap {
 			newBuilding.notInOrigin = "true"
 		}
 		
-		newBuilding.methodCounter = tableElements.filter[container.ref == elem].length
+//		newBuilding.methodCounter = tableElements.filter[container.ref == elem].length
 //		tableElements.filter[container.ref == elem].forEach[newBuilding.methods.add(toFloor)]  /*Cones have disappeared by commenting out this line*/
         
 		return newBuilding		
