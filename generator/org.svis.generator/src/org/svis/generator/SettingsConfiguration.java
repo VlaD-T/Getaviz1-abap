@@ -1358,6 +1358,48 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	//Kind of scaling the height of the Source Code Objects (SCO)
+	public static enum HeightScaling {
+		NOSCALING, INTERVAL, LOGARITHMIC;
+	}
+	
+	public String getHeightScaling() {
+		return config.getString("city.abap_height_scaling", "noscaling");
+	}
+	
+	public HeightScaling getHeight_Scaling() {
+		switch (getHeightScaling()) {
+			case "noscaling":
+				return HeightScaling.NOSCALING;
+			case "interval":
+				return HeightScaling.INTERVAL;
+			case "logarithmic":
+				return HeightScaling.LOGARITHMIC;
+			default:
+				return HeightScaling.NOSCALING;
+		}
+	}
+	
+	//Kind of scaling the height of the Source Code Objects (SCO)
+	public static enum DistrictLayoutVersion {
+		OLD, NEW;
+	}
+	
+	public String getDistrictLayoutVersion() {
+		return config.getString("city.abap_district_layout", "new");
+	}
+	
+	public DistrictLayoutVersion getDistrictLayout_Version() {
+		switch (getDistrictLayoutVersion()) {
+			case "old":
+				return DistrictLayoutVersion.OLD;
+			case "new":
+				return DistrictLayoutVersion.NEW;
+			default:
+				return DistrictLayoutVersion.NEW;
+		}
+	}
+	
 	public boolean isAbapCityTestMode() {
 		return config.getBoolean("city.abap_test_mode", false);
 	}
@@ -1790,7 +1832,7 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapFumoBaseHeight() {
-		return config.getDouble("city.abap_fumo_base_height", 7);
+		return config.getDouble("city.abap_fumo_base_height", 4);
 	}
 	
 	public double getAbapFumoFloorHeight() {
@@ -1804,7 +1846,17 @@ public class SettingsConfiguration {
 	public double getAbapReportShapeHeight() {
 		return config.getDouble("city.abap_report_shape_height", 9);
 	}
+	public double getAbapScoMinHeight() {
+		return config.getDouble("city.abap_sco_min_height", 1);
+	}
 	
+	public double getAbapScoMaxHeight() {
+		return config.getDouble("city.abap_sco_max_height", 30);
+	}
+	
+	public double getAbapLogarithmBase() {
+		return config.getDouble("city.abap_logarithm_base", 2);
+	}
 	public double getAbapReportRoofHeight() {
 		return config.getDouble("city.abap_report_roof_height", 1);
 	}

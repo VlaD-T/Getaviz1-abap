@@ -11,6 +11,7 @@ import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.Original.BuildingMetric
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
 import org.svis.generator.SettingsConfiguration.AbapNotInOriginFilter
+import java.lang.Math
 
 class City2City_abap {
 	val cityFactory = new CityFactoryImpl()
@@ -18,7 +19,7 @@ class City2City_abap {
 	var RGBColor[] NOS_colors
 	val log = LogFactory::getLog(class)
 	val config = SettingsConfiguration.instance
-	
+
 	def run(Root cityRoot) {
 		val districts = EcoreUtil2::getAllContentsOfType(cityRoot, District)
 		val buildings = EcoreUtil2::getAllContentsOfType(cityRoot, Building)
@@ -27,30 +28,29 @@ class City2City_abap {
 			val PCKG_maxLevel = districts.sortBy[-level].head.level
 			PCKG_colors = createColorGradiant(new RGBColor(config.packageColorStart),
 				new RGBColor(config.packageColorEnd), PCKG_maxLevel)
-			
+
 			if (config.originalBuildingMetric == BuildingMetric::NOS) {
 				val NOS_max = buildings.sortBy[-numberOfStatements].head.numberOfStatements
 				NOS_colors = createColorGradiant(new RGBColor(config.classColorStart),
 					new RGBColor(config.classColorEnd), NOS_max + 1)
 			}
-			
+
 			districts.forEach[setDistrictAttributes]
 			buildings.forEach[setBuildingAttributes]
-			
+
 			if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
 				ABAPCityLayout::cityLayout(cityRoot)
 				CityHeightLayout::cityHeightLayout(cityRoot)
 			} else {
 				CityLayout::cityLayout(cityRoot)
+				buildings.forEach[calculateFloors]
+				buildings.forEach[calculateChimneys]
 			}
-			
-			buildings.forEach[calculateFloors]
-			buildings.forEach[calculateChimneys]
 		}
-		
+
 		return cityRoot
 	}
-	
+
 	def private RGBColor[] createColorGradiant(RGBColor start, RGBColor end, int maxLevel) {
 		var steps = maxLevel - 1
 		if (maxLevel == 1) {
@@ -72,21 +72,22 @@ class City2City_abap {
 
 	def private void setDistrictAttributes(District d) {
 		d.height = config.heightMin
-				
-		//for not origin packages
+
+		// for not origin packages
 		if (d.notInOrigin == "true") {
 			switch (config.abapNotInOrigin_filter) {
 				case AbapNotInOriginFilter::TRANSPARENT: d.transparency = config.getNotInOriginTransparentValue()
-				case AbapNotInOriginFilter::COLORED: d.color = new RGBColor(config.getAbapDistrictColor("notInOrigin")).asPercentage
+				case AbapNotInOriginFilter::COLORED: d.color = new RGBColor(config.getAbapDistrictColor("notInOrigin")).
+					asPercentage
 				case AbapNotInOriginFilter::DEFAULT: d.color = PCKG_colors.get(0).asPercentage
 			}
-			
-			//Set color for custom districts
+
+			// Set color for custom districts
 			if (config.getAbapDistrictColor(d.type) !== null) {
 				d.color = new RGBColor(config.getAbapDistrictColor(d.type)).asPercentage
 			}
-			
-		//for origin packages	
+
+		// for origin packages	
 		} else {
 			// Set color, if defined
 			if (config.getAbapDistrictColor(d.type) !== null) {
@@ -95,7 +96,7 @@ class City2City_abap {
 			} else {
 				d.color = PCKG_colors.get(d.level - 1).asPercentage
 			}
-		}						
+		}
 	}
 
 	def private setBuildingAttributes(Building b) {
@@ -111,134 +112,117 @@ class City2City_abap {
 			b.width = Math.ceil(b.dataCounter / 4.0) + 1 // pko 2016
 			b.length = Math.ceil(b.dataCounter / 4.0) + 1 // pko 2016
 		}
-
+		
 		if (b.methodCounter == 0) {
 			b.height = config.heightMin
 		} else {
 			b.height = b.methodCounter
 		}
 
-		if (config.abap_representation == AbapCityRepresentation::ADVANCED) {					
+		if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
 			// We use custom models in advanced mode. Adjust sizes: 
 			if (b.type == "FAMIX.DataElement") {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				//b.height = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //b.height - (1 + config.getAbapAdvBuildingScale(b.type))
-				
+			// b.height = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //b.height - (1 + config.getAbapAdvBuildingScale(b.type))
 			} else if (b.type == "FAMIX.Domain") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
+				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				
+
 			} else if (b.type == "FAMIX.StrucElement") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
+				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				
+
 			} else if (b.type == "FAMIX.TableType") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
+				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 
 //				} else if(b.type == "FAMIX.Table"){
 //					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
 //					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
-				  	  
-			} else if(b.type == "FAMIX.Attribute") {
-      			b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
+			} else if (b.type == "FAMIX.Attribute") {
+				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-      			
-      			if (b.dataCounter == 2.0) {
+
+				if (b.dataCounter == 2.0) {
 					b.height = 4
 				} else if (b.dataCounter == 3.0) {
 					b.height = 7
 				} else if (b.dataCounter == 4.0) {
 					b.height = 10
 				}
-				
+
 			} else if (b.type == "FAMIX.Method") {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+				b.height = getScaledHeightofSco(b.methodCounter)
 				
 				var base = cityFactory.createBuilding
 				base.height = 0
 				base.type = "Base"
 				b.buildingParts.add(base)
-				
-				if (b.methodCounter <= 1) {	
-					var roof = cityFactory.createBuilding
-					roof.height = config.getAbapMethodBaseHeight
-					roof.type = "Roof"
-					b.buildingParts.add(roof)
-				} else {
-					for (var i = 1; i <= b.methodCounter - 1; i++) {
-						var floor = cityFactory.createBuilding
-						floor.height = config.getAbapMethodBaseHeight + (i - 1) * config.getAbapMethodFloorHeight
-						floor.type = "Floor"
-						b.buildingParts.add(floor)
-					}
-					var roof = cityFactory.createBuilding
-					roof.height = config.getAbapMethodBaseHeight + (b.methodCounter - 1) * config.getAbapMethodFloorHeight
-					roof.type = "Roof"
-					b.buildingParts.add(roof)
+								
+				for (var i = 1; i <= b.height - 1; i++) {
+					var floor = cityFactory.createBuilding
+					floor.height = config.getAbapMethodBaseHeight + (i - 1) * config.getAbapMethodFloorHeight
+					floor.type = "Floor"
+					b.buildingParts.add(floor)
 				}
 				
-			} else if(b.type == "FAMIX.Class"){
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)			
+				var roof = cityFactory.createBuilding
+				roof.height = config.getAbapMethodBaseHeight + (b.height - 1) * config.getAbapMethodFloorHeight
+				roof.type = "Roof"
+				b.buildingParts.add(roof)
+
 				
+			} else if (b.type == "FAMIX.Class") {
+				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+
 			} else if (b.type == "FAMIX.FunctionModule") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //* 1.5
+				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				if (b.methodCounter != 0)
-					b.height = b.methodCounter // * 10
-				else
-					b.height = config.getHeightMin
-								
+				b.height = getScaledHeightofSco(b.methodCounter)
+
 			} else if (b.type == "FAMIX.Report") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //* 1.5
+				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				if (b.methodCounter != 0)
-					b.height = b.methodCounter * 10
-				else
-					b.height = config.getHeightMin
-					
+				b.height = getScaledHeightofSco(b.methodCounter)
+
 			} else if (b.type == "FAMIX.Formroutine") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //* 1.5
+				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				if (b.methodCounter != 0)
-					b.height = b.methodCounter //* 10
-				else
-					b.height = config.getHeightMin					
-				}	
-			
-			// Use custom colors from settings -> go to x3d file.
-			// It's set there, because we do not use floor or chimneys
-							
-		 // End of AbapCityRepresentation::ADVANCED		
-		} else { //AbapCityRepresentation::SIMPLE
-			
+				b.height = getScaledHeightofSco(b.methodCounter)
+			}
+
+		// Use custom colors from settings -> go to x3d file.
+		// It's set there, because we do not use floor or chimneys
+		// End of AbapCityRepresentation::ADVANCED		
+		} else { // AbapCityRepresentation::SIMPLE
 			// Edit height and width
-			if(b.type == "FAMIX.ABAPStruc" || b.type == "FAMIX.TableType"){
+			if (b.type == "FAMIX.ABAPStruc" || b.type == "FAMIX.TableType") {
 				b.width = 1.75
-				
-				b.height = b.methodCounter * config.strucElemHeight 
-				if(config.strucElemHeight <= 1 || b.methodCounter == 0){
+
+				b.height = b.methodCounter * config.strucElemHeight
+				if (config.strucElemHeight <= 1 || b.methodCounter == 0) {
 					b.height = b.height + 1
 				}
-				
-			} else if(b.type == "FAMIX.DataElement"){
+
+			} else if (b.type == "FAMIX.DataElement") {
 				b.height = 1
 				b.width = 1.25
 			}
-			
+
 			// If not in origin, set new min height
-			if(b.notInOrigin == "true"){
-				if((b.type == "FAMIX.Class" || b.type == "FAMIX.Interface" || b.type == "FAMIX.Report" 
-					|| b.type == "FAMIX.FunctionGroup") && b.height < config.getNotInOriginSCBuildingHeight()){
+			if (b.notInOrigin == "true") {
+				if ((b.type == "FAMIX.Class" || b.type == "FAMIX.Interface" || b.type == "FAMIX.Report" ||
+					b.type == "FAMIX.FunctionGroup") && b.height < config.getNotInOriginSCBuildingHeight()) {
 					b.height = config.getNotInOriginSCBuildingHeight()
 				}
-			}											
-						
+			}
+
 			// Use custom colors from settings
-			if(config.getAbapBuildingColor(b.type) !== null){
+			if (config.getAbapBuildingColor(b.type) !== null) {
 				b.color = new RGBColor(config.getAbapBuildingColor(b.type)).asPercentage;
 			}
 
@@ -261,7 +245,7 @@ class City2City_abap {
 		val bPosX = b.position.x
 		val bPosY = b.position.y
 		val bPosZ = b.position.z
-		
+
 		val floors = b.methods
 		val floorNumber = floors.length
 
@@ -269,54 +253,51 @@ class City2City_abap {
 
 		for (floor : floors) {
 			floorCounter++
-		
-		// Set standard values
+
+			// Set standard values
 			floor.height = bHeight / ( floorNumber + 2 ) * 0.80
 			floor.width = bWidth * 1.1
 			floor.length = bLength * 1.1
 			floor.color = 20 / 255.0 + " " + 133 / 255.0 + " " + 204 / 255.0
 			floor.position = cityFactory.createPosition
 			floor.position.y = (bPosY - ( bHeight / 2) ) + bHeight / ( floorNumber + 2 ) * floorCounter
-								
-				
+
 			// Type is used to define shape in x3d
 			floor.parentType = b.type
-			
-			var newBHeight = bHeight + config.strucElemHeight				 
+
+			var newBHeight = bHeight + config.strucElemHeight
 			var newYPos = (bPosY - ( newBHeight / 2) ) + newBHeight / ( floorNumber + 2 ) * floorCounter
-			
-			//Make changes for specific types 
-			if(b.type == "FAMIX.ABAPStruc"){
+
+			// Make changes for specific types 
+			if (b.type == "FAMIX.ABAPStruc") {
 				floor.height = config.strucElemHeight
 				floor.position.y = newYPos + 0.5
-				
-			}else if(b.type == "FAMIX.TableType"){
+
+			} else if (b.type == "FAMIX.TableType") {
 				floor.height = config.strucElemHeight
 				floor.position.y = newYPos + 0.5
-				
-			}else if(b.type == "FAMIX.Table"){
+
+			} else if (b.type == "FAMIX.Table") {
 				floor.height = 0.4
 				floor.width = bWidth * 0.55
 			}
-					
-			
+
 			// Use color for building segments, if it's set
-			if(config.getAbapBuildingSegmentColor(b.type) !== null){
+			if (config.getAbapBuildingSegmentColor(b.type) !== null) {
 				floor.color = new RGBColor(config.getAbapBuildingSegmentColor(b.type)).asPercentage;
-			}			
-			
-			
+			}
+
 			// Edit floor height for source-code buildings in "not in origin" districts
-			if(b.notInOrigin == "true"){
-				if(b.type == "FAMIX.Class" || b.type == "FAMIX.Interface" || b.type == "FAMIX.Report" 
-				|| b.type == "FAMIX.FunctionGroup"){
-				
-					floor.height = 0.4	
+			if (b.notInOrigin == "true") {
+				if (b.type == "FAMIX.Class" || b.type == "FAMIX.Interface" || b.type == "FAMIX.Report" ||
+					b.type == "FAMIX.FunctionGroup") {
+
+					floor.height = 0.4
 				}
-			}						
+			}
 
 			floor.position.x = bPosX
-			floor.position.z = bPosZ			
+			floor.position.z = bPosZ
 		}
 	}
 
@@ -326,7 +307,7 @@ class City2City_abap {
 		val cityFactory = new CityFactoryImpl
 		val bWidth = b.width
 		val bPosX = b.position.x
-		val bPosZ = b.position.z		
+		val bPosZ = b.position.z
 		val chimneys = b.data
 		var courner1 = newArrayList()
 		var courner2 = newArrayList()
@@ -341,13 +322,13 @@ class City2City_abap {
 	
 			if(config.showAttributesBelowBuildings){
 				chimney.height = config.attributesBelowBuildingsHeight - 0.5
-			}else{
+			} else {
 				chimney.height = config.attributesHeight
 			}
 			chimney.width = 0.5
-			chimney.length = 0.5	
+			chimney.length = 0.5
 
-			chimney.color = 255 / 255.0 + " " + 252 / 255.0 + " " + 25 / 255.0			
+			chimney.color = 255 / 255.0 + " " + 252 / 255.0 + " " + 25 / 255.0
 			chimney.position = cityFactory.createPosition
 
 			if (chimneyCounter % 4 == 0) {
@@ -364,7 +345,6 @@ class City2City_abap {
 			}
 			chimneyCounter++
 		}
-		
 
 		chimneyCounter = 0
 		for (chimney : courner1) {
@@ -396,18 +376,41 @@ class City2City_abap {
 			chimney.position.y = getYforChimney(b, chimney)
 			chimney.position.z = (bPosZ + ( bWidth / 2) ) - 0.5 - (1 * chimneyCounter)
 			chimneyCounter++
-		}	
+		}
 	}
-	
-	
+
 	// Display chimneys at top/bottom (depends on settings)
-	def double getYforChimney(Building b, BuildingSegment chimney){
-		
-		if(config.showAttributesBelowBuildings){
+	def double getYforChimney(Building b, BuildingSegment chimney) {
+
+		if (config.showAttributesBelowBuildings) {
 			return (b.position.y - ( b.height / 2) ) - (chimney.height / 2 + 0.25)
-		}else{
-			return (b.position.y + ( b.height / 2) ) + 0.5 //Original
+		} else {
+			return (b.position.y + ( b.height / 2) ) + 0.5 // Original
 		}
 
+	}
+
+	def double getScaledHeightofSco(double unscaledHeight) {
+		switch (config.height_Scaling) {
+			case INTERVAL: {
+				if (unscaledHeight < config.getAbapScoMinHeight) 
+					return config.getAbapScoMinHeight
+				else if (unscaledHeight > config.getAbapScoMaxHeight)
+					return config.getAbapScoMaxHeight
+				else
+					return unscaledHeight
+			}
+			case LOGARITHMIC: {
+				if (unscaledHeight < 1)
+					return 1.0
+				return Math.floor(Math.log(unscaledHeight) / Math.log(config.getAbapLogarithmBase) + 1) //muss so sein, weil sonst höhe = log(NOS = 1) = 0 wird
+			}
+			case NOSCALING: {
+				return unscaledHeight
+			}
+			default: {
+				return unscaledHeight
+			}
+		}
 	}
 }

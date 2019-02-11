@@ -446,7 +446,11 @@ FAMIXDataElement:
     ('(' 'fqn' fqn = MSESTRING ')')?
     '(' 'container' container=IntegerReference ')'
     ('(' 'dataType' datatype=MSESTRING ')')?
-    ('(' 'domain' domain=MSESTRING ')')? 
+    ('(' 'domain' domain=MSESTRING ')')?
+	('(' 'creator' creator=MSESTRING  ')')?
+	('(' 'created' created=MSESTRING  ')')?
+	('(' 'lastChangedBy' lastChangedBy=MSESTRING  ')')?
+	('(' 'lastChanged' lastChanged+=MSESTRING*  ')')? 
     ('(' 'iteration' iteration=INT ')')? 
     ')';  
    
@@ -460,6 +464,10 @@ FAMIXDomain:
     ('(' 'dataType' datatype=MSESTRING ')')?
     ('(' 'length' length=MSESTRING ')')?
     ('(' 'decimals' decimals=MSESTRING ')')?
+	('(' 'creator' creator=MSESTRING  ')')?
+	('(' 'created' created=MSESTRING  ')')?
+	('(' 'lastChangedBy' lastChangedBy=MSESTRING  ')')?
+	('(' 'lastChanged' lastChanged+=MSESTRING*  ')')?
     ('(' 'iteration' iteration=INT ')')? 
     ')';  
     
@@ -472,6 +480,10 @@ FAMIXTable:
     '(' 'container' container=IntegerReference ')'
     ('(' 'numberOfColumns' numberOfColumns=INT ')')?
     ('(' 'rowCategory' rowCategory=INT ')')?
+	('(' 'creator' creator=MSESTRING  ')')?
+	('(' 'created' created=MSESTRING  ')')?
+	('(' 'lastChangedBy' lastChangedBy=MSESTRING  ')')?
+	('(' 'lastChanged' lastChanged+=MSESTRING*  ')')?
     ('(' 'iteration' iteration=INT ')')? 
     ')';
     
@@ -484,6 +496,10 @@ FAMIXTableElement:
     '(' 'container' container=IntegerReference ')'
     ('(' 'dataElement' dataElement=MSESTRING ')')?
     ('(' 'structure' structure=MSESTRING ')')?
+	('(' 'creator' creator=MSESTRING  ')')?
+	('(' 'created' created=MSESTRING  ')')?
+	('(' 'lastChangedBy' lastChangedBy=MSESTRING  ')')?
+	('(' 'lastChanged' lastChanged+=MSESTRING*  ')')?
     ('(' 'iteration' iteration=INT ')')?
     ')';
 
@@ -494,6 +510,10 @@ FAMIXABAPStruc:
     ('(' 'hash' id = STRING ')')?
     ('(' 'fqn' fqn = MSESTRING ')')?
     '(' 'container' container=IntegerReference ')'
+	('(' 'creator' creator=MSESTRING  ')')?
+	('(' 'created' created=MSESTRING  ')')?
+	('(' 'lastChangedBy' lastChangedBy=MSESTRING  ')')?
+	('(' 'lastChanged' lastChanged+=MSESTRING*  ')')?
     ('(' 'iteration' iteration=INT ')')? 
     ')';
         
@@ -521,6 +541,10 @@ FAMIXTableType:
     ('(' 'numberOfColumns' numberOfColumns=INT ')')?
     ('(' 'rowType' rowType=MSESTRING ')')?
     ('(' 'rowCategory' rowCategory=INT ')')?
+	('(' 'creator' creator=MSESTRING  ')')?
+	('(' 'created' created=MSESTRING  ')')?
+	('(' 'lastChangedBy' lastChangedBy=MSESTRING  ')')?
+	('(' 'lastChanged' lastChanged+=MSESTRING*  ')')?
     ('(' 'iteration' iteration=INT ')')? 
     ')';
 

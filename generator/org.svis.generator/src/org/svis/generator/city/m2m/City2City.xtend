@@ -160,6 +160,7 @@ class City2City extends WorkflowComponentWithModelSlot {
 			b.width = b.dataCounter
 			b.length = b.dataCounter
 		}
+		
 		if (b.methodCounter == 0) {
 			b.height = config.heightMin
 		} else {
