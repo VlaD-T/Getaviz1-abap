@@ -1768,7 +1768,11 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapClassBaseHeight() {
+<<<<<<< HEAD
 		return config.getDouble("city.abap.class_base_height", 19);
+=======
+		return config.getDouble("city.abap.class_base_height", 21);
+>>>>>>> refs/heads/master
 	}
 	
 	public double getAbapClassFloorHeight() {
@@ -1832,7 +1836,11 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapFumoBaseHeight() {
+<<<<<<< HEAD
 		return config.getDouble("city.abap.fumo_base_height", 4);
+=======
+		return config.getDouble("city.abap.fumo_base_height", 8);
+>>>>>>> refs/heads/master
 	}
 	
 	public double getAbapFumoFloorHeight() {
@@ -1843,9 +1851,19 @@ public class SettingsConfiguration {
 		return config.getDouble("city.abap.fumo_roof_height", 3);
 	}
 	
+<<<<<<< HEAD
 	public double getAbapReportShapeHeight() {
 		return config.getDouble("city.abap.report_shape_height", 9);
+=======
+	public double getAbapReportBaseHeight() {
+		return config.getDouble("city.abap.report_base_height", 6);
+>>>>>>> refs/heads/master
 	}
+
+	public double getAbapReportFloorHeight() {
+		return config.getDouble("city.abap.report_floor_height", 4);
+	}
+	
 	public double getAbapScoMinHeight() {
 		return config.getDouble("city.abap_sco_min_height", 1);
 	}
@@ -1857,11 +1875,19 @@ public class SettingsConfiguration {
 	public double getAbapLogarithmBase() {
 		return config.getDouble("city.abap_logarithm_base", 2);
 	}
+
 	public double getAbapReportRoofHeight() {
 		return config.getDouble("city.abap.report_roof_height", 1);
 	}
 	
 	public double getAbapRFumoShapeHeight() {
 		return config.getDouble("city.abap.fumo_shape_height", 19);
+<<<<<<< HEAD
+=======
+	}
+	
+	public double getAbapTableShapeHeight() {
+		return config.getDouble("city.abap.table_shape_height", 24);
+>>>>>>> refs/heads/master
 	}
 }	
