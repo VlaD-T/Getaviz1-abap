@@ -87,7 +87,7 @@ class AdvSet_SimpleBlocks {
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
 					<Shape>
-						<Cone bottomRadius='«entity.width/3»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cone>
+						<Cone bottomRadius='«entity.width / 3»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cone>
 						<Appearance>
 							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 						</Appearance>
@@ -99,7 +99,7 @@ class AdvSet_SimpleBlocks {
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
 					<Shape>
-						<Cone bottomRadius='«entity.width»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cone>
+						<Cone bottomRadius='«entity.width / 4»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cone>
 						<Appearance>
 							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 						</Appearance>

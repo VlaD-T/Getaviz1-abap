@@ -272,8 +272,8 @@ class City2City_abap {
 		
 		// Set standard values
 			floor.height = bHeight / ( floorNumber + 2 ) * 0.80
-			floor.width = bWidth * 1.1
-			floor.length = bLength * 1.1
+			floor.width = bWidth + 0.2
+			floor.length = bLength + 0.2
 			floor.color = 20 / 255.0 + " " + 133 / 255.0 + " " + 204 / 255.0
 			floor.position = cityFactory.createPosition
 			floor.position.y = (bPosY - ( bHeight / 2) ) + bHeight / ( floorNumber + 2 ) * floorCounter
