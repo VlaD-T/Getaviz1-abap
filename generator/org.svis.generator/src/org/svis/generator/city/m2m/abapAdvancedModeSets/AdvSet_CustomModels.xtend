@@ -330,18 +330,18 @@ class AdvSet_CustomModels {
 			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Report"»		
-«««			<Group DEF='«entity.id»'>
-«««				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-«««						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-«««						   rotation='0.000000 0.707107 0.707107 3.141593'>
-«««					«IF defineCMFactoryHall»
-«««						«CustomModel_FactoryHall::defineFactoryHallShape»
-«««						«defineCMFactoryHall = false»
-«««					«ELSE»
-«««						«CustomModel_FactoryHall::createFactoryHallShape»
-«««					«ENDIF»					
-«««				</Transform>
-«««			</Group>
+			<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
+						   rotation='0.000000 0.707107 0.707107 3.141593'>
+					«IF defineCMFactoryHall»
+						«CustomModel_FactoryHall::defineFactoryHallShape»
+						«defineCMFactoryHall = false»
+					«ELSE»
+						«CustomModel_FactoryHall::createFactoryHallShape»
+					«ENDIF»					
+				</Transform>
+			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Formroutine"»
 «««			 <Group DEF='«entity.id»'>
