@@ -187,7 +187,15 @@ class City2City_abap {
 			} else if (b.type == "FAMIX.Report") {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+
+				if (b.methodCounter != 0)
+					b.height = b.methodCounter /** 10*/
+				else
+					b.height = config.getHeightMin
+					
+
 				b.height = getScaledHeightofSco(b.methodCounter)
+
 
 			} else if (b.type == "FAMIX.Formroutine") {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5

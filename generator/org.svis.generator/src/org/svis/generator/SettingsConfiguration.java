@@ -1756,96 +1756,101 @@ public class SettingsConfiguration {
 	}
 	
 	public double getAbapMethodBaseHeight() {
-		return config.getDouble("city.abap_method_base_height", 14);
+		return config.getDouble("city.abap.method_base_height", 14);
 	}
 	
 	public double getAbapMethodFloorHeight() {
-		return config.getDouble("city.abap_method_floor_height", 5);
+		return config.getDouble("city.abap.method_floor_height", 5);
 	}
 	
 	public double getAbapMethodRoofHeight() {
-		return config.getDouble("city.abap_method_roof_height", 7);
+		return config.getDouble("city.abap.method_roof_height", 7);
 	}
 	
 	public double getAbapClassBaseHeight() {
-		return config.getDouble("city.abap_class_base_height", 19);
+		return config.getDouble("city.abap.class_base_height", 21);
 	}
 	
 	public double getAbapClassFloorHeight() {
-		return config.getDouble("city.abap_class_floor_height", 3);
+		return config.getDouble("city.abap.class_floor_height", 3);
 	}
 	
 	public double getClassRoofHeight() {
-		return config.getDouble("city.abap_class_roof_height", 1);
+		return config.getDouble("city.abap.class_roof_height", 1);
 	}
 	
 	public double getClassRoofAntennaHeight() {
-		return config.getDouble("city.abap_class_roof-antenna_height", 7);
+		return config.getDouble("city.abap.class_roof-antenna_height", 7);
 	}
 	
 	public double getAbapAttributeBaseHeight() {
-		return config.getDouble("city.abap_attribute_base_height", 4);
+		return config.getDouble("city.abap.attribute_base_height", 4);
 	}
 	
 	public double getAbapAttributeFloorHeight() {
-		return config.getDouble("city.abap_attribute_floor_height", 5);
+		return config.getDouble("city.abap.attribute_floor_height", 5);
 	}
 	
 	public double getAbapAttributeRoofHeight() {
-		return config.getDouble("city.abap_attribute_roof_height", 1);
+		return config.getDouble("city.abap.attribute_roof_height", 1);
 	}
 	
 	public double getAbapStrucElementBaseHeight() {
-		return config.getDouble("city.abap_strucElement_base_height", 6);
+		return config.getDouble("city.abap.strucElement_base_height", 6);
 	}
 	
 	public double getAbapStrucElementFloorHeight() {
-		return config.getDouble("city.abap_strucElement_floor_height", 4);
+		return config.getDouble("city.abap.strucElement_floor_height", 4);
 	}
 	
 	public double getAbapStrucElementRoofHeight() {
-		return config.getDouble("city.abap_strucElement_roof_height", 11);
+		return config.getDouble("city.abap.strucElement_roof_height", 11);
 	}
 	
 	public double getAbapTableFrontWidth() {
-		return config.getDouble("city.abap_table_front_width", 1);
+		return config.getDouble("city.abap.table_front_width", 1);
 	}
 	
 	public double getAbapTableMiddleWidth() {
-		return config.getDouble("city.abap_table_middle_width", 0);
+		return config.getDouble("city.abap.table_middle_width", 0);
 	}
 	
 	public double getAbapTableBackWidth() {
-		return config.getDouble("city.abap_table_back_width", 0);
+		return config.getDouble("city.abap.table_back_width", 0);
 	}
 	
 	public double getAbapFormBaseHeight() {
-		return config.getDouble("city.abap_form_base_height", 9);
+		return config.getDouble("city.abap.form_base_height", 9);
 	}
 	
 	public double getAbapFormFloorHeight() {
-		return config.getDouble("city.abap_form_floor_height", 3);
+		return config.getDouble("city.abap.form_floor_height", 3);
 	}
 	
 	public double getAbapFormRoofHeight() {
-		return config.getDouble("city.abap_form_roof_height", 3);
+		return config.getDouble("city.abap.form_roof_height", 3);
 	}
 	
 	public double getAbapFumoBaseHeight() {
-		return config.getDouble("city.abap_fumo_base_height", 4);
+		return config.getDouble("city.abap.fumo_base_height", 8);
 	}
 	
 	public double getAbapFumoFloorHeight() {
-		return config.getDouble("city.abap_fumo_floor_height", 2);
+		return config.getDouble("city.abap.fumo_floor_height", 2);
 	}
 	
 	public double getAbapFumoRoofHeight() {
-		return config.getDouble("city.abap_fumo_roof_height", 3);
+		return config.getDouble("city.abap.fumo_roof_height", 3);
 	}
 	
-	public double getAbapReportShapeHeight() {
-		return config.getDouble("city.abap_report_shape_height", 9);
+	public double getAbapReportBaseHeight() {
+		return config.getDouble("city.abap.report_base_height", 6);
 	}
+
+	public double getAbapReportFloorHeight() {
+		return config.getDouble("city.abap.report_floor_height", 4);
+	}
+	
 	public double getAbapScoMinHeight() {
 		return config.getDouble("city.abap_sco_min_height", 1);
 	}
@@ -1857,11 +1862,16 @@ public class SettingsConfiguration {
 	public double getAbapLogarithmBase() {
 		return config.getDouble("city.abap_logarithm_base", 2);
 	}
+
 	public double getAbapReportRoofHeight() {
-		return config.getDouble("city.abap_report_roof_height", 1);
+		return config.getDouble("city.abap.report_roof_height", 1);
 	}
 	
 	public double getAbapRFumoShapeHeight() {
-		return config.getDouble("city.abap_fumo_shape_height", 19);
+		return config.getDouble("city.abap.fumo_shape_height", 19);
+	}
+	
+	public double getAbapTableShapeHeight() {
+		return config.getDouble("city.abap.table_shape_height", 24);
 	}
 }	

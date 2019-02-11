@@ -9,7 +9,7 @@ class CustomModel_FactoryBuilding {
 	        <Shape>
 	            <Appearance>
 	                <Material DEF="MA_Material_001"
-	                          diffuseColor="0.800 0.800 0.800"
+	                          diffuseColor="0.334 0.334 0.334"
 	                          specularColor="0.401 0.401 0.401"
 	                          emissiveColor="0.000 0.000 0.000"
 	                          ambientIntensity="0.333"
@@ -94,6 +94,6 @@ class CustomModel_FactoryBuilding {
 	'''
 	
 	def static String createFactoryBuildingBase() '''
-        <Group USE="group_factory_building_base"/>
+	    <Group USE="group_factory_building_base"/>
 	'''
 }
