@@ -20,7 +20,7 @@ public class SettingsConfiguration {
 	public static SettingsConfiguration getInstance() {
 		if (instance == null) {
 			instance = new SettingsConfiguration();
-			loadConfig("../org.svis.generator.releng/settings.properties");
+			loadConfig("../org.svis.generator.releng/settings.properties"); //customModelsColors.properties
 		}
 		return instance;
 	}
@@ -1873,5 +1873,5 @@ public class SettingsConfiguration {
 	
 	public double getAbapTableShapeHeight() {
 		return config.getDouble("city.abap.table_shape_height", 24);
-	}
+	} 
 }	
