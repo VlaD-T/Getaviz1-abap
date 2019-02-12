@@ -1842,7 +1842,7 @@ public class SettingsConfiguration {
 	public double getAbapFumoRoofHeight() {
 		return config.getDouble("city.abap.fumo_roof_height", 3);
 	}
-	
+
 	public double getAbapReportBaseHeight() {
 		return config.getDouble("city.abap.report_base_height", 6);
 	}
