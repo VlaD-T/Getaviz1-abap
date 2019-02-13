@@ -72,7 +72,8 @@ class City2City_abap {
 
 	def private void setDistrictAttributes(District d) {
 		d.height = config.heightMin
-
+		d.textureURL = config.getAbapDistrictTexture(d.type)
+		
 		// for not origin packages
 		if (d.notInOrigin == "true") {
 			switch (config.abapNotInOrigin_filter) {
@@ -92,7 +93,6 @@ class City2City_abap {
 			// Set color, if defined
 			if (config.getAbapDistrictColor(d.type) !== null) {
 				d.color = new RGBColor(config.getAbapDistrictColor(d.type)).asPercentage
-				d.textureURL = config.getAbapDistrictTexture(d.type)
 			} else {
 				d.color = PCKG_colors.get(d.level - 1).asPercentage
 			}

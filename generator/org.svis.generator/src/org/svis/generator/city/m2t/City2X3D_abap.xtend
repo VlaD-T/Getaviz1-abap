@@ -74,6 +74,11 @@ class City2X3D_abap {
 			<Viewpoint description='Screenshot' position='«-width*0.5 +" "+ ((width+length)/2)*0.75 +" "+ -length*0.5»' orientation='0.1 0.95 0.25 3.8' centerOfRotation='«width/2 +" 0 "+ length/2»'/>
 			<Viewpoint description='Screenshot Opposite Side' position='«width*1.5 +" "+ ((width+length)/2)*0.75 +" "+ length*1.5»' orientation='-0.5 0.85 0.2 0.8' centerOfRotation='«width/2 +" 0 "+ length/2»'/>
 		</Group>
+		
+		«IF config.abapUseLights»
+			<directionalLight direction='-10 -20 10' intensity='0.05' shadowIntensity='0.25'>
+			</directionalLight>
+		«ENDIF»
 	'''	
 	
 	// transform logic
