@@ -72,6 +72,10 @@ class Famix2JSON implements IGenerator2 {
 	val Map<String, String> mapUsedByRefs = newHashMap
 	
 	override doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext ig) {
+		if (!config.generateJSON) {
+			return
+		}
+		
 		val elements = EcoreUtil2::getAllContentsOfType(resource.contents.head, FAMIXElement)
 		accesses.addAll(elements.filter(FAMIXAccess))
 		invocations.addAll(elements.filter(FAMIXInvocation))

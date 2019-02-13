@@ -62,6 +62,10 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	public Boolean generateJSON() {
+		return config.getBoolean("generator.generateJSON", true);
+	}
+	
 	public Boolean showNamespaceVersions() {
 		return config.getBoolean("history.show_namespace_versions", false);
 	}
@@ -1311,6 +1315,10 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	public boolean isAbapUseLights() {
+		return config.getBoolean("city.abap.useLights", false);
+	}
+	
 	//Filter for objects, that are not in main package. 
 	public static enum AbapNotInOriginFilter {
 		TRANSPARENT, COLORED , FILTERED, DEFAULT;
@@ -1624,21 +1632,24 @@ public class SettingsConfiguration {
 	}
 	
 	public String getAbapDistrictTexture(String type) {
-		if(type.equals("classDistrict")){
-			return config.getString("city.abap.classDistrict.texture", null);
-			
-		}else if(type.equals("reportDistrict")){
-			return config.getString("city.abap.reportDistrict.texture", null);
-			
-		}else if(type.equals("dcDataDistrict")){
-			return config.getString("city.abap.dictionaryDataDistrict.texture", null);
-			
-		}else if(type.equals("functionGroupDistrict")){
-			return config.getString("city.abap.functionGroupDistrict.texture", null);
-			
-		}else if(type.equals("tableDistrict")){
-			return config.getString("city.abap.tableDistrict.texture", null);
-			
+		if (type.equals("FAMIX.Namespace")) {
+			return config.getString("city.abap.namespace.texture", null);
+		}else if (type.equals("classDistrict")){
+			return config.getString("city.abap.classDistrict.texture", null);		
+		}else if (type.equals("interfaceDistrict")){
+			return config.getString("city.abap.interfaceDistrict.texture", null);	
+		}else if (type.equals("reportDistrict")){
+			return config.getString("city.abap.reportDistrict.texture", null);			
+		}else if (type.equals("dcDataDistrict")){
+			return config.getString("city.abap.dcDataDistrict.texture", null);		
+		}else if (type.equals("domainDistrict")){
+			return config.getString("city.abap.domainDistrict.texture", null);		
+		}else if (type.equals("structureDistrict")){
+			return config.getString("city.abap.structureDistrict.texture", null);			
+		}else if (type.equals("functionGroupDistrict")){
+			return config.getString("city.abap.functionGroupDistrict.texture", null);			
+		}else if (type.equals("tableDistrict")){
+			return config.getString("city.abap.tableDistrict.texture", null);			
 		}else {
 			return null;
 		}

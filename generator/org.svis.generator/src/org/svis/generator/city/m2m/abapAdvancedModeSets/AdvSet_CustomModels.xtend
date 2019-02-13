@@ -83,6 +83,7 @@ class AdvSet_CustomModels {
 					<Appearance>
 						«IF(config.abapShowTextures && entity.textureURL !== null && entity.textureURL != "")»
 							<ImageTexture url='«entity.textureURL»'></ImageTexture>
+							<TextureTransform scale='1 1'/>
 						«ELSE»
 							<Material diffuseColor='«entity.color»' transparency='«entity.transparency»'></Material>
 «««							<Material diffuseColor='«setDistrictColor(entity.type)»' transparency='«entity.transparency»'></Material>
