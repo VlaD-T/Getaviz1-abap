@@ -24,6 +24,7 @@ class AdvSet_CustomModels {
 	val config = SettingsConfiguration.instance
 	var defineCMSimpleHouse = true
 	var defineCMSkyScraper = true
+	var defineCMSkyScraper_floor = true
 	var defineCMRadioTower = true
 	var defineCMApartmentBuilding = true
 	var defineCMBoat = true
@@ -32,6 +33,7 @@ class AdvSet_CustomModels {
 	var defineCMParkingSlot = true
 	var defineCMTownHall = true
 	var defineCMFactoryBuilding = true
+	var defineCMFactoryBuilding_floor = true
 	var defineCMFactoryHall = true
 	var defineCMFactoryBuildingFumo = true
 	var defineCMTube = true 
@@ -219,7 +221,6 @@ class AdvSet_CustomModels {
 						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 						   rotation='0.000000 0.707107 0.707107 3.141593'>
 					«IF defineCMSkyScraper»
-«««						«CustomModel_SkyScraper::defineSkyScraperShape(config.getAbapAdvBuildingScale(entity.type), entity.numberOfStatements, entity.position.y)»
 						«defineCMSkyScraper = false»
 						«FOR part : entity.getBuildingParts»
 							«IF part.type == "Base"»
@@ -227,18 +228,27 @@ class AdvSet_CustomModels {
 							«ELSEIF part.type == "Roof"»
 								«CustomModel_SkyScraper::defineSkyScraperRoof(part.height)»
 							«ELSEIF part.type == "Floor"»
-								«CustomModel_SkyScraper::defineSkyScraperFloor(part.height)»
+								«IF defineCMSkyScraper_floor»
+									«defineCMSkyScraper_floor = false»
+									«CustomModel_SkyScraper::defineSkyScraperFloor(part.height)»
+								«ELSE»
+									«CustomModel_SkyScraper::createSkyScraperFloor(part.height)»
+								«ENDIF»								
 							«ENDIF»						
 						«ENDFOR»
 					«ELSE»
-«««						«CustomModel_SkyScraper::createSkyScraperShape(config.getAbapAdvBuildingScale(entity.type), entity.numberOfStatements, entity.position.y)»
 						«FOR part : entity.getBuildingParts»
 							«IF part.type == "Base"»
 								«CustomModel_SkyScraper::createSkyScraperBase(part.height)»
 							«ELSEIF part.type == "Roof"»
 								«CustomModel_SkyScraper::createSkyScraperRoof(part.height)»
 							«ELSEIF part.type == "Floor"»
-								«CustomModel_SkyScraper::createSkyScraperFloor(part.height)»
+								«IF defineCMSkyScraper_floor»
+									«defineCMSkyScraper_floor = false»
+									«CustomModel_SkyScraper::defineSkyScraperFloor(part.height)»
+								«ELSE»
+									«CustomModel_SkyScraper::createSkyScraperFloor(part.height)»
+								«ENDIF»	
 							«ENDIF»						
 						«ENDFOR»
 					«ENDIF»	
@@ -378,20 +388,38 @@ class AdvSet_CustomModels {
 			     <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
 			           		scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 			           		rotation='0 0.707107 0.707107 3.141593'>
-		           		«IF defineCMFactoryBuilding»
-		           		«defineCMFactoryBuilding = false»
-		           		«CustomModel_FactoryBuilding::defineFactoryBuildingBase»
-		           		«FOR n : 1..entity.height.intValue»
-		           			«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
-		           		«ENDFOR»
-		           			«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
-		           		«ELSE»
-		           			«CustomModel_FactoryBuilding::createFactoryBuildingBase»
-		           			«FOR n : 1..entity.height.intValue»
-		           				«CustomModel_FactoryBuilding::createFactoryBuildingFloor(config.getAbapFormBaseHeight + (n - 1) * config.getAbapFormFloorHeight)»
-		           			«ENDFOR»
-		           			«CustomModel_FactoryBuilding::createFactoryBuildingRoof(config.getAbapFormBaseHeight + entity.height * config.getAbapFormFloorHeight)»
-	           			«ENDIF»
+					«IF defineCMFactoryBuilding»
+						«defineCMFactoryBuilding = false»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_FactoryBuilding::defineFactoryBuildingBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMFactoryBuilding_floor»
+									«defineCMFactoryBuilding_floor = false»
+									«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(part.height)»
+								«ELSE»
+									«CustomModel_FactoryBuilding::createFactoryBuildingFloor(part.height)»
+								«ENDIF»								
+							«ENDIF»						
+						«ENDFOR»
+					«ELSE»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_FactoryBuilding::createFactoryBuildingBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_FactoryBuilding::createFactoryBuildingRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMFactoryBuilding_floor»
+									«defineCMFactoryBuilding_floor = false»
+									«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(part.height)»
+								«ELSE»
+									«CustomModel_FactoryBuilding::createFactoryBuildingFloor(part.height)»
+								«ENDIF»	
+							«ENDIF»						
+						«ENDFOR»
+					«ENDIF»	
 			     </Transform>
 			</Group>
 		

@@ -188,19 +188,36 @@ class City2City_abap {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 
-				if (b.methodCounter != 0)
+				if (b.methodCounter != 0) {
 					b.height = b.methodCounter /** 10*/
-				else
+				} else {
 					b.height = config.getHeightMin
-					
+				}			
 
 				b.height = getScaledHeightofSco(b.methodCounter)
-
 
 			} else if (b.type == "FAMIX.Formroutine") {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+//				b.height = getScaledHeightofSco(b.methodCounter)				
 				b.height = getScaledHeightofSco(b.methodCounter)
+				
+				var base = cityFactory.createBuilding
+				base.height = 0
+				base.type = "Base"
+				b.buildingParts.add(base)
+								
+				for (var i = 1; i <= b.height - 1; i++) {
+					var floor = cityFactory.createBuilding
+					floor.height = config.getAbapFormBaseHeight + (i - 1) * config.getAbapFormFloorHeight
+					floor.type = "Floor"
+					b.buildingParts.add(floor)
+				}
+				
+				var roof = cityFactory.createBuilding
+				roof.height = config.getAbapFormBaseHeight + (b.height - 1) * config.getAbapFormFloorHeight
+				roof.type = "Roof"
+				b.buildingParts.add(roof)				
 			}
 
 		// Use custom colors from settings -> go to x3d file.
