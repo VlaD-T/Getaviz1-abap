@@ -31,10 +31,6 @@ public class ABAPCityLayout {
 	public static Rectangle rootRectangle;
 	private static SettingsConfiguration config = SettingsConfiguration.getInstance();
 
-///** TODO
-// * importing the general size of class members in settings.properties 
-// */
-//	private static Double memberSize = 32.0;
 
 	/**
 	 * @param root

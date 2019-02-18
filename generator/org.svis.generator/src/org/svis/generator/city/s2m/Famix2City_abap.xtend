@@ -215,105 +215,87 @@ class Famix2City_abap {
 		newDistrict.id = elem.id
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
+		}	
+
+		//Sub packages
+		subPackages.filter[parentScope.ref === elem].forEach[newDistrict.entities += toDistrict(level + 1)]
+		
+		//Data Dictionary
+		if (dcData.filter[container.ref == elem].length != 0){
+			val dcDataDistrict = cityFactory.createDistrict
+			dcDataDistrict.name = newDistrict.name + "_dcDataDistrict"
+			dcDataDistrict.type = "dcDataDistrict"
+			dcDataDistrict.id = elem.id + "_00002"
+			dcDataDistrict.level = level + 1
+			if(elem.iteration >= 1){
+				dcDataDistrict.notInOrigin = "true"
+			}
+			
+			dcData.filter[container.ref == elem].forEach[dcDataDistrict.entities += toBuilding(level + 2)]
+			newDistrict.entities.add(dcDataDistrict)
 		}
 		
-		// Test mode -> Delete for dist		
-		if(!config.abapCityTestMode){
-			//Sub packages
-			subPackages.filter[parentScope.ref === elem].forEach[newDistrict.entities += toDistrict(level + 1)]
-			
-			//Data Dictionary
-			if (dcData.filter[container.ref == elem].length != 0){
-				val dcDataDistrict = cityFactory.createDistrict
-				dcDataDistrict.name = newDistrict.name + "_dcDataDistrict"
-				dcDataDistrict.type = "dcDataDistrict"
-				dcDataDistrict.id = elem.id + "_00002"
-				dcDataDistrict.level = level + 1
-				if(elem.iteration >= 1){
-					dcDataDistrict.notInOrigin = "true"
-				}
-				
-				dcData.filter[container.ref == elem].forEach[dcDataDistrict.entities += toBuilding(level + 2)]
-				newDistrict.entities.add(dcDataDistrict)
+		//Reports (+forms)
+		if (reports.filter[container.ref == elem].length != 0){
+			val reportDistrict = cityFactory.createDistrict
+			reportDistrict.name = newDistrict.name + "_reportDistrict"
+			reportDistrict.type = "reportDistrict"
+			reportDistrict.id = elem.id + "_00003"
+			reportDistrict.level = level + 1
+			if(elem.iteration >= 1){
+				reportDistrict.notInOrigin = "true"
 			}
 			
-			//Reports (+forms)
-			if (reports.filter[container.ref == elem].length != 0){
-				val reportDistrict = cityFactory.createDistrict
-				reportDistrict.name = newDistrict.name + "_reportDistrict"
-				reportDistrict.type = "reportDistrict"
-				reportDistrict.id = elem.id + "_00003"
-				reportDistrict.level = level + 1
-				if(elem.iteration >= 1){
-					reportDistrict.notInOrigin = "true"
-				}
-				
-				reports.filter[container.ref == elem].forEach[reportDistrict.entities += toBuilding(level + 2)]
-				newDistrict.entities.add(reportDistrict)
+			reports.filter[container.ref == elem].forEach[reportDistrict.entities += toBuilding(level + 2)]
+			newDistrict.entities.add(reportDistrict)
+		}
+		
+		//Classes (+included methods and attributes)
+		if (classes.filter[container.ref == elem].length != 0){
+			val classDistrict = cityFactory.createDistrict
+			classDistrict.name = newDistrict.name + "_classDistrict"
+			classDistrict.type = "classDistrict"
+			classDistrict.level = level + 1
+			classDistrict.id = elem.id + "_00004"
+			if(elem.iteration >= 1){
+				classDistrict.notInOrigin = "true"
 			}
 			
-			//Classes (+included methods and attributes)
-			if (classes.filter[container.ref == elem].length != 0){
-				val classDistrict = cityFactory.createDistrict
-				classDistrict.name = newDistrict.name + "_classDistrict"
-				classDistrict.type = "classDistrict"
-				classDistrict.level = level + 1
-				classDistrict.id = elem.id + "_00004"
-				if(elem.iteration >= 1){
-					classDistrict.notInOrigin = "true"
-				}
-				
-				classes.filter[container.ref === elem].forEach[classDistrict.entities += toBuilding(level + 2)]
-				newDistrict.entities.add(classDistrict)
+			classes.filter[container.ref === elem].forEach[classDistrict.entities += toBuilding(level + 2)]
+			newDistrict.entities.add(classDistrict)
+		}
+		
+		//Function Group (+function Modules)
+		if (functionGroups.filter[container.ref == elem].length != 0){
+			val functionGroupDistrict = cityFactory.createDistrict
+			functionGroupDistrict.name = newDistrict.name + "_functionGroupDistrict"
+			functionGroupDistrict.type = "functionGroupDistrict"
+			functionGroupDistrict.level = level + 1
+			functionGroupDistrict.id = elem.id + "_00005"
+			if(elem.iteration >= 1){
+				functionGroupDistrict.notInOrigin = "true"
 			}
 			
-			//Function Group (+function Modules)
-			if (functionGroups.filter[container.ref == elem].length != 0){
-				val functionGroupDistrict = cityFactory.createDistrict
-				functionGroupDistrict.name = newDistrict.name + "_functionGroupDistrict"
-				functionGroupDistrict.type = "functionGroupDistrict"
-				functionGroupDistrict.level = level + 1
-				functionGroupDistrict.id = elem.id + "_00005"
+			functionGroups.filter[container.ref === elem].forEach[functionGroupDistrict.entities += toBuilding(level + 2)]
+			newDistrict.entities.add(functionGroupDistrict)
+		}
+		
+		//DB Tables - only if we need own district
+		if(config.showOwnTablesDistrict){
+			if (tables.filter[container.ref == elem].length != 0){
+				val tableDistrict = cityFactory.createDistrict
+				tableDistrict.name = newDistrict.name + "_tableDistrict"
+				tableDistrict.type = "tableDistrict"
+				tableDistrict.level = level + 1
+				tableDistrict.id = elem.id + "_00006"
 				if(elem.iteration >= 1){
-					functionGroupDistrict.notInOrigin = "true"
+					tableDistrict.notInOrigin = "true"
 				}
 				
-				functionGroups.filter[container.ref === elem].forEach[functionGroupDistrict.entities += toBuilding(level + 2)]
-				newDistrict.entities.add(functionGroupDistrict)
+				tables.filter[container.ref == elem].forEach[tableDistrict.entities += toBuilding(level + 2)]
+				newDistrict.entities.add(tableDistrict)
 			}
-			
-			//DB Tables - only if we need own district
-			if(config.showOwnTablesDistrict){
-				if (tables.filter[container.ref == elem].length != 0){
-					val tableDistrict = cityFactory.createDistrict
-					tableDistrict.name = newDistrict.name + "_tableDistrict"
-					tableDistrict.type = "tableDistrict"
-					tableDistrict.level = level + 1
-					tableDistrict.id = elem.id + "_00006"
-					if(elem.iteration >= 1){
-						tableDistrict.notInOrigin = "true"
-					}
-					
-					tables.filter[container.ref == elem].forEach[tableDistrict.entities += toBuilding(level + 2)]
-					newDistrict.entities.add(tableDistrict)
-				}
-			}
-							
-		} else { // Start test mode
-			if(dataElements.filter[container.ref == elem].length != 0){
-				val dcDataDistrict = cityFactory.createDistrict
-				dcDataDistrict.name = newDistrict.name + "_dcDataDistrict"
-				dcDataDistrict.type = "dcDataDistrict"
-				dcDataDistrict.id = elem.id + "_00002"
-				dcDataDistrict.level = level + 1
-				if(elem.iteration >= 1){
-					dcDataDistrict.notInOrigin = "true"
-				}
-				
-				dataElements.filter[container.ref == elem].forEach[dcDataDistrict.entities += toBuilding(level + 2)]
-				newDistrict.entities.add(dcDataDistrict)
-			}
-		}		
+		}							
 								
 		
 		cityDocument.entities += newDistrict
@@ -1119,7 +1101,7 @@ class Famix2City_abap {
      
    
      def createID(String fqn) {
-		                  return "ID_" //+ sha1Hex(fqn + config.repositoryName + config.repositoryOwner)
-	                      }
+	 	return "ID_" //+ sha1Hex(fqn + config.repositoryName + config.repositoryOwner)
+	 }
 
 }

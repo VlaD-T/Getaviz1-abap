@@ -74,7 +74,8 @@ class City2City_abap {
 
 	def private void setDistrictAttributes(District d) {
 		d.height = config.heightMin
-
+		d.textureURL = config.getAbapDistrictTexture(d.type)
+		
 		// for not origin packages
 		if (d.notInOrigin == "true") {
 			switch (config.abapNotInOrigin_filter) {
@@ -94,7 +95,6 @@ class City2City_abap {
 			// Set color, if defined
 			if (config.getAbapDistrictColor(d.type) !== null) {
 				d.color = new RGBColor(config.getAbapDistrictColor(d.type)).asPercentage
-				d.textureURL = config.getAbapDistrictTexture(d.type)
 			} else {
 				d.color = PCKG_colors.get(d.level - 1).asPercentage
 			}
@@ -124,20 +124,30 @@ class City2City_abap {
 		if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
 			// We use custom models in advanced mode. Adjust sizes: 
 			if (b.type == "FAMIX.DataElement") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-			// b.height = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) //b.height - (1 + config.getAbapAdvBuildingScale(b.type))
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
+			
 			} else if (b.type == "FAMIX.Domain") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
 
 			} else if (b.type == "FAMIX.StrucElement") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
+				if (getScaledHeightofSco(b.dataCounter) == 1.0) {
+					b.height = 2.0 // 2 - to show at least one floor
+				} else {
+					b.height = getScaledHeightofSco(b.dataCounter)
+				}
+				b.buildingParts.add(createAdvBuildingBase(b.type))								
+				for (var i = 1; i <= b.height - 1; i++) {
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
+				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
 
 			} else if (b.type == "FAMIX.TableType") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
 
 			} else if(b.type == "FAMIX.Table"){
 				b.width = 4 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)) 
@@ -147,63 +157,65 @@ class City2City_abap {
 				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
 				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 
-				if (b.dataCounter == 2.0) {
-					b.height = 4
-				} else if (b.dataCounter == 3.0) {
-					b.height = 7
-				} else if (b.dataCounter == 4.0) {
-					b.height = 10
+			} else if (b.type == "FAMIX.Attribute") { // Attributes for Classes districts. 
+				b.width = getAdvBuildingWidth(b.type, 1.5)
+				b.length = getAdvBuildingLength(b.type, 1.0)				
+				b.height = getScaledHeightofSco(b.dataCounter) // b.dataCounter * multiplicator, to make building higher
+				b.buildingParts.add(createAdvBuildingBase(b.type))								
+				for (var i = 1; i <= b.height - 1; i++) {
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
 				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
 
 			} else if (b.type == "FAMIX.Method") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				b.height = getScaledHeightofSco(b.methodCounter)
-				
-				var base = cityFactory.createBuilding
-				base.height = 0
-				base.type = "Base"
-				b.buildingParts.add(base)
-								
+				b.width = getAdvBuildingWidth(b.type, 1.5)
+				b.length = getAdvBuildingLength(b.type, 1.0)
+				b.height = getScaledHeightofSco(b.methodCounter)				
+				b.buildingParts.add(createAdvBuildingBase(b.type))								
 				for (var i = 1; i <= b.height - 1; i++) {
-					var floor = cityFactory.createBuilding
-					floor.height = config.getAbapMethodBaseHeight + (i - 1) * config.getAbapMethodFloorHeight
-					floor.type = "Floor"
-					b.buildingParts.add(floor)
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
 				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
 				
-				var roof = cityFactory.createBuilding
-				roof.height = config.getAbapMethodBaseHeight + (b.height - 1) * config.getAbapMethodFloorHeight
-				roof.type = "Roof"
-				b.buildingParts.add(roof)
-
-				
-			} else if (b.type == "FAMIX.Class") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+			} else if (b.type == "FAMIX.Class") { // Interface. Classes are displayed as districts
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)				
+				b.height = getScaledHeightofSco(b.methodCounter)
+				b.buildingParts.add(createAdvBuildingBase(b.type))								
+				for (var i = 1; i <= b.height - 1; i++) {
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
+				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
 
 			} else if (b.type == "FAMIX.FunctionModule") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
 				b.height = getScaledHeightofSco(b.methodCounter)
-
+				b.buildingParts.add(createAdvBuildingBase(b.type))								
+				for (var i = 1; i <= b.height - 1; i++) {
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
+				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
+				
 			} else if (b.type == "FAMIX.Report") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-
-				if (b.methodCounter != 0)
-					b.height = b.methodCounter /** 10*/
-				else
-					b.height = config.getHeightMin
-					
-
-				b.height = getScaledHeightofSco(b.methodCounter)
-
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
+				b.height = getScaledHeightofSco(b.methodCounter)				
+				b.buildingParts.add(createAdvBuildingBase(b.type))								
+				for (var i = 1; i <= b.height - 1; i++) {
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
+				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))	
 
 			} else if (b.type == "FAMIX.Formroutine") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) // * 1.5
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
-				b.height = getScaledHeightofSco(b.methodCounter)
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
+				b.height = getScaledHeightofSco(b.methodCounter)				
+				b.buildingParts.add(createAdvBuildingBase(b.type))								
+				for (var i = 1; i <= b.height - 1; i++) {
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
+				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))				
 			}
 
 		// Use custom colors from settings -> go to x3d file.
@@ -243,7 +255,8 @@ class City2City_abap {
 			}
 		} // End of AbapCityRepresentation::SIMPLE		
 	}
-
+	
+	
 	// pko 2016
 	def void calculateFloors(Building b) {
 
@@ -267,8 +280,8 @@ class City2City_abap {
 
 			// Set standard values
 			floor.height = bHeight / ( floorNumber + 2 ) * 0.80
-			floor.width = bWidth * 1.1
-			floor.length = bLength * 1.1
+			floor.width = bWidth + 0.2
+			floor.length = bLength + 0.2
 			floor.color = 20 / 255.0 + " " + 133 / 255.0 + " " + 204 / 255.0
 			floor.position = cityFactory.createPosition
 			floor.position.y = (bPosY - ( bHeight / 2) ) + bHeight / ( floorNumber + 2 ) * floorCounter
@@ -584,4 +597,34 @@ class City2City_abap {
 			}
 		}
 	}
+	
+	def double getAdvBuildingWidth(String type, double adjustSize) {
+		return config.getAbapAdvBuildingDefSize(type) * config.getAbapAdvBuildingScale(type) * adjustSize
+	}
+	
+	def double getAdvBuildingLength(String type, double adjustSize) {
+		return config.getAbapAdvBuildingDefSize(type) * config.getAbapAdvBuildingScale(type) * adjustSize
+	}
+	
+	def Building createAdvBuildingBase(String type) {
+		var base = cityFactory.createBuilding
+		base.height = 0
+		base.type = "Base"		
+		return base
+	}
+	
+	def Building createAdvBuildingFloor(String type, int level) {
+		var floor = cityFactory.createBuilding
+		floor.height = config.getAdvBuildingBaseHeight(type) + (level - 1) * config.getAdvBuildingFloorHeight(type)
+		floor.type = "Floor"	
+		return floor
+	}
+	
+	def Building createAdvBuildingRoof(String type, double bHeight) {
+		var roof = cityFactory.createBuilding
+		roof.height = config.getAdvBuildingBaseHeight(type) + (bHeight - 1) * config.getAdvBuildingFloorHeight(type)
+		roof.type = "Roof"		
+		return roof
+	}
+	
 }
