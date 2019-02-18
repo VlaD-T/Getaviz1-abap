@@ -81,7 +81,8 @@ class CustomModel_FactoryBuildingFumo {
          </Transform>                     
 	'''   
 
-   def static String defineFactoryBuildingFumoBase () '''
+   def static String defineFactoryBuildingFumoBase(double height) '''
+   <Transform translation='0 0 «height»'>
         <Group DEF="group_factory_building_fumo_base">
             <Shape>
 				<Appearance>
@@ -134,6 +135,7 @@ class CustomModel_FactoryBuildingFumo {
 				</IndexedFaceSet>
 			</Shape> 		        
         </Group>
+        </Transform>
 	''' 
 
 	def static String createFactoryBuildingFumoRoof(double height) '''
@@ -148,7 +150,9 @@ class CustomModel_FactoryBuildingFumo {
 		</Transform>
 	'''
 	
-	def static String createFactoryBuildingFumoBase() '''
-        <Group USE="group_factory_building_fumo_base"/>
+	def static String createFactoryBuildingFumoBase(double height) '''
+		<Transform translation='0 0 «height»'>
+	        <Group USE="group_factory_building_fumo_base"/>
+        </Transform>
 	'''
 }

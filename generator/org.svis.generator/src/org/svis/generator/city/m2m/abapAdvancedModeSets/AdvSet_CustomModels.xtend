@@ -26,16 +26,21 @@ class AdvSet_CustomModels {
 	var defineCMSkyScraper = true
 	var defineCMSkyScraper_floor = true
 	var defineCMRadioTower = true
+	var defineCMRadioTower_floor = true
 	var defineCMApartmentBuilding = true
+	var defineCMApartmentBuilding_floor = true
 	var defineCMBoat = true
 	var defineCMContainerShip = true
 	var defineCMCarPark = true
+	var defineCMCarPark_floor = true
 	var defineCMParkingSlot = true
 	var defineCMTownHall = true
 	var defineCMFactoryBuilding = true
 	var defineCMFactoryBuilding_floor = true
 	var defineCMFactoryHall = true
+	var defineCMFactoryHall_floor = true
 	var defineCMFactoryBuildingFumo = true
+	var defineCMFactoryBuildingFumo_floor = true
 	var defineCMTube = true 
 	
 	def set(List<Entity> entities) {
@@ -186,18 +191,36 @@ class AdvSet_CustomModels {
 						   rotation='0 0.707107 0.707107 3.141593'>
 					«IF defineCMApartmentBuilding»
 						«defineCMApartmentBuilding = false»
-						«CustomModel_ApartmentBuilding::defineApartmentBuildingBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_ApartmentBuilding::defineApartmentBuildingBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMApartmentBuilding_floor»
+									«defineCMApartmentBuilding_floor = false»
+									«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(part.height)»
+								«ELSE»
+									«CustomModel_ApartmentBuilding::createApartmentBuildingFloor(part.height)»
+								«ENDIF»								
+							«ENDIF»						
 						«ENDFOR»
-						«CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
 					«ELSE»
-						«CustomModel_ApartmentBuilding::createApartmentBuildingBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_ApartmentBuilding::createApartmentBuildingFloor(config.getAbapStrucElementBaseHeight + (n - 1) * config.getAbapStrucElementFloorHeight)»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_ApartmentBuilding::createApartmentBuildingBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_ApartmentBuilding::createApartmentBuildingRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMApartmentBuilding_floor»
+									«defineCMApartmentBuilding_floor = false»
+									«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(part.height)»
+								«ELSE»
+									«CustomModel_ApartmentBuilding::createApartmentBuildingFloor(part.height)»
+								«ENDIF»	
+							«ENDIF»						
 						«ENDFOR»
-						«CustomModel_ApartmentBuilding::createApartmentBuildingRoof(config.getAbapStrucElementBaseHeight + entity.height * config.getAbapStrucElementFloorHeight)»
-					«ENDIF»
+					«ENDIF»	
 				</Transform>
 			</Group>
 								
@@ -262,18 +285,36 @@ class AdvSet_CustomModels {
 						   rotation='0 0.707107 0.707107 3.141593'>
 					«IF defineCMRadioTower»
 						«defineCMRadioTower = false»
-						«CustomModel_RadioTower::defineRadioTowerBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_RadioTower::defineRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_RadioTower::defineRadioTowerBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_RadioTower::defineRadioTowerRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMRadioTower_floor»
+									«defineCMRadioTower_floor = false»
+									«CustomModel_RadioTower::defineRadioTowerFloor(part.height)»
+								«ELSE»
+									«CustomModel_RadioTower::createRadioTowerFloor(part.height)»
+								«ENDIF»								
+							«ENDIF»						
 						«ENDFOR»
-						«CustomModel_RadioTower::defineRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
 					«ELSE»
-						«CustomModel_RadioTower::createRadioTowerBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_RadioTower::createRadioTowerFloor(config.getAbapClassBaseHeight + (n - 1) * config.getAbapClassFloorHeight)»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_RadioTower::createRadioTowerBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_RadioTower::createRadioTowerRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMRadioTower_floor»
+									«defineCMRadioTower_floor = false»
+									«CustomModel_RadioTower::defineRadioTowerFloor(part.height)»
+								«ELSE»
+									«CustomModel_RadioTower::createRadioTowerFloor(part.height)»
+								«ENDIF»	
+							«ENDIF»						
 						«ENDFOR»
-						«CustomModel_RadioTower::createRadioTowerRoof(config.getAbapClassBaseHeight + entity.height * config.getAbapClassFloorHeight)»
-					«ENDIF»
+					«ENDIF»	
 				</Transform>
 			</Group>
 		
@@ -321,20 +362,38 @@ class AdvSet_CustomModels {
 					<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
 							   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 							   rotation='0 0.707107 0.707107 3.141593'>
-						«IF defineCMCarPark»
-							«defineCMCarPark = false»
-							«CustomModel_CarPark::defineCarParkBase»
-							«FOR n : 1..entity.height.intValue»
-								«CustomModel_CarPark::defineCarParkFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
-							«ENDFOR»
-							«CustomModel_CarPark::defineCarParkRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
-						«ELSE»
-							«CustomModel_CarPark::createCarParkBase»
-							«FOR n : 1..entity.height.intValue»
-								«CustomModel_CarPark::createCarParkFloor(config.getAbapAttributeBaseHeight + (n - 1) * config.getAbapAttributeFloorHeight)»
-							«ENDFOR»
-							«CustomModel_CarPark::createCarParkRoof(config.getAbapAttributeBaseHeight + entity.height * config.getAbapAttributeFloorHeight)»
-						«ENDIF»
+					«IF defineCMCarPark»
+						«defineCMCarPark = false»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_CarPark::defineCarParkBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_CarPark::defineCarParkRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMCarPark_floor»
+									«defineCMCarPark_floor = false»
+									«CustomModel_CarPark::defineCarParkFloor(part.height)»
+								«ELSE»
+									«CustomModel_CarPark::createCarParkFloor(part.height)»
+								«ENDIF»								
+							«ENDIF»						
+						«ENDFOR»
+					«ELSE»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_CarPark::createCarParkBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_CarPark::createCarParkRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMCarPark_floor»
+									«defineCMCarPark_floor = false»
+									«CustomModel_CarPark::defineCarParkFloor(part.height)»
+								«ELSE»
+									«CustomModel_CarPark::createCarParkFloor(part.height)»
+								«ENDIF»	
+							«ENDIF»						
+						«ENDFOR»
+					«ENDIF»	
 					</Transform>
 				</Group>
             «ENDIF»
@@ -346,18 +405,36 @@ class AdvSet_CustomModels {
 						   rotation='0 0.707107 0.707107 3.141593'>
 					«IF defineCMFactoryBuildingFumo»
 						«defineCMFactoryBuildingFumo = false»
-						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMFactoryBuildingFumo_floor»
+									«defineCMFactoryBuildingFumo_floor = false»
+									«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(part.height)»
+								«ELSE»
+									«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(part.height)»
+								«ENDIF»								
+							«ENDIF»						
 						«ENDFOR»
-						«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
 					«ELSE»
-						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(config.getAbapFumoBaseHeight + (n - 1) * config.getAbapFumoFloorHeight)»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMFactoryBuildingFumo_floor»
+									«defineCMFactoryBuildingFumo_floor = false»
+									«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(part.height)»
+								«ELSE»
+									«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoFloor(part.height)»
+								«ENDIF»	
+							«ENDIF»						
 						«ENDFOR»
-						«CustomModel_FactoryBuildingFumo::createFactoryBuildingFumoRoof(config.getAbapFumoBaseHeight + entity.height * config.getAbapFumoFloorHeight)»
-					«ENDIF»
+					«ENDIF»	
 				</Transform>
 			</Group>
 
@@ -368,18 +445,36 @@ class AdvSet_CustomModels {
 						   rotation='0 0.707107 0.707107 3.141593'>
 					«IF defineCMFactoryHall»
 						«defineCMFactoryHall = false»
-						«CustomModel_FactoryHall::defineFactoryHallBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_FactoryHall::defineFactoryHallFloor(config.getAbapReportBaseHeight + (n - 1) * config.getAbapReportFloorHeight)»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_FactoryHall::defineFactoryHallBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_FactoryHall::defineFactoryHallRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMFactoryHall_floor»
+									«defineCMFactoryHall_floor = false»
+									«CustomModel_FactoryHall::defineFactoryHallFloor(part.height)»
+								«ELSE»
+									«CustomModel_FactoryHall::createFactoryHallFloor(part.height)»
+								«ENDIF»								
+							«ENDIF»						
 						«ENDFOR»
-						«CustomModel_FactoryHall::defineFactoryHallRoof(config.getAbapReportBaseHeight + entity.height * config.getAbapReportFloorHeight)»
 					«ELSE»
-						«CustomModel_FactoryHall::createFactoryHallBase»
-						«FOR n : 1..entity.height.intValue»
-							«CustomModel_FactoryHall::createFactoryHallFloor(config.getAbapReportBaseHeight + (n - 1) * config.getAbapReportFloorHeight)»
+						«FOR part : entity.getBuildingParts»
+							«IF part.type == "Base"»
+								«CustomModel_FactoryHall::createFactoryHallBase(part.height)»
+							«ELSEIF part.type == "Roof"»
+								«CustomModel_FactoryHall::createFactoryHallRoof(part.height)»
+							«ELSEIF part.type == "Floor"»
+								«IF defineCMFactoryHall_floor»
+									«defineCMFactoryHall_floor = false»
+									«CustomModel_FactoryHall::defineFactoryHallFloor(part.height)»
+								«ELSE»
+									«CustomModel_FactoryHall::createFactoryHallFloor(part.height)»
+								«ENDIF»	
+							«ENDIF»						
 						«ENDFOR»
-						«CustomModel_FactoryHall::createFactoryHallRoof(config.getAbapReportBaseHeight + entity.height * config.getAbapReportFloorHeight)»
-					«ENDIF»
+					«ENDIF»	
 				</Transform>
 			</Group>
 			
