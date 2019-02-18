@@ -45,7 +45,8 @@ class CustomModel_CarPark {
          </Transform>                     
 	'''   
 
-   def static String defineCarParkBase () '''
+   def static String defineCarParkBase(double height) '''
+   <Transform translation='0 0 «height»'>
         <Group DEF="group_CarPark_base">
             <Shape>
                 <Appearance>
@@ -62,6 +63,7 @@ class CustomModel_CarPark {
                 </IndexedFaceSet>
             </Shape>
         </Group>
+    </Transform>  
 	''' 
 
 	def static String createCarParkRoof(double height) '''
@@ -76,7 +78,9 @@ class CustomModel_CarPark {
 		</Transform>
 	'''
 	
-	def static String createCarParkBase() '''
-        <Group USE="group_CarPark_base"/>
+	def static String createCarParkBase(double height) '''
+		<Transform translation='0 0 «height»'>
+        	<Group USE="group_CarPark_base"/>
+        </Transform>
 	'''
 }

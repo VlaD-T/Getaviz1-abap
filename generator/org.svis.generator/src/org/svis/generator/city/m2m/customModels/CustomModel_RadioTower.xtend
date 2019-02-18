@@ -79,7 +79,8 @@ class CustomModel_RadioTower {
 		</Transform>
 	'''
 	
-	def static String defineRadioTowerBase() '''
+	def static String defineRadioTowerBase(double height) '''
+	<Transform translation='0 0 «height»'>
 		<Group DEF="group_RadioTower_base">
 			<Shape>
 				<Appearance>
@@ -108,6 +109,7 @@ class CustomModel_RadioTower {
 				</IndexedFaceSet>
 			</Shape>
 		</Group>
+	</Transform>
 	'''
 	
 		
@@ -130,8 +132,10 @@ class CustomModel_RadioTower {
 		</Transform>
 	'''
 	
-	def static String createRadioTowerBase() '''
-		<Group USE="group_RadioTower_base"/>
+	def static String createRadioTowerBase(double height) '''
+		<Transform translation='0 0 «height»'>
+			<Group USE="group_RadioTower_base"/>
+		</Transform>
 	'''
 	
 	

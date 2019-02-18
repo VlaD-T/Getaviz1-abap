@@ -45,7 +45,8 @@ class CustomModel_FactoryBuilding {
          </Transform>                     
 	'''   
 
-   def static String defineFactoryBuildingBase () '''
+   def static String defineFactoryBuildingBase(double height) '''
+   <Transform translation='0 0 «height»'>
         <Group DEF="group_factory_building_base">
             <Shape>
 				<Appearance>
@@ -85,7 +86,8 @@ class CustomModel_FactoryBuilding {
 					<Coordinate USE="coords_ME_Shape_IndexedFaceSet" />
 				</IndexedFaceSet>
 			</Shape>       
-        </Group>        
+        </Group> 
+       </Transform>    
 	''' 
 
 	def static String createFactoryBuildingRoof(double height) '''
@@ -100,7 +102,9 @@ class CustomModel_FactoryBuilding {
 		</Transform>
 	'''
 	
-	def static String createFactoryBuildingBase() '''
-	    <Group USE="group_factory_building_base"/>
+	def static String createFactoryBuildingBase(double height) '''
+		<Transform translation='0 0 «height»'>
+			<Group USE="group_factory_building_base"/>
+		</Transform>
 	'''
 }

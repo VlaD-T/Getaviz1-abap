@@ -93,7 +93,8 @@ class CustomModel_ApartmentBuilding {
     	</Transform>                     
 	'''   
 
-	def static String defineApartmentBuildingBase () '''
+	def static String defineApartmentBuildingBase(double height) '''
+	<Transform translation=' 0 0 «height»'>
 		<Group DEF="group_apartment_building_base">
 			<Shape>
 				<Appearance>
@@ -134,6 +135,7 @@ class CustomModel_ApartmentBuilding {
 				</IndexedFaceSet>
 			</Shape>        
 		</Group>
+		</Transform> 
 	''' 
 
 
@@ -149,7 +151,9 @@ class CustomModel_ApartmentBuilding {
 		</Transform>
 	'''
 	
-	def static String createApartmentBuildingBase() '''
-        <Group USE="group_apartment_building_base"/>
+	def static String createApartmentBuildingBase(double height) '''
+		<Transform translation='0 0 «height»'>
+	        <Group USE="group_apartment_building_base"/>
+        </Transform>
 	'''
 }
