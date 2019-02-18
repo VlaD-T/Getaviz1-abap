@@ -1452,8 +1452,16 @@ public class SettingsConfiguration {
 		return config.getBoolean("city.abap.showReportDistrict", false);
 	}
 	
+	public boolean isShowTableDistrict() {
+		return config.getBoolean("city.abap.showTableDistrict", false);
+	}
+	
 	public boolean isShowTables() {
 		return config.getBoolean("city.abap.showTables", false);
+	}
+	
+	public boolean isShowTableDistrictWithoutColor() {
+		return config.getBoolean("city.abap.showTableDistrictWithoutColor", false);
 	}
 	
 	public double getStrucElemHeight() {
@@ -1484,8 +1492,11 @@ public class SettingsConfiguration {
 	public boolean isShowStructure() {
 		return config.getBoolean("city.abap.showStructure", false);
 	}
-	public boolean isShowTableType() {
-		return config.getBoolean("city.abap.showTableType", false);
+	public boolean isShowTableTypeStructure() {
+		return config.getBoolean("city.abap.showTableTypeStructure", false);
+	}
+	public boolean isShowTableTypeTable() {
+		return config.getBoolean("city.abap.showTableTypeTable", false);
 	}
 	public boolean isShowDtel() {
 		return config.getBoolean("city.abap.showDtel", false);
