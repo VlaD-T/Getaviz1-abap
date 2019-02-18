@@ -154,7 +154,7 @@ class City2City_abap {
 			} else if (b.type == "FAMIX.Attribute") { // Attributes for Classes districts. 
 				b.width = getAdvBuildingWidth(b.type, 1.5)
 				b.length = getAdvBuildingLength(b.type, 1.0)				
-				b.height = getScaledHeightofSco(b.dataCounter * 1.5) // b.dataCounter * multiplicator, to make building higher
+				b.height = getScaledHeightofSco(b.dataCounter) // b.dataCounter * multiplicator, to make building higher
 				b.buildingParts.add(createAdvBuildingBase(b.type))								
 				for (var i = 1; i <= b.height - 1; i++) {
 					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
