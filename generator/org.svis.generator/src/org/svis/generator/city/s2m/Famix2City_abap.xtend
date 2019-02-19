@@ -324,8 +324,8 @@ class Famix2City_abap {
           newStructureDistrict.id = elem.id + "00001"
           newStructureDistrict.level + 1
           if(elem.iteration >= 1) {
-               newStructureDistrict.notInOrigin = "true"
-            }
+           newStructureDistrict.notInOrigin = "true"
+          }
          
            if(config.showStructure){
            abapStrucElem.filter[container.ref == struc].forEach[newStructureDistrict.entities += toBuilding(level + 2)]
@@ -439,12 +439,16 @@ class Famix2City_abap {
 			
 			//newClassDistrict.entities += toBuilding(class, level + 2)
 
-            if (config.showMethod)
-				methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
-			if (config.showClassAttributes) 
-				attributes.filter[parentType.ref == class].forEach [newClassDistrict.entities += toBuilding(level + 2, true)]
+            if (config.showMethod) {
+            	methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
+            }
+				
+			if (config.showClassAttributes) {
+				attributes.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2, true)]
+			}
+				
 					    
-		    			// local classes
+			// local classes
 			classes.filter[container.ref == class].forEach[ localClass | 
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
@@ -792,30 +796,13 @@ class Famix2City_abap {
 		newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
 		
 		return newBuilding	
+		
 		} else {
 			newBuilding.parentType = "FAMIX.Interface"
 			newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
 		
 		return newBuilding	
-		}
-		
-		
-//		val dataType = typeOfs.findFirst[element.ref == elem]
-//
-//		if (dataType === null) {
-//			newBuilding.dataCounter = 1.0
-//		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXABAPStruc")) {
-//			newBuilding.dataCounter = 2.0
-//		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXTable") ||
-//			dataType.typeOf.ref.getClass.toString.contains("FAMIXTableType")) {
-//			newBuilding.dataCounter = 3.0
-//		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXClass")) {
-//			newBuilding.dataCounter = 4.0
-//		}
-//		
-//		newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
-//		
-//		return newBuilding		
+		}		
 	}
 	
 	def private Building toRepoBuilding(FAMIXAttribute elem, int level) {

@@ -1483,7 +1483,7 @@ public class SettingsConfiguration {
 	public double getStrucElemHeight() {
 		return config.getDouble("city.abap.strucElemHeight", 1);
 	}
-	
+
 	public boolean isShowInterface() {
 		return config.getBoolean("city.abap.showInterface", false);
 	}

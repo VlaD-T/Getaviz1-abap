@@ -788,7 +788,7 @@ public class ABAPCityLayout {
 					publicMembers.add(square);
 					break;
 				}
-			}
+		    }	      
 		}
 		// start algorithm
 		List<String> position = getPositionList(squareSize);

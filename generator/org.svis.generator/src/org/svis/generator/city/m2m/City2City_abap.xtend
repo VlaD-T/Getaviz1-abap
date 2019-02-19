@@ -153,9 +153,9 @@ class City2City_abap {
 				b.width = 4 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)) 
 				b.length = 2 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type))
 				
-			} else if (b.type == "FAMIX.Attribute") {
-				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
-				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
+//			} else if (b.type == "FAMIX.Attribute") {
+//				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
+//				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 
 			} else if (b.type == "FAMIX.Attribute") { // Attributes for Classes districts. 
 				b.width = getAdvBuildingWidth(b.type, 1.5)

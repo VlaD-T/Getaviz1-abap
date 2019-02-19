@@ -218,7 +218,7 @@ class AdvSet_CustomModels {
 				</Transform>
 			</Group>
 								
-		«ELSEIF entity.type == "FAMIX.TableType"»
+		«ELSEIF entity.type == "FAMIX.TableType"»		
 		  «IF entity.rowType == "FAMIX.ABAPStruc"»
 	         <Group DEF='«entity.id»'>
                 <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
@@ -254,7 +254,6 @@ class AdvSet_CustomModels {
 						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
 						   rotation='0.000000 0.707107 0.707107 3.141593'>
 					«IF defineCMSkyScraper»
-«««						«CustomModel_SkyScraper::defineSkyScraperShape(config.getAbapAdvBuildingScale(entity.type), entity.numberOfStatements, entity.position.y)»
 						«defineCMSkyScraper = false»
 						«FOR part : entity.getBuildingParts»
 							«IF part.type == "Base"»
@@ -262,18 +261,27 @@ class AdvSet_CustomModels {
 							«ELSEIF part.type == "Roof"»
 								«CustomModel_SkyScraper::defineSkyScraperRoof(part.height)»
 							«ELSEIF part.type == "Floor"»
-								«CustomModel_SkyScraper::defineSkyScraperFloor(part.height)»
+								«IF defineCMSkyScraper_floor»
+									«defineCMSkyScraper_floor = false»
+									«CustomModel_SkyScraper::defineSkyScraperFloor(part.height)»
+								«ELSE»
+									«CustomModel_SkyScraper::createSkyScraperFloor(part.height)»
+								«ENDIF»								
 							«ENDIF»						
 						«ENDFOR»
 					«ELSE»
-«««						«CustomModel_SkyScraper::createSkyScraperShape(config.getAbapAdvBuildingScale(entity.type), entity.numberOfStatements, entity.position.y)»
 						«FOR part : entity.getBuildingParts»
 							«IF part.type == "Base"»
 								«CustomModel_SkyScraper::createSkyScraperBase(part.height)»
 							«ELSEIF part.type == "Roof"»
 								«CustomModel_SkyScraper::createSkyScraperRoof(part.height)»
 							«ELSEIF part.type == "Floor"»
-								«CustomModel_SkyScraper::createSkyScraperFloor(part.height)»
+								«IF defineCMSkyScraper_floor»
+									«defineCMSkyScraper_floor = false»
+									«CustomModel_SkyScraper::defineSkyScraperFloor(part.height)»
+								«ELSE»
+									«CustomModel_SkyScraper::createSkyScraperFloor(part.height)»
+								«ENDIF»	
 							«ENDIF»						
 						«ENDFOR»
 					«ENDIF»	
@@ -334,7 +342,7 @@ class AdvSet_CustomModels {
                     «ENDIF»                 
                 </Transform>
             </Group>		
-«««		
+	
 			«ELSEIF entity.parentType == "FAMIX.Class"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
