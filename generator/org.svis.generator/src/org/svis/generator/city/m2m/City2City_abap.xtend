@@ -41,8 +41,9 @@ class City2City_abap {
 			if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
 				ABAPCityLayout::cityLayout(cityRoot)
 				CityHeightLayout::cityHeightLayout(cityRoot)
-				buildings.forEach[calculateChimneysReports]
-				buildings.forEach[calculateChimneysInterfaces]
+				buildings.forEach[calculateAdvChimneys]
+//				buildings.forEach[calculateChimneysReports]
+//				buildings.forEach[calculateChimneysInterfaces]
 			} else {
 				CityLayout::cityLayout(cityRoot)
 				buildings.forEach[calculateFloors]
@@ -325,7 +326,7 @@ class City2City_abap {
 	def void calculateChimneys(Building b) {
 		
 		val cityFactory = new CityFactoryImpl
-		val bWidth = b.width - 2
+		val bWidth = b.width
 		val bPosX = b.position.x
 		val bPosZ = b.position.z
 		val chimneys = b.data
@@ -397,6 +398,17 @@ class City2City_abap {
 			chimney.position.z = (bPosZ + ( bWidth / 2) ) - 0.5 - (1 * chimneyCounter)
 			chimneyCounter++
 		}
+	}
+	
+	def void calculateAdvChimneys(Building b) {
+		// Advanced chimneys currently work only for reports and interfaces
+		if (b.type != "FAMIX.Report" && b.type != "FAMIX.Class") {
+			return
+		}
+		
+		val cityFactory = new CityFactoryImpl
+		calculateChimneysInterfaces(b)
+		
 	}
 	
 	def void calculateChimneysInterfaces(Building b) {
@@ -563,7 +575,10 @@ class City2City_abap {
 	}
 	
 	def double getYforInterfaceChimney(Building b) {
-		return (b.position.y + b.methodCounter * 3 + 20) + 0.25 //todo: get floor height from settings: methodCounter * floorHeight + baseHeight + roofHeight) + attributeHeight / 2
+		var baseHeight = config.getAdvBuildingBaseHeight(b.type)
+		var floorHeight = config.getAdvBuildingFloorHeight(b.type)
+		var roofHeight = config.getAdvBuildingRoofHeight(b.type)
+		return (b.position.y + baseHeight + b.methodCounter * floorHeight + roofHeight) + 0.25 //todo: get floor height from settings: methodCounter * floorHeight + baseHeight + roofHeight) + attributeHeight / 2
 	}
 	
 	def double getYforReportChimney(Building b) {

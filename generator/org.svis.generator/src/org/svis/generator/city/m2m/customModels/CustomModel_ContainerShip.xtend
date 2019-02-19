@@ -5,12 +5,7 @@ class CustomModel_ContainerShip {
 	    <Group DEF="group_ContainerShip_Shape">
 	        <Shape>
 	            <Appearance>
-	                <Material DEF="MA_Material_001"
-	                		  diffuseColor="0.800 0.800 0.800"
-	                		  specularColor="0.401 0.401 0.401"
-	                		  emissiveColor="0.000 0.000 0.000"
-	                		  ambientIntensity="0.333"
-	                		  shininess="0.098"
+	                <Material diffuseColor="0.800 0.800 0.800"
 	                		  transparency="0.0"
 	                		  />
 	            </Appearance>
@@ -26,6 +21,6 @@ class CustomModel_ContainerShip {
 	'''
 
 	def static String createContainerShipShape() '''
-			<Group USE="group_ContainerShip_Shape"/>
+		<Group USE="group_ContainerShip_Shape"/>
 	'''
 }

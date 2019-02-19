@@ -6,13 +6,8 @@ class CustomModel_Boat {
 	    <Group DEF="group_boat_shape">
 	        <Shape>
 	            <Appearance>
-	                <Material DEF="MA_Material_001"
-	                			   diffuseColor="0.800 0.800 0.800"
-	                			   specularColor="0.401 0.401 0.401"
-	                			   emissiveColor="0.000 0.000 0.000"
-	                			   ambientIntensity="0.333"
-	                			   shininess="0.098"
-	                			   transparency="0.0"
+	                <Material diffuseColor="0.800 0.800 0.800"
+	                		  transparency="0.0"
 	                			   />
 	            </Appearance>
 	            <IndexedFaceSet solid="true"
@@ -25,12 +20,7 @@ class CustomModel_Boat {
 	        </Shape>
 	        <Shape>
 	        	<Appearance>
-	        		<Material DEF="MA_Material_002"
-	        				  diffuseColor="0.288 0.288 0.288"
-	        				  specularColor="0.401 0.401 0.401"
-	        				  emissiveColor="0.000 0.000 0.000"
-	        				  ambientIntensity="0.333"
-	        				  shininess="0.098"
+	        		<Material diffuseColor="0.288 0.288 0.288"
 	        				  transparency="0.0"
 	        				  />
 	        	</Appearance>
@@ -42,12 +32,7 @@ class CustomModel_Boat {
 	        </Shape>
 	        <Shape>
 	        	<Appearance>
-	        		<Material DEF="MA_Material_003"
-	        				  diffuseColor="0.800 0.583 0.091"
-	        				  specularColor="0.401 0.401 0.401"
-	        				  emissiveColor="0.000 0.000 0.000"
-	        				  ambientIntensity="0.333"
-	        				  shininess="0.098"
+	        		<Material diffuseColor="0.800 0.583 0.091"
 	        				  transparency="0.0"
 	        				  />
 	        	</Appearance>
@@ -59,13 +44,8 @@ class CustomModel_Boat {
 	        </Shape>
 	        <Shape>
 	        	<Appearance>
-	        		<Material DEF="MA_Material_004"
-	        				  diffuseColor="0.190 0.055 0.014"
-	        			      specularColor="0.401 0.401 0.401"
-	        				  emissiveColor="0.000 0.000 0.000"
-	        				  ambientIntensity="0.333"
-	        				  shininess="0.098"
-	        				  transparency="0.0"
+	        		<Material diffuseColor="0.190 0.055 0.014"
+	        			      transparency="0.0"
 	        				  />
 	        	</Appearance>
 	        	<IndexedFaceSet solid="true"
@@ -78,7 +58,7 @@ class CustomModel_Boat {
 '''
 
 def static String createBoatShape() '''
-			<Group USE="group_boat_shape"/>
+		<Group USE="group_boat_shape"/>
 	'''
 	
 }
