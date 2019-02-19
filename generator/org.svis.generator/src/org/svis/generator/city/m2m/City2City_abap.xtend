@@ -41,11 +41,13 @@ class City2City_abap {
 			if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
 				ABAPCityLayout::cityLayout(cityRoot)
 				CityHeightLayout::cityHeightLayout(cityRoot)
+				buildings.forEach[calculateChimneysReports]
+				buildings.forEach[calculateChimneysInterfaces]
 			} else {
 				CityLayout::cityLayout(cityRoot)
 				buildings.forEach[calculateFloors]
 				buildings.forEach[calculateChimneys]
-			}
+ 			}
 		}
 
 		return cityRoot
@@ -147,9 +149,13 @@ class City2City_abap {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
 				b.length = getAdvBuildingLength(b.type, 1.0)
 
-//				} else if(b.type == "FAMIX.Table"){
-//					b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) 
-//					b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)	
+			} else if(b.type == "FAMIX.Table"){
+				b.width = 4 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)) 
+				b.length = 2 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type))
+				
+//			} else if (b.type == "FAMIX.Attribute") {
+//				b.width = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type) * 1.5
+//				b.length = config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)
 
 			} else if (b.type == "FAMIX.Attribute") { // Attributes for Classes districts. 
 				b.width = getAdvBuildingWidth(b.type, 1.5)
@@ -321,9 +327,9 @@ class City2City_abap {
 
 	// pko 2016
 	def void calculateChimneys(Building b) {
-
+		
 		val cityFactory = new CityFactoryImpl
-		val bWidth = b.width
+		val bWidth = b.width - 2
 		val bPosX = b.position.x
 		val bPosZ = b.position.z
 		val chimneys = b.data
@@ -396,16 +402,176 @@ class City2City_abap {
 			chimneyCounter++
 		}
 	}
+	
+	def void calculateChimneysInterfaces(Building b) {
 
+		val cityFactory = new CityFactoryImpl
+		val bWidth = b.width - 2 // 2 -> attributeWidth * 3 (4)
+		val bPosX = b.position.x + 1
+		val bPosZ = b.position.z + 2
+		val chimneys = b.data
+		var courner1 = newArrayList()
+		var courner2 = newArrayList()
+		var courner3 = newArrayList()
+		var courner4 = newArrayList()
+
+		var chimneyCounter = 0
+
+		for (chimney : chimneys) {
+			
+			chimney.parent = b
+	
+			if(config.showAttributesBelowBuildings){
+				chimney.height = config.attributesBelowBuildingsHeight - 0.5
+			} else {
+				chimney.height = config.attributesHeight
+			}
+			chimney.width = 0.5 // TODO: AttributeWidth from settings
+			chimney.length = 0.5  // TODO: AttributeWidth from settings
+
+			chimney.color = 255 / 255.0 + " " + 252 / 255.0 + " " + 25 / 255.0
+			chimney.position = cityFactory.createPosition
+
+			if (chimneyCounter % 4 == 0) {
+				courner1.add(chimney)
+			}
+			if (chimneyCounter % 4 == 1) {
+				courner2.add(chimney)
+			}
+			if (chimneyCounter % 4 == 2) {
+				courner3.add(chimney)
+			}
+			if (chimneyCounter % 4 == 3) {
+				courner4.add(chimney)
+			}
+			chimneyCounter++
+		}
+
+		chimneyCounter = 0
+		for (chimney : courner1) {
+			chimney.position.x = (bPosX - ( bWidth / 2) ) + 0.5 + (1 * chimneyCounter)
+			chimney.position.y = getYforInterfaceChimney(b)
+			chimney.position.z = (bPosZ - ( bWidth / 2) ) + 0.5
+			chimneyCounter++
+		}
+
+		chimneyCounter = 0
+		for (chimney : courner2) {
+			chimney.position.x = (bPosX + ( bWidth / 2) ) - 0.5
+			chimney.position.y = getYforInterfaceChimney(b)
+			chimney.position.z = (bPosZ - ( bWidth / 2) ) + 0.5 + (1 * chimneyCounter)
+			chimneyCounter++
+		}
+
+		chimneyCounter = 0
+		for (chimney : courner3) {
+			chimney.position.x = (bPosX + ( bWidth / 2) ) - 0.5 - (1 * chimneyCounter)
+			chimney.position.y = getYforInterfaceChimney(b)
+			chimney.position.z = (bPosZ + ( bWidth / 2) ) - 0.5
+			chimneyCounter++
+		}
+
+		chimneyCounter = 0
+		for (chimney : courner4) {
+			chimney.position.x = (bPosX - ( bWidth / 2) ) + 0.5
+			chimney.position.y = getYforInterfaceChimney(b)
+			chimney.position.z = (bPosZ + ( bWidth / 2) ) - 0.5 - (1 * chimneyCounter)
+			chimneyCounter++
+		}
+	}
+
+    def void calculateChimneysReports(Building b) {
+
+		val cityFactory = new CityFactoryImpl
+		val bWidth = b.width - 2 // 2 -> attributeWidth * 3 (4)
+		val bPosX = b.position.x
+		val bPosZ = b.position.z
+		val chimneys = b.data
+		var courner1 = newArrayList()
+		var courner2 = newArrayList()
+		var courner3 = newArrayList()
+		var courner4 = newArrayList()
+
+		var chimneyCounter = 0
+
+		for (chimney : chimneys) {
+			
+			chimney.parent = b
+	
+			if(config.showAttributesBelowBuildings){
+				chimney.height = config.attributesBelowBuildingsHeight - 0.5
+			} else {
+				chimney.height = config.attributesHeight
+			}
+			chimney.width = 0.5 // TODO: AttributeWidth from settings
+			chimney.length = 0.5  // TODO: AttributeWidth from settings
+
+			chimney.color = 255 / 255.0 + " " + 252 / 255.0 + " " + 25 / 255.0
+			chimney.position = cityFactory.createPosition
+
+			if (chimneyCounter % 4 == 0) {
+				courner1.add(chimney)
+			}
+			if (chimneyCounter % 4 == 1) {
+				courner2.add(chimney)
+			}
+			if (chimneyCounter % 4 == 2) {
+				courner3.add(chimney)
+			}
+			if (chimneyCounter % 4 == 3) {
+				courner4.add(chimney)
+			}
+			chimneyCounter++
+		}
+
+		chimneyCounter = 0
+		for (chimney : courner1) {
+			chimney.position.x = (bPosX - ( bWidth / 2) ) + 0.5 + (1 * chimneyCounter)
+			chimney.position.y = getYforReportChimney(b)
+			chimney.position.z = (bPosZ - ( bWidth / 2) ) + 0.5
+			chimneyCounter++
+		}
+
+		chimneyCounter = 0
+		for (chimney : courner2) {
+			chimney.position.x = (bPosX + ( bWidth / 2) ) - 0.5
+			chimney.position.y = getYforReportChimney(b)
+			chimney.position.z = (bPosZ - ( bWidth / 2) ) + 0.5 + (1 * chimneyCounter)
+			chimneyCounter++
+		}
+
+		chimneyCounter = 0
+		for (chimney : courner3) {
+			chimney.position.x = (bPosX + ( bWidth / 2) ) - 0.5 - (1 * chimneyCounter)
+			chimney.position.y = getYforReportChimney(b)
+			chimney.position.z = (bPosZ + ( bWidth / 2) ) - 0.5
+			chimneyCounter++
+		}
+
+		chimneyCounter = 0
+		for (chimney : courner4) {
+			chimney.position.x = (bPosX - ( bWidth / 2) ) + 0.5
+			chimney.position.y = getYforReportChimney(b)
+			chimney.position.z = (bPosZ + ( bWidth / 2) ) - 0.5 - (1 * chimneyCounter)
+			chimneyCounter++
+		}
+	}
+    
 	// Display chimneys at top/bottom (depends on settings)
 	def double getYforChimney(Building b, BuildingSegment chimney) {
-
 		if (config.showAttributesBelowBuildings) {
 			return (b.position.y - ( b.height / 2) ) - (chimney.height / 2 + 0.25)
 		} else {
 			return (b.position.y + ( b.height / 2) ) + 0.5 // Original
 		}
-
+	}
+	
+	def double getYforInterfaceChimney(Building b) {
+		return (b.position.y + b.methodCounter * 3 + 20) + 0.25 //todo: get floor height from settings: methodCounter * floorHeight + baseHeight + roofHeight) + attributeHeight / 2
+	}
+	
+	def double getYforReportChimney(Building b) {
+		return (b.position.y + b.methodCounter * 4 + 7) + 0.25 //todo: get floor height from settings: methodCounter * floorHeight + baseHeight + roofHeight) + attributeHeight / 2
 	}
 
 	def double getScaledHeightofSco(double unscaledHeight) {

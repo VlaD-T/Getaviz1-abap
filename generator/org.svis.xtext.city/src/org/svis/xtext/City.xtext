@@ -47,6 +47,7 @@ District: // no LOC, height has to be static
 		('(' 'dataCounter' dataCounter=DECIMAL ')')?
 		('(' 'numberOfStatements' numberOfStatements=INT ')')?
 		('(' 'visibility' visibility=MSESTRING ')')?
+		('(' 'rowType' rowType=MSESTRING ')')?
 		('(' 'buildingParts' buildingParts+=Entity* ')')? //for ABAPCity
 	')';
 
@@ -84,6 +85,7 @@ Building:
 		('(' 'abapReferences' abapReferences+=ABAPReference* ')')? //ABAP
 		('(' 'dataCounter' dataCounter=DECIMAL ')')?
 		('(' 'parentType' parentType=MSESTRING ')')?
+		('(' 'rowType' rowType=MSESTRING ')')?
 		('(' 'visibility' visibility=MSESTRING ')')?
 		('(' 'buildingParts' buildingParts+=Entity* ')')? //for ABAPCity
 	')';
@@ -123,6 +125,7 @@ BuildingSegment:
 		('(' 'abapReferences' abapReferences+=ABAPReference* ')')? // ABAP
 		('(' 'dataCounter' dataCounter=DECIMAL ')')?
 		('(' 'parentType' parentType=MSESTRING ')')?
+		('(' 'rowType' rowType=MSESTRING ')')?
 		('(' 'visibility' visibility=MSESTRING ')')?
 		('(' 'buildingParts' buildingParts+=Entity* ')')? //for ABAPCity
 	')';

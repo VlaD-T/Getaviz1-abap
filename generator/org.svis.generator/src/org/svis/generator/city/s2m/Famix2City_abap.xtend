@@ -37,8 +37,6 @@ import org.svis.generator.SettingsConfiguration.ClassElementsModes
 import org.svis.generator.SettingsConfiguration.Original.BuildingMetric
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
 import org.svis.generator.SettingsConfiguration.DataElementSorting
-import static org.apache.commons.codec.digest.DigestUtils.sha1Hex
-
 
 // ABAP
 import org.svis.xtext.famix.FAMIXReport 
@@ -160,17 +158,11 @@ class Famix2City_abap {
 	val List<FAMIXFormroutine> formroutines = newArrayList
 	val List<FAMIXMessageClass> messageClasses = newArrayList
 	val List<FAMIXFunctionGroup> functionGroups = newArrayList
-	val List<FAMIXTableType> tableTypes = newArrayList
+	val List<FAMIXTableType> tableTypes = newArrayList 
 	val List<FAMIXTypeOf> typeOfs = newArrayList
 	val List<FAMIXTableElement> tableElements = newArrayList
 	val List<FAMIXTableTypeElement> ttyElements = newArrayList
-
 	
-
-	
-	//val String[] typeNames = #["CHAR","INT4","NUMC","ACCP","CLNT","CUKY","CURR","DF16_DEC","DF16_RAW","DF34_DEC","DF34_RAW",
-	//                           "DATS","DEC","FLTP","INT1","INT2","INT8","LANG","LCHR","LRAW","QUAN","RAW","RAWSTRING", "SSTRING",
-	//                           "STRING","TIMS","UNIT"]
 	
 	def abapToModel(){		
 		// Run transformation 
@@ -223,8 +215,8 @@ class Famix2City_abap {
 		newDistrict.id = elem.id
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
-		}
-				
+		}	
+
 		//Sub packages
 		subPackages.filter[parentScope.ref === elem].forEach[newDistrict.entities += toDistrict(level + 1)]
 		
@@ -303,7 +295,8 @@ class Famix2City_abap {
 				tables.filter[container.ref == elem].forEach[tableDistrict.entities += toBuilding(level + 2)]
 				newDistrict.entities.add(tableDistrict)
 			}
-		}								
+		}							
+								
 		
 		cityDocument.entities += newDistrict
 		return newDistrict
@@ -322,71 +315,68 @@ class Famix2City_abap {
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
 		}
-		
         
           if(config.showStructureDistrict){
           abapStrucs.filter[container.ref == elem].forEach[struc |
           val newStructureDistrict = cityFactory.createDistrict
           newStructureDistrict.name = newDistrict.name + "_structureDistrict"
           newStructureDistrict.type = "structureDistrict"
-          newStructureDistrict.id = struc.id + "_00001"
+          newStructureDistrict.id = elem.id + "00001"
           newStructureDistrict.level + 1
           if(elem.iteration >= 1) {
-          	newStructureDistrict.notInOrigin = "true"
+           newStructureDistrict.notInOrigin = "true"
           }
-          
-//         newStructureDistrict.entities += toBuilding(struc, level + 2)
-          if(config.showStructure){
-          	abapStrucElem.filter[container.ref == struc].forEach[newStructureDistrict.entities += toBuilding(level + 2)]
-          }
-          if(config.showTableType){
-		  	tableTypes.filter[container.ref == elem].filter[rowType == struc.value].forEach[newStructureDistrict.entities += toBuilding(level + 2)]
-		  }
+         
+           if(config.showStructure){
+           abapStrucElem.filter[container.ref == struc].forEach[newStructureDistrict.entities += toBuilding(level + 2)]
+           } if(config.showTableTypeStructure){
+		   tableTypes.filter[container.ref == elem].filter[rowType == struc.value].forEach[newStructureDistrict.entities += toBuilding(level + 2, false)]
+		   }
 		   
-			newDistrict.entities.add(newStructureDistrict)
-         ]}
+		  newDistrict.entities.add(newStructureDistrict)
+          ]}
             
-            if(config.showDomainDistrict){    
-		    domains.filter[container.ref == elem].forEach[ doma |
-			val newDomainDistrict = cityFactory.createDistrict
-			newDomainDistrict.name = newDistrict.name + "_domainDistrict"
-			newDomainDistrict.type = "domainDistrict"
-			newDomainDistrict.id = doma.id + "_00002"
-			newDomainDistrict.level = level + 1
-			if(elem.iteration >= 1){
-			   newDomainDistrict.notInOrigin = "true"
-			   if(config.showDomain){
-			   	newDomainDistrict.entities += toBuilding(doma, level + 2)}
-		       }
+          if(config.showDomainDistrict){    
+		  domains.filter[container.ref == elem].forEach[ doma |
+	      val newDomainDistrict = cityFactory.createDistrict
+		  newDomainDistrict.name = newDistrict.name + "_domainDistrict"
+		  newDomainDistrict.type = "domainDistrict"
+		  newDomainDistrict.id = elem.id + "_00002"
+		  newDomainDistrict.level = level + 1
+		  if(elem.iteration >= 1){
+			 newDomainDistrict.notInOrigin = "true"
+			 if(config.showDomain){
+			   newDomainDistrict.entities += toBuilding(doma, level + 2)}
+		     }
 			// newDomainDistrict.entities += toBuilding(level + 2)	
-			else {
-			   if(config.showDomain){ 	
+		  else {
+			 if(config.showDomain){ 	
 			   newDomainDistrict.entities += toBuilding(doma, level + 2)			
 	  		   dataElements.filter[container.ref == elem].filter[domain == doma.value].filter[iteration == 0].forEach[newDomainDistrict.entities += toBuilding(level + 2)] 	
 	  		  }
-	  		  }
+	  	  }
 	 
-			newDistrict.entities.add(newDomainDistrict)
-		]}
+		  newDistrict.entities.add(newDomainDistrict)
+		  ]}
 		
 	    
-	    if(config.showDomainDistrict){
-			if (config.getDtel_Sorting == DataElementSorting::UNSORTED) {
-		        if (domains.filter[iteration == 1].length != 0) {	 
-				val newDomainDistrict = cityFactory.createDistrict
-				newDomainDistrict.name = newDistrict.name + "_domainDistrict"
-				newDomainDistrict.type = "domainDistrict"
-				newDomainDistrict.id = elem.id + "_00002"
-				newDomainDistrict.level = level + 1
-				if (elem.iteration >= 1) {
+	      if(config.showDomainDistrict){
+		   if (config.getDtel_Sorting == DataElementSorting::UNSORTED) {
+	        if (domains.filter[iteration == 1].length != 0) {	 
+			val newDomainDistrict = cityFactory.createDistrict
+			newDomainDistrict.name = newDistrict.name + "_domainDistrict"
+			newDomainDistrict.type = "domainDistrict"
+			newDomainDistrict.id = elem.id + "_00002"
+			newDomainDistrict.level = level + 1
+			if (elem.iteration >= 1) {
 					newDomainDistrict.notInOrigin = "true"				
-				} else {
-					if(config.showDtel){
-					domains.filter[iteration == 1].forEach[ doma |					
-					dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]			    
-				    newDistrict.entities.add(newDomainDistrict)
-				 ]}}
-			 }}
+			} else {
+				if(config.showDtel){
+				domains.filter[iteration == 1].forEach[ doma |					
+				dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]			    
+			    newDistrict.entities.add(newDomainDistrict)
+			 ]}}
+		 }}
 		 
 
  		    else if(config.getDtel_Sorting == DataElementSorting::SORTED){
@@ -394,7 +384,7 @@ class Famix2City_abap {
 			val newDomainDistrict = cityFactory.createDistrict
 			newDomainDistrict.name = newDistrict.name + "_domainDistrict"
 			newDomainDistrict.type = "domainDistrict"
-			newDomainDistrict.id = doma.id + "_00002"
+			newDomainDistrict.id = elem.id + "_00002"
 			newDomainDistrict.level = level + 1
 			if(elem.iteration >= 1){
 				newDomainDistrict.notInOrigin = "true"				
@@ -411,7 +401,7 @@ class Famix2City_abap {
 		  	val newDataElementDistrict = cityFactory.createDistrict
 				newDataElementDistrict.name = newDistrict.name + "_dataElementDistrict"
 				newDataElementDistrict.type = "domainDistrict"
-				newDataElementDistrict.id = createID(typeName + elem.id) + "_00003"
+				newDataElementDistrict.id = elem.id + "_00003"
 				newDataElementDistrict.level = level + 1
 				if(elem.iteration >= 1){
 					newDataElementDistrict.notInOrigin = "true"
@@ -419,13 +409,13 @@ class Famix2City_abap {
 					dataElements.filter[container.ref == elem].filter[domain === null].filter[datatype == typeName].forEach[newDataElementDistrict.entities += toBuilding( level + 2)]}
 				} else {
 					if(config.showDtel){
-						dataElements.filter[container.ref == elem].filter[domain === null].filter[datatype == typeName].forEach[newDataElementDistrict.entities += toBuilding( level + 2)]
+					dataElements.filter[container.ref == elem].filter[domain === null].filter[datatype == typeName].forEach[newDataElementDistrict.entities += toBuilding( level + 2)]
 					}
 					val domainBuilding = cityFactory.createBuilding
 						domainBuilding.name = elem.name
 						domainBuilding.type = "FAMIX.Domain"
 						domainBuilding.level = level + 2
-						domainBuilding.id = createID(typeName + elem.id) + "_000031"
+						domainBuilding.id = elem.id + "_000031"
 						domainBuilding.transparency = 1
 						
 						if(config.showDtel){
@@ -444,22 +434,26 @@ class Famix2City_abap {
 			val newClassDistrict = cityFactory.createDistrict
 			newClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 			newClassDistrict.type = "classDistrict"
-			newClassDistrict.id   = class.id + "_00004"
+			newClassDistrict.id   = elem.id + "_00004"
 			newClassDistrict.level = level + 1
 			
 			//newClassDistrict.entities += toBuilding(class, level + 2)
 
-            if (config.showMethod)
-				methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
-			if (config.showClassAttributes) 
-				attributes.filter[parentType.ref == class].forEach [newClassDistrict.entities += toBuilding(level + 2, true)]
+            if (config.showMethod) {
+            	methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
+            }
+				
+			if (config.showClassAttributes) {
+				attributes.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2, true)]
+			}
+				
 					    
-		    			// local classes
+			// local classes
 			classes.filter[container.ref == class].forEach[ localClass | 
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 				newLocalClassDistrict.type = "classDistrict"
-				newLocalClassDistrict.id   = localClass.id + "_00004"
+				newLocalClassDistrict.id   = elem.id + "_00004"
 				newLocalClassDistrict.level = level + 1
 			
 				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
@@ -477,11 +471,11 @@ class Famix2City_abap {
 			val newInterfaceDistrict = cityFactory.createDistrict
 			newInterfaceDistrict.name = newDistrict.name + "_interfaceDistrict"                                                           
 			newInterfaceDistrict.type = "interfaceDistrict"
-			newInterfaceDistrict.id   = class.id + "_00004"
+			newInterfaceDistrict.id   = elem.id + "_00004"
 			newInterfaceDistrict.level = level + 1
 			
 			if(config.showInterface){
-			newInterfaceDistrict.entities += toAdvBuilding(class, level + 2)
+				newInterfaceDistrict.entities += toAdvBuilding(class, level + 2, true)
             }
             
 //			methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
@@ -495,7 +489,7 @@ class Famix2City_abap {
 			val newFunctionGroupDistrict = cityFactory.createDistrict
 			newFunctionGroupDistrict.name = newDistrict.name + "_functionGroupDistrict"
 			newFunctionGroupDistrict.type = "functionGroupDistrict"
-			newFunctionGroupDistrict.id = functionGroup.id + "_00003"
+			newFunctionGroupDistrict.id = elem.id + "_00003"
 			newFunctionGroupDistrict.level = level + 1
 			
 			if(config.showFumo)
@@ -509,7 +503,7 @@ class Famix2City_abap {
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 				newLocalClassDistrict.type = "classDistrict"
-				newLocalClassDistrict.id   = localClass.id + "_00004"
+				newLocalClassDistrict.id   = elem.id + "_00004"
 				newLocalClassDistrict.level = level + 1
 			
 				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
@@ -526,15 +520,15 @@ class Famix2City_abap {
 			val newReportDistrict = cityFactory.createDistrict
 			newReportDistrict.name = newDistrict.name + "_reportDistrict"
 			newReportDistrict.type = "reportDistrict"
-			newReportDistrict.id = report.id  + "_00005"
+			newReportDistrict.id = elem.id  + "_00005"
 			newReportDistrict.level = level + 1
 			
 
             if(config.showReport){
-				newReportDistrict.entities += toAdvBuilding(report, level + 2)			
+				newReportDistrict.entities += toAdvBuilding(report, level + 2, true)			
 			}
 			if(config.showForm){
-				formroutines.filter[parentType.ref == report].forEach[newReportDistrict.entities += toBuilding(level + 2)]
+			 	formroutines.filter[parentType.ref == report].forEach[newReportDistrict.entities += toBuilding(level + 2)]
 			}
 			
 				
@@ -543,7 +537,7 @@ class Famix2City_abap {
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 				newLocalClassDistrict.type = "classDistrict"
-				newLocalClassDistrict.id   = localClass.id + "_00004"
+				newLocalClassDistrict.id   = elem.id + "_00004"
 				newLocalClassDistrict.level = level + 1
 			
 				methods.filter[parentType.ref == localClass].forEach[newLocalClassDistrict.entities += toBuilding(level + 2)]
@@ -561,22 +555,31 @@ class Famix2City_abap {
 //		 tables.filter[container.ref == elem].forEach[newDistrict.entities += toAdvBuilding(level + 2)]	
 //	     }
 	     
-	   // table District  
+	   // table District
+	   if(config.showTableDistrict){  
 	   tables.filter[container.ref == elem].forEach[ table |
 	     val newTableDistrict = cityFactory.createDistrict
 			 newTableDistrict.name = newDistrict.name + "_tableDistrict"
 			 newTableDistrict.type = "tableDistrict"
-			 newTableDistrict.level = level + 1
-			 newTableDistrict.id = table.id + "_00006"
+			 newTableDistrict.level = level //+ 1
+			 newTableDistrict.id = elem.id + "_00006"
 			 if(elem.iteration >= 1){
 					newTableDistrict.notInOrigin = "true"
-				}
+				} 
 				
-			newTableDistrict.entities += toAdvBuilding(table, level + 2)	
+			if(config.showTableDistrictWithoutColor){
+				 newTableDistrict.transparency = 1
+			}
+			
+			if(config.showTables){
+			newTableDistrict.entities += toAdvBuilding(table, level /*+ 2*/)			
+			}
+			if(config.showTableTypeTable){	
+			tableTypes.filter[container.ref == elem].filter[rowType == table.value].forEach[newTableDistrict.entities += toBuilding(level + 2, true)]
+			}
 				
 	        newDistrict.entities.add(newTableDistrict)			
-	        ]
-	   
+	        ]}
 	     
 		cityDocument.entities += newDistrict
 		return newDistrict
@@ -793,30 +796,13 @@ class Famix2City_abap {
 		newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
 		
 		return newBuilding	
+		
 		} else {
 			newBuilding.parentType = "FAMIX.Interface"
 			newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
 		
 		return newBuilding	
-		}
-		
-		
-//		val dataType = typeOfs.findFirst[element.ref == elem]
-//
-//		if (dataType === null) {
-//			newBuilding.dataCounter = 1.0
-//		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXABAPStruc")) {
-//			newBuilding.dataCounter = 2.0
-//		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXTable") ||
-//			dataType.typeOf.ref.getClass.toString.contains("FAMIXTableType")) {
-//			newBuilding.dataCounter = 3.0
-//		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXClass")) {
-//			newBuilding.dataCounter = 4.0
-//		}
-//		
-//		newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
-//		
-//		return newBuilding		
+		}		
 	}
 	
 	def private Building toRepoBuilding(FAMIXAttribute elem, int level) {
@@ -900,13 +886,13 @@ class Famix2City_abap {
 		return newBuilding		
 	}
 	
-	def private Building toAdvBuilding(FAMIXReport elem, int level) {
+	def private Building toAdvBuilding(FAMIXReport elem, int level, boolean reportAttr) {
 		val newBuilding = cityFactory.createBuilding
 		newBuilding.name = elem.name
 		newBuilding.value = elem.value
 		newBuilding.fqn = elem.fqn
 		newBuilding.type = CityUtils.getFamixClassString(elem.class.simpleName)
-//		newBuilding.dataCounter = attributes.filter[parentType.ref === elem].length
+		newBuilding.dataCounter = attributes.filter[parentType.ref === elem].length
 		newBuilding.level = level
 		newBuilding.id = elem.id
 		if(elem.iteration >= 1){
@@ -916,9 +902,13 @@ class Famix2City_abap {
 		newBuilding.methodCounter = elem.numberOfStatements
 		
 		if(config.showReportAdvAttributes){
-		newBuilding.dataCounter = attributes.filter[parentType.ref == elem].length 
-	    attributes.filter[parentType.ref == elem].forEach[newBuilding.data.add(toChimney)]
+		  if(reportAttr){
+		  	newBuilding.parentType = "FAMIX.Report"
+		  	}
+			newBuilding.dataCounter = attributes.filter[parentType.ref == elem].length 
+		    attributes.filter[parentType.ref == elem].forEach[newBuilding.data.add(toChimney)]
 		}
+		
 		
 		return newBuilding		
 	}
@@ -938,7 +928,7 @@ class Famix2City_abap {
 		return newBuilding		
 	}
 	
-	def private Building toBuilding(FAMIXTableType elem, int level) {
+	def private Building toBuilding(FAMIXTableType elem, int level, boolean rowTypeTable) {
 		val newBuilding = cityFactory.createBuilding
 		newBuilding.name = elem.name
 		newBuilding.value = elem.value
@@ -949,11 +939,16 @@ class Famix2City_abap {
 		if(elem.iteration >= 1){
 			newBuilding.notInOrigin = "true"
 		}
-        
+
+        if (rowTypeTable) {
+			newBuilding.rowType = "FAMIX.Table"
+        } else {
+        	newBuilding.rowType = "FAMIX.ABAPStruc"
+        }
 		return newBuilding		
 	}
 	
-	def private Building toAdvBuilding(FAMIXClass elem, int level) {
+	def private Building toAdvBuilding(FAMIXClass elem, int level, boolean interfaceAttr) {
 		val newBuilding = cityFactory.createBuilding
 		newBuilding.name = elem.name
 		newBuilding.value = elem.value
@@ -968,8 +963,11 @@ class Famix2City_abap {
 		newBuilding.methodCounter = methods.filter[parentType.ref == elem].length + 1
 		
 		if(config.showInterfaceAttributes){
-		newBuilding.dataCounter = attributes.filter[parentType.ref == elem].length 
-	    attributes.filter[parentType.ref == elem].forEach[newBuilding.data.add(toChimney)]
+		  if(interfaceAttr){
+		  	newBuilding.parentType = "FAMIX.Interface"
+		  }
+			newBuilding.dataCounter = attributes.filter[parentType.ref == elem].length 
+		    attributes.filter[parentType.ref == elem].forEach[newBuilding.data.add(toChimney)]
 		}
         
 		return newBuilding		
@@ -986,6 +984,7 @@ class Famix2City_abap {
 		if(elem.iteration >= 1){
 			newBuilding.notInOrigin = "true"
 		}
+		
 		
 //		newBuilding.methodCounter = tableElements.filter[container.ref == elem].length
 //		tableElements.filter[container.ref == elem].forEach[newBuilding.methods.add(toFloor)]  /*Cones have disappeared by commenting out this line*/
@@ -1071,15 +1070,8 @@ class Famix2City_abap {
 		newBuildingSegment.value = famixFormroutine.value
 		newBuildingSegment.fqn = famixFormroutine.fqn
 		newBuildingSegment.id = famixFormroutine.id
-	} 
-	//	def BuildingSegment create newBuildingSegment: cityFactory.createBuildingSegment toChimney(FAMIXClass famixClass) {
-//		newBuildingSegment.name = famixFormroutine.name
-//		newBuildingSegment.value = famixFormroutine.value
-//		newBuildingSegment.fqn = famixFormroutine.fqn
-//		newBuildingSegment.id = famixFormroutine.id
-//	} 
+	}  
 
-	
 	def BuildingSegment create newBuildingSegment: cityFactory.createBuildingSegment toFloor(FAMIXFunctionModule famixFuncModule) {
 		newBuildingSegment.name = famixFuncModule.name
 		newBuildingSegment.value = famixFuncModule.value
@@ -1096,7 +1088,7 @@ class Famix2City_abap {
      
    
      def createID(String fqn) {
-     	return "ID_" + sha1Hex(fqn + config.repositoryName + config.repositoryOwner)
-     }
+	 	return "ID_" //+ sha1Hex(fqn + config.repositoryName + config.repositoryOwner)
+	 }
 
 }

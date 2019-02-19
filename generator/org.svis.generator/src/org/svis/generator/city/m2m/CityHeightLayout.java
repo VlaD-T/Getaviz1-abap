@@ -22,8 +22,8 @@ public class CityHeightLayout {
 					|| e.getType().equals("dcDataDistrict") || e.getType().equals("domainDistrict") || e.getType().equals("structureDistrict") 
 					/*|| e.getType().equals("FAMIX.FunctionModule")*/|| e.getType().equals("FAMIX.StrucElement")
 					/*|| e.getType().equals("FAMIX.Report") || e.getType().equals("FAMIX.Formroutine")*/
-					|| e.getType().equals("FAMIX.DataElement")|| e.getType().equals("FAMIX.Table")/*|| e.getType().equals("FAMIX.Method")*/
-					|| e.getType().equals("FAMIX.TableType")|| e.getType().equals("FAMIX.ABAPStruc")
+					|| e.getType().equals("FAMIX.DataElement")/*|| e.getType().equals("FAMIX.Table")/*|| e.getType().equals("FAMIX.Method")*/
+					|| e.getType().equals("FAMIX.TableType")|| e.getType().equals("FAMIX.ABAPStruc")|| e.getType().equals("FAMIX.Attribute")
 					|| e.getType().equals("FAMIX.Domain") /*|| e.getType().equals("FAMIX.Class")*/) {
           
 				y = e.getHeight() / 2;
