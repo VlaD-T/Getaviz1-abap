@@ -121,6 +121,7 @@ class Famix2JSON implements IGenerator2 {
 		elements.removeAll(invocations)
 		elements.removeAll(inheritances)
 		
+		// create separate file for each entity type
 		fsa.generateFile("metaData.json", elements.toJSON)
 	}
 	

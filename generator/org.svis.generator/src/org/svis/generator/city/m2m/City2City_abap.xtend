@@ -406,9 +406,11 @@ class City2City_abap {
 			return
 		}
 		
-		val cityFactory = new CityFactoryImpl
-		calculateChimneysInterfaces(b)
+		if (b.data == 0) {
+			return
+		}
 		
+		calculateChimneysInterfaces(b)		
 	}
 	
 	def void calculateChimneysInterfaces(Building b) {

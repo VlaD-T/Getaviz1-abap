@@ -74,8 +74,8 @@ class AdvSet_CustomModels {
 					«FOR chimney: (entity as Building).data»
 						«toChimney(chimney, entity)»
 					«ENDFOR»	
-			«ENDIF»
-		  «ENDIF»
+				«ENDIF»
+		  	«ENDIF»
 		«ENDFOR»
 	'''
 

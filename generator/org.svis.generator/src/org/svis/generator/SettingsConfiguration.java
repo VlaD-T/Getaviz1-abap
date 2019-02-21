@@ -1701,6 +1701,12 @@ public class SettingsConfiguration {
 			
 		} else if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abapSimpleBlocks_me_height", 8);
+		
+		} else if (type.equals("FAMIX.Table")) {
+			return config.getDouble("city.abapSimpleBlocks_ta_height", 8);
+		
+		} else if (type.equals("FAMIX.Attribute")) {
+			return config.getDouble("city.abapSimpleBlocks_at_height", 10);
 			
 		} else {
 			return 0;
