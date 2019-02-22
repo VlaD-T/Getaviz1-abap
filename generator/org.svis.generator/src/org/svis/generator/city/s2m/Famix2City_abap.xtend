@@ -551,11 +551,6 @@ class Famix2City_abap {
 			
 			newDistrict.entities.add(newReportDistrict)
 		]}
-		
-	    //shows tables at the main district (level) 
-//		 if(config.showTables){
-//		 tables.filter[container.ref == elem].forEach[newDistrict.entities += toAdvBuilding(level + 2)]	
-//	     }
 	     
 	   // table District
 	   if(config.showTableDistrict){  
@@ -981,16 +976,20 @@ class Famix2City_abap {
 		newBuilding.value = elem.value
 		newBuilding.fqn = elem.fqn
 		newBuilding.type = CityUtils.getFamixClassString(elem.class.simpleName)
+//		newBuilding.dataCounter = tableElements.filter[container.ref === elem].length
 		newBuilding.level = level
 		newBuilding.id = elem.id
 		if(elem.iteration >= 1){
 			newBuilding.notInOrigin = "true"
 		}
 		
+//		if(tableElem){
+//		  	newBuilding.parentType = "FAMIX.Table"
+//		  	}
+		  	
+//		newBuilding.dataCounter = tableElements.filter[container.ref == elem].length
+//		tableElements.filter[container.ref == elem].forEach[newBuilding.methods.add(toChimney)]
 		
-//		newBuilding.methodCounter = tableElements.filter[container.ref == elem].length
-//		tableElements.filter[container.ref == elem].forEach[newBuilding.methods.add(toFloor)]  /*Cones have disappeared by commenting out this line*/
-        
 		return newBuilding		
 	}
 	
@@ -1064,6 +1063,14 @@ class Famix2City_abap {
 		newBuildingSegment.value = famixAttribute.value
 		newBuildingSegment.fqn = famixAttribute.fqn
 		newBuildingSegment.id = famixAttribute.id
+	}
+	
+	def BuildingSegment create newBuildingSegment: cityFactory.createBuildingSegment toChimney(
+		FAMIXTableElement famixTableElement) {
+		newBuildingSegment.name = famixTableElement.name
+		newBuildingSegment.value = famixTableElement.value
+		newBuildingSegment.fqn = famixTableElement.fqn
+		newBuildingSegment.id = famixTableElement.id
 	}
 	
 	//ABAP

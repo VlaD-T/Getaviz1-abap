@@ -3,6 +3,8 @@ package org.svis.generator.city.m2m.abapAdvancedModeSets
 import java.util.List
 import org.apache.commons.logging.LogFactory
 import org.svis.xtext.city.Entity
+import org.svis.xtext.city.Building
+import org.svis.xtext.city.BuildingSegment
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.BuildingType
 import org.svis.generator.city.m2m.RGBColor
@@ -34,6 +36,14 @@ class AdvSet_SimpleBlocks {
 				«IF config.buildingType == BuildingType.CITY_ORIGINAL || config.showBuildingBase»
 					«toBuilding(entity)»
 				«ENDIF»
+				«IF(config.buildingType == BuildingType::CITY_FLOOR)»
+«««					«FOR floor: (entity as Building).methods»
+«««						«toFloor(floor)»
+«««					«ENDFOR»	
+					«FOR chimney: (entity as Building).data»
+						«toChimney(chimney)»
+					«ENDFOR»
+				«ENDIF»	
 			«ENDIF»
 		«ENDFOR»
 	'''
@@ -171,6 +181,19 @@ class AdvSet_SimpleBlocks {
 			</Group>
 			
 		«ENDIF»		
+	'''
+	
+	def toChimney(BuildingSegment chimney) '''
+		<Group DEF='«chimney.id»'>
+			<Transform translation='«chimney.position.x +" "+ chimney.position.y +" "+ chimney.position.z»'>
+				<Shape>
+					<Cylinder height='«chimney.height»' radius='«chimney.width»'></Cylinder>
+					<Appearance>
+						<Material diffuseColor='«chimney.color»'></Material>
+					</Appearance>
+				</Shape>
+			</Transform>
+		</Group>
 	'''
 	
 	def String getColor(String type) {
