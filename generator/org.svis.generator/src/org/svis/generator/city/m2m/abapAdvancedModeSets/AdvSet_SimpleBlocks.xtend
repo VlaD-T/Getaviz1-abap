@@ -91,8 +91,17 @@ class AdvSet_SimpleBlocks {
 			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Table"»
-««« TODO
-		
+			<Group DEF='«entity.id»'>
+							<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+								<Shape>
+									<Cylinder radius='«entity.width/4»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
+									<Appearance>
+										<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+									</Appearance>
+								</Shape>
+							</Transform>
+						</Group>
+			
 		«ELSEIF entity.type == "FAMIX.StrucElement"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
@@ -142,7 +151,30 @@ class AdvSet_SimpleBlocks {
 			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Attribute"»
-««« TODO
+				«IF entity.parentType == "FAMIX.FunctionGroup"»
+						<Group DEF='«entity.id»'>
+							<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+								<Shape>
+									<Cylinder radius='«entity.width / 6»' height='«entity.height * config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
+									<Appearance>
+										<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+									</Appearance>
+								</Shape>
+							</Transform>
+						</Group>
+						
+				«ELSEIF entity.parentType == "FAMIX.Class"» ««« Interface
+						<Group DEF='«entity.id»'>
+							<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+								<Shape>
+									<Cylinder radius='«entity.width / 6»' height='«entity.height * config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
+									<Appearance>
+										<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+									</Appearance>
+								</Shape>
+							</Transform>
+						</Group>
+				«ENDIF»
 
 		«ELSEIF entity.type == "FAMIX.FunctionModule"»
 			<Group DEF='«entity.id»'>
