@@ -74,8 +74,12 @@ public class SettingsConfiguration {
 		}
 	}
 	
-	public Boolean generateJSON() {
-		return config.getBoolean("generator.generateJSON", true);
+	public Boolean generateMetadata() {
+		return config.getBoolean("generator.generateMetadata", true);
+	}
+	
+	public int getMetadata_NoePerFile() {
+		return config.getInt("generator.metadata_noe_per_file", 0);
 	}
 	
 	public Boolean showNamespaceVersions() {

@@ -116,8 +116,7 @@ class AdvSet_CustomModels {
 		«IF entity.type == "FAMIX.DataElement"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 					«IF defineCMSimpleHouse»
 						«CustomModel_SimpleHouse::defineSimpleHouseShape»
 						«defineCMSimpleHouse = false»
@@ -130,8 +129,7 @@ class AdvSet_CustomModels {
 		«ELSEIF entity.type == "FAMIX.Domain"»					
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 					«IF defineCMTownHall»
 						«CustomModel_TownHall::defineTownHallShape»
 						«defineCMTownHall = false»
@@ -166,8 +164,7 @@ class AdvSet_CustomModels {
 
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 					«IF defineCMContainerShip»
 						«CustomModel_ContainerShip::defineContainerShipShape»
 						«defineCMContainerShip = false»
@@ -181,8 +178,7 @@ class AdvSet_CustomModels {
 		«ELSEIF entity.type == "FAMIX.StrucElement"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 					«IF defineCMApartmentBuilding»
 						«defineCMApartmentBuilding = false»
 						«FOR part : entity.getBuildingParts»
@@ -222,8 +218,7 @@ class AdvSet_CustomModels {
 		  «IF entity.rowType == "FAMIX.ABAPStruc"»
 	         <Group DEF='«entity.id»'>
                 <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-                           scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-                           rotation='0.000000 0.707107 0.707107 3.141593'>
+                           scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
                     «IF defineCMParkingSlot»
                         «CustomModel_ParkingSlot::defineParkingSlotShape»
                         «defineCMParkingSlot = false»
@@ -236,8 +231,7 @@ class AdvSet_CustomModels {
           «ELSEIF entity.rowType == "FAMIX.Table"»
              <Group DEF='«entity.id»'>
           		   <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-          		 	          scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-          				      rotation='0.000000 0.707107 0.707107 3.141593'>
+          		 	          scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
           		    «IF defineCMBoat»
           		  	    «CustomModel_Boat::defineBoatShape»
           			    «defineCMBoat = false»
@@ -251,8 +245,7 @@ class AdvSet_CustomModels {
 		«ELSEIF entity.type == "FAMIX.Method"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0.000000 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 					«IF defineCMSkyScraper»
 						«defineCMSkyScraper = false»
 						«FOR part : entity.getBuildingParts»
@@ -291,8 +284,7 @@ class AdvSet_CustomModels {
 		«ELSEIF entity.type == "FAMIX.Class"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 					«IF defineCMRadioTower»
 						«defineCMRadioTower = false»
 						«FOR part : entity.getBuildingParts»
@@ -332,8 +324,7 @@ class AdvSet_CustomModels {
 			«IF entity.parentType == "FAMIX.FunctionGroup"»				
 			<Group DEF='«entity.id»'>
                 <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-                           scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-                           rotation='0.000000 0.707107 0.707107 3.141593'>
+                           scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
                     «IF defineCMTube»
                         «CustomModel_Tube::defineTubeShape»
                         «defineCMTube = false»
@@ -346,8 +337,7 @@ class AdvSet_CustomModels {
 			«ELSEIF entity.parentType == "FAMIX.Class"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 				«IF defineCMCarPark»
 					«defineCMCarPark = false»
 					«FOR part : entity.getBuildingParts»

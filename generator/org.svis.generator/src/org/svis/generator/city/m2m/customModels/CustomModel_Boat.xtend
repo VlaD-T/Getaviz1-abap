@@ -3,6 +3,7 @@ package org.svis.generator.city.m2m.customModels
 class CustomModel_Boat {
 //    def static String defineBoatBack() '''
 	def static String defineBoatShape() '''
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	    <Group DEF="group_boat_shape">
 	        <Shape>
 	            <Appearance>
@@ -55,10 +56,13 @@ class CustomModel_Boat {
 	        	</IndexedFaceSet>
 	        </Shape>
 	    </Group>
+	</Transform>
 '''
 
-def static String createBoatShape() '''
-		<Group USE="group_boat_shape"/>
+	def static String createBoatShape() '''
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
+			<Group USE="group_boat_shape"/>
+		</Transform>
 	'''
 	
 }

@@ -4,6 +4,8 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_SkyScraper {
 	def static String defineSkyScraperRoof(double height)'''
+	«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 		<Group DEF="group_ME_method-roof">
 			<Shape>
@@ -51,9 +53,12 @@ class CustomModel_SkyScraper {
 			</Shape>
 		</Group>
 		</Transform>
+		</Transform>
 	'''
 	
 	def static String defineSkyScraperFloor(double height)'''
+	«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 		<Group DEF="group_ME_method-floor">
 			<Shape>
@@ -87,9 +92,12 @@ class CustomModel_SkyScraper {
 			</Shape>
 		</Group>
 		</Transform>
+		</Transform>
 	'''
 
 	def static String defineSkyScraperBase(double height)'''
+	«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 		<Group DEF="group_ME_method-base">
 			<Shape>
@@ -125,38 +133,34 @@ class CustomModel_SkyScraper {
 			</Shape>
 		</Group>
 		</Transform>
-	'''
-
-	def static String createSkyScraperShape(double scale, double nos, double y)'''
-		<Transform translation='0 0 «9 + 5 * nos»'>
-			<Group USE="group_ME_method-roof"/>
 		</Transform>
-		«IF nos > 1.0»
-		«FOR i : 1..(nos.intValue - 1)»
-			<Transform translation='0 0 «9 + 5 * i»'>
-				<Group USE="group_ME_method-floor"/>
-			</Transform>
-		«ENDFOR»
-		«ENDIF»
-		<Group USE="group_ME_method-base"/>
 	'''
 
 	
 	def static createSkyScraperRoof(double height)'''
-		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_method-roof"/>
+	«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
+			<Transform translation='0 0 «height»'>
+				<Group USE="group_ME_method-roof"/>
+			</Transform>
 		</Transform>
 	'''
 	
 	def static createSkyScraperFloor(double height)'''
-		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_method-floor"/>
+	«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
+			<Transform translation='0 0 «height»'>
+				<Group USE="group_ME_method-floor"/>
+			</Transform>
 		</Transform>
 	'''
 	
 	def static createSkyScraperBase(double height)'''
-		<Transform translation='0 0 «height»'>
-			<Group USE="group_ME_method-base"/>
+	«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
+			<Transform translation='0 0 «height»'>
+				<Group USE="group_ME_method-base"/>
+			</Transform>
 		</Transform>
 	'''	
 }

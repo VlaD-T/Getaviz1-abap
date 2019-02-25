@@ -4,6 +4,8 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_RadioTower {
 	def static String defineRadioTowerRoof(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 		<Group DEF="group_RadioTower_roof"> 
 			<Shape>
@@ -22,9 +24,12 @@ class CustomModel_RadioTower {
 			</Shape>
 		</Group>
 		</Transform>
+		</Transform>
 	'''
 
     def static String defineRadioTowerRoofAntenna(double height) '''
+    «««	2 Transforms, because inline rules didn't work
+    	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform  translation='0 0 «height»'>
 		<Group DEF="group_ME_roof-antenna">
 			<Shape>
@@ -43,9 +48,12 @@ class CustomModel_RadioTower {
 			</Shape>
 		</Group>
 		</Transform>
+		</Transform>
 	'''
 	
 	def static String defineRadioTowerFloor(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform  translation='0 0 «height»'>
 		<Group DEF="group_RadioTower_floor">
 			<Shape>
@@ -76,9 +84,12 @@ class CustomModel_RadioTower {
 			</Shape>
 		</Group>
 		</Transform>
+		</Transform>
 	'''
 	
 	def static String defineRadioTowerBase(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	<Transform translation='0 0 «height»'>
 		<Group DEF="group_RadioTower_base">
 			<Shape>
@@ -109,31 +120,44 @@ class CustomModel_RadioTower {
 			</Shape>
 		</Group>
 	</Transform>
+	</Transform>
 	'''
 	
 		
 	
 	def static String createRadioTowerRoof(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_RadioTower_roof"/>
+		</Transform>
 		</Transform>
 	'''
 	
 	def static String createRadioTowerRoofAntenna(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	    <Transform translation='0 0 «height»'>
 	        <Group USE="group_RadioTower_roof-antenna"/>
+	    </Transform>
 	    </Transform>
 	'''
 	
 	def static String createRadioTowerFloor(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_RadioTower_floor"/>
+		</Transform>
 		</Transform>
 	'''
 	
 	def static String createRadioTowerBase(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_RadioTower_base"/>
+		</Transform>
 		</Transform>
 	'''
 	

@@ -2,6 +2,7 @@ package org.svis.generator.city.m2m.customModels
 
 class CustomModel_ContainerShip {
 	def static String defineContainerShipShape() '''
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	    <Group DEF="group_ContainerShip_Shape">
 	       <Shape>
 				<Appearance>
@@ -54,9 +55,12 @@ class CustomModel_ContainerShip {
 				</IndexedFaceSet>
 			</Shape>
 	    </Group>
+	   </Transform>
 	'''
 
 	def static String createContainerShipShape() '''
-		<Group USE="group_ContainerShip_Shape"/>
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
+			<Group USE="group_ContainerShip_Shape"/>
+		</Transform>
 	'''
 }

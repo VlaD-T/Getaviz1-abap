@@ -4,6 +4,7 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_Tube {
     def static String defineTubeShape()'''
+	    <Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Group DEF="Tube">
 			<Shape>
 				<Appearance>
@@ -32,9 +33,12 @@ class CustomModel_Tube {
 				</IndexedFaceSet>
 			</Shape>
 		</Group>
+		</Transform>
 	'''
 
 	def static createTubeShape()'''
-		<Group USE="Tube"/>
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
+			<Group USE="Tube"/>
+		</Transform>
 	'''
 }
