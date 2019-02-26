@@ -409,7 +409,7 @@ class Famix2City_abap {
 					newDataElementDistrict.notInOrigin = "true"
 					if(config.showDtel){
 						dataElements.filter[container.ref == elem].filter[domain === null].filter[datatype == typeName].forEach[newDataElementDistrict.entities += toBuilding( level + 2)]}
-					} else {
+			    }else {
 						if(config.showDtel){
 							dataElements.filter[container.ref == elem].filter[domain === null].filter[datatype == typeName].forEach[newDataElementDistrict.entities += toBuilding( level + 2)]
 						}
@@ -418,7 +418,7 @@ class Famix2City_abap {
 							domainBuilding.type = "FAMIX.Domain"
 							domainBuilding.level = level + 2
 							domainBuilding.id = createID(typeName + elem.id) + "_000031"
-							domainBuilding.transparency = 1
+//							domainBuilding.transparency = 1
 							
 							if(config.showDtel){
 								newDataElementDistrict.entities += domainBuilding
@@ -480,9 +480,6 @@ class Famix2City_abap {
 				newInterfaceDistrict.entities += toAdvBuilding(class, level + 2, true)
             }
             
-//			methods.filter[parentType.ref == class].forEach[newClassDistrict.entities += toBuilding(level + 2)]
-//			attributes.filter[parentType.ref == class].forEach[newInterfaceDistrict.entities += toBuilding(level + 2, false)]
-		
 			newDistrict.entities.add(newInterfaceDistrict)
 		]}
 		
@@ -569,8 +566,9 @@ class Famix2City_abap {
 			}
 			
 			if(config.showTables){
-			newTableDistrict.entities += toAdvBuilding(table, level /*+ 2*/)			
+			newTableDistrict.entities += toAdvBuilding(table, level, true)			
 			}
+			
 			if(config.showTableTypeTable){	
 			tableTypes.filter[container.ref == elem].filter[rowType == table.value].forEach[newTableDistrict.entities += toBuilding(level + 2, true)]
 			}
@@ -601,6 +599,7 @@ class Famix2City_abap {
 		}
 		
 		formroutines.filter[parentType.ref == elem].forEach[newBuilding.methods.add(toFloor)]
+		
 		if(config.showReportAttributes){
 			newBuilding.dataCounter = attributes.filter[parentType.ref == elem].length
 			attributes.filter[parentType.ref == elem].forEach[newBuilding.data.add(toChimney)]
@@ -624,6 +623,7 @@ class Famix2City_abap {
 		}
 		
 		functionModules.filter[parentType.ref == elem].forEach[newBuilding.methods.add(toFloor)]
+		
 		if(config.showFugrAttributes){
 			newBuilding.dataCounter = attributes.filter[parentType.ref == elem].length
 			attributes.filter[parentType.ref == elem].forEach[newBuilding.data.add(toChimney)]
@@ -970,25 +970,26 @@ class Famix2City_abap {
 		return newBuilding		
 	}
 	
-	def private Building toAdvBuilding(FAMIXTable elem, int level) {
+	def private Building toAdvBuilding(FAMIXTable elem, int level, boolean tableFields) {
 		val newBuilding = cityFactory.createBuilding
 		newBuilding.name = elem.name
 		newBuilding.value = elem.value
 		newBuilding.fqn = elem.fqn
 		newBuilding.type = CityUtils.getFamixClassString(elem.class.simpleName)
-//		newBuilding.dataCounter = tableElements.filter[container.ref === elem].length
+		newBuilding.dataCounter = tableElements.filter[container.ref === elem].length
 		newBuilding.level = level
 		newBuilding.id = elem.id
 		if(elem.iteration >= 1){
 			newBuilding.notInOrigin = "true"
 		}
 		
-//		if(tableElem){
-//		  	newBuilding.parentType = "FAMIX.Table"
-//		  	}
-		  	
-//		newBuilding.dataCounter = tableElements.filter[container.ref == elem].length
-//		tableElements.filter[container.ref == elem].forEach[newBuilding.methods.add(toChimney)]
+	    if(config.showTableElements){
+			if(tableFields){
+			  	newBuilding.parentType = "FAMIX.Table"
+			  	}
+				newBuilding.dataCounter = tableElements.filter[container.ref == elem].length
+				tableElements.filter[container.ref == elem].forEach[newBuilding.data.add(toChimney)]		
+			}
 		
 		return newBuilding		
 	}
