@@ -18,18 +18,69 @@ $(document).ready(function () {
 			resizable: false
 		});		
 	}
-	//load famix data
-	$.getJSON( metaDataJsonUrl, initializeApplication);
+
+	const getMetaParts = () => {
+		return new Promise((resolve, reject) => {
+			let metaParts = []
+			$.getJSON(metaDataJsonUrl, metaPartPath => {
+				let path = metaDataJsonUrl.replace('metaData.json', '')
+				metaPartPath.forEach(value => {
+					metaParts.push(path + value.path)
+				})
+			}).done(() => {
+				setTimeout(() => {
+					resolve(metaParts)
+				}, 1500)
+			}).fail(() => {
+				reject("Failed to load metaData.json")
+			})
+		})
+	}
+
+	const getPartsData = (metaParts) => {
+		let jsonData = []
+		let counter = 0
+		return new Promise((resolve, reject) => {
+			metaParts.forEach(partPath => {
+				$.getJSON(partPath, partData => {
+					partData.forEach(dataElements => {
+						jsonData.push(dataElements)
+					})
+				}).done(() => {					
+					counter++
+					if (counter == metaParts.length) {
+						setTimeout(() => {
+							resolve(jsonData)
+						}, 2000)
+					}
+				}).fail(() => {
+					reject("Failed to load metaData_PART.json")
+				})
+			})
+		})
+	}
+
+
+	getMetaParts().then(metaParts => {
+		getPartsData(metaParts).then(metaData => {
+			initializeApplication(metaData)
+		}, error => {
+			events.log.error.publish({ text: error});
+		})
+	}, error => {
+		events.log.error.publish({ text: error});
+	})
 });
 
-function initializeApplication(metaDataJson){
 
+function initializeApplication(metaDataJson){
     //wait for canvas to be loaded full here...
 	var canvas = document.getElementById("x3dom-x3dElement-canvas");	
 	if(!canvas){
 		setTimeout(function(){initializeApplication(metaDataJson);}, 100);
 		return;
 	}
+	
 	//create entity model
 	model.initialize(metaDataJson);
 
