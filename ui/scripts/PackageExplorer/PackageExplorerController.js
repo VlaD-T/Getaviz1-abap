@@ -14,7 +14,7 @@ var packageExplorerController = (function() {
 
 		typeElements: ["Class", "Interface", "ParameterizableClass", "Enum"],
 		methodElements: ["Method", "Report", "Formroutine", "FunctionGroup", "FunctionModule"],
-		fieldElements: ["EnumValue", "Attribute", "Domain", "DataElement", "ABAPStructure", "StrucElement", "Table", "TableType", "TableTypeElement"]
+		fieldElements: ["EnumValue", "Attribute", "Domain", "DataElement", "ABAPStructure", "StrucElement", "Table", "TableElement", "TableType", "TableTypeElement"]
 	};
 	
 	function initialize(setupConfig){
@@ -45,10 +45,7 @@ var packageExplorerController = (function() {
     
     function prepareTreeView() {
         
-		var entities = model.getAllEntities();     
-		/*var typeIconElements = ["Class", "Interface", "ParameterizableClass", "Enum"];  
-		var methodIconElements = ["Method", "Report", "Formroutine", "FunctionGroup", "FunctionModule"]
-		var fieldIconElements = ["EnumValue", "Attribute", "Domain", "DataElement", "ABAPStructure", "StrucElement", "Table", "TableType", "TableTypeElement"]; */		
+		var entities = model.getAllEntities();	
         var items = [];
 		
 		//build items for ztree

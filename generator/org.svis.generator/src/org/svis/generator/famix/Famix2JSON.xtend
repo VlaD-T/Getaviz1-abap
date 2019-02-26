@@ -70,9 +70,10 @@ class Famix2JSON implements IGenerator2 {
 	var Map<String, String> mapTypeUsedBy = newHashMap
 	val Map<String, String> mapRefs = newHashMap
 	val Map<String, String> mapUsedByRefs = newHashMap
+	var List<String> metaDataParts = newArrayList
 	
 	override doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext ig) {
-		if (!config.generateJSON) {
+		if (!config.generateMetadata) {
 			return
 		}
 		
@@ -121,14 +122,67 @@ class Famix2JSON implements IGenerator2 {
 		elements.removeAll(invocations)
 		elements.removeAll(inheritances)
 		
-		fsa.generateFile("metaData.json", elements.toJSON)
+		// create separate files
+		if (config.getMetadata_NoePerFile() == 0) {
+			fsa.generateFile("metaData_" + 0 + ".json", elements.toJSON)
+			metaDataParts.add("metaData_" + 0 + ".json")
+			fsa.generateFile("metaData.json", metaDataParts.toJSONString)
+		} else {
+			log.info("Create metadata parts")
+			createMetadataParts(fsa, true, 0, 0, elements.length, elements)
+			fsa.generateFile("metaData.json", metaDataParts.toJSONString)
+		}		
 	}
-	
+		
 	override beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext ig) {
 		log.info("Famix2JSON has started.")
 	}
 	override afterGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext ig) {
 		log.info("Famix2JSON has finished.")
+	}
+	
+	/**
+	 * Creates metadata.json parts
+	 * 
+	 * @param fsa - IFileSystemAccess2. Required to generate files.
+	 * @param init - is it first start?
+	 * @param partNum - part number (0+..)
+	 * @param from
+	 * @param to
+	 * @param elements - elements, that have to be written
+	 * 
+	 */
+	def void createMetadataParts(IFileSystemAccess2 fsa, boolean init, int partNum, int from, int to, List<FAMIXElement> elements) {
+		if (init) {
+			createMetadataParts(fsa, false, 0, 0, config.getMetadata_NoePerFile(), elements)
+			return
+		}
+		
+		// make sure we have the right array range
+		var int rightTo
+		if (from + config.getMetadata_NoePerFile() > elements.length) {
+			rightTo = elements.length
+		} else {
+			rightTo = to
+		}
+		
+		// JSON part will be created from new array
+		var List<FAMIXElement> elementsPart = newArrayList
+		for (i : from ..< rightTo) {
+			elementsPart.add(elements.get(i))
+		}		
+		fsa.generateFile("metaData_" + partNum + ".json", elementsPart.toJSON)	
+		metaDataParts.add("metaData_" + partNum + ".json")
+		
+		// proceed with a new part
+		if (rightTo == elements.length) {
+			return
+		} else {
+			var newPartNum = partNum + 1
+			var newFrom = from + config.getMetadata_NoePerFile() 
+			var newTo = rightTo + config.getMetadata_NoePerFile()
+			createMetadataParts(fsa, false, newPartNum, newFrom, newTo, elements)
+		}
 	}
 	
 	def String toJSON2 (Iterable<FAMIXAntipattern> list)  '''
@@ -140,6 +194,12 @@ class Famix2JSON implements IGenerator2 {
 	def String toJSON (Iterable<FAMIXElement> list)  '''
 		«FOR el : list BEFORE "[{" SEPARATOR "\n},{" AFTER "}]"»
 			«toMetaData(el)»
+		«ENDFOR»
+	'''
+	
+	def String toJSONString (Iterable<String> list) '''
+		«FOR el : list BEFORE "[{" SEPARATOR "\n},{" AFTER "}]"»
+			"path": "«el»"
 		«ENDFOR»
 	'''
 	

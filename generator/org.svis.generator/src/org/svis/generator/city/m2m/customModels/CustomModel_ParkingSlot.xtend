@@ -4,6 +4,7 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_ParkingSlot {	
 	def static String defineParkingSlotShape()'''
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
         <Group DEF="group_ME_parking_place">
 		    <Shape>
 		       <Appearance>
@@ -56,11 +57,14 @@ class CustomModel_ParkingSlot {
 				</IndexedFaceSet>
 			</Shape>
 	   </Group> 
+	  </Transform>
 	'''		  
 		  
 
 	def static createParkingSlotShape()'''
-		<Group USE="group_ME_parking_place"/>
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
+			<Group USE="group_ME_parking_place"/>
+		</Transform>
 	'''
 
 }

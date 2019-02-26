@@ -4,6 +4,8 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_CarPark {
 	def static String defineCarParkRoof(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>	
 	    <Transform translation='0 0 «height»'>
 	    <Group DEF="group_CarPark_roof">
 	        <Shape>
@@ -22,9 +24,12 @@ class CustomModel_CarPark {
 	        </Shape>
 	    </Group>
 	    </Transform>
+	    </Transform> 
 	'''
 
    def static String defineCarParkFloor (double height) '''
+   	«««	2 Transforms, because inline rules didn't work
+   	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>	
         <Transform translation=' 0 0 «height»'>
         <Group DEF="group_CarPark_floor">
             <Shape>
@@ -42,10 +47,13 @@ class CustomModel_CarPark {
                 </IndexedFaceSet>
              </Shape>            
          </Group>
-         </Transform>                     
+         </Transform>  
+         </Transform>                    
 	'''   
 
    def static String defineCarParkBase(double height) '''
+   	«««	2 Transforms, because inline rules didn't work
+   	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>	
    <Transform translation='0 0 «height»'>
         <Group DEF="group_CarPark_base">
             <Shape>
@@ -64,23 +72,33 @@ class CustomModel_CarPark {
             </Shape>
         </Group>
     </Transform>  
+    </Transform> 
 	''' 
 
 	def static String createCarParkRoof(double height) '''
+	   	«««	2 Transforms, because inline rules didn't work
+	   	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_CarPark_roof"/>
+		</Transform>
 		</Transform>
 	'''
 	
 	def static String createCarParkFloor(double height) '''
+	   	«««	2 Transforms, because inline rules didn't work
+	   	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_CarPark_floor"/>
+		</Transform>
 		</Transform>
 	'''
 	
 	def static String createCarParkBase(double height) '''
+	   	«««	2 Transforms, because inline rules didn't work
+	   	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
         	<Group USE="group_CarPark_base"/>
+        </Transform>
         </Transform>
 	'''
 }
