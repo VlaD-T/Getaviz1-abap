@@ -46,7 +46,7 @@
 		},
         { 	name: 	"relationConnectorController",
 
-            showInnerRelations: false,
+            showInnerRelations: true,
             sourceStartAtBorder: true,
             targetEndAtBorder: true,
         },

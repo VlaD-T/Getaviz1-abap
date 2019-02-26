@@ -40,10 +40,9 @@ class City2City_abap {
 			buildings.forEach[setBuildingAttributes]
 
 			if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
-				ABAPCityLayout::cityLayout(cityRoot)				
-				CityHeightLayout::cityHeightLayout(cityRoot)	
-                buildings.forEach[calculateAdvChimneys]
-                			
+				ABAPCityLayout::cityLayout(cityRoot)
+				CityHeightLayout::cityHeightLayout(cityRoot)
+				buildings.forEach[calculateAdvChimneys]
 			} else {
 				CityLayout::cityLayout(cityRoot)
 				buildings.forEach[calculateFloors]
@@ -401,24 +400,6 @@ class City2City_abap {
 	}
 	
 	def void calculateAdvChimneys(Building b) {
-		// advanced chimneys currently work only for reports, tables & interfaces
-		if (b.type != "FAMIX.Report" && b.type != "FAMIX.Class" && b.type != "FAMIX.Table"){
-			return 
-		}
-		
-		if (b.data == 0){
-			return
-		}
-		
-		if (b.type == "FAMIX.Table"){
-			createAdvChimneysTable(b)
-		} else {
-			createAdvChimneys(b)
-		}
-	}
-	
-	def void createAdvChimneys(Building b) {
-
 		val cityFactory = new CityFactoryImpl
 //		var bWidth   = b.width // 2 -> attributeWidth * 3 (4)
         var bWidth   = config.getAdvBuildungAttributeWidth(b.type)

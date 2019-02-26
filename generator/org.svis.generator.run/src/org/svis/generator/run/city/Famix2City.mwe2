@@ -2,6 +2,7 @@ module org.svis.generator.run.city
 
 var inputPath = "./input/famix"
 var outputPath = "./output/city/famix"
+var metadataPath = "./output/city/famix/metadata"
 //var projectName = "org.svis.generator.run"
 //var runtimeProject = "../${projectName}"
 
@@ -34,7 +35,7 @@ Workflow {
 		register = org.svis.generator.famix.Famix2JSONStandaloneSetup {}
 		slot = 'metadata'
 		outlet = {
-			path = "${outputPath}"
+			path = "${metadataPath}"
 		}
 	}
 

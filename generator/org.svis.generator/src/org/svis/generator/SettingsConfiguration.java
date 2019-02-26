@@ -74,8 +74,12 @@ public class SettingsConfiguration {
 		}
 	}
 	
-	public Boolean generateJSON() {
-		return config.getBoolean("generator.generateJSON", true);
+	public Boolean generateMetadata() {
+		return config.getBoolean("generator.generateMetadata", true);
+	}
+	
+	public int getMetadata_NoePerFile() {
+		return config.getInt("generator.metadata_noe_per_file", 0);
 	}
 	
 	public Boolean showNamespaceVersions() {
@@ -1704,6 +1708,12 @@ public class SettingsConfiguration {
 			
 		} else if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abapSimpleBlocks_me_height", 8);
+		
+		} else if (type.equals("FAMIX.Table")) {
+			return config.getDouble("city.abapSimpleBlocks_ta_height", 8);
+		
+		} else if (type.equals("FAMIX.Attribute")) {
+			return config.getDouble("city.abapSimpleBlocks_at_height", 10);
 			
 		} else if (type.equals("FAMIX.Table")) {
 			return config.getDouble("city.abapSimpleBlocks_ta_height", 8);

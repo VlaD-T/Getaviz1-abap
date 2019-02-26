@@ -4,6 +4,8 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_FactoryBuilding {
 	def static String defineFactoryBuildingRoof(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	    <Transform translation='0 0 «height»'>
 	    <Group DEF="group_factory_building_roof">
 	        <Shape>
@@ -22,9 +24,12 @@ class CustomModel_FactoryBuilding {
 	        </Shape>
 	    </Group>
 	    </Transform>
+	    </Transform>
 	'''
 
    def static String defineFactoryBuildingFloor (double height) '''
+   	«««	2 Transforms, because inline rules didn't work
+   	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
         <Transform translation=' 0 0 «height»'>
         <Group DEF="group_factory_building_floor">
             <Shape>
@@ -42,10 +47,13 @@ class CustomModel_FactoryBuilding {
 				</IndexedFaceSet>
 			</Shape>           
          </Group>
-         </Transform>                     
+         </Transform>    
+         </Transform>                 
 	'''   
 
    def static String defineFactoryBuildingBase(double height) '''
+   	«««	2 Transforms, because inline rules didn't work
+   	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
    <Transform translation='0 0 «height»'>
         <Group DEF="group_factory_building_base">
             <Shape>
@@ -87,24 +95,34 @@ class CustomModel_FactoryBuilding {
 				</IndexedFaceSet>
 			</Shape>       
         </Group> 
-       </Transform>    
+       </Transform>  
+       </Transform>  
 	''' 
 
 	def static String createFactoryBuildingRoof(double height) '''
+		«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_factory_building_roof"/>
+		</Transform>
 		</Transform>
 	'''
 	
 	def static String createFactoryBuildingFloor(double height) '''
+		«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_factory_building_floor"/>
+		</Transform>
 		</Transform>
 	'''
 	
 	def static String createFactoryBuildingBase(double height) '''
+		«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_factory_building_base"/>
+		</Transform>
 		</Transform>
 	'''
 }

@@ -5,8 +5,8 @@ import org.svis.generator.city.CityUtils
 class CustomModel_SimpleHouse {
 
 	def static String defineSimpleHouseShape()'''
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Group DEF="SimpleHouse">
-			««« Walls
 			<Shape>
 				<Appearance>
 					<Material diffuseColor="«CityUtils.getRGBFromHEX("#e2a882")»"  ««« wall: light brown	
@@ -22,7 +22,6 @@ class CustomModel_SimpleHouse {
 					            />
 				</IndexedFaceSet>
 			</Shape>
-			««« Roof
 			<Shape>
 				<Appearance>
 					<Material diffuseColor="«CityUtils.getRGBFromHEX("#f73325")»" ««« roof: red
@@ -36,7 +35,6 @@ class CustomModel_SimpleHouse {
 					<Coordinate USE="coords_SimpleHouse_Shape_IndexedFaceSet" />
 				</IndexedFaceSet>
 			</Shape>
-			««« Windows
 			<Shape>
 				<Appearance>
 					<Material diffuseColor="«CityUtils.getRGBFromHEX("#85a3a2")»" ««« window: blue
@@ -50,7 +48,6 @@ class CustomModel_SimpleHouse {
 					<Coordinate USE="coords_SimpleHouse_Shape_IndexedFaceSet" />
 				</IndexedFaceSet>
 			</Shape>
-			««« Door
 			<Shape>
 				<Appearance>
 					<Material diffuseColor="«CityUtils.getRGBFromHEX("#b67867")»" ««« door: brown
@@ -64,7 +61,6 @@ class CustomModel_SimpleHouse {
 					<Coordinate USE="coords_SimpleHouse_Shape_IndexedFaceSet" />
 				</IndexedFaceSet>
 			</Shape>
-			««« Ground
 			<Shape>
 				<Appearance>
 					<Material diffuseColor="«CityUtils.getRGBFromHEX("#88ab45")»" ««« ground: green
@@ -78,9 +74,12 @@ class CustomModel_SimpleHouse {
 				</IndexedFaceSet>
 			</Shape>
 		</Group>
+	</Transform>
 	'''
 
 	def static createSimpleHouseShape()'''
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Group USE="SimpleHouse"/>
+	</Transform>
 	'''
 }

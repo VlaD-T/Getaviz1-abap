@@ -4,6 +4,8 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_ApartmentBuilding {
 	def static String defineApartmentBuildingRoof(double height) '''
+«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	    <Transform translation='0 0 «height»'>
 	    <Group DEF="group_apartment_building_roof">
 	        <Shape>
@@ -58,9 +60,12 @@ class CustomModel_ApartmentBuilding {
 			</Shape>	       
 	    </Group>
 	    </Transform>
+   </Transform>
 	'''
 
 	def static String defineApartmentBuildingFloor (double height) '''
+«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
     	<Transform translation=' 0 0 «height»'>
     		<Group DEF="group_apartment_building_floor">
     			<Shape>
@@ -90,10 +95,13 @@ class CustomModel_ApartmentBuilding {
 					</IndexedFaceSet>
 				</Shape>
     		</Group>
-    	</Transform>                     
+    	</Transform>      
+    </Transform>                
 	'''   
 
 	def static String defineApartmentBuildingBase(double height) '''
+«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	<Transform translation=' 0 0 «height»'>
 		<Group DEF="group_apartment_building_base">
 			<Shape>
@@ -136,24 +144,34 @@ class CustomModel_ApartmentBuilding {
 			</Shape>        
 		</Group>
 		</Transform> 
+	</Transform>
 	''' 
 
 
 	def static String createApartmentBuildingRoof(double height) '''
-		<Transform translation='0 0 «height»'>
+«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
+		<Transform translation='0 0 «height»' >
 			<Group USE="group_apartment_building_roof"/>
 		</Transform>
+	</Transform>
 	'''
 	
 	def static String createApartmentBuildingFloor(double height) '''
+«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_apartment_building_floor"/>
 		</Transform>
+	</Transform>
 	'''
 	
 	def static String createApartmentBuildingBase(double height) '''
+«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 	        <Group USE="group_apartment_building_base"/>
         </Transform>
+    </Transform>
 	'''
 }
