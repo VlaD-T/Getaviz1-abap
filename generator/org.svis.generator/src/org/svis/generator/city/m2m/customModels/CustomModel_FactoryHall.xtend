@@ -4,6 +4,8 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_FactoryHall {
 	def static String defineFactoryHallRoof(double height) '''
+	«««	2 Transforms, because inline rules didn't work
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 		    <Group DEF="group_ME_report-roof">
 		        <Shape>
@@ -22,9 +24,12 @@ class CustomModel_FactoryHall {
 		        </Shape>	       
 		    </Group>
 		</Transform>
+		</Transform>
 	'''
 
 	def static String defineFactoryHallFloor (double height) '''
+		«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	    <Transform translation=' 0 0 «height»'>
 		    <Group DEF="group_ME_report-floor">
 		        <Shape>
@@ -103,9 +108,12 @@ class CustomModel_FactoryHall {
 		        </Shape>    
 		    </Group>
 		 </Transform>
+		 </Transform>
 	'''
 
 	def static String defineFactoryHallBase(double height) '''
+		«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation=' 0 0 «height»'>
 		    <Group DEF="group_ME_report-base">
 		        <Shape>
@@ -148,23 +156,33 @@ class CustomModel_FactoryHall {
 				</Shape>	        
 		    </Group>
 	    </Transform>
+	    </Transform>
 	'''
 
 	def static String createFactoryHallRoof(double height) '''
+		«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	    <Transform translation='0 0 «height»'>
 			<Group USE="group_ME_report-roof"/>
+		</Transform>
 		</Transform>
 	'''
 	
 	def static String createFactoryHallFloor(double height) '''
+		«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 	    <Transform translation='0 0 «height»'>
 			<Group USE="group_ME_report-floor"/>
+		</Transform>
 		</Transform>
 	'''
 	
 	def static String createFactoryHallBase(double height) '''
+		«««	2 Transforms, because inline rules didn't work
+		<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Transform translation='0 0 «height»'>
 			<Group USE="group_ME_report-base"/>
+		</Transform>
 		</Transform>
 	'''
 }

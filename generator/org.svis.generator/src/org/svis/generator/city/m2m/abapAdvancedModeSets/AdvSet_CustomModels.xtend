@@ -377,8 +377,7 @@ class AdvSet_CustomModels {
 		«ELSEIF entity.type == "FAMIX.FunctionModule"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 					«IF defineCMFactoryBuildingFumo»
 						«defineCMFactoryBuildingFumo = false»
 						«FOR part : entity.getBuildingParts»
@@ -417,8 +416,7 @@ class AdvSet_CustomModels {
 		«ELSEIF entity.type == "FAMIX.Report"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
-						   rotation='0 0.707107 0.707107 3.141593'>
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 					«IF defineCMFactoryHall»
 						«defineCMFactoryHall = false»
 						«FOR part : entity.getBuildingParts»
@@ -468,8 +466,7 @@ class AdvSet_CustomModels {
 		«ELSEIF entity.type == "FAMIX.Formroutine"»
 			  <Group DEF='«entity.id»'>
  			     <Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
- 			           		scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'
- 			           		rotation='0 0.707107 0.707107 3.141593'>
+ 			           		scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
  					«IF defineCMFactoryBuilding»
  						«defineCMFactoryBuilding = false»
  						«FOR part : entity.getBuildingParts»
