@@ -1475,6 +1475,9 @@ public class SettingsConfiguration {
 	public boolean isShowTables() {
 		return config.getBoolean("city.abap.showTables", false);
 	}
+	public boolean isShowTableElements() {
+		return config.getBoolean("city.abap.showTableElements", false);
+	}
 	
 	public boolean isShowTableDistrictWithoutColor() {
 		return config.getBoolean("city.abap.showTableDistrictWithoutColor", false);
@@ -1702,6 +1705,12 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abapSimpleBlocks_me_height", 8);
 			
+		} else if (type.equals("FAMIX.Table")) {
+			return config.getDouble("city.abapSimpleBlocks_ta_height", 8);
+		
+		} else if (type.equals("FAMIX.Attribute")) {
+			return config.getDouble("city.abapSimpleBlocks_at_height", 10);
+			
 		} else {
 			return 0;
 		}
@@ -1722,6 +1731,9 @@ public class SettingsConfiguration {
 			
 		} else if (type.equals("FAMIX.Table")) {
 			return config.getDouble("city.abap.adv_table_def_size", 20);	
+			
+		} else if (type.equals("FAMIX.TableElement")) {
+			return config.getDouble("city.abap.adv_tableElement_def_size", 3);	
 				
 		} else if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abap.adv_method_def_size", 20);
@@ -1732,12 +1744,18 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Class")) {
 			return config.getDouble("city.abap.adv_class_def_size", 15);
 		
+		} else if (type.equals("FAMIX.InterfaceAttribute")) {
+			return config.getDouble("city.abap.adv_interfaceAttribute_def_size", 6);
+			
 		} else if (type.equals("FAMIX.FunctionModule")) {
 			return config.getDouble("city.abap.adv_fumo_def_size", 20);
 			
 		} else if (type.equals("FAMIX.Report")) {
 			return config.getDouble("city.abap.adv_report_def_size", 20);
-		
+			
+		} else if (type.equals("FAMIX.ReportAttribute")) {
+			return config.getDouble("city.abap.adv_reportAttribute_def_size", 3);
+				
 		} else if (type.equals("FAMIX.Formroutine")) {
 			return config.getDouble("city.abap.adv_formroutine_def_size", 20);
 			
@@ -1762,6 +1780,9 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Table")) {
 			return config.getDouble("city.abap.adv_table_scale", 0.1);	
 			
+		} else if (type.equals("FAMIX.TableElement")) {
+			return config.getDouble("city.abap.adv_tableElement_scale", 0.1);	
+			
 		} else if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abap.adv_method_scale", 0.1);
 			
@@ -1771,11 +1792,17 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Class")) { // Interface
 			return config.getDouble("city.abap.adv_class_scale", 0.1);
 		
+		} else if (type.equals("FAMIX.InterfaceAttribute")) { // Interface
+			return config.getDouble("city.abap.adv_interfaceAttribute_scale", 0.1);
+			
 		} else if (type.equals("FAMIX.FunctionModule")) {
 			return config.getDouble("city.abap.adv_fumo_scale", 0.1);
 			
 		} else if (type.equals("FAMIX.Report")) {
 			return config.getDouble("city.abap.adv_report_scale", 0.1);
+
+		} else if (type.equals("FAMIX.ReportAttribute")) { 
+			return config.getDouble("city.abap.adv_reportAttribute_scale", 0.1);
 		
 		} else if (type.equals("FAMIX.Formroutine")) {
 			return config.getDouble("city.abap.adv_formroutine_scale", 0.1);
@@ -1816,7 +1843,7 @@ public class SettingsConfiguration {
 		if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abap.method_floor_height", 5);	
 			
-		} else if (type.equals("FAMIX.Attribute")) { // Class attribute
+		} else if (type.equals("FAMIX.Attribute")){ // Class attribute
 			return config.getDouble("city.abap.attribute_floor_height", 5);
 			
 		} else if (type.equals("FAMIX.Class")) { // Interface
@@ -1865,6 +1892,42 @@ public class SettingsConfiguration {
 			return 0;
 		}
 	}
+	
+	public double getAdvBuildingShapeHeight(String type) {
+		if (type.equals("FAMIX.Table")) {
+			return config.getDouble("city.abap.table_shape_height", 3);			
+		} else {
+			return 0;
+		}	
+	}
+	
+	public double getAdvBuildungAttributeHeight(String type) {
+		if (type.equals("FAMIX.Report")) {
+			return config.getDouble("city.abap.attribute_report_height", 4);
+			
+		} else if (type.equals("FAMIX.Class")) { 
+			return config.getDouble("city.abap.attribute_interface_height", 3);
+			
+		} else if (type.equals("FAMIX.Table")) { 
+			return config.getDouble("city.abap.table_element_height", 3);	
+			
+		} else {
+			return 0;
+		}	
+	} 
+	
+	public double getAdvBuildungAttributeWidth(String type) {
+		if (type.equals("FAMIX.Report")) {
+			return config.getDouble("city.abap.attribute_report_width", 3);
+		} else if (type.equals("FAMIX.Class")) { 
+			return config.getDouble("city.abap.attribute_interface_width", 3);
+		} else if (type.equals("FAMIX.Table")) { 
+			return config.getDouble("city.abap.table_element_width", 3);	
+		} else {
+			return 0; 
+		}
+	}
+	
 	
 	public double getClassRoofAntennaHeight() {
 		return config.getDouble("city.abap.class_roof-antenna_height", 7);
