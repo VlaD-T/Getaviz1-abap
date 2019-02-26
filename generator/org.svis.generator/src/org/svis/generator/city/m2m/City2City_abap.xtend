@@ -616,14 +616,14 @@ class City2City_abap {
 			chimney.position.z = (bPosZ)
 			chimneyCounter++
 		}
-//		
-//		chimneyCounter = 0
-//		for (chimney : container5) {
-//			chimney.position.x = (bPosX) 
-//			chimney.position.y = getAdvYforChimney(b)
-//			chimney.position.z = (bPosZ) 
-//			chimneyCounter++
-//		}
+		
+		chimneyCounter = 0
+		for (chimney : container5) {
+			chimney.position.x = (bPosX) + 8 + (2 * chimneyCounter)
+			chimney.position.y = getAdvYforChimney(b)
+			chimney.position.z = (bPosZ) 
+			chimneyCounter++
+		}
 	}
 
 	// Display chimneys at top/bottom (depends on settings)
