@@ -1310,25 +1310,12 @@ public class SettingsConfiguration {
 	}
 	
 	//Shapes for advanced mode. Currently only city2x3d affected.
-	public static enum AbapAdvCitySet {
-		CustomModels, SimpleBlocks, SimpleTexturedBlocks;
-	}
-	
 	public String getAbapAdvCitySet() {
 		return config.getString("city.abapAdvCity_set", "CustomModels");
 	}
 	
-	public AbapAdvCitySet getAbapAdvCity_set() {
-		switch (getAbapAdvCitySet()) {
-		case "CustomModels":
-			return AbapAdvCitySet.CustomModels;
-		case "SimpleBlocks":
-			return AbapAdvCitySet.SimpleBlocks;
-		case "SimpleTexturedBlocks":
-			return AbapAdvCitySet.SimpleTexturedBlocks;
-		default:
-			return AbapAdvCitySet.CustomModels;
-		}
+	public String getAbapAdvCity_set() {
+		return "org.svis.generator.city.m2m.abapAdvancedModeSets." + getAbapAdvCitySet();
 	}
 	
 	public boolean isAbapUseLights() {
