@@ -15,7 +15,7 @@
 
 	$multipartX3dUrl = $modelUrl . "/multiPart.x3d";
 	$multipartJsonUrl = $modelUrl . "/multiPart.json";
-	$metaDataJsonUrl = $modelUrl . "/metaData.json";
+	$metaDataJsonUrl = $modelUrl . "/metadata/metaData.json";
 ?>
 <script type="text/javascript">  
 	var modelUrl		 = "<?php echo $modelUrl; ?>"; 

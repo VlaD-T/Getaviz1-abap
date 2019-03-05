@@ -19,9 +19,7 @@ import org.svis.generator.SettingsConfiguration.BuildingType
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
 import org.svis.generator.city.m2m.customModels.*
 import org.svis.generator.city.CityUtils
-import org.svis.generator.city.m2m.abapAdvancedModeSets.SetsClassMethods
-
-
+import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_Interface
 
 class City2X3D_abap_adv {
 			
@@ -35,8 +33,7 @@ class City2X3D_abap_adv {
 		null
 	}		
 	
-	var SetsClassMethods abstractClass = advSetClass.newInstance() as SetsClassMethods
-	
+	var AdvSet_Interface advSetClass_Instance = advSetClass.newInstance() as AdvSet_Interface	
 	
 	def set(List<Entity> entities) {
 		if (advSetClass === null) {
@@ -45,9 +42,6 @@ class City2X3D_abap_adv {
 		}		
 		val x3d = try {
 			entities.toX3DModel()	
-		} catch (InvocationTargetException e) {
-			log.info("Error in toX3DModel")
-			null
 		} catch (NoSuchMethodException e) {
 			log.info("Check Method Parameters")
 			null
@@ -56,7 +50,18 @@ class City2X3D_abap_adv {
 	}
 	
 	// transform logic
-	def String toX3DModel(List<Entity> entities) '''
+	def String toX3DModel(List<Entity> entities) '''	
+		<Group DEF='defineModels'>
+			<Transform translation='0 -100 0'>
+				<Shape>
+					«advSetClass_Instance.defineElements()»
+«««					<Appearance>
+«««						<Material diffuseColor='0.8784313725490196 0.8392156862745098 0.39215686274509803' transparency='0'></Material>
+«««					</Appearance>
+				</Shape>
+			</Transform>
+		</Group>
+			
   		«FOR entity : entities»
 			«IF entity.type == "FAMIX.Namespace"  || entity.type == "reportDistrict"
 				|| entity.type == "classDistrict" || entity.type == "functionGroupDistrict" 
@@ -111,34 +116,34 @@ class City2X3D_abap_adv {
 					   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
 			
 			«IF entity.type == "FAMIX.DataElement"»
-				«abstractClass.getElemFor_DataElement(entity)»
+				«advSetClass_Instance.getElemFor_DataElement(entity)»
 			«ELSEIF entity.type == "FAMIX.Domain"»
-				«abstractClass.getElemFor_Domain(entity)»
+				«advSetClass_Instance.getElemFor_Domain(entity)»
 			«ELSEIF entity.type == "FAMIX.StrucElement"»
-				«abstractClass.getElemFor_StrucElement(entity)»
+				«advSetClass_Instance.getElemFor_StrucElement(entity)»
 			«ELSEIF entity.type == "FAMIX.Table"»
-				«abstractClass.getElemFor_Table(entity)»
+				«advSetClass_Instance.getElemFor_Table(entity)»
 			«ELSEIF entity.type == "FAMIX.Method"»
-				«abstractClass.getElemFor_Method(entity)»
+				«advSetClass_Instance.getElemFor_Method(entity)»
 			«ELSEIF entity.type == "FAMIX.Class"»
-				«abstractClass.getElemFor_Class(entity)»
+				«advSetClass_Instance.getElemFor_Class(entity)»
 			«ELSEIF entity.type == "FAMIX.FunctionModule"»
-				«abstractClass.getElemFor_FunctionModule(entity)»
+				«advSetClass_Instance.getElemFor_FunctionModule(entity)»
 			«ELSEIF entity.type == "FAMIX.Report"»
-				«abstractClass.getElemFor_Report(entity)»
+				«advSetClass_Instance.getElemFor_Report(entity)»
 			«ELSEIF entity.type == "FAMIX.Formroutine"»
-				«abstractClass.getElemFor_Formroutine(entity)»
+				«advSetClass_Instance.getElemFor_Formroutine(entity)»
 			«ELSEIF entity.type == "FAMIX.TableType"»
-				«IF entity.type == "FAMIX.ABAPStruc"»
-					«abstractClass.getElemFor_TableType_ABAPStruc(entity)»
+				«IF entity.rowType == "FAMIX.ABAPStruc"»
+					«advSetClass_Instance.getElemFor_TableType_ABAPStruc(entity)»
 				«ELSEIF entity.rowType == "FAMIX.Table"»
-					«abstractClass.getElemFor_TableType_Table(entity)»
+					«advSetClass_Instance.getElemFor_TableType_Table(entity)»
 				«ENDIF»
 			«ELSEIF entity.type == "FAMIX.Attribute"» 
 				«IF entity.parentType == "FAMIX.FunctionGroup"»	
-					«abstractClass.getElemFor_Attribute_FunctionGroup(entity)»
+					«advSetClass_Instance.getElemFor_Attribute_FunctionGroup(entity)»
 				«ELSEIF entity.parentType == "FAMIX.Class"»
-					«abstractClass.getElemFor_Attribute_Class(entity)»
+					«advSetClass_Instance.getElemFor_Attribute_Class(entity)»
 				«ENDIF»
 			«ENDIF»
 				

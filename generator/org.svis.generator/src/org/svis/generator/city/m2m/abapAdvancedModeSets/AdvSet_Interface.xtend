@@ -2,7 +2,8 @@ package org.svis.generator.city.m2m.abapAdvancedModeSets
 
 import org.svis.xtext.city.Entity
 
-abstract class SetsClassMethods {
+interface AdvSet_Interface {
+	def String defineElements() ''''''	
 	def String getElemFor_DataElement(Entity entity) ''''''
 	def String getElemFor_Domain(Entity entity) ''''''
 	def String getElemFor_StrucElement(Entity entity) ''''''
