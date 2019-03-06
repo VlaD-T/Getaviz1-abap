@@ -259,8 +259,8 @@ class AdvSet_CustomModels {
 
 		«ELSEIF entity.type == "FAMIX.Class"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'						   
+						   scale='«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»'>
 					«IF defineCMRadioTower»
 						«defineCMRadioTower = false»
 						«FOR part : entity.getBuildingParts»
@@ -392,7 +392,8 @@ class AdvSet_CustomModels {
 		«ELSEIF entity.type == "FAMIX.Report"»
 			<Group DEF='«entity.id»'>
 				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
-						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
+						   scale='«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»'>
+						   
 					«IF defineCMFactoryHall»
 						«defineCMFactoryHall = false»
 						«FOR part : entity.getBuildingParts»
@@ -567,7 +568,7 @@ class AdvSet_CustomModels {
                        rotation='0.000000 0.707107 0.707107 3.141593'>
                     <Shape>
                       	<Appearance>
-                      		<Material diffuseColor="«CityUtils.getRGBFromHEX("#39434b")»" 
+                      		<Material diffuseColor="«CityUtils.getRGBFromHEX("#95fff3")»" 
   							          transparency="0.0"
   							          />
                       	</Appearance>
