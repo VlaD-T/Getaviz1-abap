@@ -28,9 +28,7 @@ $(document).ready(function () {
 					metaParts.push(path + value.path)
 				})
 			}).done(() => {
-				setTimeout(() => {
-					resolve(metaParts)
-				}, 1500)
+				resolve(metaParts)
 			}).fail(() => {
 				reject("Failed to load metaData.json")
 			})
@@ -49,9 +47,7 @@ $(document).ready(function () {
 				}).done(() => {					
 					counter++
 					if (counter == metaParts.length) {
-						setTimeout(() => {
-							resolve(jsonData)
-						}, 2000)
+						resolve(jsonData)
 					}
 				}).fail(() => {
 					reject("Failed to load metaData_PART.json")

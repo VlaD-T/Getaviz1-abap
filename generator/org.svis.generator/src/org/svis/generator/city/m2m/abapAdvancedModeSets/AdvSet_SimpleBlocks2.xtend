@@ -65,148 +65,148 @@ class AdvSet_SimpleBlocks2 {
 	def String toBuilding(Entity entity)'''
 		«IF entity.type == "FAMIX.DataElement"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-					<Shape>
-						<Cylinder radius='«entity.width/2»' height='«config.getAbapSimpleBlock_element_height(entity.type)»'></Cylinder>
-						<Appearance>
-							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Cylinder radius='«entity.width/2»' height='«config.getAbapSimpleBlock_element_height(entity.type)»'></Cylinder>
+«««						<Appearance>
+«««							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
 			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Domain"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-					<Shape>
-						<Cylinder radius='«entity.width/3»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
-						<Appearance>
-							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Cylinder radius='«entity.width/3»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
+«««						<Appearance>
+«««							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
 			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Table"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-					<Shape>
-						<Cylinder radius='«entity.width/4»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
-						<Appearance>
-							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Cylinder radius='«entity.width/4»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
+«««						<Appearance>
+«««							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
 			</Group>
 		
 		«ELSEIF entity.type == "FAMIX.StrucElement"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-					<Shape>
-						<Cone bottomRadius='«entity.width / 3»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cone>
-						<Appearance>
-							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Cone bottomRadius='«entity.width / 3»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cone>
+«««						<Appearance>
+«««							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
 			</Group>
 								
 		«ELSEIF entity.type == "FAMIX.TableType"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-					<Shape>
-						<Cone bottomRadius='«entity.width / 4»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cone>
-						<Appearance>
-							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Cone bottomRadius='«entity.width / 4»' height='«config.getAbapSimpleBlock_element_height(entity.type)»' ></Cone>
+«««						<Appearance>
+«««							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
 			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Method"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-					<Shape>
-						<Box size='«entity.width / 2 +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type) +" "+ entity.length / 2»'></Box>
-						<Appearance>
-							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Box size='«entity.width / 2 +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type) +" "+ entity.length / 2»'></Box>
+«««						<Appearance>
+«««							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
 			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Class"» ««« Interface
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-					<Shape>
-						<Box size='«entity.width / 2 +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type) +" "+ entity.length / 2»'></Box>
-						<Appearance>
-							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-						</Appearance>
-					</Shape>
-				</Transform>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««					<Shape>
+«««						<Box size='«entity.width / 2 +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type) +" "+ entity.length / 2»'></Box>
+«««						<Appearance>
+«««							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««						</Appearance>
+«««					</Shape>
+«««				</Transform>
 			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Attribute"»
 			«IF entity.parentType == "FAMIX.FunctionGroup"»
 				<Group DEF='«entity.id»'>
-					<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-						<Shape>
-							<Cylinder radius='«entity.width / 6»' height='«entity.height * config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
-							<Appearance>
-								<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-							</Appearance>
-						</Shape>
-					</Transform>
+«««					<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««						<Shape>
+«««							<Cylinder radius='«entity.width / 6»' height='«entity.height * config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
+«««							<Appearance>
+«««								<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««							</Appearance>
+«««						</Shape>
+«««					</Transform>
 				</Group>
 				
 			«ELSEIF entity.parentType == "FAMIX.Class"» ««« Interface
 				<Group DEF='«entity.id»'>
-					<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
-						<Shape>
-							<Cylinder radius='«entity.width / 6»' height='«entity.height * config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
-							<Appearance>
-								<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
-							</Appearance>
-						</Shape>
-					</Transform>
+«««					<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««						<Shape>
+«««							<Cylinder radius='«entity.width / 6»' height='«entity.height * config.getAbapSimpleBlock_element_height(entity.type)»' ></Cylinder>
+«««							<Appearance>
+«««								<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+«««							</Appearance>
+«««						</Shape>
+«««					</Transform>
 				</Group>
 			«ENDIF»
 
 		«ELSEIF entity.type == "FAMIX.FunctionModule"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
 					<Shape>
-						<Box size='«entity.width / 2 +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type) +" "+ entity.length / 2»'></Box>
+«««						<Box size='«entity.width / 2 +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type) +" "+ entity.length / 2»'></Box>
 						<Appearance>
 							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 						</Appearance>
 					</Shape>
-				</Transform>
+«««				</Transform>
 			</Group>
 
 		«ELSEIF entity.type == "FAMIX.Report"»		
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
 					<Shape>
-						<Box size='«entity.width +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type) +" "+ entity.length»'></Box>
+«««						<Box size='«entity.width +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type) +" "+ entity.length»'></Box>
 						<Appearance>
 							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 						</Appearance>
 					</Shape>
-				</Transform>
+«««				</Transform>
 			</Group>
 			
 		«ELSEIF entity.type == "FAMIX.Formroutine"»
 			<Group DEF='«entity.id»'>
-				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
+«««				<Transform translation='«entity.position.x +" "+ (entity.position.y + entity.height * config.getAbapSimpleBlock_element_height(entity.type) / 2) +" "+ entity.position.z»'>
 					<Shape>
-						<Box size='«entity.width +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type ) +" "+ entity.length»'></Box>
+«««						<Box size='«entity.width +" "+ entity.height * config.getAbapSimpleBlock_element_height(entity.type ) +" "+ entity.length»'></Box>
 						<Appearance>
 							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 						</Appearance>
 					</Shape>
-				</Transform>
+«««				</Transform>
 			</Group>
 			
 		«ENDIF»		
