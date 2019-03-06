@@ -27,6 +27,9 @@ class CustomModels implements AdvSet_Interface {
 		«CustomModel_FactoryHall::defineFactoryHallBase(0)»
 		«CustomModel_FactoryHall::defineFactoryHallFloor(0)»
 		«CustomModel_FactoryHall::defineFactoryHallRoof(0)»
+		«CustomModel_CarPark::defineCarParkBase(0)»
+		«CustomModel_CarPark::defineCarParkFloor(0)»
+		«CustomModel_CarPark::defineCarParkRoof(0)»
 		«CustomModel_FactoryBuilding::defineFactoryBuildingBase(0)»
 		«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(0)»
 		«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(0)»

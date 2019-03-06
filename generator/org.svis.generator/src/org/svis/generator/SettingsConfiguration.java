@@ -1667,51 +1667,6 @@ public class SettingsConfiguration {
 			return null;
 		}
 	}	
-		
-	public double getAbapSimpleBlock_element_height(String type) {
-		if (type.equals("FAMIX.DataElement")) {
-			return config.getDouble("city.abapSimpleBlocks_de_height", 8);
-			
-		} else if (type.equals("FAMIX.Domain")) {
-			return config.getDouble("city.abapSimpleBlocks_do_height", 4);
-		
-		} else if (type.equals("FAMIX.StrucElement")) {
-			return config.getDouble("city.abapSimpleBlocks_se_height", 10);
-			
-		} else if (type.equals("FAMIX.TableType")) {
-			return config.getDouble("city.abapSimpleBlocks_st_height", 20);
-			
-		} else if (type.equals("FAMIX.Report")) {
-			return config.getDouble("city.abapSimpleBlocks_re_height", 10);
-		
-		} else if (type.equals("FAMIX.Formroutine")) {
-			return config.getDouble("city.abapSimpleBlocks_fr_height", 10);
-			
-		} else if (type.equals("FAMIX.FunctionModule")) {
-			return config.getDouble("city.abapSimpleBlocks_fm_height", 10);
-			
-		} else if (type.equals("FAMIX.Class")) {
-			return config.getDouble("city.abapSimpleBlocks_cl_height", 8);
-			
-		} else if (type.equals("FAMIX.Method")) {
-			return config.getDouble("city.abapSimpleBlocks_me_height", 8);
-		
-		} else if (type.equals("FAMIX.Table")) {
-			return config.getDouble("city.abapSimpleBlocks_ta_height", 8);
-		
-		} else if (type.equals("FAMIX.Attribute")) {
-			return config.getDouble("city.abapSimpleBlocks_at_height", 10);
-			
-		} else if (type.equals("FAMIX.Table")) {
-			return config.getDouble("city.abapSimpleBlocks_ta_height", 8);
-		
-		} else if (type.equals("FAMIX.Attribute")) {
-			return config.getDouble("city.abapSimpleBlocks_at_height", 10);
-			
-		} else {
-			return 0;
-		}
-	}
 	
 	public double getAbapAdvBuildingDefSize(String type) {
 		if (type.equals("FAMIX.DataElement")) {
@@ -1804,6 +1759,24 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Formroutine")) {
 			return config.getDouble("city.abap.adv_formroutine_scale", 0.1);
 			
+		} else {
+			return 0;
+		}
+	}
+	
+	public double getSimpleBlocksHeigth(String type) {
+		if (type.equals("FAMIX.DataElement")) {
+			return config.getDouble("city.abap.dataElement_height", 11);
+		} else if (type.equals("FAMIX.Domain")) {
+			return config.getDouble("city.abap.domain_height", 15);
+		} else if (type.equals("FAMIX.Table")) {
+			return config.getDouble("city.abap.table_heigth", 15);
+		} else if (type.equals("TT_Struc")) {
+			return config.getDouble("city.abap.tt_struture_height", 7);
+		} else if (type.equals("TT_Table")) {
+			return config.getDouble("city.abap.tt_table_height", 10);
+		} else if (type.equals("FAMIX.FunctionGroup")) {
+			return config.getDouble("city.abap.fugrAttribute_height", 19);
 		} else {
 			return 0;
 		}

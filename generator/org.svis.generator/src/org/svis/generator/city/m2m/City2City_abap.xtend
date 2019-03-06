@@ -101,11 +101,7 @@ class City2City_abap {
 		}
 	}
 
-	def private setBuildingAttributes(Building b) {
-		setBuildingAttributesFloors(b)
-	}
-
-	def void setBuildingAttributesFloors(Building b) {
+	def void setBuildingAttributes(Building b) {
 
 		if (b.dataCounter < 2) { // pko 2016
 			b.width = 2 // TODO in settings datei aufnehmen
@@ -186,6 +182,9 @@ class City2City_abap {
 					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
 				}
 				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
+				for (var i = 0; i < b.data.length; i++) {
+					b.buildingParts.add(createAdvBuildingChimney(b.data.get(i)))
+				}
 
 			} else if (b.type == "FAMIX.FunctionModule") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
@@ -205,7 +204,10 @@ class City2City_abap {
 				for (var i = 1; i <= b.height - 1; i++) {
 					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
 				}
-				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))	
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
+				for (var i = 0; i < b.data.length; i++) {
+					b.buildingParts.add(createAdvBuildingChimney(b.data.get(i)))
+				}	
 
 			} else if (b.type == "FAMIX.Formroutine") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
@@ -626,8 +628,6 @@ class City2City_abap {
 		var roofHeight = config.getAdvBuildingRoofHeight(b.type)
 		var shapeHeight = config.getAdvBuildingShapeHeight(b.type)
 		var attributeHeight = config.getAdvBuildungAttributeHeight(b.type)
-		
-		var elementHeight = config.getAbapSimpleBlock_element_height(b.type)
 
 		
 //		if (config.abapAdvCity_set == AbapAdvCitySet::CustomModels) {
@@ -693,6 +693,13 @@ class City2City_abap {
 		roof.height = config.getAdvBuildingBaseHeight(type) + (bHeight - 1) * config.getAdvBuildingFloorHeight(type)
 		roof.type = "Roof"		
 		return roof
+	}
+	
+	def Building createAdvBuildingChimney(BuildingSegment bs) {
+		var chimney = cityFactory.createBuilding
+		chimney.type = "Chimney"
+		chimney.name = bs.value
+		return chimney
 	}
 	
 }
