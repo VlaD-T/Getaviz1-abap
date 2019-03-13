@@ -317,7 +317,7 @@ class Famix2City_abap {
           val newStructureDistrict = cityFactory.createDistrict
           newStructureDistrict.name = newDistrict.name + "_structureDistrict"
           newStructureDistrict.type = "structureDistrict"
-          newStructureDistrict.id = struc.id
+          newStructureDistrict.id = createID("StructureDistrict" + struc.id)
           newStructureDistrict.level + 1
           if(elem.iteration >= 1) {
            newStructureDistrict.notInOrigin = "true"
@@ -338,7 +338,7 @@ class Famix2City_abap {
 	      val newDomainDistrict = cityFactory.createDistrict
 		  newDomainDistrict.name = newDistrict.name + "_domainDistrict"
 		  newDomainDistrict.type = "domainDistrict"
-		  newDomainDistrict.id = doma.id + "_000022"
+		  newDomainDistrict.id = createID("DomainDistrict" + doma.id)
 		  newDomainDistrict.level = level + 1
 		  if(elem.iteration >= 1){
 			 newDomainDistrict.notInOrigin = "true"
@@ -363,7 +363,7 @@ class Famix2City_abap {
 			val newDomainDistrict = cityFactory.createDistrict
 			newDomainDistrict.name = newDistrict.name + "_domainDistrict"
 			newDomainDistrict.type = "domainDistrict"
-			newDomainDistrict.id = elem.id + "_00002"
+			newDomainDistrict.id = createID("DomainDistrict" + elem.id)
 			newDomainDistrict.level = level + 1
 			if (elem.iteration >= 1) {
 					newDomainDistrict.notInOrigin = "true"				
@@ -373,23 +373,23 @@ class Famix2City_abap {
 				dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]			    
 			    newDistrict.entities.add(newDomainDistrict)
 			 ]}}
-		 }}
+		 	}}
 		 
 
  		    else if(config.getDtel_Sorting == DataElementSorting::SORTED){
-		    domains.filter[iteration == 1].forEach[ doma |
-			val newDomainDistrict = cityFactory.createDistrict
-			newDomainDistrict.name = newDistrict.name + "_domainDistrict"
-			newDomainDistrict.type = "domainDistrict"
-			newDomainDistrict.id = doma.id + "_000021"
-			newDomainDistrict.level = level + 1
-			if(elem.iteration >= 1){
-				newDomainDistrict.notInOrigin = "true"				
-			} else {
-				 dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]
-			     newDistrict.entities.add(newDomainDistrict)
-			}
-		 ]}                             
+			    domains.filter[iteration == 1].forEach[ doma |
+				val newDomainDistrict = cityFactory.createDistrict
+				newDomainDistrict.name = newDistrict.name + "_domainDistrict"
+				newDomainDistrict.type = "domainDistrict"
+				newDomainDistrict.id = createID("DomainDistrict" + doma.id)
+				newDomainDistrict.level = level + 1
+				if(elem.iteration >= 1){
+					newDomainDistrict.notInOrigin = "true"				
+				} else {
+					 dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]
+				     newDistrict.entities.add(newDomainDistrict)
+				}
+		 	]}                             
 		 }
 		 
 		 if(config.showDtelDistrict){
@@ -468,7 +468,7 @@ class Famix2City_abap {
 			val newInterfaceDistrict = cityFactory.createDistrict
 			newInterfaceDistrict.name = newDistrict.name + "_interfaceDistrict"                                                           
 			newInterfaceDistrict.type = "interfaceDistrict"
-			newInterfaceDistrict.id   = class.id
+			newInterfaceDistrict.id   = createID("InterfaceDistrict" + class.id)
 			newInterfaceDistrict.level = level + 1
 			
 			if(config.showInterface){
@@ -514,7 +514,7 @@ class Famix2City_abap {
 			val newReportDistrict = cityFactory.createDistrict
 			newReportDistrict.name = newDistrict.name + "_reportDistrict"
 			newReportDistrict.type = "reportDistrict"
-			newReportDistrict.id = report.id
+			newReportDistrict.id = createID("ReportDistrict" + report.id)
 			newReportDistrict.level = level + 1
 			
 
@@ -551,7 +551,7 @@ class Famix2City_abap {
 			 newTableDistrict.name = newDistrict.name + "_tableDistrict"
 			 newTableDistrict.type = "tableDistrict"
 			 newTableDistrict.level = level //+ 1
-			 newTableDistrict.id = table.id
+			 newTableDistrict.id = createID("TableDistrict" + table.id)
 			 if(elem.iteration >= 1){
 					newTableDistrict.notInOrigin = "true"
 				} 
