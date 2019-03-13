@@ -1460,12 +1460,24 @@ public class SettingsConfiguration {
 		return config.getBoolean("city.abap.showDomainDistrict", false);
 	}
 	
+	public boolean isShowDomainDistrictWithNotOriginalElements() {
+		return config.getBoolean("city.abap.showDomainDistrictWithNotOriginalElements", false);
+	}
+	
+	public boolean isShowVirtualDomainDistrict() {
+		return config.getBoolean("city.abap.showVirtualDomainDistrict", false);
+	}
+	
 	public boolean isShowDtelDistrict() {
 		return config.getBoolean("city.abap.showDtelDistrict", false);
 	}
 	
 	public boolean isShowStructureDistrict() {
 		return config.getBoolean("city.abap.showStructureDistrict", false);
+	}
+	
+	public boolean isShowStructureDistrictWithNotOriginalElements() {
+		return config.getBoolean("city.abap.showStructureDistrictWithNotOriginalElements", false);
 	}
 	
 	public boolean isShowReportDistrict() {
@@ -1476,13 +1488,19 @@ public class SettingsConfiguration {
 		return config.getBoolean("city.abap.showTableDistrict", false);
 	}
 	
+	public boolean isShowTableDistrictWithNotOriginalElements() {
+		return config.getBoolean("city.abap.showTableDistrictWithNotOriginalElements", false);
+	}
+	
 	public boolean isShowTables() {
 		return config.getBoolean("city.abap.showTables", false);
 	}
 	public boolean isShowTableElements() {
 		return config.getBoolean("city.abap.showTableElements", false);
 	}
-	
+	public boolean isShowTableNotInOrigin() {
+		return config.getBoolean("city.abap.showTableNotInOrigin");
+	}	
 	public boolean isShowTableDistrictWithoutColor() {
 		return config.getBoolean("city.abap.showTableDistrictWithoutColor", false);
 	}
@@ -1512,8 +1530,14 @@ public class SettingsConfiguration {
 	public boolean isShowDomain() {
 		return config.getBoolean("city.abap.showDomain", false);
 	}
+	public boolean isShowVirtualDomain() {
+		return config.getBoolean("city.abap.showVirtualDomain", false);
+	}
 	public boolean isShowStructure() {
 		return config.getBoolean("city.abap.showStructure", false);
+	}
+	public boolean isShowStructureNotInOrigin() {
+		return config.getBoolean("city.abap.showStructureNotInOrigin");
 	}
 	public boolean isShowTableTypeStructure() {
 		return config.getBoolean("city.abap.showTableTypeStructure", false);
@@ -1523,6 +1547,9 @@ public class SettingsConfiguration {
 	}
 	public boolean isShowDtel() {
 		return config.getBoolean("city.abap.showDtel", false);
+	}
+	public boolean isShowDataElementNotInOrigin() {
+		return config.getBoolean("city.abap.showDataElementNotInOrigin");
 	}
 	public boolean isShowReport() {
 		return config.getBoolean("city.abap.showReport", false);
@@ -1556,9 +1583,21 @@ public class SettingsConfiguration {
 			if(config.getString("city.abap.domainDistrict.color").equals("")) return null;
 			return getColor(config.getString("city.abap.domainDistrict.color", "#9499b7"));	
 			
+		}else if(type.equals("virtualDomainDistrict")){			
+			if(config.getString("city.abap.virtualDomainDistrict.color").equals("")) return null;
+			return getColor(config.getString("city.abap.virtualDomainDistrict.color", "#9499b7"));	
+			
+		}else if(type.equals("dataElementDistrict")){			
+			if(config.getString("city.abap.dataElementDistrict.color").equals("")) return null;
+			return getColor(config.getString("city.abap.dataElementDistrict.color", "#9499b7"));	
+			
 		}else if(type.equals("structureDistrict")){			
 			if(config.getString("city.abap.structureDistrict.color").equals("")) return null;
 			return getColor(config.getString("city.abap.structureDistrict.color", "#9499b7"));		
+		
+		}else if(type.equals("structureDistrictNew")){			
+			if(config.getString("city.abap.structureDistrictNew.color").equals("")) return null;
+			return getColor(config.getString("city.abap.structureDistrictNew.color", "#9499b7"));		
 			
 		}else if(type.equals("functionGroupDistrict")){			
 			if(config.getString("city.abap.functionGroupDistrict.color").equals("")) return null;
@@ -1567,6 +1606,10 @@ public class SettingsConfiguration {
 		}else if(type.equals("tableDistrict")){
 			if(config.getString("city.abap.tableDistrict.color").equals("")) return null;
 			return getColor(config.getString("city.abap.tableDistrict.color", "#9499b7"));
+		
+		}else if(type.equals("tableDistrictNew")){
+			if(config.getString("city.abap.tableDistrictNew.color").equals("")) return null;
+			return getColor(config.getString("city.abap.tableDistrictNew.color", "#9499b7"));
 		
 		} else if(type.equals("notInOrigin")) {
 			if(config.getString("city.abap.notInOrigin_color").equals("")) return null;
@@ -1733,6 +1776,12 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Domain")) {
 			return config.getDouble("city.abap.adv_domain_def_size", 20);
 			
+		} else if (type.equals("FAMIX.VirtualDomain")) {
+			return config.getDouble("city.abap.adv_virtual_domain_def_size", 20);
+			
+		} else if (type.equals("FAMIX.ABAPStruc")) {
+			return config.getDouble("city.abap.adv_strucElem_def_size", 20);
+			
 		} else if (type.equals("FAMIX.StrucElement")) {
 			return config.getDouble("city.abap.adv_strucElem_def_size", 20);
 			
@@ -1781,8 +1830,14 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.Domain")) {
 			return config.getDouble("city.abap.adv_domain_scale", 0.1);
 			
+		} else if (type.equals("FAMIX.VirtualDomain")) {
+			return config.getDouble("city.abap.adv_virtual_domain_scale", 0.1);
+			
 		} else if (type.equals("FAMIX.StrucElement")) {
 			return config.getDouble("city.abap.adv_strucElem_scale", 0.1);
+		
+		} else if (type.equals("FAMIX.ABAPStruc")) {
+			return config.getDouble("city.abap.adv_abapStruc_scale", 0.1);
 		
 		} else if (type.equals("FAMIX.TableType")) {
 			return config.getDouble("city.abap.adv_tableType_scale", 1);	
@@ -1844,6 +1899,9 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.StrucElement")) {
 			return config.getDouble("city.abap.strucElement_base_height", 6);
 			
+		} else if (type.equals("FAMIX.ABAPStruc")) {
+			return config.getDouble("city.abap.abapStruc_base_height", 6);
+			
 		} else {
 			return 0;
 		}
@@ -1870,6 +1928,9 @@ public class SettingsConfiguration {
 			
 		} else if (type.equals("FAMIX.StrucElement")) {
 			return config.getDouble("city.abap.strucElement_floor_height", 4);
+			
+		} else if (type.equals("FAMIX.ABAPStruc")) {
+			return config.getDouble("city.abap.abapStruc_floor_height", 4);
 			
 		} else {
 			return 0;
@@ -1898,6 +1959,9 @@ public class SettingsConfiguration {
 		} else if (type.equals("FAMIX.StrucElement")) {
 			return config.getDouble("city.abap.strucElement_roof_height", 11);
 			
+		} else if (type.equals("FAMIX.ABAPStruc")) {
+			return config.getDouble("city.abap.abapStruc_roof_height", 11);
+			
 		} else {
 			return 0;
 		}
@@ -1910,6 +1974,34 @@ public class SettingsConfiguration {
 			return 0;
 		}	
 	}
+	
+//	some stuff for calculating container on the ship 
+	
+	public double getTableFieldsWidth () {
+		return config.getDouble("city.abap.table_element_width", 3);
+	}
+	
+	public double getTableFieldsHeight () {
+		return config.getDouble("city.abap.table_element_height", 3);
+	}
+	
+	public double getTableFieldsLength() {
+		return config.getDouble("city.abap.table_element_length", 6);
+	}
+	
+	public double getTableFieldsStartX() {
+		return config.getDouble("city.abap.table_element_start_x", -10);
+	}
+	
+	public double getTableFieldsStartZ() {
+		return config.getDouble("city.abap.table_element_start_z", -5);
+	}
+	
+	public double getTableFieldsStartY() {
+		return config.getDouble("city.abap.table_element_start_y", 3);
+	}
+	
+	
 	
 	public double getAdvBuildungAttributeHeight(String type) {
 		if (type.equals("FAMIX.Report")) {

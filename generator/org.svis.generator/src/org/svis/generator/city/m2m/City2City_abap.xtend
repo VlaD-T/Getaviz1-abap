@@ -91,6 +91,10 @@ class City2City_abap {
 			}
 
 		// for origin packages	
+		// do nothing if color is already set  
+		} else if (d.color !== null){
+			return
+			
 		} else {
 			// Set color, if defined
 			if (config.getAbapDistrictColor(d.type) !== null) {
@@ -144,6 +148,21 @@ class City2City_abap {
 					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
 				}
 				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
+
+				} else if (b.type == "FAMIX.ABAPStruc") {
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
+				if (getScaledHeightofSco(b.dataCounter) == 1.0) {
+					b.height = 2.0 // 2 - to show at least one floor
+				} else {
+					b.height = getScaledHeightofSco(b.dataCounter)
+				}
+				b.buildingParts.add(createAdvBuildingBase(b.type))								
+				for (var i = 1; i <= b.height - 1; i++) {
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
+				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
+
 
 			} else if (b.type == "FAMIX.TableType") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
@@ -581,21 +600,13 @@ class City2City_abap {
 		}		
 	}
 
-     def void createAdvChimneysTable(Building b) {
-		
+     def void createAdvChimneysTable(Building b) {		
 		val cityFactory = new CityFactoryImpl
-		val bWidth = config.getAdvBuildungAttributeWidth(b.type) * 3
-		val bPosX  = b.position.x //- 7.5
-		val bPosZ  = b.position.z - 6
 		val chimneys = b.data
-		var container1 = newArrayList()
-		var container2 = newArrayList()
-		var container3 = newArrayList()
-		var container4 = newArrayList()
-		var container5 = newArrayList()
-
 		var chimneyCounter = 0
-
+		var Sx = 0
+		var Sy = 0
+		var Sz = 0		
 
 		for (chimney : chimneys) {
 			
@@ -608,70 +619,35 @@ class City2City_abap {
 
 			chimney.color = 255 / 255.0 + " " + 252 / 255.0 + " " + 25 / 255.0
 			chimney.position = cityFactory.createPosition
+            
+            //distance between two boxes 
+			var dl = 1.5
+			var dh = 0.6
+			var dw = 1
 			
-			chimney.position.x = (bPosX) 
-			chimney.position.y = getAdvYforChimney(b)
-			chimney.position.z = (bPosZ)
+			chimney.position.x = (b.position.x - config.getTableFieldsStartX()) + (Sx * (config.getTableFieldsWidth() * dl))
+			chimney.position.y = (b.position.y + config.getTableFieldsStartY()) + (Sy * (config.getTableFieldsHeight() * dh))
+			chimney.position.z = (b.position.z - config.getTableFieldsStartZ()) + (Sz * (config.getTableFieldsLength() * dw))
+		
+//			println(Sz + " " + Sx  + " " + Sy )
+
+			if ( Sz == 1) {
+				if( Sx == 4){
+					Sy++
+					Sx = 0 
+				} else {
+					Sx++	
+				}	
+			}	
+			
+			if (Sz == 1) { 
+				Sz = 0
+			} else { 
+				Sz = 1
+			}
 			
 			chimneyCounter++;
-
-//			if (chimneyCounter % 4 == 0) {
-//				container1.add(chimney)
-//			}
-//			if (chimneyCounter % 4 == 1) {
-//				container2.add(chimney)
-//			}
-//			if (chimneyCounter % 4 == 2) {
-//				container3.add(chimney)
-//			}
-//			if (chimneyCounter % 4 == 3) {
-//				container4.add(chimney)
-//			}
-//			if (chimneyCounter % 4 == 4) {
-//				container5.add(chimney)
-//			}
-//			chimneyCounter++
 		}
-//
-//		chimneyCounter = 0
-//		for (chimney : container1) {
-//			chimney.position.x = (bPosX) 
-//			chimney.position.y = getAdvYforChimney(b)
-//			chimney.position.z = (bPosZ)
-//			chimneyCounter++
-//		}
-//
-//		chimneyCounter = 0
-//		for (chimney : container2) {                                             
-//			chimney.position.x = (bPosX) + (2 * chimneyCounter)
-//			chimney.position.y = getAdvYforChimney(b)
-//			chimney.position.z = (bPosZ)
-//			chimneyCounter++
-//		}
-//
-//		chimneyCounter = 0
-//		for (chimney : container3) {
-//			chimney.position.x = (bPosX) + 2 + (2 * chimneyCounter)
-//			chimney.position.y = getAdvYforChimney(b)
-//			chimney.position.z = (bPosZ) 
-//			chimneyCounter++
-//		}
-//
-//		chimneyCounter = 0
-//		for (chimney : container4) {
-//			chimney.position.x = (bPosX) + 4 + (2 * chimneyCounter)
-//			chimney.position.y = getAdvYforChimney(b)
-//			chimney.position.z = (bPosZ)
-//			chimneyCounter++
-//		}
-//		
-//		chimneyCounter = 0
-//		for (chimney : container5) {
-//			chimney.position.x = (bPosX) + 8 + (2 * chimneyCounter)
-//			chimney.position.y = getAdvYforChimney(b)
-//			chimney.position.z = (bPosZ) 
-//			chimneyCounter++
-//		}
 	}
 
 	// Display chimneys at top/bottom (depends on settings)
@@ -687,18 +663,13 @@ class City2City_abap {
 		var baseHeight = config.getAdvBuildingBaseHeight(b.type)
 		var floorHeight = config.getAdvBuildingFloorHeight(b.type)
 		var roofHeight = config.getAdvBuildingRoofHeight(b.type)
-		var shapeHeight = config.getAdvBuildingShapeHeight(b.type)
 		var attributeHeight = config.getAdvBuildungAttributeHeight(b.type)
 		
 		var elementHeight = config.getAbapSimpleBlock_element_height(b.type)
 
 		
 		if (config.abapAdvCity_set == AbapAdvCitySet::CustomModels) {
-			if (b.type == "FAMIX.Table"){
-				return (b.position.y + shapeHeight)
-			} else{
         		return (b.position.y + baseHeight + (b.methodCounter * floorHeight) + roofHeight) - attributeHeight        	
-        	}
         } else if(config.abapAdvCity_set == AbapAdvCitySet::SimpleBlocks) {
         	return (b.position.y + b.methodCounter * elementHeight) + 0.25
         }

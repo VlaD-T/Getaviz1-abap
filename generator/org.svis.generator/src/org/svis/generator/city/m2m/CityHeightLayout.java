@@ -19,9 +19,10 @@ public class CityHeightLayout {
 			double y = e.getPosition().getY();
 			if (e.getType().equals("FAMIX.Namespace") || e.getType().equals("reportDistrict") || e.getType().equals("classDistrict")
 					|| e.getType().equals("functionGroupDistrict") || e.getType().equals("tableDistrict") || e.getType().equals("interfaceDistrict")
-					|| e.getType().equals("dcDataDistrict") || e.getType().equals("domainDistrict") || e.getType().equals("structureDistrict") 
+					|| e.getType().equals("dcDataDistrict") || e.getType().equals("domainDistrict") || e.getType().equals("structureDistrict")
+					|| e.getType().equals("virtualDomainDistrict")
 					/*|| e.getType().equals("FAMIX.FunctionModule")*/|| e.getType().equals("FAMIX.StrucElement")
-					/*|| e.getType().equals("FAMIX.Report") || e.getType().equals("FAMIX.Formroutine")*/
+					/*|| e.getType().equals("FAMIX.Report") || e.getType().equals("FAMIX.Formroutine")*/ || e.getType().equals("FAMIX.VirtualDomain")
 					|| e.getType().equals("FAMIX.DataElement")/*|| e.getType().equals("FAMIX.Table")/*|| e.getType().equals("FAMIX.Method")*/
 					|| e.getType().equals("FAMIX.TableType")|| e.getType().equals("FAMIX.ABAPStruc")|| e.getType().equals("FAMIX.Attribute")
 					|| e.getType().equals("FAMIX.Domain") /*|| e.getType().equals("FAMIX.Class")*/ || e.getType().equals("FAMIX.TableElement")){
@@ -31,9 +32,10 @@ public class CityHeightLayout {
 			
 			e.getPosition().setY(y + parentY + config.getBuildingVerticalMargin());		
 			
-			if (e.getType().equals("FAMIX.Namespace") || e.getType().equals("reportDistrict") || e.getType().equals("classDistrict")
+			if (e.getType().equals("FAMIX.Namespace") || e.getType().equals("reportDistrict") || e.getType().equals("classDistrict") 
 					|| e.getType().equals("functionGroupDistrict") || e.getType().equals("tableDistrict") || e.getType().equals("interfaceDistrict") 
-					|| e.getType().equals("dcDataDistrict") || e.getType().equals("domainDistrict")|| e.getType().equals("structureDistrict")){
+					|| e.getType().equals("dcDataDistrict") || e.getType().equals("domainDistrict")|| e.getType().equals("structureDistrict")
+					|| e.getType().equals("virtualDomainDistrict")){
 				double newUpperLeftY = e.getPosition().getY() - e.getHeight() / 2;
 				adjustHeight(e.getEntities(), newUpperLeftY);
 			}

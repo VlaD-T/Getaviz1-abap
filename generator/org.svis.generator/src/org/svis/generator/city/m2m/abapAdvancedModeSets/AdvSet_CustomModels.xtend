@@ -35,6 +35,7 @@ class AdvSet_CustomModels {
 	var defineCMCarPark_floor = true
 	var defineCMParkingSlot = true
 	var defineCMTownHall = true
+	var defineCMTownHall_VirtualDomain = true
 	var defineCMFactoryBuilding = true
 	var defineCMFactoryBuilding_floor = true
 	var defineCMFactoryHall = true
@@ -50,17 +51,18 @@ class AdvSet_CustomModels {
 	// transform logic
 	def String toX3DModel(List<Entity> entities) '''
   		«FOR entity : entities»
-			«IF entity.type == "FAMIX.Namespace"  || entity.type == "reportDistrict"
+			«IF entity.type == "FAMIX.Namespace"  || entity.type == "reportDistrict" 
 				|| entity.type == "classDistrict" || entity.type == "functionGroupDistrict" 
-				|| entity.type == "tableDistrict" || entity.type == "dcDataDistrict" || entity.type == "interfaceDistrict"
-				|| entity.type == "domainDistrict" || entity.type == "structureDistrict"»
+				|| entity.type == "tableDistrict" || entity.type == "dcDataDistrict" 
+				|| entity.type == "domainDistrict" || entity.type == "structureDistrict" 
+				|| entity.type == "interfaceDistrict" || entity.type == "virtualDomainDistrict"»
 				«toDistrict(entity)»
 			«ENDIF»
 			«IF entity.type == "FAMIX.Class" || entity.type == "FAMIX.Interface"|| entity.type == "FAMIX.DataElement" 
 				|| entity.type == "FAMIX.Report" || entity.type == "FAMIX.FunctionGroup" 
 				|| entity.type == "FAMIX.ABAPStruc"	|| entity.type == "FAMIX.StrucElement" 
 				|| entity.type == "FAMIX.Table" || entity.type == "FAMIX.TableElement" || entity.type == "FAMIX.Class" 
-				|| entity.type == "FAMIX.Domain" || entity.type == "FAMIX.TableType"
+				|| entity.type == "FAMIX.Domain" || entity.type == "FAMIX.TableType" || entity.type == "FAMIX.VirtualDomain"
 				|| entity.type == "FAMIX.Method" || entity.type == "FAMIX.Attribute" || entity.type == "typeNames" 
 				|| entity.type == "FAMIX.FunctionModule" || entity.type == "FAMIX.Formroutine"»
 				«IF config.buildingType == BuildingType.CITY_ORIGINAL || config.showBuildingBase»
@@ -137,6 +139,19 @@ class AdvSet_CustomModels {
 					«ENDIF»					
 				</Transform>
 			</Group>
+			
+		«ELSEIF entity.type == "FAMIX.VirtualDomain"»					
+			<Group DEF='«entity.id»'>
+				<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
+						   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
+					«IF defineCMTownHall_VirtualDomain»
+						«CustomModel_TownHall_VirtualDomain::defineTownHallVirtualDomainShape»
+						«defineCMTownHall_VirtualDomain = false»
+					«ELSE»
+						«CustomModel_TownHall_VirtualDomain::createTownHallVirtualDomainShape»
+					«ENDIF»					
+				</Transform>
+			</Group>
 					
 		«ELSEIF entity.type == "FAMIX.Table"»
 			<Group DEF='«entity.id»'>
@@ -190,7 +205,46 @@ class AdvSet_CustomModels {
 					«ENDIF»	
 				</Transform>
 			</Group>
-								
+			
+			«ELSEIF entity.type == "FAMIX.ABAPStruc"»
+				<Group DEF='«entity.id»'>
+					<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'
+							   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
+						«IF defineCMApartmentBuilding»
+							«defineCMApartmentBuilding = false»
+							«FOR part : entity.getBuildingParts»
+								«IF part.type == "Base"»
+									«CustomModel_ApartmentBuilding::defineApartmentBuildingBase(part.height)»
+								«ELSEIF part.type == "Roof"»
+									«CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(part.height)»
+								«ELSEIF part.type == "Floor"»
+									«IF defineCMApartmentBuilding_floor»
+										«defineCMApartmentBuilding_floor = false»
+										«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(part.height)»
+									«ELSE»
+										«CustomModel_ApartmentBuilding::createApartmentBuildingFloor(part.height)»
+									«ENDIF»								
+								«ENDIF»						
+							«ENDFOR»
+						«ELSE»
+							«FOR part : entity.getBuildingParts»
+								«IF part.type == "Base"»
+									«CustomModel_ApartmentBuilding::createApartmentBuildingBase(part.height)»
+								«ELSEIF part.type == "Roof"»
+									«CustomModel_ApartmentBuilding::createApartmentBuildingRoof(part.height)»
+								«ELSEIF part.type == "Floor"»
+									«IF defineCMApartmentBuilding_floor»
+										«defineCMApartmentBuilding_floor = false»
+										«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(part.height)»
+									«ELSE»
+										«CustomModel_ApartmentBuilding::createApartmentBuildingFloor(part.height)»
+									«ENDIF»	
+								«ENDIF»						
+							«ENDFOR»
+						«ENDIF»	
+					</Transform>
+				</Group>
+						
 		«ELSEIF entity.type == "FAMIX.TableType"»		
 		  «IF entity.rowType == "FAMIX.ABAPStruc"»
 	         <Group DEF='«entity.id»'>
