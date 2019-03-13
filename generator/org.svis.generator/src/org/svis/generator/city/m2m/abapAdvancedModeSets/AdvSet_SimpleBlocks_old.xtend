@@ -19,7 +19,7 @@ import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
 import org.svis.generator.city.m2m.customModels.*
 import org.svis.generator.city.CityUtils
 
-class AdvSet_SimpleBlocks {
+class AdvSet_SimpleBlocks_old {
 	val log = LogFactory::getLog(getClass)
 	val config = SettingsConfiguration.instance
 	var defineCMSimpleHouse = true

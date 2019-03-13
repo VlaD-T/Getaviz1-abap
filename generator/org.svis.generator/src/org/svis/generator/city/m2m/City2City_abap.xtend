@@ -10,7 +10,7 @@ import org.svis.xtext.city.impl.CityFactoryImpl
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.Original.BuildingMetric
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
-import org.svis.generator.SettingsConfiguration.AbapAdvCitySet
+//import org.svis.generator.SettingsConfiguration.AbapAdvCitySet
 import org.svis.generator.SettingsConfiguration.AbapNotInOriginFilter
 import java.lang.Math
 
@@ -105,11 +105,7 @@ class City2City_abap {
 		}
 	}
 
-	def private setBuildingAttributes(Building b) {
-		setBuildingAttributesFloors(b)
-	}
-
-	def void setBuildingAttributesFloors(Building b) {
+	def void setBuildingAttributes(Building b) {
 
 		if (b.dataCounter < 2) { // pko 2016
 			b.width = 2 // TODO in settings datei aufnehmen
@@ -130,10 +126,12 @@ class City2City_abap {
 			if (b.type == "FAMIX.DataElement") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
 				b.length = getAdvBuildingLength(b.type, 1.0)
+				b.height = getScaledHeightofSco(b.dataCounter)
 			
 			} else if (b.type == "FAMIX.Domain") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
 				b.length = getAdvBuildingLength(b.type, 1.0)
+				b.height = getScaledHeightofSco(b.dataCounter)
 
 			} else if (b.type == "FAMIX.StrucElement") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
@@ -167,10 +165,12 @@ class City2City_abap {
 			} else if (b.type == "FAMIX.TableType") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
 				b.length = getAdvBuildingLength(b.type, 1.0)
+				b.height = getScaledHeightofSco(b.dataCounter)
 
 			} else if(b.type == "FAMIX.Table"){
 				b.width = 4 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)) 
 				b.length = 2 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type))
+				b.height = getScaledHeightofSco(b.dataCounter)
 
 			} else if (b.type == "FAMIX.Attribute") { // Attributes for Classes districts. 
 				b.width = getAdvBuildingWidth(b.type, 1.5)
@@ -214,6 +214,7 @@ class City2City_abap {
 				b.buildingParts.add(roof)
 				b.height = roof.height
 
+
 			} else if (b.type == "FAMIX.FunctionModule") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
 				b.length = getAdvBuildingLength(b.type, 1.0)
@@ -238,6 +239,7 @@ class City2City_abap {
 				var roof = createAdvBuildingRoof(b.type, b.height)
 				b.buildingParts.add(roof)
 				b.height = roof.height	
+
 
 			} else if (b.type == "FAMIX.Formroutine") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
@@ -504,7 +506,7 @@ class City2City_abap {
 //          	bPosZ  = b.position.z + 2
 //        }
         
-        if (config.abapAdvCity_set == AbapAdvCitySet::CustomModels) {
+//        if (config.abapAdvCity_set == AbapAdvCitySet::CustomModels) {
         	if (b.type == "FAMIX.Class"){ 
         		//scale 1
 //        		b.type = "FAMIX.InterfaceAttribute"
@@ -528,15 +530,15 @@ class City2City_abap {
             	bPosX  = b.position.x //- 7.5
 	          	bPosZ  = b.position.z - 6 
             }
-        } else if(config.abapAdvCity_set == AbapAdvCitySet::SimpleBlocks) {
-        	 if (b.type == "FAMIX.Class"){
-        	     bWidth = b.width - 8
-             } else if (b.type == "FAMIX.Report"){
-          		   bWidth = b.width - 13
-             } else if (b.type == "FAMIX.Table"){
-            	
-             }
-        }
+//        } else if(config.abapAdvCity_set == AbapAdvCitySet::SimpleBlocks) {
+//        	 if (b.type == "FAMIX.Class"){
+//        	     bWidth = b.width - 8
+//             } else if (b.type == "FAMIX.Report"){
+//          		   bWidth = b.width - 13
+//             } else if (b.type == "FAMIX.Table"){
+//            	
+//             }
+//        }
         
 
 		for (chimney : chimneys) {
@@ -665,14 +667,14 @@ class City2City_abap {
 		var roofHeight = config.getAdvBuildingRoofHeight(b.type)
 		var attributeHeight = config.getAdvBuildungAttributeHeight(b.type)
 		
-		var elementHeight = config.getAbapSimpleBlock_element_height(b.type)
+//		var elementHeight = config.getAbapSimpleBlock_element_height(b.type)
 
 		
-		if (config.abapAdvCity_set == AbapAdvCitySet::CustomModels) {
+//		if (config.abapAdvCity_set == AbapAdvCitySet::CustomModels) {
         		return (b.position.y + baseHeight + (b.methodCounter * floorHeight) + roofHeight) - attributeHeight        	
-        } else if(config.abapAdvCity_set == AbapAdvCitySet::SimpleBlocks) {
-        	return (b.position.y + b.methodCounter * elementHeight) + 0.25
-        }
+//        } else if(config.abapAdvCity_set == AbapAdvCitySet::SimpleBlocks) {
+//        	return (b.position.y + b.methodCounter * elementHeight) + 0.25
+//        }
 		
 	}	
 
@@ -727,6 +729,13 @@ class City2City_abap {
 		roof.height = config.getAdvBuildingBaseHeight(type) + (bHeight - 1) * config.getAdvBuildingFloorHeight(type)
 		roof.type = "Roof"		
 		return roof
+	}
+	
+	def Building createAdvBuildingChimney(BuildingSegment bs) {
+		var chimney = cityFactory.createBuilding
+		chimney.type = "Chimney"
+		chimney.name = bs.value
+		return chimney
 	}
 	
 }

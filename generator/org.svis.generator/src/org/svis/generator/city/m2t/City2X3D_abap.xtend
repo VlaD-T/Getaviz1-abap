@@ -13,10 +13,9 @@ import org.svis.xtext.city.PanelSeparatorCylinder
 import org.svis.generator.SettingsConfiguration
 import org.svis.generator.SettingsConfiguration.BuildingType
 import org.svis.generator.SettingsConfiguration.AbapCityRepresentation
-import org.svis.generator.SettingsConfiguration.AbapAdvCitySet
 import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_CustomModels
-import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_SimpleBlocks
 import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_SimpleTexturedBlocks
+import org.svis.generator.city.m2m.abapAdvancedModeSets.AdvSet_SimpleBlocks_old
 
 class City2X3D_abap {
 	val log = LogFactory::getLog(getClass)
@@ -27,26 +26,28 @@ class City2X3D_abap {
 		var Body = new String()
 		if (config.abap_representation == AbapCityRepresentation::ADVANCED) {
 			rootEntity = ABAPCityLayout::rootRectangle
+			val City2X3D_abap_adv adv_mode = new City2X3D_abap_adv()
+			Body = viewports(rootEntity) + adv_mode.set(entities)
 			
 			//Use selected set
-			switch (config.abapAdvCity_set) {
-				case AbapAdvCitySet::CustomModels: {
-					val AdvSet_CustomModels customModels_set = new AdvSet_CustomModels()
-					Body = viewports(rootEntity) + customModels_set.set(entities)
-				}
-				case AbapAdvCitySet::SimpleBlocks: {
-					val AdvSet_SimpleBlocks simpleBlocks_set = new AdvSet_SimpleBlocks()
-					Body = viewports(rootEntity) + simpleBlocks_set.set(entities)
-				}
-				case AbapAdvCitySet::SimpleTexturedBlocks: {
-					val AdvSet_SimpleTexturedBlocks simpleTexturedBlocks_set = new AdvSet_SimpleTexturedBlocks()
-					Body = viewports(rootEntity) + simpleTexturedBlocks_set.set(entities)
-				}
-				default: {
-					val AdvSet_CustomModels customModels_set = new AdvSet_CustomModels()
-					Body = viewports(rootEntity) + customModels_set.set(entities)
-				}
-			} 
+//			switch (config.abapAdvCity_set) {
+//				case AbapAdvCitySet::CustomModels: {
+//					val AdvSet_CustomModels customModels_set = new AdvSet_CustomModels()
+//					Body = viewports(rootEntity) + customModels_set.set(entities)
+//				}
+//				case AbapAdvCitySet::SimpleBlocks: {
+//					val AdvSet_SimpleBlocks simpleBlocks_set = new AdvSet_SimpleBlocks()
+//					Body = viewports(rootEntity) + simpleBlocks_set.set(entities)
+//				}
+//				case AbapAdvCitySet::SimpleTexturedBlocks: {
+//					val AdvSet_SimpleTexturedBlocks simpleTexturedBlocks_set = new AdvSet_SimpleTexturedBlocks()
+//					Body = viewports(rootEntity) + simpleTexturedBlocks_set.set(entities)
+//				}
+//				default: {
+//					val AdvSet_CustomModels customModels_set = new AdvSet_CustomModels()
+//					Body = viewports(rootEntity) + customModels_set.set(entities)
+//				}
+//			} 
 			
 		} else {
 			Body = viewports(rootEntity) + entities.toX3DModel()
