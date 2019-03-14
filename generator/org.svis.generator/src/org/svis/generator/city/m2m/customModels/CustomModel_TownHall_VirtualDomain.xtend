@@ -4,7 +4,7 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_TownHall_VirtualDomain {
 	def static String defineTownHallVirtualDomainShape() '''
-		<Group DEF="group_ME_domain">
+		<Group DEF="group_ME_virtual_domain">
 			<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 			<Shape>
 				<Appearance>
@@ -79,6 +79,6 @@ class CustomModel_TownHall_VirtualDomain {
 
 	
 	def static String createTownHallVirtualDomainShape() '''
-        <Group USE="group_ME_domain"/>
+        <Group USE="group_ME_virtual_domain"/>
 	'''
 }

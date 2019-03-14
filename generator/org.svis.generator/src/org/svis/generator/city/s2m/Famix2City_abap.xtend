@@ -444,9 +444,9 @@ class Famix2City_abap {
 							domainBuilding.id = createID(typeName + elem.id) + "_000031"
 //							domainBuilding.transparency = 1
 							
-							if(config.showVirtualDomain){
+//							if(config.showVirtualDomain){
 								newVirtualDomainDistrict.entities += domainBuilding
-							}
+//							}
 	            	}
             	newDistrict.entities.add(newVirtualDomainDistrict)
              }

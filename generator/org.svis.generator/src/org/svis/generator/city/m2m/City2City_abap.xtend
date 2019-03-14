@@ -132,6 +132,11 @@ class City2City_abap {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
 				b.length = getAdvBuildingLength(b.type, 1.0)
 				b.height = getScaledHeightofSco(b.dataCounter)
+				
+			} else if (b.type == "FAMIX.VirtualDomain") {
+				b.width = getAdvBuildingWidth(b.type, 1.0)
+				b.length = getAdvBuildingLength(b.type, 1.0)
+				b.height = getScaledHeightofSco(b.dataCounter)
 
 			} else if (b.type == "FAMIX.StrucElement") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
