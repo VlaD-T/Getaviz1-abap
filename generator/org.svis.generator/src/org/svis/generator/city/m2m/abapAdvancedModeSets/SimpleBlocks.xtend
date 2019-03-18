@@ -57,7 +57,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_Table(Entity entity) '''
 		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth(entity.type) / 2) +" "+ 0»'>
 			<Shape>
-				<Cylinder radius='«entity.width/4»' height='«config.getSimpleBlocksHeigth(entity.type)»' ></Cylinder>
+				<Box size='«entity.width +" "+ config.getSimpleBlocksHeigth(entity.type) +" "+ entity.length»'></Box>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
