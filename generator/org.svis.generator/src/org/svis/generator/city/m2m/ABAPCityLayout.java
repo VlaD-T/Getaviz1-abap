@@ -938,6 +938,11 @@ public class ABAPCityLayout {
 		Double squareSize = Math.ceil(Math.sqrt(reportDistrict.getEntities().size()));
 		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.Report") * config.getAbapAdvBuildingScale("FAMIX.Report") + config.getBuildingHorizontalGap());
 		
+//		Double squareSize = reportDistrict.getEntities().get(0).getWidth();
+//		double size = squareSize * ( (config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 10) * config.getAbapAdvBuildingScale("FAMIX.Report")
+//				  + config.getBuildingHorizontalGap());
+		
+		
 		reportDistrict.setWidth(size + 2 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
 		reportDistrict.setLength(size + 2 * config.getBuildingHorizontalMargin());
 		
@@ -949,7 +954,7 @@ public class ABAPCityLayout {
 		List<Rectangle> publicMembers = new ArrayList<Rectangle>();
 		List<Rectangle> districtMembers = new ArrayList<Rectangle>();
 
-		double unitSize = config.getAbapAdvBuildingDefSize("FAMIX.Report") * config.getAbapAdvBuildingScale("FAMIX.Report") + config.getBuildingHorizontalGap();
+		double unitSize =  config.getAbapAdvBuildingDefSize("FAMIX.Report") * config.getAbapAdvBuildingScale("FAMIX.Report") + config.getBuildingHorizontalGap();
 
 		// ordering the members as rectangles by visibility
 		for (Entity member : members) {

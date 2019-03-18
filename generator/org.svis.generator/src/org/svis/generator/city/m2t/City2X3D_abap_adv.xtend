@@ -119,6 +119,13 @@ class City2X3D_abap_adv {
 					«advSetClass_Instance.getElemFor_Class(entity)»
 		</Transform>
 	</Group>
+	«ELSEIF entity.type == "FAMIX.Report"»
+		<Group DEF='«entity.id»'>	
+			<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'						   
+					   scale='«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»'>
+						«advSetClass_Instance.getElemFor_Report(entity)»
+			</Transform>
+		</Group>
 	«ENDIF»					
 	
 	
@@ -144,8 +151,8 @@ class City2X3D_abap_adv {
 «««			«advSetClass_Instance.getElemFor_Class(entity)»
 			«ELSEIF entity.type == "FAMIX.FunctionModule"»
 				«advSetClass_Instance.getElemFor_FunctionModule(entity)»
-			«ELSEIF entity.type == "FAMIX.Report"»
-				«advSetClass_Instance.getElemFor_Report(entity)»
+«««			«ELSEIF entity.type == "FAMIX.Report"»
+«««				«advSetClass_Instance.getElemFor_Report(entity)»
 			«ELSEIF entity.type == "FAMIX.Formroutine"»
 				«advSetClass_Instance.getElemFor_Formroutine(entity)»
 			«ELSEIF entity.type == "FAMIX.TableType"»
