@@ -141,7 +141,8 @@ public class ABAPCityLayout {
 				} else if (child.getType().equals("reportDistrict")	|| child.getType().equals("classDistrict") 
 						|| child.getType().equals("functionGroupDistrict") || child.getType().equals("tableDistrict") 
 						|| child.getType().equals("dcDataDistrict") || child.getType().equals("domainDistrict") 
-						|| child.getType().equals("interfaceDistrict")	|| child.getType().equals("structureDistrict")) {
+						|| child.getType().equals("interfaceDistrict")	|| child.getType().equals("structureDistrict")
+						|| child.getType().equals("virtualDomainDistrict") ) {
 					if (DEBUG) {
 						System.out.println("\t\t\t" + info + "layOut(" + child.getFqn() + ")-call, recursive.");
 					}
@@ -295,7 +296,7 @@ public class ABAPCityLayout {
 				}
 			} else {
 				if (child.getType().equals("FAMIX.Namespace") || child.getType().equals("tableDistrict") /*|| child.getType().equals("interfaceDistrict")*/
-					|| child.getType().equals("dcDataDistrict") /*|| child.getType().equals("dataElementDistrict")*/) {
+					|| child.getType().equals("dcDataDistrict")) {					
 					if (DEBUG) {
 						System.out.println("\t\t\t" + info + "layOut(" + child.getFqn() + ")-call, recursive.");
 					}
@@ -310,12 +311,12 @@ public class ABAPCityLayout {
 					arrangeReportDistrict(child);
 				} else if (child.getType().equals("domainDistrict")) {
 					arrangeDomainDistrict(child);
+				} else if (child.getType().equals("virtualDomainDistrict")) {
+				    arrangeVirtualDomainDistrict(child);
 				} else if (child.getType().equals("structureDistrict")) {
 					arrangeStructureDistrict(child);
 				} else if (child.getType().equals("interfaceDistrict")) {
 				    arrangeInterfaceDistrict(child);
-				} else if (child.getType().equals("dataElementDistrict")) {
-				    arrangeDataElementDistrict(child);
 				}
 			}
 			sum_width += child.getWidth() + config.getBuildingHorizontalGap();
@@ -377,6 +378,9 @@ public class ABAPCityLayout {
 				structures.add(rectangle);
 				break;
 			case "domainDistrict":
+				dataElements.add(rectangle);
+				break;
+			case "virtualDomainDistrict":
 				dataElements.add(rectangle);
 				break;
 			case "tableDistrict":
@@ -727,9 +731,9 @@ public class ABAPCityLayout {
 
 			if (e.getType().equals("FAMIX.Namespace") || e.getType().equals("reportDistrict")
 					|| e.getType().equals("classDistrict") || e.getType().equals("functionGroupDistrict")
-					|| e.getType().equals("tableDistrict") || e.getType().equals("dcDataDistrict")
-					|| e.getType().equals("domainDistrict") || e.getType().equals("dataElementDistrict")
-					|| e.getType().equals("structureDistrict") || e.getType().equals("interfaceDistrict")) {
+					|| e.getType().equals("tableDistrict") || e.getType().equals("dcDataDistrict") 
+					|| e.getType().equals("domainDistrict") || e.getType().equals("virtualDomainDistrict")
+					|| e.getType().equals("structureDistrict") || e.getType().equals("interfaceDistrict")){
 				double newUpperLeftX = e.getPosition().getX() - e.getWidth() / 2;
 				double newUpperLeftZ = e.getPosition().getZ() - e.getLength() / 2;
 				adjustPositions(e.getEntities(), newUpperLeftX, newUpperLeftZ);
@@ -800,102 +804,56 @@ public class ABAPCityLayout {
 	}
 	
 //	private static void arrangeTableDistrict (Entity tableDistrict) {
-//		Double squareSize = Math.ceil(Math.sqrt(tableDistrict.getEntities().size()));
-//		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.Table") * config.getAbapAdvBuildingScale("FAMIX.Table") + config.getBuildingHorizontalGap());
+//		Double squareSize = tableeDistrict.getEntities().get(0).getWidth();
+//		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.Table") * config.getAbapAdvBuildingScale("FAMIX.Table")
+//					  + config.getBuildingHorizontalGap());
+//		
 //		tableDistrict.setWidth(size + 2 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
-//		tableDistrict.setLength(size + 2 * config.getBuildingHorizontalMargin());	
-//	EList<Entity> members = tableDistrict.getEntities();
-//	
-//	List<Rectangle> tables = new ArrayList<Rectangle>();
-//	
-//	double unitSize = config.getAbapAdvBuildingDefSize("FAMIX.Table") * config.getAbapAdvBuildingScale("FAMIX.Table") + config.getBuildingHorizontalGap();
-//	
-//	// ordering the members as rectangles by type
-//	for (Entity member : members) {
-//		Rectangle square = new Rectangle(0, 0, unitSize, unitSize);
-//		square.setEntityLink(member);
+//		tableDistrict.setLength(size + 2 * config.getBuildingHorizontalMargin());
+//		EList<Entity> members = tableDistrict.getEntities();
 //		
-//		switch (member.getType()) {
-//		case "FAMIX.Table":
-//			tables.add(square);
-//			break;
-//		default:
-//			tables.add(square);
-//			break;
-//		}
-//	}
-//	int counter = 1; 
-//	String direction = "R";
-//	
-//	Position lastPos = cityFactory.createPosition();
-//	
-//	
-//	for (Rectangle table : tables) {
-//		Position newPos = cityFactory.createPosition();
-//		if (counter == 1) {
-//			/*newPos.setX(unitSize / 2.0);
-//			newPos.setZ(unitSize / 2.0);*/
-//			newPos.setX(size - (unitSize / 2.0));
-//			newPos.setZ(size - (unitSize / 2.0));
-//			table.getEntityLink().setPosition(newPos);
-//			lastPos = newPos;
-//			counter++; 
-//			
-//		} else {
-//			switch (direction) {
-//			case "R" : 
-//				newPos.setX(lastPos.getX() - unitSize);
-//				newPos.setZ(lastPos.getZ());
+//		List<Rectangle> tables = new ArrayList<Rectangle>();
+//		
+//		double unitSize = squareSize;//config.getAbapAdvBuildingDefSize("FAMIX.Table") * config.getAbapAdvBuildingScale("FAMIX.Table") + config.getBuildingHorizontalGap();
+//		
+//		// ordering the members as rectangles by visibility
+//		for (Entity member : members) {
+//			Rectangle square = new Rectangle(0, 0, unitSize, unitSize);
+//			square.setEntityLink(member);
+//
+//			switch (member.getType()) {
+//			case "FAMIX.Table":
+//				tables.add(square);
 //				break;
-//			case "D" : 
-//				newPos.setX(lastPos.getX());
-//				newPos.setZ(lastPos.getZ() - unitSize);
-//				break; 
-//			case "L" : 
-//				newPos.setX(lastPos.getX() + unitSize);
-//				newPos.setZ(lastPos.getZ());
-//				break; 
-//			case "U" : 
-//				newPos.setX(lastPos.getX());
-//				newPos.setZ(lastPos.getZ() + unitSize);				
-//				break; 
+//			default:
+//				tables.add(square);
+//				break;
 //			}
-//		
-//			table.getEntityLink().setPosition(newPos);
-//			lastPos = newPos;
-//			
-//			if (counter % (squareSize - 1) == 1) {
-//				switch (direction) {
-//				case "R" : 
-//					direction = "D"; 
-//					break; 
-//				case "D" : 
-//					direction = "L"; 
-//					break; 
-//				case "L" : 
-//					direction = "U"; 
-//					break; 
-//				}
-//			}
-//			
-//			counter++;
 //		}
-//	}  
+//
+//        Position centerPos = cityFactory.createPosition();
+//		
+//		centerPos.setX(size / 2.0);
+//		centerPos.setZ(size / 2.0);
+//		
+//		if(!tables.isEmpty()) {
+//			tables.get(0).getEntityLink().setPosition(centerPos);
+//		}
 //	}
 	
 	
 	private static void arrangeInterfaceDistrict(Entity interfaceDistrict) {
-		Double squareSize = Math.ceil(Math.sqrt(interfaceDistrict.getEntities().size()));
-		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.Class") * config.getAbapAdvBuildingScale("FAMIX.Class") + config.getBuildingHorizontalGap());
+		Double squareSize = interfaceDistrict.getEntities().get(0).getWidth();
+		double size = squareSize * ( (config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) * config.getAbapAdvBuildingScale("FAMIX.Class")
+					  + config.getBuildingHorizontalGap());
+		
 		interfaceDistrict.setWidth(size + 2 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
 		interfaceDistrict.setLength(size + 2 * config.getBuildingHorizontalMargin());
-		Rectangle interfaceDistrictSquare = new Rectangle(0, 0, size, size);
 		EList<Entity> members = interfaceDistrict.getEntities();
 		
-		List<Rectangle> privateMembers = new ArrayList<Rectangle>();
-		List<Rectangle> publicMembers = new ArrayList<Rectangle>();
+		List<Rectangle> classes = new ArrayList<Rectangle>();
 		
-		double unitSize = config.getAbapAdvBuildingDefSize("FAMIX.Class") * config.getAbapAdvBuildingScale("FAMIX.Attribute") + config.getBuildingHorizontalGap();
+		double unitSize = squareSize;//config.getAbapAdvBuildingDefSize("FAMIX.Class") * config.getAbapAdvBuildingScale("FAMIX.Class") + config.getBuildingHorizontalGap();
 		
 		// ordering the members as rectangles by visibility
 		for (Entity member : members) {
@@ -903,24 +861,23 @@ public class ABAPCityLayout {
 			square.setEntityLink(member);
 
 			switch (member.getType()) {
-			case "FAMIX.Attribute":
-				privateMembers.add(square);
-				break;
 			case "FAMIX.Class":
-				publicMembers.add(square);
+				classes.add(square);
 				break;
 			default:
-				publicMembers.add(square);
+				classes.add(square);
 				break;
 			}
 		}
 
-		// start algorithm
-		List<String> position = getPositionList(squareSize);
+        Position centerPos = cityFactory.createPosition();
 		
-		// moving the entities to the right place
-		moveElementsToPosition(privateMembers, position, interfaceDistrictSquare, unitSize, squareSize, false);
-		moveElementsToPosition(publicMembers, position, interfaceDistrictSquare, unitSize, squareSize, true);
+		centerPos.setX(size / 2.0);
+		centerPos.setZ(size / 2.0);
+		
+		if(!classes.isEmpty()) {
+			classes.get(0).getEntityLink().setPosition(centerPos);
+		}
 	}
 
 	private static void arrangeFunctionGroupDistrict(Entity functionGroupDistrict) {
@@ -981,6 +938,11 @@ public class ABAPCityLayout {
 		Double squareSize = Math.ceil(Math.sqrt(reportDistrict.getEntities().size()));
 		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.Report") * config.getAbapAdvBuildingScale("FAMIX.Report") + config.getBuildingHorizontalGap());
 		
+//		Double squareSize = reportDistrict.getEntities().get(0).getWidth();
+//		double size = squareSize * ( (config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 10) * config.getAbapAdvBuildingScale("FAMIX.Report")
+//				  + config.getBuildingHorizontalGap());
+		
+		
 		reportDistrict.setWidth(size + 2 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
 		reportDistrict.setLength(size + 2 * config.getBuildingHorizontalMargin());
 		
@@ -992,7 +954,7 @@ public class ABAPCityLayout {
 		List<Rectangle> publicMembers = new ArrayList<Rectangle>();
 		List<Rectangle> districtMembers = new ArrayList<Rectangle>();
 
-		double unitSize = config.getAbapAdvBuildingDefSize("FAMIX.Report") * config.getAbapAdvBuildingScale("FAMIX.Report") + config.getBuildingHorizontalGap();
+		double unitSize =  config.getAbapAdvBuildingDefSize("FAMIX.Report") * config.getAbapAdvBuildingScale("FAMIX.Report") + config.getBuildingHorizontalGap();
 
 		// ordering the members as rectangles by visibility
 		for (Entity member : members) {
@@ -1364,6 +1326,108 @@ public class ABAPCityLayout {
 		}  
 	}
 	
+	private static void arrangeVirtualDomainDistrict(Entity virtualDomainDistrict) {
+		Double squareSize = Math.ceil((virtualDomainDistrict.getEntities().size() - 1)/8.0)* 2 + 1;
+		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.VirtualDomain") * config.getAbapAdvBuildingScale("FAMIX.VirtualDomain") + config.getBuildingHorizontalGap());		
+		virtualDomainDistrict.setWidth(size + 2 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
+		virtualDomainDistrict.setLength(size + 2 * config.getBuildingHorizontalMargin());
+		//Rectangle dcDataDistrictSquare = new Rectangle(0, 0, size, size);
+		
+		EList<Entity> members = virtualDomainDistrict.getEntities();
+		
+		List<Rectangle> dataElements = new ArrayList<Rectangle>();
+		List<Rectangle> domains = new ArrayList<Rectangle>();
+		
+		double unitSize = config.getAbapAdvBuildingDefSize("FAMIX.VirtualDomain") * config.getAbapAdvBuildingScale("FAMIX.VirtualDomain") + config.getBuildingHorizontalGap();
+		
+		// ordering the members as rectangles by type
+		for (Entity member : members) {
+			Rectangle square = new Rectangle(0, 0, unitSize, unitSize);
+			square.setEntityLink(member);
+			
+			switch (member.getType()) {
+			case "FAMIX.DataElement":
+				dataElements.add(square);
+				break;
+			case "FAMIX.VirtualDomain":
+				domains.add(square);
+				break;
+			default:
+				dataElements.add(square);
+				break;
+			}
+		}
+		// start algorithm
+		//List<String> position = getPositionListDcData(squareSize);
+		Position centerPos = cityFactory.createPosition();
+		
+		centerPos.setX(size / 2.0);
+		centerPos.setZ(size / 2.0);
+		
+		if(!domains.isEmpty()) {
+			domains.get(0).getEntityLink().setPosition(centerPos);
+		}
+		
+
+		
+		int counter = 1; 
+		String direction = "R";
+		
+		Position lastPos = cityFactory.createPosition();
+		
+		
+		for (Rectangle dataElement : dataElements) {
+			Position newPos = cityFactory.createPosition();
+			if (counter == 1) {
+				//newPos.setX(unitSize / 2.0);
+				newPos.setX(size - (unitSize / 2.0));
+				newPos.setZ(size - (unitSize / 2.0));
+				dataElement.getEntityLink().setPosition(newPos);
+				lastPos = newPos;
+				counter++; 
+				
+			} else {
+				switch (direction) {
+				case "R" : 
+					newPos.setX(lastPos.getX() - unitSize);
+					newPos.setZ(lastPos.getZ());
+					break;
+				case "D" : 
+					newPos.setX(lastPos.getX());
+					newPos.setZ(lastPos.getZ() - unitSize);
+					break; 
+				case "L" : 
+					newPos.setX(lastPos.getX() + unitSize);
+					newPos.setZ(lastPos.getZ());
+					break; 
+				case "U" : 
+					newPos.setX(lastPos.getX());
+					newPos.setZ(lastPos.getZ() + unitSize);				
+					break; 
+				}
+			
+				dataElement.getEntityLink().setPosition(newPos);
+				lastPos = newPos;
+				
+				if (counter % (squareSize - 1) == 1) {
+					switch (direction) {
+					case "R" : 
+						direction = "D"; 
+						break; 
+					case "D" : 
+						direction = "L"; 
+						break; 
+					case "L" : 
+						direction = "U"; 
+						break; 
+					}
+				}
+				
+				counter++;
+			}
+		}  
+	}
+		
 	private static void arrangeDataElementDistrict(Entity dataElementDistrict) {
 		Double squareSize = Math.ceil((dataElementDistrict.getEntities().size() - 1)/8.0)* 2 + 1;
 		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.Domain") * config.getAbapAdvBuildingScale("FAMIX.Domain") + config.getBuildingHorizontalGap());		
@@ -1394,7 +1458,7 @@ public class ABAPCityLayout {
 				dataElements.add(square);
 				break;
 			}
-		}
+			}
 		
 		// start algorithm
 		//List<String> position = getPositionListDcData(squareSize);
@@ -1466,6 +1530,8 @@ public class ABAPCityLayout {
 			}
 		}  
 	}
+	
+	
 private static void arrangeStructureDistrict(Entity structureDistrict) {
 	Double squareSizeTtyp = Math.ceil(Math.sqrt(structureDistrict.getEntities().size()));
 	Double squareSizeStruc = Math.ceil((structureDistrict.getEntities().size() - 1)/8.0)* 2 + 1;
