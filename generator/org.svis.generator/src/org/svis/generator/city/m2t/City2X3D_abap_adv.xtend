@@ -52,13 +52,9 @@ class City2X3D_abap_adv {
 	// transform logic
 	def String toX3DModel(List<Entity> entities) '''	
 		<Group DEF='defineModels'>
-			<Transform translation='0 -100 0'>
-				<Shape>
-					«advSetClass_Instance.defineElements()»
-«««					<Appearance>
-«««						<Material diffuseColor='0.8784313725490196 0.8392156862745098 0.39215686274509803' transparency='0'></Material>
-«««					</Appearance>
-				</Shape>
+			<Transform translation='0 -100 0'
+					   scale='0 0 0'>
+				«advSetClass_Instance.defineElements()»
 			</Transform>
 		</Group>
 			
