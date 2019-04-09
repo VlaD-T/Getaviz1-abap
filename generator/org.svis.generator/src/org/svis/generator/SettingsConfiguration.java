@@ -1475,6 +1475,10 @@ public class SettingsConfiguration {
 		return config.getBoolean("city.abap.showTableDistrict", false);
 	}
 	
+	public boolean isShowLocalClassDistrict() {
+		return config.getBoolean("city.abap.showLocalClassDistrict", false);
+	}
+	
 	public boolean isShowTableDistrictWithNotOriginalElements() {
 		return config.getBoolean("city.abap.showTableDistrictWithNotOriginalElements", false);
 	}
@@ -1546,6 +1550,12 @@ public class SettingsConfiguration {
 	}
 	public boolean isShowForm() {
 		return config.getBoolean("city.abap.showForm", false);
+	}
+	public boolean isShowLocalMethod() {
+		return config.getBoolean("city.abap.showLocalMethod", false);
+	}
+	public boolean isShowLocalAttribute() {
+		return config.getBoolean("city.abap.showLocalAttribute", false);
 	}
 	
 
@@ -1738,6 +1748,9 @@ public class SettingsConfiguration {
 				
 		} else if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abap.adv_method_def_size", 20);
+		
+			
+			
 			
 		} else if (type.equals("FAMIX.Attribute")) {
 			return config.getDouble("city.abap.adv_attribute_def_size", 20);
