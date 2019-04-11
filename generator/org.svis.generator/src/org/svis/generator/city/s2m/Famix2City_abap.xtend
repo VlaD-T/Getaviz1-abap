@@ -295,6 +295,7 @@ class Famix2City_abap {
 								
 		
 		cityDocument.entities += newDistrict
+		
 		return newDistrict
 	}
 	
