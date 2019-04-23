@@ -380,53 +380,31 @@ class Famix2City_abap {
 		  newDistrict.entities.add(newDomainDistrict)
 		  ]}
 		
-	    
-	      if(config.showDomainDistrictWithNotOriginalElements){
-		   if (config.getDtel_Sorting == DataElementSorting::UNSORTED) {
-	        if (domains.filter[iteration == 1].length != 0) {	 
-			val newDomainDistrict = cityFactory.createDistrict
-			newDomainDistrict.name = newDistrict.name + "_domainDistrict"
-			newDomainDistrict.type = "domainDistrict"
-			newDomainDistrict.color = CityUtils.getRGBFromHEX("#90aa7e")
-			newDomainDistrict.id = createID("DomainDistrict" + elem.id)
-			newDomainDistrict.level = level + 1
-			if (elem.iteration >= 1) {
-					newDomainDistrict.notInOrigin = "true"				
-			} else {
-				if(config.showDtel){
-				domains.filter[iteration == 1].forEach[ doma |					
-				dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]			    
-			    newDistrict.entities.add(newDomainDistrict)
-			 ]}}
-		 	}}
 		 
-
- 		    else if(config.getDtel_Sorting == DataElementSorting::SORTED){
-		    domains.filter[iteration == 1].forEach[ doma |
-			val newDomainDistrict = cityFactory.createDistrict
-			newDomainDistrict.name = newDistrict.name + "_domainDistrict"
-			newDomainDistrict.type = "domainDistrict"
-			newDomainDistrict.color = CityUtils.getRGBFromHEX("#90aa7e")
-			newDomainDistrict.id = createID("DomainDistrict" + doma.id)
-			newDomainDistrict.level = level + 1
-			if(elem.iteration >= 1){
-				newDomainDistrict.notInOrigin = "true"		 		
-			} else {
-				 if (config.showDataElementNotInOrigin){				 	
-					newDomainDistrict.entities += toBuilding(doma, level + 2)
-					if(config.showDtel){
-					dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]
-				    }
-				    newDistrict.entities.add(newDomainDistrict)	     
-			     } else {
-			     	if(config.showDtel){
-			     	dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[newDomainDistrict.entities += toBuilding(level + 2)]
-			     	}
-			     	newDistrict.entities.add(newDomainDistrict)
-			     }
-			}
-		 ]}                             
-		 }
+		 
+		 if(config.showDomainDistrictWithNotOriginalElements){
+	      domains.filter[iteration == 1].forEach[ doma |	       	 
+				val newDomainDistrict = cityFactory.createDistrict
+				newDomainDistrict.name = newDistrict.name + "_domainDistrict"
+				newDomainDistrict.type = "domainDistrict"
+				newDomainDistrict.color = CityUtils.getRGBFromHEX("#90aa7e")
+				newDomainDistrict.id = createID("DomainDistrict" + doma.id)
+				newDomainDistrict.level = level + 1
+				dataElements.filter[container.ref == elem].filter[iteration == 0].filter[domain == doma.value].forEach[ dtel |	
+					
+				if(elem.iteration >= 1){
+					newDomainDistrict.notInOrigin = "true"				
+				} else {
+				     if(config.showDataElementNotInOrigin){
+				     	newDomainDistrict.entities += toBuilding(doma, level + 2)
+				     }	
+					newDomainDistrict.entities += toBuilding(dtel, level + 2)
+					newDistrict.entities.add(newDomainDistrict)
+				}
+		     ]
+          ]
+        }  
+	
 		 
 		 if(config.showVirtualDomainDistrict){
 		  typeNames.forEach[ typeName | {
@@ -630,13 +608,15 @@ class Famix2City_abap {
 	      
 	   if(config.showTableDistrictWithNotOriginalElements){     
 	    tables.filter[iteration == 1].forEach[ table |
-	    	tableTypes.filter[container.ref == elem].filter[iteration == 0].filter[rowType == table.value].forEach[ ttyp |
+//	    	tableTypes.filter[container.ref == elem].filter[iteration == 0].filter[rowType == table.value].forEach[ ttyp |
 				val newTableDistrict = cityFactory.createDistrict
 				newTableDistrict.name = newDistrict.name + "_tableDistrict"
 				newTableDistrict.type = "tableDistrict"
 				newTableDistrict.id = table.id + "_000021"
 				newTableDistrict.level = level + 1
 				newTableDistrict.color = CityUtils.getRGBFromHEX("#0253d8")
+				tableTypes.filter[container.ref == elem].filter[iteration == 0].filter[rowType == table.value].forEach[ ttyp |
+					
 				if(elem.iteration >= 1){
 					newTableDistrict.notInOrigin = "true"				
 				} else {
