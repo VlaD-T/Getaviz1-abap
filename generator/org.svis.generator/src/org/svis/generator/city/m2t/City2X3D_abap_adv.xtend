@@ -77,7 +77,7 @@ class City2X3D_abap_adv {
 				«ENDIF»
 				«IF(config.buildingType == BuildingType::CITY_FLOOR)»
 					«FOR chimney: (entity as Building).data»
-«««						«toChimney(chimney, entity)»
+						«toChimney(chimney, entity)»
 					«ENDFOR»	
 				«ENDIF»
 		  	«ENDIF»
@@ -107,27 +107,9 @@ class City2X3D_abap_adv {
 	
 	//Advanced ABAP buildings
 	def String toBuilding(Entity entity)'''
-	
-«««	«IF entity.type == "FAMIX.Class"»
-«««		<Group DEF='«entity.id»'>	
-«««			<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'						   
-«««					   scale='«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»'>
-«««						«advSetClass_Instance.getElemFor_Class(entity)»
-«««			</Transform>
-«««		</Group>
-«««	«ELSEIF entity.type == "FAMIX.Report"»
-«««		<Group DEF='«entity.id»'>	
-«««			<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'						   
-«««					   scale='«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»'>
-«««						«advSetClass_Instance.getElemFor_Report(entity)»
-«««			</Transform>
-«««		</Group>
-«««	«ENDIF»					
-	
-	
 		<Group DEF='«entity.id»'>
 			<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
-					   scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale(entity.type))»'>
+					   scale='«getAdvBuildingScale(entity)»'>
 			
 			«IF entity.type == "FAMIX.DataElement"»
 				«advSetClass_Instance.getElemFor_DataElement(entity)»
@@ -143,12 +125,12 @@ class City2X3D_abap_adv {
 				«advSetClass_Instance.getElemFor_Table(entity)»
 			«ELSEIF entity.type == "FAMIX.Method"»
 				«advSetClass_Instance.getElemFor_Method(entity)»
-«««			«ELSEIF entity.type == "FAMIX.Class"»
-«««			«advSetClass_Instance.getElemFor_Class(entity)»
+			«ELSEIF entity.type == "FAMIX.Class"»
+			«advSetClass_Instance.getElemFor_Class(entity)»
 			«ELSEIF entity.type == "FAMIX.FunctionModule"»
 				«advSetClass_Instance.getElemFor_FunctionModule(entity)»
-«««			«ELSEIF entity.type == "FAMIX.Report"»
-«««				«advSetClass_Instance.getElemFor_Report(entity)»
+			«ELSEIF entity.type == "FAMIX.Report"»
+				«advSetClass_Instance.getElemFor_Report(entity)»
 			«ELSEIF entity.type == "FAMIX.Formroutine"»
 				«advSetClass_Instance.getElemFor_Formroutine(entity)»
 			«ELSEIF entity.type == "FAMIX.TableType"»
@@ -189,10 +171,6 @@ class City2X3D_abap_adv {
 					<Group DEF='«chimney.id»'>
 						<Transform translation='«chimney.position.x +" "+ chimney.position.y +" "+ chimney.position.z»'
 			                       scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale("FAMIX.InterfaceAttribute"))»'
-«««			                       Scale = «entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) 
-«««			                       + " " + config.getAbapAdvBuildingScale(entity.type) 
-«««			                       +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»'>
-			                       
 			                       rotation='0.000000 0.707107 0.707107 3.141593'>
 			                    <Shape>
 			                    	<Appearance>
@@ -264,5 +242,15 @@ class City2X3D_abap_adv {
 	// Return scale for building. Scale - for changing size
 	def String getAdvBuildingScale(double scale)'''
 		«scale + " " + scale +  " " + scale»
+	'''
+	
+	def String getAdvBuildingScale(Entity entity)'''
+		«IF entity.type == "FAMIX.Class"»
+			«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»
+		«ELSEIF entity.type == "FAMIX.Report"»
+			«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»
+		«ELSE»
+			«config.getAbapAdvBuildingScale(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + config.getAbapAdvBuildingScale(entity.type)»
+		«ENDIF»
 	'''
 }

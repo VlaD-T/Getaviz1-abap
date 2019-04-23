@@ -43,6 +43,17 @@ class SimpleBlocks implements AdvSet_Interface {
 		</Transform>
 	'''
 	
+	override getElemFor_VirtualDomain(Entity entity) '''
+		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth(entity.type) / 2) +" "+ 0»'>
+			<Shape>
+				<Cylinder radius='«entity.width/2»' height='«config.getSimpleBlocksHeigth("FAMIX.VirtualDomain")»'></Cylinder>
+				<Appearance>
+					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+				</Appearance>
+			</Shape>
+		</Transform>
+	'''
+	
 	override getElemFor_StrucElement(Entity entity) '''
 		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
 			<Shape>

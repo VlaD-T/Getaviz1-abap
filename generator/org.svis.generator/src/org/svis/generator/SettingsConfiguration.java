@@ -1643,6 +1643,10 @@ public class SettingsConfiguration {
 		}else if(type.equals("FAMIX.Domain")) {
 			if(config.getString("city.abap.domain.color").equals("")) return null;
 			return getColor(config.getString("city.abap.domain.color", "#c5cae9"));
+		
+		}else if(type.equals("FAMIX.VirtualDomain")) {
+			if(config.getString("city.abap.virtualdomain.color").equals("")) return null;
+			return getColor(config.getString("city.abap.virtualdomain.color", "#c5cae9"));
 			
 		}else {
 			return null;
@@ -1824,6 +1828,8 @@ public class SettingsConfiguration {
 			return config.getDouble("city.abap.dataElement_height", 11);
 		} else if (type.equals("FAMIX.Domain")) {
 			return config.getDouble("city.abap.domain_height", 15);
+		} else if (type.equals("FAMIX.VirtualDomain")) {
+			return config.getDouble("city.abap.virtualdomain_height", 15);
 		} else if (type.equals("FAMIX.Table")) {
 			return config.getDouble("city.abap.table_heigth", 15);
 		} else if (type.equals("TT_Struc")) {
