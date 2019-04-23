@@ -107,27 +107,6 @@ class City2X3D_abap_adv {
 	
 	//Advanced ABAP buildings
 	def String toBuilding(Entity entity)'''
-<<<<<<< HEAD
-=======
-	
-	«IF entity.type == "FAMIX.Class"»
-	<Group DEF='«entity.id»'>	
-		<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'						   
-				   scale='«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»'>
-					«advSetClass_Instance.getElemFor_Class(entity)»
-		</Transform>
-	</Group>
-«««	«ELSEIF entity.type == "FAMIX.Report"»
-«««		<Group DEF='«entity.id»'>	
-«««			<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»'						   
-«««					   scale='«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»'>
-«««						«advSetClass_Instance.getElemFor_Report(entity)»
-«««			</Transform>
-«««		</Group>
-	«ENDIF»					
-	
-	
->>>>>>> refs/heads/master
 		<Group DEF='«entity.id»'>
 			<Transform translation='«entity.position.x +" "+ entity.position.y +" "+ entity.position.z»' 
 					   scale='«getAdvBuildingScale(entity)»'>
