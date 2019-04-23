@@ -249,8 +249,8 @@ class City2X3D_abap_adv {
 	def String getAdvBuildingScale(Entity entity)'''
 		«IF entity.type == "FAMIX.Class"»
 			«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»
-		«ELSEIF entity.type == "FAMIX.Report"»
-			«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»
+«««		«ELSEIF entity.type == "FAMIX.Report"»
+«««			«entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + entity.width * ( config.getAbapAdvBuildingDefSize("FAMIX.ReportAttribute") + 1) / config.getAbapAdvBuildingDefSize(entity.type)»
 		«ELSE»
 			«config.getAbapAdvBuildingScale(entity.type) + " " + config.getAbapAdvBuildingScale(entity.type) +  " " + config.getAbapAdvBuildingScale(entity.type)»
 		«ENDIF»
