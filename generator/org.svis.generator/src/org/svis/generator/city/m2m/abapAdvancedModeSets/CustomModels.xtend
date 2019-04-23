@@ -6,34 +6,34 @@ import org.svis.xtext.city.Entity
 class CustomModels implements AdvSet_Interface {
 	
 	override defineElements()'''
-«««		«CustomModel_SimpleHouse::defineSimpleHouseShape»
-«««		«CustomModel_TownHall::defineTownHallShape»
+		«CustomModel_SimpleHouse::defineSimpleHouseShape»
+		«CustomModel_TownHall::defineTownHallShape»
 «««		«CustomModel_TownHall_VirtualDomain::defineTownHallVirtualDomainShape»
-«««		«CustomModel_ContainerShip::defineContainerShipShape»
-«««		«CustomModel_Boat::defineBoatShape»
-«««		«CustomModel_ParkingSlot::defineParkingSlotShape»
-«««		«CustomModel_Tube::defineTubeShape»
-«««		«CustomModel_ApartmentBuilding::defineApartmentBuildingBase(0)»
-«««		«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(0)»
-«««		«CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(0)»
+		«CustomModel_ContainerShip::defineContainerShipShape»
+		«CustomModel_Boat::defineBoatShape»
+		«CustomModel_ParkingSlot::defineParkingSlotShape»
+		«CustomModel_Tube::defineTubeShape»
+		«CustomModel_ApartmentBuilding::defineApartmentBuildingBase(0)»
+		«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(0)»
+		«CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(0)»
 		«CustomModel_SkyScraper::defineSkyScraperBase(0)»
 		«CustomModel_SkyScraper::defineSkyScraperFloor(0)»
 		«CustomModel_SkyScraper::defineSkyScraperRoof(0)»
-«««		«CustomModel_RadioTower::defineRadioTowerBase(0)»
-«««		«CustomModel_RadioTower::defineRadioTowerFloor(0)»
-«««		«CustomModel_RadioTower::defineRadioTowerRoof(0)»
-«««		«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase(0)»
-«««		«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(0)»
-«««		«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(0)»
-«««		«CustomModel_FactoryHall::defineFactoryHallBase(0)»
-«««		«CustomModel_FactoryHall::defineFactoryHallFloor(0)»
-«««		«CustomModel_FactoryHall::defineFactoryHallRoof(0)»
-«««		«CustomModel_CarPark::defineCarParkBase(0)»
-«««		«CustomModel_CarPark::defineCarParkFloor(0)»
-«««		«CustomModel_CarPark::defineCarParkRoof(0)»
-«««		«CustomModel_FactoryBuilding::defineFactoryBuildingBase(0)»
-«««		«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(0)»
-«««		«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(0)»
+		«CustomModel_RadioTower::defineRadioTowerBase(0)»
+		«CustomModel_RadioTower::defineRadioTowerFloor(0)»
+		«CustomModel_RadioTower::defineRadioTowerRoof(0)»
+		«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoBase(0)»
+		«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoFloor(0)»
+		«CustomModel_FactoryBuildingFumo::defineFactoryBuildingFumoRoof(0)»
+		«CustomModel_FactoryHall::defineFactoryHallBase(0)»
+		«CustomModel_FactoryHall::defineFactoryHallFloor(0)»
+		«CustomModel_FactoryHall::defineFactoryHallRoof(0)»
+		«CustomModel_CarPark::defineCarParkBase(0)»
+		«CustomModel_CarPark::defineCarParkFloor(0)»
+		«CustomModel_CarPark::defineCarParkRoof(0)»
+		«CustomModel_FactoryBuilding::defineFactoryBuildingBase(0)»
+		«CustomModel_FactoryBuilding::defineFactoryBuildingFloor(0)»
+		«CustomModel_FactoryBuilding::defineFactoryBuildingRoof(0)»
 	'''
 
 	override getElemFor_DataElement(Entity entity) '''
