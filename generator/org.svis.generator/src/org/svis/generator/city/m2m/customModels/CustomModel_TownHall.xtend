@@ -4,8 +4,8 @@ import org.svis.generator.city.CityUtils
 
 class CustomModel_TownHall {
 	def static String defineTownHallShape() '''
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 		<Group DEF="group_ME_domain">
-			<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
 			<Shape>
 				<Appearance>
 					<Material diffuseColor="«CityUtils.getRGBFromHEX("#E7E7E7")»" ««« wall: light grey
@@ -73,12 +73,14 @@ class CustomModel_TownHall {
 					<Coordinate USE="coords_townHall_Shape_IndexedFaceSet" />
 				</IndexedFaceSet>
 			</Shape>
-			</Transform>
 		</Group>
+	</Transform>
 	''' 
 
 	
 	def static String createTownHallShape() '''
+	<Transform rotation='0.000000 0.707107 0.707107 3.141593'>
         <Group USE="group_ME_domain"/>
+   </Transform>
 	'''
 }

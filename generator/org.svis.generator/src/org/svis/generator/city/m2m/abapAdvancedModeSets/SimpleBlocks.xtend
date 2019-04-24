@@ -43,6 +43,17 @@ class SimpleBlocks implements AdvSet_Interface {
 		</Transform>
 	'''
 	
+	override getElemFor_VirtualDomain(Entity entity) '''
+		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth(entity.type) / 2) +" "+ 0»'>
+			<Shape>
+				<Cylinder radius='«entity.width/2»' height='«config.getSimpleBlocksHeigth("FAMIX.VirtualDomain")»'></Cylinder>
+				<Appearance>
+					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+				</Appearance>
+			</Shape>
+		</Transform>
+	'''
+	
 	override getElemFor_StrucElement(Entity entity) '''
 		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
 			<Shape>
@@ -57,7 +68,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_Table(Entity entity) '''
 		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth(entity.type) / 2) +" "+ 0»'>
 			<Shape>
-				<Cylinder radius='«entity.width/4»' height='«config.getSimpleBlocksHeigth(entity.type)»' ></Cylinder>
+				<Box size='«entity.width +" "+ config.getSimpleBlocksHeigth(entity.type) +" "+ entity.length»'></Box>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -154,14 +165,25 @@ class SimpleBlocks implements AdvSet_Interface {
 	'''
 	
 	override getElemFor_Attribute_FunctionGroup(Entity entity) '''
-		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth("FAMIX.FunctionGroup") / 2) +" "+ 0»'>
+		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth("FAMIX.Attribute_FunctionGroup") / 2) +" "+ 0»'>
 			<Shape>
-				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeigth("FAMIX.FunctionGroup")»' ></Cylinder>
+				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeigth("FAMIX.Attribute_FunctionGroup")»' ></Cylinder>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
 			</Shape>
 		</Transform>
+	'''
+	
+	override getElemFor_Attribute_Report(Entity entity) '''
+		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth("FAMIX.Attribute_Report") / 2) +" "+ 0»'>
+			<Shape>
+				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeigth("FAMIX.Attribute_Report")»' ></Cylinder>
+				<Appearance>
+					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+				</Appearance>
+			</Shape>
+		</Transform>	
 	'''
 	
 	def double getHeight(String type, int partsCounter) {
