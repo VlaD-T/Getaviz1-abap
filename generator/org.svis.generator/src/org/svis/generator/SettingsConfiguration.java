@@ -1849,8 +1849,10 @@ public class SettingsConfiguration {
 			return config.getDouble("city.abap.tt_struture_height", 7);
 		} else if (type.equals("TT_Table")) {
 			return config.getDouble("city.abap.tt_table_height", 10);
-		} else if (type.equals("FAMIX.FunctionGroup")) {
+		} else if (type.equals("FAMIX.Attribute_FunctionGroup")) {
 			return config.getDouble("city.abap.fugrAttribute_height", 19);
+		} else if (type.equals("FAMIX.Attribute_Report")) {
+			return config.getDouble("city.abap.reportAttribute_height", 19);
 		} else {
 			return 0;
 		}

@@ -165,14 +165,25 @@ class SimpleBlocks implements AdvSet_Interface {
 	'''
 	
 	override getElemFor_Attribute_FunctionGroup(Entity entity) '''
-		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth("FAMIX.FunctionGroup") / 2) +" "+ 0»'>
+		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth("FAMIX.Attribute_FunctionGroup") / 2) +" "+ 0»'>
 			<Shape>
-				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeigth("FAMIX.FunctionGroup")»' ></Cylinder>
+				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeigth("FAMIX.Attribute_FunctionGroup")»' ></Cylinder>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
 			</Shape>
 		</Transform>
+	'''
+	
+	override getElemFor_Attribute_Report(Entity entity) '''
+		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth("FAMIX.Attribute_Report") / 2) +" "+ 0»'>
+			<Shape>
+				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeigth("FAMIX.Attribute_Report")»' ></Cylinder>
+				<Appearance>
+					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+				</Appearance>
+			</Shape>
+		</Transform>	
 	'''
 	
 	def double getHeight(String type, int partsCounter) {
