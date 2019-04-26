@@ -54,6 +54,17 @@ class SimpleBlocks implements AdvSet_Interface {
 		</Transform>
 	'''
 	
+	override getElemFor_ABAPStruc(Entity entity) '''
+		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
+			<Shape>
+				<Cone bottomRadius='«entity.width / 3»' height='«getHeight(entity.type, entity.buildingParts.length)»' ></Cone>
+				<Appearance>
+					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+				</Appearance>
+			</Shape>
+		</Transform>
+	'''
+	
 	override getElemFor_StrucElement(Entity entity) '''
 		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
 			<Shape>

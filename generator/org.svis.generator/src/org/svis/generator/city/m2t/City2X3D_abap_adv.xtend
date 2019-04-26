@@ -219,12 +219,7 @@ class City2X3D_abap_adv {
 	 		                       scale='«getAdvBuildingScale(config.getAbapAdvBuildingScale("FAMIX.TableElement"))»'>
 			     		     <Shape>
 	     						<Appearance>
-	     							<Material DEF="MA_Material_001"
-	     							          diffuseColor="«CityUtils.getRGBFromHEX("#95fff3")»"
-	     							          specularColor="0.401 0.401 0.401"
-	     							          emissiveColor="0.000 0.000 0.000"
-	     							          ambientIntensity="0.333"
-	     							          shininess="0.098"
+	     							<Material diffuseColor="«CityUtils.getRGBFromHEX("#95fff3")»"
 	     							          transparency="0.0"
 	     							          />
 	     						</Appearance>

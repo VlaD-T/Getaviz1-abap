@@ -317,7 +317,7 @@ class Famix2City_abap {
           val newStructureDistrict = cityFactory.createDistrict
           newStructureDistrict.name = newDistrict.name + "_structureDistrict"
           newStructureDistrict.type = "structureDistrict"
-          newStructureDistrict.id = createID("StructureDistrict" + struc.id) + "_00006"
+          newStructureDistrict.id = struc.id
           newStructureDistrict.level + 1
           if(elem.iteration >= 1) {
            newStructureDistrict.notInOrigin = "true"
@@ -343,7 +343,7 @@ class Famix2City_abap {
 				newStructureDistrict.name = newDistrict.name + "_structureDistrict"
 				newStructureDistrict.type = "structureDistrict"
 				newStructureDistrict.color = CityUtils.getRGBFromHEX("#b2de92")
-				newStructureDistrict.id = struc.id + "_000021"
+				newStructureDistrict.id = struc.id
 				newStructureDistrict.level = level + 1
 				if(elem.iteration >= 1){
 					newStructureDistrict.notInOrigin = "true"				
@@ -485,7 +485,7 @@ class Famix2City_abap {
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 				newLocalClassDistrict.type = "classDistrict"
-				newLocalClassDistrict.id   = localClass.id + "_00001"
+				newLocalClassDistrict.id   = localClass.id
 				newLocalClassDistrict.level = level + 1
 			    
 			    if(config.showLocalMethod){
@@ -508,7 +508,7 @@ class Famix2City_abap {
 			val newInterfaceDistrict = cityFactory.createDistrict
 			newInterfaceDistrict.name = newDistrict.name + "_interfaceDistrict"                                                           
 			newInterfaceDistrict.type = "interfaceDistrict"
-			newInterfaceDistrict.id   = createID("InterfaceDistrict" + class.id) + "_00002"
+			newInterfaceDistrict.id   = createID(class.id) + "_000031"
 			newInterfaceDistrict.level = level + 1
 			
 			if(config.showInterface){
@@ -523,7 +523,7 @@ class Famix2City_abap {
 			val newFunctionGroupDistrict = cityFactory.createDistrict
 			newFunctionGroupDistrict.name = newDistrict.name + "_functionGroupDistrict"
 			newFunctionGroupDistrict.type = "functionGroupDistrict"
-			newFunctionGroupDistrict.id = functionGroup.id + "_00003"
+			newFunctionGroupDistrict.id = functionGroup.id
 			newFunctionGroupDistrict.level = level + 1
 			
 			if(config.showFumo)
@@ -538,7 +538,7 @@ class Famix2City_abap {
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 				newLocalClassDistrict.type = "classDistrict"
-				newLocalClassDistrict.id   = localClass.id + "_00004"
+				newLocalClassDistrict.id   = localClass.id
 				newLocalClassDistrict.level = level + 1
 			
 				if(config.showLocalMethod){
@@ -581,7 +581,7 @@ class Famix2City_abap {
 				val newLocalClassDistrict = cityFactory.createDistrict
 				newLocalClassDistrict.name = newDistrict.name + "_classDistrict"                                                           
 				newLocalClassDistrict.type = "classDistrict"
-				newLocalClassDistrict.id   = localClass.id + "_00006"
+				newLocalClassDistrict.id   = localClass.id
 				newLocalClassDistrict.level = level + 1
 			
 				if(config.showLocalMethod){
