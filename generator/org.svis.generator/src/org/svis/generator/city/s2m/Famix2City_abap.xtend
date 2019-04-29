@@ -336,27 +336,27 @@ class Famix2City_abap {
 		  newDistrict.entities.add(newStructureDistrict)
           ]}
             
-		 if(config.showStructureDistrictWithNotOriginalElements){
-	      abapStrucs.filter[iteration == 1].forEach[ struc |
-	       	 tableTypes.filter[container.ref == elem].filter[iteration == 0].filter[rowType == struc.value].forEach[ ttyp |		       	 
-				val newStructureDistrict = cityFactory.createDistrict
-				newStructureDistrict.name = newDistrict.name + "_structureDistrict"
-				newStructureDistrict.type = "structureDistrict"
-				newStructureDistrict.color = CityUtils.getRGBFromHEX("#b2de92")
-				newStructureDistrict.id = struc.id
-				newStructureDistrict.level = level + 1
-				if(elem.iteration >= 1){
-					newStructureDistrict.notInOrigin = "true"				
-				} else {
-				     if(config.showStructureNotInOrigin){
-				     	newStructureDistrict.entities += toAdvBuilding(struc, level + 2)
-				     }	
-					newStructureDistrict.entities += toBuilding(ttyp, level + 2, false)
-					newDistrict.entities.add(newStructureDistrict)
-				}
-		     ]  
-          ]
-        }  
+//		 if(config.showStructureDistrictWithNotOriginalElements){
+//	      abapStrucs.filter[iteration == 1].forEach[ struc |
+//	       	 tableTypes.filter[container.ref == elem].filter[iteration == 0].filter[rowType == struc.value].forEach[ ttyp |		       	 
+//				val newStructureDistrict = cityFactory.createDistrict
+//				newStructureDistrict.name = newDistrict.name + "_structureDistrict"
+//				newStructureDistrict.type = "structureDistrict"
+//				newStructureDistrict.color = CityUtils.getRGBFromHEX("#b2de92")
+//				newStructureDistrict.id = struc.id
+//				newStructureDistrict.level = level + 1
+//				if(elem.iteration >= 1){
+//					newStructureDistrict.notInOrigin = "true"				
+//				} else {
+//				     if(config.showStructureNotInOrigin){
+//				     	newStructureDistrict.entities += toAdvBuilding(struc, level + 2)
+//				     }	
+//					newStructureDistrict.entities += toBuilding(ttyp, level + 2, false)
+//					newDistrict.entities.add(newStructureDistrict)
+//				}
+//		     ]  
+//          ]
+//        }  
           // domains with dtel    
         if(config.showDomainDistrict){    
 		  domains.filter[container.ref == elem].forEach[ doma |
@@ -995,7 +995,7 @@ class Famix2City_abap {
 		newBuilding.fqn = elem.fqn
 		newBuilding.type = CityUtils.getFamixClassString(elem.class.simpleName)
 		newBuilding.level = level
-		newBuilding.id = elem.id
+		newBuilding.id = createID("StrucElem" + elem.id)
 		if(elem.iteration >= 1){
 			newBuilding.notInOrigin = "true"
 		}
