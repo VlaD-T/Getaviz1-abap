@@ -648,15 +648,11 @@ for (chimney : chimneys) {
 		var roofHeight = config.getAdvBuildingRoofHeight(b.type)
 		var attributeHeight = config.getAdvBuildungAttributeHeight(b.type)
 		
-//		var elementHeight = config.getAbapSimpleBlock_element_height(b.type)
-
-		
-//		if (config.abapAdvCity_set == AbapAdvCitySet::CustomModels) {
-        return (b.position.y + baseHeight + (b.methodCounter * floorHeight) + roofHeight) - attributeHeight        	
-//        } else if(config.abapAdvCity_set == AbapAdvCitySet::SimpleBlocks) {
-//        	return (b.position.y + b.methodCounter * elementHeight) + 0.25
-//        }
-		
+		if (config.abap_representation == AbapCityRepresentation::ADVANCED && config.getAbapAdvCitySet.toString == "SimpleBlocks") {
+			return (b.position.y + baseHeight + (b.methodCounter * floorHeight) + roofHeight) + attributeHeight 
+		} else {
+			return (b.position.y + baseHeight + (b.methodCounter * floorHeight) + roofHeight) - attributeHeight 
+		}		
 	}	
 
 	def double getScaledHeightofSco(double unscaledHeight) {

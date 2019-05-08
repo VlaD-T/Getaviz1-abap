@@ -107,7 +107,24 @@ class SimpleBlocks implements AdvSet_Interface {
 				</Appearance>
 			</Shape>
 		</Transform>
+		
+		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length)) +" "+ 0»'>
+			<Shape>
+				<Box size='«getInterfaceRoofSize(entity.dataCounter) +" "+ 1 +" "+ getInterfaceRoofSize(entity.dataCounter)»'></Box>
+				<Appearance>
+					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+				</Appearance>
+			</Shape>
+		</Transform>
 	'''
+	
+	def getInterfaceRoofSize(double dataCounter) {
+		var margin = 3
+		if (dataCounter <= 4 ) {
+			return margin + (config.getAdvBuildungAttributeHeight("FAMIX.Class") * 4)
+		}
+		return dataCounter + margin * 2
+	}
 	
 	override getElemFor_FunctionModule(Entity entity) '''
 		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
