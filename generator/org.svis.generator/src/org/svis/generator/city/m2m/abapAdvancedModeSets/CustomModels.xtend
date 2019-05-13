@@ -8,7 +8,7 @@ class CustomModels implements AdvSet_Interface {
 	override defineElements()'''
 		«CustomModel_SimpleHouse::defineSimpleHouseShape»
 		«CustomModel_TownHall::defineTownHallShape»
-		«CustomModel_TownHall_VirtualDomain::defineTownHallVirtualDomainShape»
+«««		«CustomModel_TownHall_VirtualDomain::defineTownHallVirtualDomainShape»
 		«CustomModel_ContainerShip::defineContainerShipShape»
 		«CustomModel_Boat::defineBoatShape»
 		«CustomModel_ParkingSlot::defineParkingSlotShape»
@@ -46,7 +46,7 @@ class CustomModels implements AdvSet_Interface {
 	'''
 	
 	override getElemFor_VirtualDomain(Entity entity) '''
-		«CustomModel_TownHall_VirtualDomain::defineTownHallVirtualDomainShape»
+		«CustomModel_TownHall_VirtualDomain::createTownHallVirtualDomainShape»
 	'''
 	
 	override getElemFor_StrucElement(Entity entity) '''

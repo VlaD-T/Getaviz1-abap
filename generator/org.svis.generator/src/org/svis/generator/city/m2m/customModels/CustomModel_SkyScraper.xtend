@@ -132,8 +132,8 @@ class CustomModel_SkyScraper {
 				</IndexedFaceSet>
 			</Shape>
 		</Group>
-		</Transform>
-		</Transform>
+	</Transform>
+	</Transform>
 	'''
 
 	
