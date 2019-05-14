@@ -133,8 +133,8 @@ class City2X3D_abap_adv {
 				«advSetClass_Instance.getElemFor_DataElement(entity)»
 			«ELSEIF entity.type == "FAMIX.Domain"»
 				«advSetClass_Instance.getElemFor_Domain(entity)»
-			«ELSEIF entity.type == "FAMIX.VirtualDomain"»
-				«advSetClass_Instance.getElemFor_VirtualDomain(entity)»
+«««			«ELSEIF entity.type == "FAMIX.VirtualDomain"»
+«««				«advSetClass_Instance.getElemFor_VirtualDomain(entity)»
 			«ELSEIF entity.type == "FAMIX.ABAPStruc"»
 				«advSetClass_Instance.getElemFor_ABAPStruc(entity)»
 			«ELSEIF entity.type == "FAMIX.StrucElement"»
