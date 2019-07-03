@@ -232,16 +232,16 @@ class City2City_abap {
 				
 			} else if (b.type == "FAMIX.Report") {
 			    
-				b.width = b.width // getAdvBuildingWidth(b.type, 1.0)
-				b.length = b.width // getAdvBuildingLength(b.type, 1.0) 
+				b.width = getAdvBuildingWidth(b.type, 1.0) // b.width
+				b.length = getAdvBuildingLength(b.type, 1.0)  // b.width
 				b.height = getScaledHeightofSco(b.methodCounter)				
-				b.buildingParts.add(createAdvBuildingBase(b.type))								
-				for (var i = 1; i <= b.height - 1; i++) {
-					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
-				}
-				var roof = createAdvBuildingRoof(b.type, b.height)
-				b.buildingParts.add(roof)
-				b.height = roof.height	
+//				b.buildingParts.add(createAdvBuildingBase(b.type))								
+//				for (var i = 1; i <= b.height - 1; i++) {
+//					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
+//				}
+//				var roof = createAdvBuildingRoof(b.type, b.height)
+//				b.buildingParts.add(roof)
+//				b.height = roof.height	
 
 
 			} else if (b.type == "FAMIX.Formroutine") {

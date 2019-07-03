@@ -49,6 +49,7 @@ FAMIXNamespace:
 	('(' 'fqn' fqn = MSESTRING ')')?
 	('(' 'isStub' isStub=Boolean ')')?
 	('(' 'parentScope' parentScope=IntegerReference ')')?
+	('(' 'isStandard' isStandard=Boolean ')')? //ABAP
 	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 

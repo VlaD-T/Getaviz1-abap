@@ -208,6 +208,7 @@ class Famix2City_abap {
 		newDistrict.fqn = elem.fqn
 		newDistrict.type = CityUtils.getFamixClassString(elem.class.simpleName)
 		newDistrict.level = level
+		newDistrict.isStandard = elem.isStandard
 		newDistrict.id = elem.id
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
@@ -307,6 +308,7 @@ class Famix2City_abap {
 		newDistrict.fqn = elem.fqn
 		newDistrict.type = CityUtils.getFamixClassString(elem.class.simpleName)
 		newDistrict.level = level
+		newDistrict.isStandard = elem.isStandard
 		newDistrict.id = elem.id
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
