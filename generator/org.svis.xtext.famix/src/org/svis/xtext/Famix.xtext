@@ -123,12 +123,12 @@ FAMIXMethod:
 	('(' 'MethodType' MethodType = MethodType ')')?
 	('(' 'sourceAnchor' sourceAnchor=IntegerReference ')')?
 	('(' 'accessesVariable' accessesVar = IntegerReference ')')?
-	('(' 'iteration' iteration=INT ')')? //ABAP
 	('(' 'creator' creator = MSESTRING ')')?
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?	
 	('(' 'include' include=MSESTRING ')')? //ABAP
+	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';
 
 FAMIXInvocation:
@@ -157,12 +157,12 @@ FAMIXAttribute:
 	('(' 'dataType' dataType=MSESTRING ')')? //ABAP
 	('(' 'dataElement' dataElement=MSESTRING ')')? //ABAP
 	('(' 'sourceCodeDefined' sourceCodeDefined=Boolean ')')? //ABAP
-	('(' 'iteration' iteration=INT ')')? //ABAP
 	('(' 'creator' creator = MSESTRING ')')?
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?
 	('(' 'include' include=MSESTRING ')')? //ABAP
+	('(' 'iteration' iteration=INT ')')? //ABAP
 	')';	
 
 FAMIXAccess:
@@ -417,12 +417,12 @@ FAMIXReport:
     ('(' 'fqn' fqn = MSESTRING ')')?
     '(' 'container' container=IntegerReference ')'
     ('(' 'numberOfStatements' numberOfStatements=INT ')')?
-    ('(' 'iteration' iteration=INT ')')?
 	('(' 'creator' creator = MSESTRING ')')?
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?
 	('(' 'include' include=MSESTRING ')')?
+    ('(' 'iteration' iteration=INT ')')?
     ')';
 
 FAMIXFormroutine:
@@ -569,12 +569,12 @@ FAMIXFunctionGroup:
     ('(' 'modifiers' modifiers+=MSESTRING* ')')? // for structures class, not used in ABAP
     ('(' 'betweennessCentrality' betweennessCentrality = MSESTRING ')')? // for structures class, not used in ABAP
 	('(' 'STK-Rank' stkRank = MSESTRING ')')? // for structures class, not used in ABAP
-    ('(' 'iteration' iteration=INT ')')? 
 	('(' 'creator' creator = MSESTRING ')')?
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?
 	('(' 'include' include=MSESTRING ')')?
+    ('(' 'iteration' iteration=INT ')')? 
     ')';    
 
 FAMIXFunctionModule:
@@ -586,12 +586,12 @@ FAMIXFunctionModule:
     ('(' 'declaredType' declaredType=IntegerReference ')')?
     ('(' 'numberOfStatements' numberOfStatements=INT ')')?
     '(' 'parentType' parentType=IntegerReference ')'
-    ('(' 'iteration' iteration=INT ')')?
 	('(' 'creator' creator = MSESTRING ')')?
 	('(' 'created' created = MSESTRING ')')?
 	('(' 'lastChangedBy' lastChangedBy = MSESTRING ')')?
 	('(' 'lastChanged' lastChanged = MSESTRING ')')?
 	('(' 'include' include=MSESTRING ')')?
+    ('(' 'iteration' iteration=INT ')')?
     ')';
 	
 FAMIXMacro:
