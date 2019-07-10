@@ -114,6 +114,8 @@ BuildingSegment:
 		('(' 'separator'  separator += PanelSeparator ')')?
 		('(' 'labelPosition' labelPosition=Position ')')?
 		('(' 'numberOfStatements' numberOfStatements=INT ')')?
+		('(' 'notInOrigin' notInOrigin=BOOLEAN ')')? //ABAP		
+		('(' 'isStandard' isStandard=BOOLEAN ')')? //ABAP
 		('(' 'modifiers' modifiers=STRING ')')? // E.g. public, static, synchronized, etc.
 		('(' 'methodKind' methodKind=STRING ')' )? // Marker for constructor methods
 		('(' 'declaredType' declaredType=DeclaredType ')')? // The return value
