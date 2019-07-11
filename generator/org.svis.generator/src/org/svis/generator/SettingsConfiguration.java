@@ -1362,7 +1362,7 @@ public class SettingsConfiguration {
 	}
 	
 	public NotInOriginLayoutVersion getAbapNotInOrigin_layout() {
-		switch (getDistrictLayoutVersion()) {
+		switch (getAbapNotInOriginLayout()) {
 			case "default":
 				return NotInOriginLayoutVersion.DEFAULT;
 			case "circular":
