@@ -191,37 +191,40 @@ public class ABAPCityLayout {
 	}
 	
 	private static void arrangeDistrictsCircular(List<Rectangle> elements, Rectangle covrec) {
+		int version = 1;
+		
 		double covrecRadius = Math.sqrt(Math.pow(covrec.getWidth() / 2.0, 2) + Math.pow(covrec.getLength() / 2.0, 2)) + config.getBuildingHorizontalGap();
 		
 		if (elements.size() == 0)
 			return;
-		else {
-			// radius of the biggest district
+		else {			
 			Rectangle biggestRec = elements.get(0);
 			
-			double maxRadius = Math.sqrt(Math.pow(biggestRec.getWidth() / 2.0, 2) + Math.pow(biggestRec.getLength() / 2.0, 2));
+			// radius of the biggest district
+			double maxOuterRadius = Math.sqrt(Math.pow(biggestRec.getWidth() / 2.0, 2) + Math.pow(biggestRec.getLength() / 2.0, 2));
 			
-			double initialRadius = maxRadius
+			double minRadius = maxOuterRadius
 									+ covrecRadius
 									+ config.getBuildingHorizontalGap();
 			
-			double maxInnerRadius = 0;
+			double maxRadius = 0;
 			
-			// upper estimation of the inner radius	, only for sets with several elements
+			// upper estimation of the radius, only for sets with several elements
 			if (elements.size() > 1)		
-				maxInnerRadius = (1 / (2 * Math.sin(Math.PI / elements.size())) - 1) * maxRadius 
+				maxRadius = maxOuterRadius / Math.sin(Math.PI / elements.size()) 
 									+ config.getBuildingHorizontalGap();
 		
-			double innerRadius = initialRadius > maxInnerRadius ? initialRadius : maxInnerRadius;
+			double radius = Math.max(minRadius, maxRadius);
 			
 			Position initialPos = cityFactory.createPosition();
-			initialPos.setX(covrec.getCenterX() + innerRadius);
+			initialPos.setX(covrec.getCenterX() + radius);
 			initialPos.setZ(covrec.getCenterY());
 			
 			biggestRec.getEntityLink().setPosition(initialPos);
 			
 			if (elements.size() > 1) {
 				for (int i = 1; i < elements.size(); ++i) {
+					
 					Rectangle previousRec = elements.get(i - 1);
 					Rectangle currentRec = elements.get(i);
 
@@ -230,8 +233,15 @@ public class ABAPCityLayout {
 					
 					double currentRadius = Math.sqrt(Math.pow(currentRec.getWidth() / 2.0, 2) + Math.pow(currentRec.getLength() / 2.0, 2));
 							//+ config.getBuildingHorizontalGap();
-
-					double rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(innerRadius, 2))));
+					
+					double rotationAngle = 0;
+					
+					if (version == 1) 
+						rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
+					else if (version == 2)
+						rotationAngle = 2 * Math.asin(maxOuterRadius / radius);
+					else if (version == 3)
+						rotationAngle = 2 * Math.PI / elements.size();
 
 					Position newPos = cityFactory.createPosition();
 					
@@ -251,7 +261,7 @@ public class ABAPCityLayout {
 				}
 			}
 			
-			double newCovrecWidth = 2 * innerRadius + (biggestRec.getWidth() > biggestRec.getLength() ? biggestRec.getWidth() : biggestRec.getLength());			
+			double newCovrecWidth = 2 * radius + (biggestRec.getWidth() > biggestRec.getLength() ? biggestRec.getWidth() : biggestRec.getLength());			
 			covrec.changeRectangle(covrec.getCenterX(), covrec.getCenterY(), newCovrecWidth, newCovrecWidth, 0);
 			
 		}		
