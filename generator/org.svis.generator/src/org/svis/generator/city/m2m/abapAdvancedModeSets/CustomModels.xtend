@@ -13,6 +13,7 @@ class CustomModels implements AdvSet_Interface {
 		«CustomModel_Boat::defineBoatShape»
 		«CustomModel_ParkingSlot::defineParkingSlotShape»
 		«CustomModel_Tube::defineTubeShape»
+		«CustomModel_Container::defineContainerShape»
 		«CustomModel_ApartmentBuilding::defineApartmentBuildingBase(0)»
 		«CustomModel_ApartmentBuilding::defineApartmentBuildingFloor(0)»
 		«CustomModel_ApartmentBuilding::defineApartmentBuildingRoof(0)»
@@ -45,7 +46,7 @@ class CustomModels implements AdvSet_Interface {
 	'''
 	
 	override getElemFor_VirtualDomain(Entity entity) '''
-		«CustomModel_TownHall_VirtualDomain::defineTownHallVirtualDomainShape»
+		«CustomModel_TownHall_VirtualDomain::createTownHallVirtualDomainShape»
 	'''
 	
 	override getElemFor_StrucElement(Entity entity) '''
@@ -154,6 +155,10 @@ class CustomModels implements AdvSet_Interface {
 				«CustomModel_CarPark::createCarParkRoof(part.height)»
 			«ENDIF»						
 		«ENDFOR»	
+	'''
+	
+	override getElemFor_Attribute_Report(Entity entity) '''
+	     «CustomModel_Container::createContainerShape»  
 	'''
 	
 	override getElemFor_Attribute_FunctionGroup(Entity entity) '''

@@ -1495,6 +1495,10 @@ public class SettingsConfiguration {
 		return config.getBoolean("city.abap.showTableDistrict", false);
 	}
 	
+	public boolean isShowLocalClassDistrict() {
+		return config.getBoolean("city.abap.showLocalClassDistrict", false);
+	}
+	
 	public boolean isShowTableDistrictWithNotOriginalElements() {
 		return config.getBoolean("city.abap.showTableDistrictWithNotOriginalElements", false);
 	}
@@ -1566,6 +1570,12 @@ public class SettingsConfiguration {
 	}
 	public boolean isShowForm() {
 		return config.getBoolean("city.abap.showForm", false);
+	}
+	public boolean isShowLocalMethod() {
+		return config.getBoolean("city.abap.showLocalMethod", false);
+	}
+	public boolean isShowLocalAttribute() {
+		return config.getBoolean("city.abap.showLocalAttribute", false);
 	}
 	
 
@@ -1663,6 +1673,10 @@ public class SettingsConfiguration {
 		}else if(type.equals("FAMIX.Domain")) {
 			if(config.getString("city.abap.domain.color").equals("")) return null;
 			return getColor(config.getString("city.abap.domain.color", "#c5cae9"));
+		
+		}else if(type.equals("FAMIX.VirtualDomain")) {
+			if(config.getString("city.abap.virtualdomain.color").equals("")) return null;
+			return getColor(config.getString("city.abap.virtualdomain.color", "#c5cae9"));
 			
 		}else {
 			return null;
@@ -1758,6 +1772,9 @@ public class SettingsConfiguration {
 				
 		} else if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abap.adv_method_def_size", 20);
+		
+			
+			
 			
 		} else if (type.equals("FAMIX.Attribute")) {
 			return config.getDouble("city.abap.adv_attribute_def_size", 20);
@@ -1844,14 +1861,18 @@ public class SettingsConfiguration {
 			return config.getDouble("city.abap.dataElement_height", 11);
 		} else if (type.equals("FAMIX.Domain")) {
 			return config.getDouble("city.abap.domain_height", 15);
+		} else if (type.equals("FAMIX.VirtualDomain")) {
+			return config.getDouble("city.abap.virtualdomain_height", 15);
 		} else if (type.equals("FAMIX.Table")) {
 			return config.getDouble("city.abap.table_heigth", 15);
 		} else if (type.equals("TT_Struc")) {
 			return config.getDouble("city.abap.tt_struture_height", 7);
 		} else if (type.equals("TT_Table")) {
 			return config.getDouble("city.abap.tt_table_height", 10);
-		} else if (type.equals("FAMIX.FunctionGroup")) {
+		} else if (type.equals("FAMIX.Attribute_FunctionGroup")) {
 			return config.getDouble("city.abap.fugrAttribute_height", 19);
+		} else if (type.equals("FAMIX.Attribute_Report")) {
+			return config.getDouble("city.abap.reportAttribute_height", 19);
 		} else {
 			return 0;
 		}
