@@ -999,6 +999,11 @@ public class ABAPCityLayout {
 	
 	
 	private static void arrangeInterfaceDistrict(Entity interfaceDistrict) {
+		
+		if (interfaceDistrict.getEntities().isEmpty() == true) {
+			return;
+		}
+		
 		Double squareSize = interfaceDistrict.getEntities().get(0).getWidth();
 		double size = squareSize * ( (config.getAbapAdvBuildingDefSize("FAMIX.InterfaceAttribute") + 1) * config.getAbapAdvBuildingScale("FAMIX.Class")
 					  + config.getBuildingHorizontalGap());
@@ -1483,6 +1488,7 @@ public class ABAPCityLayout {
 	}
 	
 	private static void arrangeVirtualDomainDistrict(Entity virtualDomainDistrict) {
+		
 		Double squareSize = Math.ceil((virtualDomainDistrict.getEntities().size() - 1)/8.0)* 2 + 1;
 		double size = squareSize * (config.getAbapAdvBuildingDefSize("FAMIX.VirtualDomain") * config.getAbapAdvBuildingScale("FAMIX.VirtualDomain") + config.getBuildingHorizontalGap());		
 		virtualDomainDistrict.setWidth(size + 2 * config.getBuildingHorizontalMargin()); // or size + config.getBuildingHorizontalMargin() + config.getBuildingHorizontalGap() ??
