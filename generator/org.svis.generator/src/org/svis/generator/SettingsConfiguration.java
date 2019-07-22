@@ -1353,7 +1353,7 @@ public class SettingsConfiguration {
 	}
 	
 	//Kind of arranging the districts of the SCO
-	public static enum NotInOriginLayoutVersion {
+	public static enum NotInOriginLayout {
 		DEFAULT, CIRCULAR;
 	}
 	
@@ -1361,14 +1361,35 @@ public class SettingsConfiguration {
 		return config.getString("city.abap.notInOrigin_layout", "default");
 	}
 	
-	public NotInOriginLayoutVersion getAbapNotInOrigin_layout() {
+	public NotInOriginLayout getAbapNotInOrigin_layout() {
 		switch (getAbapNotInOriginLayout()) {
 			case "default":
-				return NotInOriginLayoutVersion.DEFAULT;
+				return NotInOriginLayout.DEFAULT;
 			case "circular":
-				return NotInOriginLayoutVersion.CIRCULAR;
+				return NotInOriginLayout.CIRCULAR;
 			default:
-				return NotInOriginLayoutVersion.DEFAULT;
+				return NotInOriginLayout.DEFAULT;
+		}
+	}
+	
+	public static enum NotInOriginLayoutVersion {
+		MINIMAL_DISTANCE, CONSTANT_DISTANCE, FULL_CIRCLE;
+	}
+	
+	public String getAbapNotInOriginLayoutVersion() {
+		return config.getString("city.abap.notInOrigin_layout_version", "minimalDistance");
+	}
+	
+	public NotInOriginLayoutVersion getAbapNotInOrigin_layout_version() {
+		switch (getAbapNotInOriginLayoutVersion()) {
+			case "minimalDistance":
+				return NotInOriginLayoutVersion.MINIMAL_DISTANCE;
+			case "constantDistance":
+				return NotInOriginLayoutVersion.CONSTANT_DISTANCE;
+			case "fullCircle":
+				return NotInOriginLayoutVersion.FULL_CIRCLE;
+			default:
+				return NotInOriginLayoutVersion.MINIMAL_DISTANCE;
 		}
 	}
 	

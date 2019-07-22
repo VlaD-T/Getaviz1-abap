@@ -44,10 +44,10 @@ public class ABAPCityLayout {
 		}
 
 		// receives List of ALL CITYelements in the form of the root element
-		if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayoutVersion.DEFAULT)
-			arrangeChildren(root.getDocument());
-		else if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayoutVersion.CIRCULAR)
-			arrangeChildren_new(root.getDocument());
+		if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayout.DEFAULT)
+			arrangeChildrenDefault(root.getDocument());
+		else if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayout.CIRCULAR)
+			arrangeChildrenCircular(root.getDocument());
 		
 		adjustPositions(root.getDocument().getEntities(), 0, 0);
 
@@ -57,7 +57,7 @@ public class ABAPCityLayout {
 	}
 
 	/* functions for Document */
-	private static void arrangeChildren(Document document) {
+	private static void arrangeChildrenDefault(Document document) {
 		// get maxArea (worst case) for root of KDTree
 		Rectangle docRectangle = calculateMaxArea(document);
 		CityKDTree ptree = new CityKDTree(docRectangle);
@@ -115,7 +115,7 @@ public class ABAPCityLayout {
 		rootRectangle = covrec; // used to adjust viewpoint in x3d
 	}
 
-	private static void arrangeChildren_new(Document document) {
+	private static void arrangeChildrenCircular(Document document) {
 		// get maxArea (worst case) for root of KDTree
 		Rectangle docRectangle = calculateMaxArea(document);
 		CityKDTree ptree = new CityKDTree(docRectangle);
@@ -136,7 +136,7 @@ public class ABAPCityLayout {
 				standardCode.add(element);
 		}
 
-		// algorithm for the origin set
+		// Light Map algorithm for the origin set
 		for (Rectangle el : originSet) {
 			List<CityKDTreeNode> pnodes = ptree.getFittingNodes(el);
 			Map<CityKDTreeNode, Double> preservers = new LinkedHashMap<CityKDTreeNode, Double>(); // LinkedHashMap
@@ -191,9 +191,8 @@ public class ABAPCityLayout {
 	}
 	
 	private static void arrangeDistrictsCircular(List<Rectangle> elements, Rectangle covrec) {
-		int version = 1;
 		
-		double covrecRadius = Math.sqrt(Math.pow(covrec.getWidth() / 2.0, 2) + Math.pow(covrec.getLength() / 2.0, 2)) + config.getBuildingHorizontalGap();
+		double covrecRadius = covrec.getPerimeterRadius() + config.getBuildingHorizontalGap();
 		
 		if (elements.size() == 0)
 			return;
@@ -223,6 +222,8 @@ public class ABAPCityLayout {
 			biggestRec.getEntityLink().setPosition(initialPos);
 			
 			if (elements.size() > 1) {
+				SettingsConfiguration.NotInOriginLayoutVersion version = config.getAbapNotInOrigin_layout_version();
+				
 				for (int i = 1; i < elements.size(); ++i) {
 					
 					Rectangle previousRec = elements.get(i - 1);
@@ -236,12 +237,22 @@ public class ABAPCityLayout {
 					
 					double rotationAngle = 0;
 					
-					if (version == 1) 
-						rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
-					else if (version == 2)
-						rotationAngle = 2 * Math.asin(maxOuterRadius / radius);
-					else if (version == 3)
-						rotationAngle = 2 * Math.PI / elements.size();
+					switch(version) {
+						case MINIMAL_DISTANCE:
+//							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
+							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
+							break;
+						case CONSTANT_DISTANCE:
+							rotationAngle = 2 * Math.asin(maxOuterRadius / radius);
+							break;
+						case FULL_CIRCLE:
+							rotationAngle = 2 * Math.PI / elements.size();
+							break;					
+						default:
+//							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
+							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
+							break;					
+					}
 
 					Position newPos = cityFactory.createPosition();
 					
