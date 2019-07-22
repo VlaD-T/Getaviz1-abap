@@ -201,7 +201,7 @@ public class ABAPCityLayout {
 			Rectangle biggestRec = elements.get(0);
 			
 			// radius of the biggest district
-			double maxOuterRadius = Math.sqrt(Math.pow(biggestRec.getWidth() / 2.0, 2) + Math.pow(biggestRec.getLength() / 2.0, 2));
+			double maxOuterRadius = biggestRec.getPerimeterRadius();
 			
 			double minRadius = maxOuterRadius
 									+ covrecRadius
@@ -228,10 +228,10 @@ public class ABAPCityLayout {
 					Rectangle previousRec = elements.get(i - 1);
 					Rectangle currentRec = elements.get(i);
 
-					double previousRadius = Math.sqrt(Math.pow(previousRec.getWidth() / 2.0, 2) + Math.pow(previousRec.getLength() / 2.0, 2));
+					double previousRadius = previousRec.getPerimeterRadius();
 							//+ config.getBuildingHorizontalGap();
 					
-					double currentRadius = Math.sqrt(Math.pow(currentRec.getWidth() / 2.0, 2) + Math.pow(currentRec.getLength() / 2.0, 2));
+					double currentRadius = currentRec.getPerimeterRadius();
 							//+ config.getBuildingHorizontalGap();
 					
 					double rotationAngle = 0;
