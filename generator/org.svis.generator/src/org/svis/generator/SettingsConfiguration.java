@@ -1352,6 +1352,26 @@ public class SettingsConfiguration {
 		return config.getDouble("city.abap.notInOrigin_min_scBuilding_height", 4);
 	}
 	
+	//Kind of arranging the districts of the SCO
+	public static enum NotInOriginLayoutVersion {
+		DEFAULT, CIRCULAR;
+	}
+	
+	public String getAbapNotInOriginLayout() {
+		return config.getString("city.abap.notInOrigin_layout", "default");
+	}
+	
+	public NotInOriginLayoutVersion getAbapNotInOrigin_layout() {
+		switch (getAbapNotInOriginLayout()) {
+			case "default":
+				return NotInOriginLayoutVersion.DEFAULT;
+			case "circular":
+				return NotInOriginLayoutVersion.CIRCULAR;
+			default:
+				return NotInOriginLayoutVersion.DEFAULT;
+		}
+	}
+	
 	public static enum DataElementSorting { 
 		SORTED, UNSORTED;
 	}
@@ -1391,7 +1411,7 @@ public class SettingsConfiguration {
 		}
 	}
 	
-	//Kind of scaling the height of the Source Code Objects (SCO)
+	//Kind of arranging the districts of the SCO
 	public static enum DistrictLayoutVersion {
 		OLD, NEW;
 	}
@@ -1410,7 +1430,7 @@ public class SettingsConfiguration {
 				return DistrictLayoutVersion.NEW;
 		}
 	}
-	
+		
 	public boolean isShowAttributesBelowBuildings() {
 		return config.getBoolean("city.abap.attributesBelowBuildings", false);
 	}
