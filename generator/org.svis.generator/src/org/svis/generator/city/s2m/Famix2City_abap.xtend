@@ -208,6 +208,7 @@ class Famix2City_abap {
 		newDistrict.fqn = elem.fqn
 		newDistrict.type = CityUtils.getFamixClassString(elem.class.simpleName)
 		newDistrict.level = level
+		newDistrict.isStandard = elem.isStandard
 		newDistrict.id = elem.id
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
@@ -307,6 +308,7 @@ class Famix2City_abap {
 		newDistrict.fqn = elem.fqn
 		newDistrict.type = CityUtils.getFamixClassString(elem.class.simpleName)
 		newDistrict.level = level
+		newDistrict.isStandard = elem.isStandard
 		newDistrict.id = elem.id
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
@@ -326,12 +328,13 @@ class Famix2City_abap {
            	}
           }
          
-           if(config.showStructure){
-           	abapStrucElem.filter[container.ref == struc].forEach[newStructureDistrict.entities += toBuilding(level + 2)]
-           } 
-           if(config.showTableTypeStructure){
-		   	tableTypes.filter[container.ref == elem].filter[rowType == struc.value].forEach[newStructureDistrict.entities += toBuilding(level + 2, false)]
-		   }
+           		if(config.showStructure){
+           			abapStrucElem.filter[container.ref == struc].forEach[newStructureDistrict.entities += toBuilding(level + 2)]
+           		} 
+           
+           		if(config.showTableTypeStructure){
+		   			tableTypes.filter[container.ref == elem].filter[rowType == struc.value].forEach[newStructureDistrict.entities += toBuilding(level + 2, false)]
+		   		}
 		   
 		  newDistrict.entities.add(newStructureDistrict)
           ]}
@@ -422,7 +425,6 @@ class Famix2City_abap {
 		     ]
 //          ]
         }  
-	
 		 
 		 if(config.showVirtualDomainDistrict){
 		  typeNames.forEach[ typeName | {
