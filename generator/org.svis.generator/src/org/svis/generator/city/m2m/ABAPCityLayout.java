@@ -884,6 +884,7 @@ public class ABAPCityLayout {
 	private static void adjustPositions(EList<Entity> children, double parentX, double parentZ) {
 		for (Entity e : children) {
 			if (e.getPosition() == null) {
+				// just for debugging
 				Position newPos = cityFactory.createPosition();
 				newPos.setX(-500);
 				newPos.setY(-500);
@@ -1355,40 +1356,60 @@ public class ABAPCityLayout {
 	private static void arrangeLocalClassDistricts(Entity district, Rectangle districtSquare, List<Rectangle> districtMembers) {
 		for (Rectangle localClassDistrict : districtMembers) {
 			
-			// Je nachdem, ob der zugrunde liegende District, in dem die lokalen klassen angeordnet werden sollen, breiter als länger ist oder nicht,
-			// wird der Distrikt der lokalen Klasse entweder darüber oder rechts daneben angeordnet, um möglichst platzeffizient vorzugehen.
+			// Je nachdem, ob der zugrunde liegende Distrikt, in dem die lokalen Klassen angeordnet werden sollen, breiter als länger ist oder nicht,
+			// wird der Distrikt der lokalen Klasse entweder darüber oder rechts daneben angeordnet, um möglichst platzeffizient vorzugehen.			
 			if (districtSquare.getWidth() > districtSquare.getLength()) {
 				
-				double newUpperRightX = districtSquare.getWidth() >= localClassDistrict.getWidth() ? districtSquare.getBottomRightX() : localClassDistrict.getBottomRightX();
-				double newUpperRightY = districtSquare.getBottomRightY() + localClassDistrict.getBottomRightY();
+				double newUpperRightX = districtSquare.getWidth() >= localClassDistrict.getWidth() ? 
+										districtSquare.getBottomRightX() : 
+										localClassDistrict.getBottomRightX() + 2 * config.getBuildingHorizontalMargin();
 				
-				districtSquare.changeRectangle(districtSquare.getUpperLeftX(), districtSquare.getUpperLeftY(), newUpperRightX, newUpperRightY);
+				double newUpperRightY = districtSquare.getBottomRightY() + localClassDistrict.getBottomRightY() + 2 * config.getBuildingHorizontalMargin();
 				
-				district.setLength(districtSquare.getLength() + 2 * config.getBuildingHorizontalMargin());
-				district.setWidth(districtSquare.getWidth() + 2 * config.getBuildingHorizontalMargin());
+				localClassDistrict.changeRectangle(districtSquare.getUpperLeftX(),
+												   districtSquare.getBottomRightY(),
+												   localClassDistrict.getWidth() + 2 * config.getBuildingHorizontalGap(),
+												   localClassDistrict.getLength() + 2 * config.getBuildingHorizontalGap(), 
+												   1);
 				
-				localClassDistrict.changeRectangle(localClassDistrict.getUpperLeftX(), districtSquare.getUpperLeftY() - localClassDistrict.getUpperLeftY(),
-												   localClassDistrict.getWidth(), localClassDistrict.getLength(), 1);
-				
+				districtSquare.changeRectangle(districtSquare.getUpperLeftX(),
+											   districtSquare.getUpperLeftY(),
+											   newUpperRightX - districtSquare.getUpperLeftX() + 2 * config.getBuildingHorizontalMargin(),
+											   newUpperRightY - districtSquare.getUpperLeftY() + 2 * config.getBuildingHorizontalMargin(),
+											   1);
+								
 			} else {
 				
-				double newUpperRightX = districtSquare.getBottomRightX() + localClassDistrict.getBottomRightX();
-				double newUpperRightY = districtSquare.getLength() >= localClassDistrict.getLength() ? districtSquare.getBottomRightY() : localClassDistrict.getBottomRightY();
+				double newUpperRightX = districtSquare.getBottomRightX() + localClassDistrict.getBottomRightX() + 2 * config.getBuildingHorizontalMargin();
 				
-				districtSquare.changeRectangle(districtSquare.getUpperLeftX(), districtSquare.getUpperLeftY(), newUpperRightX, newUpperRightY);
+				double newUpperRightY = districtSquare.getLength() >= localClassDistrict.getLength() ? 
+									    districtSquare.getBottomRightY() : 
+									    localClassDistrict.getBottomRightY() + 2 * config.getBuildingHorizontalMargin();
 				
-				district.setLength(districtSquare.getLength() + 2 * config.getBuildingHorizontalMargin());
-				district.setWidth(districtSquare.getWidth() + 2 * config.getBuildingHorizontalMargin());
+				localClassDistrict.changeRectangle(districtSquare.getBottomRightX(),
+												   districtSquare.getUpperLeftY(),
+						   						   localClassDistrict.getWidth() + 2 * config.getBuildingHorizontalGap(),
+						   						   localClassDistrict.getLength() + 2 * config.getBuildingHorizontalGap(),
+						   						   1);
 				
-				localClassDistrict.changeRectangle(districtSquare.getBottomRightX() - localClassDistrict.getBottomRightX(), localClassDistrict.getUpperLeftY(),
-												   localClassDistrict.getWidth(), localClassDistrict.getLength(), 1);
-				
+				districtSquare.changeRectangle(districtSquare.getUpperLeftX(),
+											   districtSquare.getUpperLeftY(),
+											   newUpperRightX - districtSquare.getUpperLeftX() + 2 * config.getBuildingHorizontalMargin(),
+											   newUpperRightY - districtSquare.getUpperLeftY() + 2 * config.getBuildingHorizontalMargin(),
+											   1);		
 			}
 			
-			Position newPos = cityFactory.createPosition();
-			newPos.setX(localClassDistrict.getCenterX());
-			newPos.setZ(localClassDistrict.getCenterY());
-			localClassDistrict.getEntityLink().setPosition(newPos);
+			Position newLocalClassDistrictPos = cityFactory.createPosition();
+			newLocalClassDistrictPos.setX(localClassDistrict.getCenterX());
+			newLocalClassDistrictPos.setZ(localClassDistrict.getCenterY());
+			localClassDistrict.getEntityLink().setPosition(newLocalClassDistrictPos);
+			
+			Position newDistrictSquarePos = cityFactory.createPosition();
+			newDistrictSquarePos.setX(districtSquare.getCenterX());
+			newDistrictSquarePos.setZ(districtSquare.getCenterY());
+			district.setPosition(newDistrictSquarePos);			
+			district.setLength(districtSquare.getLength());
+			district.setWidth(districtSquare.getWidth());	
 		}
 	}
 	

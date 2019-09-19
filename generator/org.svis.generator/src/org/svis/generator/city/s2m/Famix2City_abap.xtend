@@ -310,34 +310,39 @@ class Famix2City_abap {
 		newDistrict.level = level
 		newDistrict.isStandard = elem.isStandard
 		newDistrict.id = elem.id
+		
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
 		}
-    	if(config.showStructureDistrict){
-          abapStrucs.filter[container.ref == elem].forEach[struc |
-          val newStructureDistrict = cityFactory.createDistrict
-          newStructureDistrict.name = newDistrict.name + "_structureDistrict"
-          newStructureDistrict.type = "structureDistrict"
-          newStructureDistrict.id = struc.id
-          newStructureDistrict.level + 1
-          if(elem.iteration >= 1) {
-           newStructureDistrict.notInOrigin = "true"
-       		if(config.showStructure){
-           		newStructureDistrict.entities += toAdvBuilding(struc, level + 2)           
-           	}
-          }
-         
-           		if(config.showStructure){
-           			abapStrucElem.filter[container.ref == struc].forEach[newStructureDistrict.entities += toBuilding(level + 2)]
-           		} 
-           
-           		if(config.showTableTypeStructure){
-		   			tableTypes.filter[container.ref == elem].filter[rowType == struc.value].forEach[newStructureDistrict.entities += toBuilding(level + 2, false)]
-		   		}
-		   
-		  		newDistrict.entities.add(newStructureDistrict)
-      		]
-      	}
+		
+    	if (config.showStructureDistrict) {
+			abapStrucs.filter[container.ref == elem].forEach [ struc |
+				val newStructureDistrict = cityFactory.createDistrict
+				newStructureDistrict.name = newDistrict.name + "_structureDistrict"
+				newStructureDistrict.type = "structureDistrict"
+				newStructureDistrict.id = struc.id
+				newStructureDistrict.level + 1
+				if (elem.iteration >= 1) {
+					newStructureDistrict.notInOrigin = "true"
+					if (config.showStructure) {
+						newStructureDistrict.entities += toAdvBuilding(struc, level + 2)
+					}
+				}
+				if (config.showStructure) {
+					abapStrucElem.filter[container.ref == struc].forEach [
+						newStructureDistrict.entities += toBuilding(level + 2)
+					]
+				}
+
+				if (config.showTableTypeStructure) {
+					tableTypes.filter[container.ref == elem].filter[rowType == struc.value].forEach [
+						newStructureDistrict.entities += toBuilding(level + 2, false)
+					]
+				}
+
+				newDistrict.entities.add(newStructureDistrict)
+			]
+		}
         
         if(config.showStructureDistrictWithNotOriginalElements && elem.iteration == 0){
 	      abapStrucs.filter[iteration == 1].forEach[ struc |
@@ -498,20 +503,21 @@ class Famix2City_abap {
 		]}
 		
 		// for interfaces
-		if(config.showInterfaceDistrict){
-		classes.filter[container.ref == elem].filter[isInterface == "true"].forEach[ class |
-			val newInterfaceDistrict = cityFactory.createDistrict
-			newInterfaceDistrict.name = newDistrict.name + "_interfaceDistrict"                                                           
-			newInterfaceDistrict.type = "interfaceDistrict"
-			newInterfaceDistrict.id   = createID(class.id) + "_000031"
-			newInterfaceDistrict.level = level + 1
-			
-			if(config.showInterface){
-				newInterfaceDistrict.entities += toAdvBuilding(class, level + 2, true)
-            }
-            
-			newDistrict.entities.add(newInterfaceDistrict)
-		]}
+		if (config.showInterfaceDistrict) {
+			classes.filter[container.ref == elem].filter[isInterface == "true"].forEach [ class |
+				val newInterfaceDistrict = cityFactory.createDistrict
+				newInterfaceDistrict.name = newDistrict.name + "_interfaceDistrict"
+				newInterfaceDistrict.type = "interfaceDistrict"
+				newInterfaceDistrict.id = createID(class.id) + "_000031"
+				newInterfaceDistrict.level = level + 1
+
+				if (config.showInterface) {
+					newInterfaceDistrict.entities += toAdvBuilding(class, level + 2, true)
+				}
+
+				newDistrict.entities.add(newInterfaceDistrict)
+			]
+		}
 		
 		if(config.showFuGrDistrict){
 		functionGroups.filter[container.ref == elem].forEach[ functionGroup |
@@ -595,57 +601,60 @@ class Famix2City_abap {
 		]}
 	     
 	   // table District
-	   if(config.showTableDistrict){  
-	   tables.filter[container.ref == elem].forEach[ table |
-	     val newTableDistrict = cityFactory.createDistrict
-			 newTableDistrict.name = newDistrict.name + "_tableDistrict"
-			 newTableDistrict.type = "tableDistrict"
-			 newTableDistrict.level = level //+ 1
-			 newTableDistrict.id = createID("TableDistrict" + table.id)
-			 if(elem.iteration >= 1){
-					newTableDistrict.notInOrigin = "true"
-				} 
-				
-			if(config.showTableDistrictWithoutColor){
-				 newTableDistrict.transparency = 1
-			}
-			
-			if(config.showTables){
-			newTableDistrict.entities += toAdvBuilding(table, level, true)			
-			}
-			
-			if(config.showTableTypeTable){	
-			tableTypes.filter[container.ref == elem].filter[rowType == table.value].forEach[newTableDistrict.entities += toBuilding(level + 2, true)]
-			}
-				
-	        newDistrict.entities.add(newTableDistrict)			
-	        ]}
-	      
-	      
-	   if(config.showTableDistrictWithNotOriginalElements){     
-	    tables.filter[iteration == 1].forEach[ table |
-	    	tableTypes.filter[container.ref == elem].filter[iteration == 0].filter[rowType == table.value].forEach[ ttyp |
+	   if (config.showTableDistrict) {
+			tables.filter[container.ref == elem].forEach [ table |
 				val newTableDistrict = cityFactory.createDistrict
 				newTableDistrict.name = newDistrict.name + "_tableDistrict"
 				newTableDistrict.type = "tableDistrict"
-				newTableDistrict.id = table.id + "_000021"
-				newTableDistrict.level = level + 1
-				newTableDistrict.color = CityUtils.getRGBFromHEX("#0253d8")
-				if(elem.iteration >= 1){
-					newTableDistrict.notInOrigin = "true"				
-				} else {
-					 if (config.showTableNotInOrigin){
-				        	newTableDistrict.entities += toAdvBuilding(table, level, true)				        
-				        }		
-				     if(config.showTableTypeTable){    			 	
-				 		newTableDistrict.entities += toBuilding(ttyp, level + 2, true)
-				 		}
-				 	
-			        newDistrict.entities.add(newTableDistrict)
+				newTableDistrict.level = level // + 1
+				newTableDistrict.id = createID("TableDistrict" + table.id)
+				if (elem.iteration >= 1) {
+					newTableDistrict.notInOrigin = "true"
 				}
-		   ]     
-	   ]	   
-   }	  
+
+				if (config.showTableDistrictWithoutColor) {
+					newTableDistrict.transparency = 1
+				}
+
+				if (config.showTables) {
+					newTableDistrict.entities += toAdvBuilding(table, level, true)
+				}
+
+				if (config.showTableTypeTable) {
+					tableTypes.filter[container.ref == elem].filter[rowType == table.value].forEach [
+						newTableDistrict.entities += toBuilding(level + 2, true)
+					]
+				}
+
+				newDistrict.entities.add(newTableDistrict)
+			]
+		}
+	      
+	      
+	   if (config.showTableDistrictWithNotOriginalElements) {
+			tables.filter[iteration == 1].forEach [ table |
+				tableTypes.filter[container.ref == elem].filter[iteration == 0].filter[rowType == table.value].forEach [ ttyp |
+					val newTableDistrict = cityFactory.createDistrict
+					newTableDistrict.name = newDistrict.name + "_tableDistrict"
+					newTableDistrict.type = "tableDistrict"
+					newTableDistrict.id = table.id + "_000021"
+					newTableDistrict.level = level + 1
+					newTableDistrict.color = CityUtils.getRGBFromHEX("#0253d8")
+					if (elem.iteration >= 1) {
+						newTableDistrict.notInOrigin = "true"
+					} else {
+						if (config.showTableNotInOrigin) {
+							newTableDistrict.entities += toAdvBuilding(table, level, true)
+						}
+						if (config.showTableTypeTable) {
+							newTableDistrict.entities += toBuilding(ttyp, level + 2, true)
+						}
+
+						newDistrict.entities.add(newTableDistrict)
+					}
+				]
+			]
+		}	  
 	     
 		cityDocument.entities += newDistrict
 		return newDistrict
