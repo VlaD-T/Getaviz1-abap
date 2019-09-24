@@ -1393,6 +1393,10 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	public boolean clusterSubPackages() {
+		return config.getBoolean("city.abap.clusterSubPackages", true);
+	}
+	
 	public static enum DataElementSorting { 
 		SORTED, UNSORTED;
 	}

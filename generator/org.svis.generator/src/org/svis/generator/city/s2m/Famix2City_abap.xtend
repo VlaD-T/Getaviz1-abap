@@ -68,10 +68,15 @@ class Famix2City_abap {
 	
 	new(org.svis.xtext.city.Document imp_cityDocument, Document imp_famixDocument){
 		cityDocument  = imp_cityDocument
-		famixDocument = imp_famixDocument
+		famixDocument = imp_famixDocument		
 		
-		rootPackages 		+= famixDocument.elements.filter(FAMIXNamespace).filter[parentScope === null]
-		subPackages 		+= famixDocument.elements.filter(FAMIXNamespace).filter[parentScope !== null]
+		if (config.clusterSubPackages) {
+			rootPackages 		+= famixDocument.elements.filter(FAMIXNamespace).filter[parentScope === null]
+			subPackages 		+= famixDocument.elements.filter(FAMIXNamespace).filter[parentScope !== null]			
+		} else {
+			rootPackages 		+= famixDocument.elements.filter(FAMIXNamespace)
+		}
+		
 		structures 			+= famixDocument.elements.filter(FAMIXStructure)
  		classes 			+= famixDocument.elements.filter(FAMIXClass)
 		methods 			+= famixDocument.elements.filter(FAMIXMethod)
