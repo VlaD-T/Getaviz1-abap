@@ -16,6 +16,13 @@ var relationConnectorController = function(){
 	const typeProject = ["Class", "Interface", "ParameterizableClass", "Attribute", "Method"];
 	const ddicElements = ["Domain", "DataElement", "ABAPStructure", "StrucElement", "Table", "TableElement", "TableType", "TableTypeElement"];
 	const abapSCElements = ["Report", "Formroutine", "FunctionModule"];
+
+	//for showing the dependance to the SAP standard
+	const majorSCElements = ["Class", "Interface", "FunctionGroup", "Report"];
+	const minorSCElements = ["Method", "FunctionModule", "Formroutine", "Attribute"];
+	const majorDDICElements = ["Domain", "ABAPStructure", "Table"];
+	const minorDDICElements = ["DataElement", "StrucElement", "TableElement", "TableType", "TableTypeElement"];
+
 	
 	
 	//config parameters	
@@ -28,6 +35,10 @@ var relationConnectorController = function(){
 		sourceStartAtBorder: false,
 		targetEndAtBorder: false,
 		createEndpoints : false,
+		showDependanceToStandard : true,
+		showChildrenOfMajorElements : true,
+		connectorColor : "0 0 1",
+		connectorSize : 3.0
 	}
 	
 	
@@ -127,30 +138,56 @@ var relationConnectorController = function(){
 
 		relatedEntities = new Array();
 
-		if (typeProject.includes(sourceEntity.type)) {
-			if (sourceEntity.type == "Class" || sourceEntity.type == "ParameterizableClass" || sourceEntity.type == "Interface") {
-				relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
-				relatedEntities = relatedEntities.concat(sourceEntity.subTypes);
-			} else if (sourceEntity.type == "Attribute") {
-				//relatedEntities = sourceEntity.accessedBy;
-				relatedEntities = relatedEntities.concat(sourceEntity.accessedBy);
+		if (controllerConfig.showDependanceToStandard) {
+			if (majorSCElements.includes(sourceEntity.type)) {
+				if (sourceEntity.type == "Class" || sourceEntity.type == "Interface") {
+					relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
+					// relatedEntities = relatedEntities.concat(sourceEntity.subTypes);
+					relatedEntities = relatedEntities.concat(sourceEntity.children);
+				} else if (sourceEntity.type == "Report") {
+					relatedEntities = relatedEntities.concat(sourceEntity.calls);
+					relatedEntities = relatedEntities.concat(sourceEntity.children);
+				} else if (sourceEntity.type == "FunctionGroup") {
+					relatedEntities = relatedEntities.concat(sourceEntity.children);
+				}
+			} else if (minorSCElements.includes(sourceEntity.type)) {
+				if (sourceEntity.type == "Attribute") {
+					relatedEntities = relatedEntities.concat(sourceEntity.typeOf);
+				} else { //Method or FunctionModule or Formroutine
+					relatedEntities = relatedEntities.concat(sourceEntity.calls);
+				}
+			} else if (majorDDICElements.includes(sourceEntity.type)) {
+				if (sourceEntity.type == "ABAPStructure" || sourceEntity.type == "Table")
+					relatedEntities = relatedEntities.concat(sourceEntity.children);
+			} else if (minorDDICElements.includes(sourceEntity.type)) {
 				relatedEntities = relatedEntities.concat(sourceEntity.typeOf);
-			} else if (sourceEntity.type == "Method") {
+			} else if (sourceEntity.type == "Namespace")
+				relatedEntities = relatedEntities.concat(sourceEntity.children);
+		} else {
+			if (typeProject.includes(sourceEntity.type)) {
+				if (sourceEntity.type == "Class" || sourceEntity.type == "ParameterizableClass" || sourceEntity.type == "Interface") {
+					relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
+					relatedEntities = relatedEntities.concat(sourceEntity.subTypes);
+				} else if (sourceEntity.type == "Attribute") {
+					//relatedEntities = sourceEntity.accessedBy;
+					relatedEntities = relatedEntities.concat(sourceEntity.accessedBy);
+					relatedEntities = relatedEntities.concat(sourceEntity.typeOf);
+				} else if (sourceEntity.type == "Method") {
+					relatedEntities = relatedEntities.concat(sourceEntity.calls);
+					relatedEntities = relatedEntities.concat(sourceEntity.calledBy);
+				}
+			} else if (abapSCElements.includes(sourceEntity.type)) {
 				relatedEntities = relatedEntities.concat(sourceEntity.calls);
 				relatedEntities = relatedEntities.concat(sourceEntity.calledBy);
-			}
-		} else if (abapSCElements.includes(sourceEntity.type)) {
-			relatedEntities = relatedEntities.concat(sourceEntity.calls);
-			relatedEntities = relatedEntities.concat(sourceEntity.calledBy);
-		} else if (ddicElements.includes(sourceEntity.type)) {
-			if (sourceEntity.type == "Domain" || sourceEntity.type == "Table" || sourceEntity.type == "ABAPStructure") {
-				relatedEntities = relatedEntities.concat(sourceEntity.typeUsedBy);
-			} else {
-				relatedEntities = relatedEntities.concat(sourceEntity.typeOf);
-				relatedEntities = relatedEntities.concat(sourceEntity.typeUsedBy);
-			}
-		} 
-
+			} else if (ddicElements.includes(sourceEntity.type)) {
+				if (sourceEntity.type == "Domain" || sourceEntity.type == "Table" || sourceEntity.type == "ABAPStructure") {
+					relatedEntities = relatedEntities.concat(sourceEntity.typeUsedBy);
+				} else {
+					relatedEntities = relatedEntities.concat(sourceEntity.typeOf);
+					relatedEntities = relatedEntities.concat(sourceEntity.typeUsedBy);
+				}
+			} 
+		}
 
 		events.log.info.publish({ text: "connector - onRelationsChanged - related Entites - " + relatedEntities.length});
 		
@@ -158,10 +195,121 @@ var relationConnectorController = function(){
 			return;
 		}
 
-		if(activated){
-			createRelatedConnections();
+		if(activated){			
+			if (controllerConfig.showDependanceToStandard) {
+				var relatedEntitiesMap = new Map();
+				createRelatedConnectionsToStandard(sourceEntity, relatedEntities, relatedEntitiesMap);
+			} else {
+				createRelatedConnections();
+			}
 		}
 		
+	}
+
+	function getRelatedEntities(entity) {
+		var newRelatedEntities = new Array();
+
+		if (majorSCElements.includes(entity.type)) {
+			if (entity.type == "Report") {
+				newRelatedEntities = newRelatedEntities.concat(entity.calls);
+			}
+			if (controllerConfig.showChildrenOfMajorElements || (entity.type == "Class" && entity.belongsTo.type != "Namespace")) {
+				newRelatedEntities = newRelatedEntities.concat(entity.children);
+			}
+		} else if (minorSCElements.includes(entity.type)) {
+			if (entity.type == "Attribute") {
+				newRelatedEntities = newRelatedEntities.concat(entity.typeOf);
+			} else {
+				newRelatedEntities = newRelatedEntities.concat(entity.calls);
+			}
+		} else if (majorDDICElements.includes(entity.type)) {
+			if (entity.type == "ABAPStructure" || entity.type == "Table")
+					newRelatedEntities = newRelatedEntities.concat(entity.children);
+		} else if (minorDDICElements.includes(entity.type)) {
+			newRelatedEntities = newRelatedEntities.concat(entity.typeOf);
+		}
+		return newRelatedEntities;
+	}
+
+	function createRelatedConnectionsToStandard(newSourceEntity, newRelatedEntities, relatedEntitiesMap) {
+		
+		var dontDrawConnector = newSourceEntity.type == "Namespace";
+
+		newRelatedEntities.forEach(function(relatedEntity) {
+			
+			if(relatedEntitiesMap.has(newSourceEntity)){
+				for(i = 0; i < relatedEntitiesMap.get(newSourceEntity).length; i++ ) {
+					if (relatedEntitiesMap.get(newSourceEntity)[i] == relatedEntity) {
+						events.log.info.publish({ text: "connector - onRelationsChanged - multiple relation"});
+						return;
+					}
+				}				
+			} else if (relatedEntitiesMap.has(relatedEntity)) {
+				for(i = 0; i < relatedEntitiesMap.get(relatedEntity).length; i++ ) {
+					if (relatedEntitiesMap.get(relatedEntity)[i] == newSourceEntity) {
+						events.log.info.publish({ text: "connector - onRelationsChanged - multiple relation"});
+						return;
+					}
+				}	
+			}
+
+			//skipping recursive calls of newSourceEntity
+			if (relatedEntity == newSourceEntity)
+				return;
+
+			if (!dontDrawConnector) {
+				// draw connector only for not-inner relations
+				if(isTargetChildOfSourceParent(relatedEntity, newSourceEntity) == false){
+					//create scene element
+					var connector = createConnector(newSourceEntity, relatedEntity);
+					
+					//target or source not rendered -> no connector -> remove relation
+					if( connector === undefined){				
+						return;
+					}
+
+					events.log.info.publish({ text: "connector - onRelationsChanged - create connector"});
+					
+					connectors.push(connector);
+					canvasManipulator.addElement(connector);
+					
+					//create model entity
+					var relation = model.createEntity(
+						"Relation", 
+						newSourceEntity.id + "--2--" + relatedEntity.id,
+						newSourceEntity.name + " - " + relatedEntity.name,
+						newSourceEntity.name + " - " + relatedEntity.name,
+						newSourceEntity
+					);
+					
+					relation.source = newSourceEntity;
+					relation.target = relatedEntity;
+					
+					relations.push(relation);
+
+					if (relatedEntitiesMap.has(newSourceEntity)) {
+						relatedEntitiesMap.get(newSourceEntity).push(relatedEntity);
+					} else {
+						relatedEntitiesMap.set(newSourceEntity, [relatedEntity]);
+					}				
+				}
+			}
+			
+			//only for non-standard-elements
+			if (relatedEntity.allParents[relatedEntity.allParents.length - 1].isStandard == false) {
+				//get further relations
+				var newerRelatedEntities = getRelatedEntities(relatedEntity);
+				
+				if (newerRelatedEntities.length == 0)
+					return;
+				
+				if (newerRelatedEntities[0] === undefined)
+					return;			
+
+				//create these further  relations before going to the next entity
+				createRelatedConnectionsToStandard(relatedEntity, newerRelatedEntities, relatedEntitiesMap);
+			}			
+		});
 	}
 
 
@@ -189,7 +337,7 @@ var relationConnectorController = function(){
 			//create scene element
 			var connector = createConnector(sourceEntity, relatedEntity);
 			
-			//target or source not rendered -> no connector -> remove relatation
+			//target or source not rendered -> no connector -> remove relation
 			if( connector === undefined){				
 				return;
 			}
@@ -227,7 +375,6 @@ var relationConnectorController = function(){
 		}
 
 	}
-
 	
 	function createConnector(entity, relatedEntity){
 		//calculate attributes						
@@ -241,9 +388,6 @@ var relationConnectorController = function(){
 			return;
 		}
 		
-		var connectorColor = "1 0 0";
-		var connectorSize = 0.5;
-		
 		//config
 		if(controllerConfig.fixPositionZ){
 			sourcePosition[2] = controllerConfig.fixPositionZ;
@@ -253,11 +397,11 @@ var relationConnectorController = function(){
 		//create element
 		var transform = document.createElement('Transform');
 		
-		transform.appendChild(createLine(sourcePosition, targetPosition, connectorColor, connectorSize));
+		transform.appendChild(createLine(sourcePosition, targetPosition, controllerConfig.connectorColor, controllerConfig.connectorSize));
 		
 		//config
 		if(controllerConfig.createEndpoints){
-			transform.appendChild(createEndPoint(sourcePosition, targetPosition, "0 0 0", connectorSize * 2));
+			transform.appendChild(createEndPoint(sourcePosition, targetPosition, "0 0 0", controllerConfig.connectorSize * 2));
 		}
 					
 		return transform;
@@ -273,6 +417,12 @@ var relationConnectorController = function(){
 	function calculateSourcePosition(entity, relatedEntity){
 		
 		var sourcePosition = getObjectPosition(entity.id);
+
+		if (sourcePosition === null)
+			return null;
+
+		if (sourcePosition === undefined)
+			return null;
 		
 		if(controllerConfig.sourceStartAtParentBorder){
 			if(!isTargetChildOfSourceParent(relatedEntity, entity)){
@@ -606,8 +756,8 @@ var relationConnectorController = function(){
 	
 	
 	
-	function createLine(source, target, color, size){
-		//calculate attributes
+	//calculate attributes
+		function createLine(source, target, color, size){
 		
 		var betrag = (Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) ));
 		var translation = [];	
