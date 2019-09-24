@@ -315,6 +315,9 @@ class Famix2City_abap {
 			newDistrict.notInOrigin = "true"
 		}
 		
+		//sub packages
+		subPackages.filter[parentScope.ref === elem].forEach[newDistrict.entities += toAdvancedDistrict(level + 1)]
+		
     	if (config.showStructureDistrict) {
 			abapStrucs.filter[container.ref == elem].forEach [ struc |
 				val newStructureDistrict = cityFactory.createDistrict
