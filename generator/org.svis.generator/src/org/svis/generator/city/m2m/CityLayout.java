@@ -238,9 +238,6 @@ public class CityLayout {
 //							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
 							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
 							break;
-						case CONSTANT_DISTANCE:
-							rotationAngle = 2 * Math.asin(maxOuterRadius / radius);
-							break;
 						case FULL_CIRCLE:
 							rotationAngle = 2 * Math.PI / elements.size();
 							break;					

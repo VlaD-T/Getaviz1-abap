@@ -1373,7 +1373,7 @@ public class SettingsConfiguration {
 	}
 	
 	public static enum NotInOriginLayoutVersion {
-		MINIMAL_DISTANCE, CONSTANT_DISTANCE, FULL_CIRCLE;
+		MINIMAL_DISTANCE, FULL_CIRCLE;
 	}
 	
 	public String getAbapNotInOriginLayoutVersion() {
@@ -1384,8 +1384,6 @@ public class SettingsConfiguration {
 		switch (getAbapNotInOriginLayoutVersion()) {
 			case "minimalDistance":
 				return NotInOriginLayoutVersion.MINIMAL_DISTANCE;
-			case "constantDistance":
-				return NotInOriginLayoutVersion.CONSTANT_DISTANCE;
 			case "fullCircle":
 				return NotInOriginLayoutVersion.FULL_CIRCLE;
 			default:

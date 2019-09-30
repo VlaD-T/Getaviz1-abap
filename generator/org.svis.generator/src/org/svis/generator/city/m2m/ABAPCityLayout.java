@@ -193,14 +193,27 @@ public class ABAPCityLayout {
 	private static void arrangeDistrictsCircular(List<Rectangle> elements, Rectangle covrec) {
 		
 		double covrecRadius = covrec.getPerimeterRadius() + config.getBuildingHorizontalGap();
+		SettingsConfiguration.NotInOriginLayoutVersion version = config.getAbapNotInOrigin_layout_version();
 		
 		if (elements.size() == 0)
 			return;
-		else {			
-			Rectangle biggestRec = elements.get(0);
+		else {					
 			
-			// radius of the biggest district
+			Rectangle biggestRec = elements.get(0);
 			double maxOuterRadius = biggestRec.getPerimeterRadius();
+			double sumOfPerimeterRadius = 0;
+						
+			for (Rectangle element : elements) {
+				sumOfPerimeterRadius += element.getPerimeterRadius() + config.getBuildingHorizontalGap();
+				
+				if(element.getPerimeterRadius() > maxOuterRadius) {
+					maxOuterRadius = element.getPerimeterRadius();
+					biggestRec = element;
+					elements.remove(element);
+					elements.add(0, biggestRec);
+				}
+					
+			}
 			
 			double minRadius = maxOuterRadius
 									+ covrecRadius
@@ -208,11 +221,11 @@ public class ABAPCityLayout {
 			
 			double maxRadius = 0;
 			
-			// upper estimation of the radius, only for sets with several elements
+			// new estimation of the radius			
 			if (elements.size() > 1)		
-				maxRadius = maxOuterRadius / Math.sin(Math.PI / elements.size()) 
+				maxRadius = (sumOfPerimeterRadius / elements.size()) / Math.sin(Math.PI / elements.size()) 
 									+ config.getBuildingHorizontalGap();
-		
+			
 			double radius = Math.max(minRadius, maxRadius);
 			
 			Position initialPos = cityFactory.createPosition();
@@ -222,7 +235,8 @@ public class ABAPCityLayout {
 			biggestRec.getEntityLink().setPosition(initialPos);
 			
 			if (elements.size() > 1) {
-				SettingsConfiguration.NotInOriginLayoutVersion version = config.getAbapNotInOrigin_layout_version();
+				
+				double cacheRotationAngle = 0;
 				
 				for (int i = 1; i < elements.size(); ++i) {
 					
@@ -230,10 +244,10 @@ public class ABAPCityLayout {
 					Rectangle currentRec = elements.get(i);
 
 					double previousRadius = previousRec.getPerimeterRadius();
-							//+ config.getBuildingHorizontalGap();
+//							+ config.getBuildingHorizontalGap();
 					
 					double currentRadius = currentRec.getPerimeterRadius();
-							//+ config.getBuildingHorizontalGap();
+//							+ config.getBuildingHorizontalGap();
 					
 					double rotationAngle = 0;
 					
@@ -242,29 +256,36 @@ public class ABAPCityLayout {
 //							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
 							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
 							break;
-						case CONSTANT_DISTANCE:
-							rotationAngle = 2 * Math.asin(maxOuterRadius / radius);
-							break;
 						case FULL_CIRCLE:
-							rotationAngle = 2 * Math.PI / elements.size();
+							double idealRotationAngle = 2 * Math.PI / elements.size() - cacheRotationAngle;
+							double leastRotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
+							
+							if (idealRotationAngle >= leastRotationAngle) {
+								rotationAngle = idealRotationAngle;
+								cacheRotationAngle = 0;
+							} else {
+								rotationAngle = leastRotationAngle;
+								cacheRotationAngle = leastRotationAngle - idealRotationAngle;								
+							}
+							
 							break;					
 						default:
 //							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
 							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
 							break;					
 					}
-
+					
 					Position newPos = cityFactory.createPosition();
 					
 					double newX = (previousRec.getEntityLink().getPosition().getX() - covrec.getCenterX()) * Math.cos(rotationAngle)
-							- (previousRec.getEntityLink().getPosition().getZ() - covrec.getCenterY()) * Math.sin(rotationAngle)
-							+ covrec.getCenterX();
+									- (previousRec.getEntityLink().getPosition().getZ() - covrec.getCenterY()) * Math.sin(rotationAngle)
+									+ covrec.getCenterX();
 					
 					newPos.setX(newX);
 					
 					double newZ = (previousRec.getEntityLink().getPosition().getX() - covrec.getCenterX()) * Math.sin(rotationAngle)
-							+ (previousRec.getEntityLink().getPosition().getZ() - covrec.getCenterY()) * Math.cos(rotationAngle)
-							+ covrec.getCenterY();
+									+ (previousRec.getEntityLink().getPosition().getZ() - covrec.getCenterY()) * Math.cos(rotationAngle)
+									+ covrec.getCenterY();
 
 					newPos.setZ(newZ);
 
