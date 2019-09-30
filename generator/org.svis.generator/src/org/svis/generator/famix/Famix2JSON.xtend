@@ -213,6 +213,11 @@ class Famix2JSON implements IGenerator2 {
 		«ELSE»
 		"belongsTo":     "root",
 		«ENDIF»
+		«IF p.isStandard !== null»
+		"isStandard":	 "true",
+		«ELSE»
+		"isStandard":	 "false",
+		«ENDIF»
 		"iteration":     "«p.iteration»"
 	'''
 	

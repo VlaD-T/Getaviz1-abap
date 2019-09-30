@@ -40,7 +40,11 @@ public class CityLayout {
 		}
 
 		// receives List of ALL CITYelements in the form of the root element
-		arrangeChildren(root.getDocument());
+		if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayout.DEFAULT)
+			arrangeChildrenDefault(root.getDocument());
+		else if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayout.CIRCULAR)
+			arrangeChildrenCircular(root.getDocument());
+		
 		adjustPositions(root.getDocument().getEntities(), 0, 0, 0);
 
 		if (DEBUG) {
@@ -49,7 +53,7 @@ public class CityLayout {
 	}
 
 	/* functions for Document */
-	private static void arrangeChildren(Document document) {
+	private static void arrangeChildrenDefault(Document document) {
 		// get maxArea (worst case) for root of KDTree
 		Rectangle docRectangle = calculateMaxArea(document);
 		CityKDTree ptree = new CityKDTree(docRectangle);
@@ -107,6 +111,169 @@ public class CityLayout {
 		rootRectangle = covrec; // used to adjust viewpoint in x3d
 	}
 
+	private static void arrangeChildrenCircular(Document document) {
+		// get maxArea (worst case) for root of KDTree
+		Rectangle docRectangle = calculateMaxArea(document);
+		CityKDTree ptree = new CityKDTree(docRectangle);
+		Rectangle covrec = new Rectangle();
+		List<Rectangle> elements = sortChildrenAsRectangles(document.getEntities());
+		
+		List<Rectangle> originSet = new ArrayList<Rectangle>();
+		List<Rectangle> customCode = new ArrayList<Rectangle>();
+		List<Rectangle> standardCode = new ArrayList<Rectangle>();
+		
+		// order the rectangles to the fit sets
+		for (Rectangle element : elements) {
+			if (element.getEntityLink().getNotInOrigin() == null && element.getEntityLink().getIsStandard() == null)
+				originSet.add(element);
+			else if (element.getEntityLink().getNotInOrigin().equals("true") && element.getEntityLink().getIsStandard() == null)
+				customCode.add(element);
+			else if (element.getEntityLink().getNotInOrigin().equals("true") && element.getEntityLink().getIsStandard().equals("true"))
+				standardCode.add(element);
+		}
+
+		// Light Map algorithm for the origin set
+		for (Rectangle el : originSet) {
+			List<CityKDTreeNode> pnodes = ptree.getFittingNodes(el);
+			Map<CityKDTreeNode, Double> preservers = new LinkedHashMap<CityKDTreeNode, Double>(); // LinkedHashMap
+																									// necessary, so
+																									// elements are
+																									// ordered by
+																									// inserting-order
+			Map<CityKDTreeNode, Double> expanders = new LinkedHashMap<CityKDTreeNode, Double>();
+			CityKDTreeNode targetNode = new CityKDTreeNode();
+			CityKDTreeNode fitNode = new CityKDTreeNode();
+
+			// check all empty leaves: either they extend COVREC (->expanders) or it doesn't
+			// change (->preservers)
+			for (CityKDTreeNode pnode : pnodes) {
+				sortEmptyLeaf(pnode, el, covrec, preservers, expanders);
+			}
+
+			// choose best-fitting pnode
+			if (preservers.isEmpty() != true) {
+				targetNode = bestFitIsPreserver(preservers.entrySet());
+			} else {
+				targetNode = bestFitIsExpander(expanders.entrySet());
+			}
+
+			// modify targetNode if necessary
+			if (targetNode.getRectangle().getWidth() == el.getWidth()
+					&& targetNode.getRectangle().getLength() == el.getLength()) { // this if could probably be skipped,
+																					// trimmingNode() always returns
+																					// fittingNode
+				fitNode = targetNode;
+			} else {
+				fitNode = trimmingNode(targetNode, el);
+			}
+
+			// set fitNode as occupied
+			fitNode.setOccupied(true);
+
+			// give Entity it's Position
+			setNewPosition(el, fitNode);
+
+			// if fitNode expands covrec, update covrec
+			if (fitNode.getRectangle().getBottomRightX() > covrec.getBottomRightX()
+					|| fitNode.getRectangle().getBottomRightY() > covrec.getBottomRightY()) {
+				updateCovrec(fitNode, covrec);
+			}
+		}
+		
+		arrangeDistrictsCircular(customCode, covrec);
+		arrangeDistrictsCircular(standardCode, covrec);		
+		
+		rootRectangle = covrec; // used to adjust viewpoint in x3d
+	}
+	
+	private static void arrangeDistrictsCircular(List<Rectangle> elements, Rectangle covrec) {
+		
+		double covrecRadius = covrec.getPerimeterRadius() + config.getBuildingHorizontalGap();
+		
+		if (elements.size() == 0)
+			return;
+		else {			
+			Rectangle biggestRec = elements.get(0);
+			
+			// radius of the biggest district
+			double maxOuterRadius = biggestRec.getPerimeterRadius();
+			
+			double minRadius = maxOuterRadius
+									+ covrecRadius
+									+ config.getBuildingHorizontalGap();
+			
+			double maxRadius = 0;
+			
+			// upper estimation of the radius, only for sets with several elements
+			if (elements.size() > 1)		
+				maxRadius = maxOuterRadius / Math.sin(Math.PI / elements.size()) 
+									+ config.getBuildingHorizontalGap();
+		
+			double radius = Math.max(minRadius, maxRadius);
+			
+			Position initialPos = cityFactory.createPosition();
+			initialPos.setX(covrec.getCenterX() + radius);
+			initialPos.setZ(covrec.getCenterY());
+			
+			biggestRec.getEntityLink().setPosition(initialPos);
+			
+			if (elements.size() > 1) {
+				SettingsConfiguration.NotInOriginLayoutVersion version = config.getAbapNotInOrigin_layout_version();
+				
+				for (int i = 1; i < elements.size(); ++i) {
+					
+					Rectangle previousRec = elements.get(i - 1);
+					Rectangle currentRec = elements.get(i);
+
+					double previousRadius = previousRec.getPerimeterRadius();
+							//+ config.getBuildingHorizontalGap();
+					
+					double currentRadius = currentRec.getPerimeterRadius();
+							//+ config.getBuildingHorizontalGap();
+					
+					double rotationAngle = 0;
+					
+					switch(version) {
+						case MINIMAL_DISTANCE:
+//							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
+							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
+							break;
+						case CONSTANT_DISTANCE:
+							rotationAngle = 2 * Math.asin(maxOuterRadius / radius);
+							break;
+						case FULL_CIRCLE:
+							rotationAngle = 2 * Math.PI / elements.size();
+							break;					
+						default:
+//							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
+							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
+							break;					
+					}
+
+					Position newPos = cityFactory.createPosition();
+					
+					double newX = (previousRec.getEntityLink().getPosition().getX() - covrec.getCenterX()) * Math.cos(rotationAngle)
+							- (previousRec.getEntityLink().getPosition().getZ() - covrec.getCenterY()) * Math.sin(rotationAngle)
+							+ covrec.getCenterX();
+					
+					newPos.setX(newX);
+					
+					double newZ = (previousRec.getEntityLink().getPosition().getX() - covrec.getCenterX()) * Math.sin(rotationAngle)
+							+ (previousRec.getEntityLink().getPosition().getZ() - covrec.getCenterY()) * Math.cos(rotationAngle)
+							+ covrec.getCenterY();
+
+					newPos.setZ(newZ);
+
+					currentRec.getEntityLink().setPosition(newPos);
+				}
+			}
+			
+			double newCovrecWidth = 2 * radius + (biggestRec.getWidth() > biggestRec.getLength() ? biggestRec.getWidth() : biggestRec.getLength());			
+			covrec.changeRectangle(covrec.getCenterX(), covrec.getCenterY(), newCovrecWidth, newCovrecWidth, 0);
+			
+		}		
+	}
+	
 	private static Rectangle calculateMaxArea(Document document) {
 		if (DEBUG) {
 			System.out.println("\t\t" + info + "calculateMaxArea(document)-arrival.");

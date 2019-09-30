@@ -68,10 +68,15 @@ class Famix2City_abap {
 	
 	new(org.svis.xtext.city.Document imp_cityDocument, Document imp_famixDocument){
 		cityDocument  = imp_cityDocument
-		famixDocument = imp_famixDocument
+		famixDocument = imp_famixDocument		
 		
-		rootPackages 		+= famixDocument.elements.filter(FAMIXNamespace).filter[parentScope === null]
-		subPackages 		+= famixDocument.elements.filter(FAMIXNamespace).filter[parentScope !== null]
+		if (config.clusterSubPackages) {
+			rootPackages 		+= famixDocument.elements.filter(FAMIXNamespace).filter[parentScope === null]
+			subPackages 		+= famixDocument.elements.filter(FAMIXNamespace).filter[parentScope !== null]			
+		} else {
+			rootPackages 		+= famixDocument.elements.filter(FAMIXNamespace)
+		}
+		
 		structures 			+= famixDocument.elements.filter(FAMIXStructure)
  		classes 			+= famixDocument.elements.filter(FAMIXClass)
 		methods 			+= famixDocument.elements.filter(FAMIXMethod)
@@ -310,6 +315,7 @@ class Famix2City_abap {
 		newDistrict.level = level
 		newDistrict.isStandard = elem.isStandard
 		newDistrict.id = elem.id
+		
 		if(elem.iteration >= 1){
 			newDistrict.notInOrigin = "true"
 		}
@@ -427,7 +433,7 @@ class Famix2City_abap {
 						if(config.showVirtualDomain){
 							newVirtualDomainDistrict.entities += domainBuilding
 						}
-	            	}
+          }
 	            	
             		newDistrict.entities.add(newVirtualDomainDistrict)
              	}
@@ -492,20 +498,21 @@ class Famix2City_abap {
 		]}
 		
 		// for interfaces
-		if(config.showInterfaceDistrict){
-		classes.filter[container.ref == elem].filter[isInterface == "true"].forEach[ class |
-			val newInterfaceDistrict = cityFactory.createDistrict
-			newInterfaceDistrict.name = newDistrict.name + "_interfaceDistrict"                                                           
-			newInterfaceDistrict.type = "interfaceDistrict"
-			newInterfaceDistrict.id   = createID("InterfaceDistrict" + class.id)
-			newInterfaceDistrict.level = level + 1
-			
-			if(config.showInterface){
-				newInterfaceDistrict.entities += toAdvBuilding(class, level + 2, true)
-            }
-            
-			newDistrict.entities.add(newInterfaceDistrict)
-		]}
+		if (config.showInterfaceDistrict) {
+			classes.filter[container.ref == elem].filter[isInterface == "true"].forEach [ class |
+				val newInterfaceDistrict = cityFactory.createDistrict
+				newInterfaceDistrict.name = newDistrict.name + "_interfaceDistrict"
+				newInterfaceDistrict.type = "interfaceDistrict"
+				newInterfaceDistrict.id = createID(class.id) + "_000031"
+				newInterfaceDistrict.level = level + 1
+
+				if (config.showInterface) {
+					newInterfaceDistrict.entities += toAdvBuilding(class, level + 2, true)
+				}
+
+				newDistrict.entities.add(newInterfaceDistrict)
+			]
+		}
 		
 		if(config.showFuGrDistrict){
 		functionGroups.filter[container.ref == elem].forEach[ functionGroup |
@@ -549,7 +556,7 @@ class Famix2City_abap {
 			val newReportDistrict = cityFactory.createDistrict
 			newReportDistrict.name = newDistrict.name + "_reportDistrict"
 			newReportDistrict.type = "reportDistrict"
-			newReportDistrict.id = createID("ReportDistrict" + report.id)
+			newReportDistrict.id = createID("ReportDistrict" + report.id) + "_00005"
 			newReportDistrict.level = level + 1
 			
 
@@ -634,8 +641,7 @@ class Famix2City_abap {
 			        			
 		   ]        
    }	  
-   
-
+  
 	     
 		cityDocument.entities += newDistrict
 		return newDistrict

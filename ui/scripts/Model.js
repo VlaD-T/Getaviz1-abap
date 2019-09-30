@@ -108,7 +108,9 @@ var model = (function() {
 			// Project parts
 			if (typeProject.includes(entity.type) || ddicElements.includes(entity.type) || abapSCElements.includes(entity.type)) {
 				if (entity.type == "Namespace") {
-					entity.version = element.version;
+					entity.version 	  = element.version;
+					if (element.isStandard == "true")
+						entity.isStandard = true;
 					if(entity.version !== undefined) {
 						if(entitiesByVersion.has(entity.version)) {
 							let map = entitiesByVersion.get(entity.version);
@@ -483,7 +485,8 @@ var model = (function() {
 			name: name,
 			qualifiedName: qualifiedName,
 			belongsTo: belongsTo,
-			children: []						
+			children: [],
+			isStandard: false						
 		};
 		
 		const statesArray = Object.keys(states);
@@ -515,7 +518,6 @@ var model = (function() {
 	
 		return parents;
 	}
-
 	
 	function getAllEntities(){
 		return entitiesById;

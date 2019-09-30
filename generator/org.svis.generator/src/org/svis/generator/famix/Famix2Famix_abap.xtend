@@ -188,14 +188,19 @@ class Famix2Famix_abap {
 	}
 	
 	def private void getPackages(FAMIXNamespace namespace) {
-		if ((config.abapNotInOrigin_filter == AbapNotInOriginFilter::FILTERED && namespace.iteration == 0) || 
+		if ((config.abapNotInOrigin_filter == AbapNotInOriginFilter::FILTERED && namespace.iteration == 0) ||
 			(config.abapNotInOrigin_filter !== AbapNotInOriginFilter::FILTERED)) {
-			if (namespace.parentScope === null) {
-				rootPackages += namespace
+			if (config.clusterSubPackages) {
+				if (namespace.parentScope === null) {
+					rootPackages += namespace
+				} else {
+					subPackages += namespace
+					getPackages(namespace.parentScope.ref as FAMIXNamespace)
+				}
 			} else {
-				subPackages += namespace
-				getPackages(namespace.parentScope.ref as FAMIXNamespace)
+				rootPackages += namespace
 			}
+
 		}
 	}
 	

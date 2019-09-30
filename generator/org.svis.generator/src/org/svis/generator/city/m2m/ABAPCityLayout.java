@@ -44,10 +44,10 @@ public class ABAPCityLayout {
 		}
 
 		// receives List of ALL CITYelements in the form of the root element
-		if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayoutVersion.DEFAULT)
-			arrangeChildren(root.getDocument());
-		else if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayoutVersion.CIRCULAR)
-			arrangeChildren_new(root.getDocument());
+		if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayout.DEFAULT)
+			arrangeChildrenDefault(root.getDocument());
+		else if (config.getAbapNotInOrigin_layout() == SettingsConfiguration.NotInOriginLayout.CIRCULAR)
+			arrangeChildrenCircular(root.getDocument());
 		
 		adjustPositions(root.getDocument().getEntities(), 0, 0);
 
@@ -57,7 +57,7 @@ public class ABAPCityLayout {
 	}
 
 	/* functions for Document */
-	private static void arrangeChildren(Document document) {
+	private static void arrangeChildrenDefault(Document document) {
 		// get maxArea (worst case) for root of KDTree
 		Rectangle docRectangle = calculateMaxArea(document);
 		CityKDTree ptree = new CityKDTree(docRectangle);
@@ -115,7 +115,7 @@ public class ABAPCityLayout {
 		rootRectangle = covrec; // used to adjust viewpoint in x3d
 	}
 
-	private static void arrangeChildren_new(Document document) {
+	private static void arrangeChildrenCircular(Document document) {
 		// get maxArea (worst case) for root of KDTree
 		Rectangle docRectangle = calculateMaxArea(document);
 		CityKDTree ptree = new CityKDTree(docRectangle);
@@ -136,7 +136,7 @@ public class ABAPCityLayout {
 				standardCode.add(element);
 		}
 
-		// algorithm for the origin set
+		// Light Map algorithm for the origin set
 		for (Rectangle el : originSet) {
 			List<CityKDTreeNode> pnodes = ptree.getFittingNodes(el);
 			Map<CityKDTreeNode, Double> preservers = new LinkedHashMap<CityKDTreeNode, Double>(); // LinkedHashMap
@@ -191,9 +191,8 @@ public class ABAPCityLayout {
 	}
 	
 	private static void arrangeDistrictsCircular(List<Rectangle> elements, Rectangle covrec) {
-		int version = 1;
 		
-		double covrecRadius = Math.sqrt(Math.pow(covrec.getWidth() / 2.0, 2) + Math.pow(covrec.getLength() / 2.0, 2)) + config.getBuildingHorizontalGap();
+		double covrecRadius = covrec.getPerimeterRadius() + config.getBuildingHorizontalGap();
 		
 		if (elements.size() == 0)
 			return;
@@ -201,7 +200,7 @@ public class ABAPCityLayout {
 			Rectangle biggestRec = elements.get(0);
 			
 			// radius of the biggest district
-			double maxOuterRadius = Math.sqrt(Math.pow(biggestRec.getWidth() / 2.0, 2) + Math.pow(biggestRec.getLength() / 2.0, 2));
+			double maxOuterRadius = biggestRec.getPerimeterRadius();
 			
 			double minRadius = maxOuterRadius
 									+ covrecRadius
@@ -223,25 +222,37 @@ public class ABAPCityLayout {
 			biggestRec.getEntityLink().setPosition(initialPos);
 			
 			if (elements.size() > 1) {
+				SettingsConfiguration.NotInOriginLayoutVersion version = config.getAbapNotInOrigin_layout_version();
+				
 				for (int i = 1; i < elements.size(); ++i) {
 					
 					Rectangle previousRec = elements.get(i - 1);
 					Rectangle currentRec = elements.get(i);
 
-					double previousRadius = Math.sqrt(Math.pow(previousRec.getWidth() / 2.0, 2) + Math.pow(previousRec.getLength() / 2.0, 2));
+					double previousRadius = previousRec.getPerimeterRadius();
 							//+ config.getBuildingHorizontalGap();
 					
-					double currentRadius = Math.sqrt(Math.pow(currentRec.getWidth() / 2.0, 2) + Math.pow(currentRec.getLength() / 2.0, 2));
+					double currentRadius = currentRec.getPerimeterRadius();
 							//+ config.getBuildingHorizontalGap();
 					
 					double rotationAngle = 0;
 					
-					if (version == 1) 
-						rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
-					else if (version == 2)
-						rotationAngle = 2 * Math.asin(maxOuterRadius / radius);
-					else if (version == 3)
-						rotationAngle = 2 * Math.PI / elements.size();
+					switch(version) {
+						case MINIMAL_DISTANCE:
+//							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
+							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
+							break;
+						case CONSTANT_DISTANCE:
+							rotationAngle = 2 * Math.asin(maxOuterRadius / radius);
+							break;
+						case FULL_CIRCLE:
+							rotationAngle = 2 * Math.PI / elements.size();
+							break;					
+						default:
+//							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
+							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
+							break;					
+					}
 
 					Position newPos = cityFactory.createPosition();
 					
@@ -873,6 +884,7 @@ public class ABAPCityLayout {
 	private static void adjustPositions(EList<Entity> children, double parentX, double parentZ) {
 		for (Entity e : children) {
 			if (e.getPosition() == null) {
+				// just for debugging
 				Position newPos = cityFactory.createPosition();
 				newPos.setX(-500);
 				newPos.setY(-500);
@@ -1363,40 +1375,60 @@ public class ABAPCityLayout {
 	private static void arrangeLocalClassDistricts(Entity district, Rectangle districtSquare, List<Rectangle> districtMembers) {
 		for (Rectangle localClassDistrict : districtMembers) {
 			
-			// Je nachdem, ob der zugrunde liegende District, in dem die lokalen klassen angeordnet werden sollen, breiter als länger ist oder nicht,
-			// wird der Distrikt der lokalen Klasse entweder darüber oder rechts daneben angeordnet, um möglichst platzeffizient vorzugehen.
+			// Je nachdem, ob der zugrunde liegende Distrikt, in dem die lokalen Klassen angeordnet werden sollen, breiter als länger ist oder nicht,
+			// wird der Distrikt der lokalen Klasse entweder darüber oder rechts daneben angeordnet, um möglichst platzeffizient vorzugehen.			
 			if (districtSquare.getWidth() > districtSquare.getLength()) {
 				
-				double newUpperRightX = districtSquare.getWidth() >= localClassDistrict.getWidth() ? districtSquare.getBottomRightX() : localClassDistrict.getBottomRightX();
-				double newUpperRightY = districtSquare.getBottomRightY() + localClassDistrict.getBottomRightY();
+				double newUpperRightX = districtSquare.getWidth() >= localClassDistrict.getWidth() ? 
+										districtSquare.getBottomRightX() : 
+										localClassDistrict.getBottomRightX() + 2 * config.getBuildingHorizontalMargin();
 				
-				districtSquare.changeRectangle(districtSquare.getUpperLeftX(), districtSquare.getUpperLeftY(), newUpperRightX, newUpperRightY);
+				double newUpperRightY = districtSquare.getBottomRightY() + localClassDistrict.getBottomRightY() + 2 * config.getBuildingHorizontalMargin();
 				
-				district.setLength(districtSquare.getLength() + 2 * config.getBuildingHorizontalMargin());
-				district.setWidth(districtSquare.getWidth() + 2 * config.getBuildingHorizontalMargin());
+				localClassDistrict.changeRectangle(districtSquare.getUpperLeftX(),
+												   districtSquare.getBottomRightY(),
+												   localClassDistrict.getWidth() + 2 * config.getBuildingHorizontalGap(),
+												   localClassDistrict.getLength() + 2 * config.getBuildingHorizontalGap(), 
+												   1);
 				
-				localClassDistrict.changeRectangle(localClassDistrict.getUpperLeftX(), districtSquare.getUpperLeftY() - localClassDistrict.getUpperLeftY(),
-												   localClassDistrict.getWidth(), localClassDistrict.getLength(), 1);
-				
+				districtSquare.changeRectangle(districtSquare.getUpperLeftX(),
+											   districtSquare.getUpperLeftY(),
+											   newUpperRightX - districtSquare.getUpperLeftX() + 2 * config.getBuildingHorizontalMargin(),
+											   newUpperRightY - districtSquare.getUpperLeftY() + 2 * config.getBuildingHorizontalMargin(),
+											   1);
+								
 			} else {
 				
-				double newUpperRightX = districtSquare.getBottomRightX() + localClassDistrict.getBottomRightX();
-				double newUpperRightY = districtSquare.getLength() >= localClassDistrict.getLength() ? districtSquare.getBottomRightY() : localClassDistrict.getBottomRightY();
+				double newUpperRightX = districtSquare.getBottomRightX() + localClassDistrict.getBottomRightX() + 2 * config.getBuildingHorizontalMargin();
 				
-				districtSquare.changeRectangle(districtSquare.getUpperLeftX(), districtSquare.getUpperLeftY(), newUpperRightX, newUpperRightY);
+				double newUpperRightY = districtSquare.getLength() >= localClassDistrict.getLength() ? 
+									    districtSquare.getBottomRightY() : 
+									    localClassDistrict.getBottomRightY() + 2 * config.getBuildingHorizontalMargin();
 				
-				district.setLength(districtSquare.getLength() + 2 * config.getBuildingHorizontalMargin());
-				district.setWidth(districtSquare.getWidth() + 2 * config.getBuildingHorizontalMargin());
+				localClassDistrict.changeRectangle(districtSquare.getBottomRightX(),
+												   districtSquare.getUpperLeftY(),
+						   						   localClassDistrict.getWidth() + 2 * config.getBuildingHorizontalGap(),
+						   						   localClassDistrict.getLength() + 2 * config.getBuildingHorizontalGap(),
+						   						   1);
 				
-				localClassDistrict.changeRectangle(districtSquare.getBottomRightX() - localClassDistrict.getBottomRightX(), localClassDistrict.getUpperLeftY(),
-												   localClassDistrict.getWidth(), localClassDistrict.getLength(), 1);
-				
+				districtSquare.changeRectangle(districtSquare.getUpperLeftX(),
+											   districtSquare.getUpperLeftY(),
+											   newUpperRightX - districtSquare.getUpperLeftX() + 2 * config.getBuildingHorizontalMargin(),
+											   newUpperRightY - districtSquare.getUpperLeftY() + 2 * config.getBuildingHorizontalMargin(),
+											   1);		
 			}
 			
-			Position newPos = cityFactory.createPosition();
-			newPos.setX(localClassDistrict.getCenterX());
-			newPos.setZ(localClassDistrict.getCenterY());
-			localClassDistrict.getEntityLink().setPosition(newPos);
+			Position newLocalClassDistrictPos = cityFactory.createPosition();
+			newLocalClassDistrictPos.setX(localClassDistrict.getCenterX());
+			newLocalClassDistrictPos.setZ(localClassDistrict.getCenterY());
+			localClassDistrict.getEntityLink().setPosition(newLocalClassDistrictPos);
+			
+			Position newDistrictSquarePos = cityFactory.createPosition();
+			newDistrictSquarePos.setX(districtSquare.getCenterX());
+			newDistrictSquarePos.setZ(districtSquare.getCenterY());
+			district.setPosition(newDistrictSquarePos);			
+			district.setLength(districtSquare.getLength());
+			district.setWidth(districtSquare.getWidth());	
 		}
 	}
 	
