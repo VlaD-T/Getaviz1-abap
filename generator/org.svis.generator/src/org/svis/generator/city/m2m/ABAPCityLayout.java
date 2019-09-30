@@ -962,6 +962,15 @@ public class ABAPCityLayout {
 				}
 		    }	      
 		}
+		
+		if (privateMembers.isEmpty() && publicMembers.isEmpty()) {
+			double newSize = (config.getAbapAdvBuildingDefSize("FAMIX.Method") * config.getAbapAdvBuildingScale("FAMIX.Method")
+					        + config.getBuildingHorizontalGap());
+			classDistrict.setWidth(newSize + 2 * config.getBuildingHorizontalMargin()); 
+			classDistrict.setLength(newSize + 2 * config.getBuildingHorizontalMargin());
+		
+		}
+		
 		// start algorithm
 		List<String> position = getPositionList(squareSize);
 
@@ -1097,6 +1106,14 @@ public class ABAPCityLayout {
 				break;
 			}
 		}
+		
+		if (privateMembers.isEmpty() && publicMembers.isEmpty()) {
+			double newSize = (config.getAbapAdvBuildingDefSize("FAMIX.FunctionModule")
+					        * config.getAbapAdvBuildingScale("FAMIX.FunctionModule") + config.getBuildingHorizontalGap());
+			functionGroupDistrict.setWidth(newSize + 2 * config.getBuildingHorizontalMargin()); 
+			functionGroupDistrict.setLength(newSize + 2 * config.getBuildingHorizontalMargin());
+		
+		}
 
 		// start algorithm
 		List<String> position = getPositionList(squareSize);
@@ -1157,6 +1174,8 @@ public class ABAPCityLayout {
 				break;
 			}
 		}
+		
+	
 
 		// start algorithm
 		List<String> position = getPositionList(squareSize);

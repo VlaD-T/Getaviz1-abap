@@ -230,10 +230,9 @@ class City2City_abap {
 				}
 				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
 				
-			} else if (b.type == "FAMIX.Report") {
-			    
-				b.width = getAdvBuildingWidth(b.type, 1.0)
-				b.length = getAdvBuildingLength(b.type, 1.0)
+			} else if (b.type == "FAMIX.Report") {			    
+				b.width = getAdvBuildingWidth(b.type, 1.0) // b.width
+				b.length = getAdvBuildingLength(b.type, 1.0)  // b.width
 				b.height = getScaledHeightofSco(b.methodCounter)				
 				b.buildingParts.add(createAdvBuildingBase(b.type))								
 				for (var i = 1; i <= b.height - 1; i++) {

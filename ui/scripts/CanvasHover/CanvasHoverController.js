@@ -15,6 +15,7 @@ var canvasHoverController = (function() {
 	var controllerConfig = {
 		hoverColor: "darkred",
 		showQualifiedName : false,
+		showId: true,
 		showVersion : false,
 		showIssues : false
 	};
@@ -63,6 +64,12 @@ var canvasHoverController = (function() {
 			var qualifiedNamePElement = document.createElement("P");
 			qualifiedNamePElement.id = "tooltipQualifiedName";
 			tooltipDivElement.appendChild(qualifiedNamePElement);
+		}
+
+		if (controllerConfig.showId) {
+			var elementId = document.createElement("P");
+			elementId.id = "tooltipElementId";
+			tooltipDivElement.appendChild(elementId);
 		}
 		
 		if(controllerConfig.showVersion) {
@@ -161,6 +168,9 @@ var canvasHoverController = (function() {
 		$("#tooltipName").text(getTooltipName(entity));
 		if(controllerConfig.showQualifiedName) {
 			$("#tooltipQualifiedName").text(entity.qualifiedName);
+		}
+		if (controllerConfig.showId) {
+			$('#tooltipElementId').text(entity.id);
 		}
 		if(controllerConfig.showVersion) {
 			$("#tooltipVersion").text("Version: " + entity.version);
