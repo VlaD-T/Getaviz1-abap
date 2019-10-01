@@ -189,14 +189,27 @@ public class CityLayout {
 	private static void arrangeDistrictsCircular(List<Rectangle> elements, Rectangle covrec) {
 		
 		double covrecRadius = covrec.getPerimeterRadius() + config.getBuildingHorizontalGap();
+		SettingsConfiguration.NotInOriginLayoutVersion version = config.getAbapNotInOrigin_layout_version();
 		
 		if (elements.size() == 0)
 			return;
 		else {			
-			Rectangle biggestRec = elements.get(0);
 			
-			// radius of the biggest district
+			Rectangle biggestRec = elements.get(0);
 			double maxOuterRadius = biggestRec.getPerimeterRadius();
+			double sumOfPerimeterRadius = 0;
+						
+			for (Rectangle element : elements) {
+				sumOfPerimeterRadius += element.getPerimeterRadius() + config.getBuildingHorizontalGap();
+				
+				if(element.getPerimeterRadius() > maxOuterRadius) {
+					maxOuterRadius = element.getPerimeterRadius();
+					biggestRec = element;
+					elements.remove(element);
+					elements.add(0, biggestRec);
+				}
+					
+			}
 			
 			double minRadius = maxOuterRadius
 									+ covrecRadius
@@ -204,11 +217,11 @@ public class CityLayout {
 			
 			double maxRadius = 0;
 			
-			// upper estimation of the radius, only for sets with several elements
+			// new estimation of the radius			
 			if (elements.size() > 1)		
-				maxRadius = maxOuterRadius / Math.sin(Math.PI / elements.size()) 
+				maxRadius = (sumOfPerimeterRadius / elements.size()) / Math.sin(Math.PI / elements.size()) 
 									+ config.getBuildingHorizontalGap();
-		
+			
 			double radius = Math.max(minRadius, maxRadius);
 			
 			Position initialPos = cityFactory.createPosition();
@@ -218,7 +231,8 @@ public class CityLayout {
 			biggestRec.getEntityLink().setPosition(initialPos);
 			
 			if (elements.size() > 1) {
-				SettingsConfiguration.NotInOriginLayoutVersion version = config.getAbapNotInOrigin_layout_version();
+				
+				double cacheRotationAngle = 0;
 				
 				for (int i = 1; i < elements.size(); ++i) {
 					
@@ -239,8 +253,18 @@ public class CityLayout {
 							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
 							break;
 						case FULL_CIRCLE:
-							rotationAngle = 2 * Math.PI / elements.size();
-							break;					
+							double idealRotationAngle = 2 * Math.PI / elements.size() - cacheRotationAngle;
+							double leastRotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
+							
+							if (idealRotationAngle >= leastRotationAngle) {
+								rotationAngle = idealRotationAngle;
+								cacheRotationAngle = 0;
+							} else {
+								rotationAngle = leastRotationAngle;
+								cacheRotationAngle = leastRotationAngle - idealRotationAngle;								
+							}
+							
+							break;			
 						default:
 //							rotationAngle = Math.acos(1 - (Math.pow(previousRadius + currentRadius, 2) / (2 * Math.pow(radius, 2))));
 							rotationAngle = 2 * Math.asin((previousRadius + currentRadius) / (2 * radius));
