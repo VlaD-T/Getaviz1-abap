@@ -330,7 +330,7 @@ public class ABAPCityLayout {
 						|| child.getType().equals("functionGroupDistrict") || child.getType().equals("tableDistrict") 
 						|| child.getType().equals("dcDataDistrict") || child.getType().equals("domainDistrict") 
 						|| child.getType().equals("interfaceDistrict")	|| child.getType().equals("structureDistrict")
-						|| child.getType().equals("virtualDomainDistrict") ) {
+						|| child.getType().equals("virtualDomainDistrict")) {
 					if (DEBUG) {
 						System.out.println("\t\t\t" + info + "layOut(" + child.getFqn() + ")-call, recursive.");
 					}
@@ -1113,6 +1113,9 @@ public class ABAPCityLayout {
 				privateMembers.add(square);
 				break;
 			case "FAMIX.FunctionModule":
+				publicMembers.add(square);
+				break;
+			case "FAMIX.Formroutine":
 				publicMembers.add(square);
 				break;
 			case "classDistrict":

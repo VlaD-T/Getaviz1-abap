@@ -1561,6 +1561,9 @@ public class SettingsConfiguration {
 	public boolean isShowFumo() {
 		return config.getBoolean("city.abap.showFumo", false);
 	}
+	public boolean isShowFormOfFugr( ) {
+		return config.getBoolean("city.abap.showFormOfFugr", false);
+	}
 	public boolean isShowDomain() {
 		return config.getBoolean("city.abap.showDomain", false);
 	}
