@@ -138,6 +138,8 @@ class City2X3D_abap_adv {
 					«advSetClass_Instance.getElemFor_TableType_ABAPStruc(entity)»
 				«ELSEIF entity.rowType == "FAMIX.Table"»
 					«advSetClass_Instance.getElemFor_TableType_Table(entity)»
+				«ELSE»
+					«advSetClass_Instance.getElemFor_TableType(entity)»
 				«ENDIF»
 			«ELSEIF entity.type == "FAMIX.Attribute"» 
 				«IF entity.parentType == "FAMIX.FunctionGroup"»	

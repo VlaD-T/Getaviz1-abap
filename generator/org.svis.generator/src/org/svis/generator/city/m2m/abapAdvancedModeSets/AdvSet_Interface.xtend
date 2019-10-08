@@ -18,6 +18,7 @@ interface AdvSet_Interface {
 	def String getElemFor_Formroutine(Entity entity) ''''''
 	def String getElemFor_TableType_ABAPStruc(Entity entity) ''''''
 	def String getElemFor_TableType_Table(Entity entity) ''''''
+	def String getElemFor_TableType(Entity entity) ''''''
 	def String getElemFor_Attribute_Class(Entity entity) ''''''
 	def String getElemFor_Attribute_FunctionGroup(Entity entity) ''''''
 }

@@ -180,6 +180,17 @@ class SimpleBlocks implements AdvSet_Interface {
 			</Shape>
 		</Transform>
 	'''
+//	TODO eigener Konfig-Parameter für Tabellentypen
+	override getElemFor_TableType(Entity entity) '''
+		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeigth("TT_Struc") / 2) +" "+ 0»'>
+					<Shape>
+						<Cone bottomRadius='«entity.width / 4»' height='«config.getSimpleBlocksHeigth("TT_Struc")»' ></Cone>
+						<Appearance>
+							<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
+						</Appearance>
+					</Shape>
+				</Transform>
+	'''
 	
 	override getElemFor_Attribute_Class(Entity entity) '''
 		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>

@@ -199,7 +199,9 @@ class Famix2City_abap {
 	 * 2. Uses more complex buildings (city2X3D)
 	 */
 	def advancedModel(){
-		rootPackages.forEach[toAdvancedDistrict(1)]
+		rootPackages.forEach[
+			toAdvancedDistrict(1)
+		]
 	}
 	
 	
@@ -471,9 +473,9 @@ class Famix2City_abap {
 
 				if (abapStrucs.filter[value == rowType].filter[container.ref == elem].length == 0 && tables.filter[value == rowType].filter[container.ref == elem].length == 0) {
 					val newStructureDistrict = cityFactory.createDistrict
-					newStructureDistrict.name = newDistrict.name + "_structureDistrict"
+					newStructureDistrict.name = newDistrict.name + "_tableTypeDistrict"
 					newStructureDistrict.type = "structureDistrict"
-					newStructureDistrict.id = createID("StructureDistrict" + ttyp.id)
+					newStructureDistrict.id = createID("TableTypeDistrict" + ttyp.id)
 					newStructureDistrict.level = level + 1
 
 					newStructureDistrict.entities += toBuilding(ttyp, level + 2)

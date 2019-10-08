@@ -152,7 +152,7 @@ class City2City_abap {
 				}
 				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
 
-				} else if (b.type == "FAMIX.ABAPStruc") {
+			} else if (b.type == "FAMIX.ABAPStruc") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
 				b.length = getAdvBuildingLength(b.type, 1.0)
 				if (getScaledHeightofSco(b.dataCounter) == 1.0) {
@@ -170,7 +170,17 @@ class City2City_abap {
 			} else if (b.type == "FAMIX.TableType") {
 				b.width = getAdvBuildingWidth(b.type, 1.0)
 				b.length = getAdvBuildingLength(b.type, 1.0)
-				b.height = getScaledHeightofSco(b.dataCounter)
+//				b.height = getScaledHeightofSco(b.dataCounter)
+				if (getScaledHeightofSco(b.dataCounter) == 1.0) {
+					b.height = 2.0 // 2 - to show at least one floor
+				} else {
+					b.height = getScaledHeightofSco(b.dataCounter)
+				}
+				b.buildingParts.add(createAdvBuildingBase(b.type))
+				for (var i = 1; i <= b.height - 1; i++) {
+					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
+				}
+				b.buildingParts.add(createAdvBuildingRoof(b.type, b.height))
 
 			} else if(b.type == "FAMIX.Table"){
 				b.width = 4 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type)) 
