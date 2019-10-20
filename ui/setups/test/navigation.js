@@ -1,4 +1,6 @@
 ﻿var setup = {
+
+	
 		
 	controllers: [	
 
@@ -16,6 +18,22 @@
 		},	
 
 		{ 	name: 	"canvasResetViewController" 
+		},
+
+
+
+		{	name: 	"navigationCamController",
+			modus: "LOOK_AT_ROTATE",
+
+			zoomToMousePosition: true,
+
+			setCenterOfRotation: true,
+			setCenterOfRotationFocus: true,
+			showCenterOfRotation: false,
+
+			macUser: false,
+
+			active:	true
 		},
 
 		{	name: 	"navigationCamControllerAxes",
@@ -39,7 +57,7 @@
 		},
 
 		{	name: 	"navigationWASDController",
-			active:	true
+			active:	false
 		},
 		
 	],
@@ -83,12 +101,13 @@
 						{ name: "canvasHoverController" },
 						{ name: "canvasSelectController" },
 						
+						{ name: "navigationCamController"},
+
 						{ name: "navigationCamControllerAxes" },
 						{ name: "navigationCamControllerLAR" },
 						{ name: "navigationCamControllerMWASD" },
 						{ name:	"navigationCamControllerPZR" },
 						{ name: "navigationWASDController" },
-
 						
 					],						
 				}
