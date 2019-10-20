@@ -108,6 +108,16 @@
   <script type="text/javascript" src="scripts/Filter/Classes/Container.js"></script>
   <script type="text/javascript" src="scripts/Filter/Classes/Layer.js"></script>
   <script type="text/javascript" src="scripts/Filter/FilterController.js"></script>
+
+	<!-- navigation -->
+  	<script type="text/javascript" src="scripts/NavigationCam/NavigationCamControllerAxes.js"></script>
+	<script type="text/javascript" src="scripts/NavigationCam/NavigationCamControllerLAR.js"></script>
+	<script type="text/javascript" src="scripts/NavigationCam/NavigationCamControllerMWASD.js"></script>
+	<script type="text/javascript" src="scripts/NavigationCam/NavigationCamControllerPZR.js"></script>	
+	<script type="text/javascript" src="scripts/NavigationCam/NavigationWASDController.js"></script>
+	<script type="text/javascript" src="scripts/NavigationCam/NavigationZoomPanController.js"></script>
+  
+
 	
 	<!--user interface-->		
 	<script type="text/javascript" src="scripts/DefaultLogger.js"></script>
