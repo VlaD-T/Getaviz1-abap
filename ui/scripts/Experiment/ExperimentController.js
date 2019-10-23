@@ -14,7 +14,7 @@ var experimentController = (function() {
 	var controllerConfig = {
 		showBackButton: false,
 		showSureButton: true,
-		showPopup: true,
+		showPopup: false,
 	};
 
 
@@ -141,7 +141,8 @@ var experimentController = (function() {
 	}
 
 	function resetSolvedButton() {
-		if ($('#taskSolvedButton')[0].value !== 'Next') $('#taskSolvedButton')[0].value = 'Next';
+		if ($('#taskSolvedButton')[0].value !== 'Next') 
+			$('#taskSolvedButton')[0].value = 'Next';
 	}
 	
 	function nextStep(){
@@ -149,10 +150,22 @@ var experimentController = (function() {
 		stopTaskTimer();
 		
 		setNextStep();
-		
+
+		if (currentStep.viewpoint) {
+			setNewViewpoint();
+		}
+
+		if (currentStep.entities) {
+			moveToEntity();
+		}		
+				
 		setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);		
 	}
-		
+
+	function setNewViewpoint() {		
+		document.getElementById('x3dElement').runtime.canvas.doc._viewarea._scene.getViewpoint()._xmlNode["position"] = currentStep.viewpoint;
+	}
+			
 	function previousStep() {
 		stopTaskTimer();
 
@@ -165,7 +178,7 @@ var experimentController = (function() {
 		
 		stepOrderIterator = stepOrderIterator + 1;
 		
-		var nextStepByStepOrder = stepOrder[stepOrderIterator-1];
+		var nextStepByStepOrder = stepOrder[stepOrderIterator - 1];
 		
 		steps.forEach(function(step){
 			if(step.number == nextStepByStepOrder){
@@ -190,6 +203,11 @@ var experimentController = (function() {
 		}
 	}
 	
+	function moveToEntity() {
+		var entity = model.getEntityById(currentStep.entities[0]);
+		canvasManipulator.flyToEntity(entity);
+	}
+
 	function setStepTexts(textArray, posx, posy, width, height, time){
 		
 		var fullText = "";
