@@ -2088,5 +2088,25 @@ public class SettingsConfiguration {
 	
 	public double getAbapTableShapeHeight() {
 		return config.getDouble("city.abap.table_shape_height", 24);
-	} 
+	}
+	
+	public double getAbapPackageDistrictMargin() {
+		return config.getDouble("city.abap.packageDistrictMargin", 3.0);
+	}
+	
+	public double getAbapOtherDistrictMargin() {
+		return config.getDouble("city.abap.otherDistrictMargin", 3.0);
+	}
+	
+	public double getAbapPackageDistrictGap() {
+		return config.getDouble("city.abap.packageDistrictGap", 3.0);
+	}
+	
+	public double getAbapOtherDistrictGap() {
+		return config.getDouble("city.abap.otherDistrictGap", 3.0);
+	}
+	
+	public double getAbapBuildingGap() {
+		return config.getDouble("city.abap.buildingGap", 3.0);
+	}
 }	
