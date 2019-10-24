@@ -8,7 +8,7 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 5,
 		
-			stepOrder:	[ 10, 17 ],
+			stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18 ],
 						
 			steps:		[				
 							{ 	number:	10,
@@ -59,10 +59,14 @@ var setup = {
 							{ 	number:	13,
 								
 								text: 	[
-										"Klassen sind als dunkelblaue Gebäude in hellgrauen Stadtteilen, den Paketen, dargestellt.",
-										"Jedes hellblaue Stockwerk ist eine Methode und jeder gelber Schornstein auf dem Dach des Gebäudes ein Attribut.",
-										"Beim Überfahren der Elemente mit der Maus wird der Name in einem Tooltip angezeigt.",
-										"Versuchen Sie sich in der Visualisierung zu bewegen und beenden Sie die Aufgabe wieder über die Schaltfläche."
+										"Globale Klassen werden als gelbe Distrikte visualisiert. Auf den  gelben Distrikten befinden sich die Bestandteile der Klasse als Gebäude.",
+										"Methoden sind hierbei als graue Quader dargestellt, deren Höhe abhängig von ihrer Anzahl der Statements ist.",
+										"Die Attribute der Klasse werden durch Zylinder repräsentiert, deren Höhe wiederum durch die Komplexität der Information, die das entsprechende Attribut speichert,",
+										"bestimmt wird. Außerdem exisitert ein spezielles Anordnungsschema für die Gebäude der Methoden und Attribute:",
+										"Die Gebäude der Klassenbestandteile, die privat sind, werden im Zentrum des Distrikts angeordnet, wohingegen die geschützten und öffentlichen am Rand positioniert sind.",
+										"Lokale Klassen werden analog zu globalen visualisiert. Jedoch befinden sie sich nicht direkt auf einem Paketdistrikt wie der Distrikt einer globalen Klasse,",
+										"sondern sie sind auf dem Distrikt des definierenden ABAP-Objekts platziert. Dies können neben denen der globalen Klassen auch die Distrikte der Funktionsgruppen und Reports sein.",
+										"Betrachten Sie die Visualisierung der Klasse und beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI1",
@@ -75,54 +79,55 @@ var setup = {
 							{ 	number:	14,
 								
 								text: 	[
-										"Klassen sind als dunkelblaue Gebäude in hellgrauen Stadtteilen, den Paketen, dargestellt.",
-										"Jedes hellblaue Stockwerk ist eine Methode und jeder gelber Schornstein auf dem Dach des Gebäudes ein Attribut.",
-										"Beim Überfahren der Elemente mit der Maus wird der Name in einem Tooltip angezeigt.",
-										"Versuchen Sie sich in der Visualisierung zu bewegen und beenden Sie die Aufgabe wieder über die Schaltfläche."
+										"Reports und ihre Bestandteile sind auf den hellblauen Distrikten dargestellt. Dabei wird ein Report selbst durch einen dunkelblauen Quader im Zentrum des Distrikts repräsentiert.",
+										"Außerdem befinden sich auf dem Distrikt die Gebäude für die Formroutinen des Reports (graue Quader). Die Höhe der Gebäude der Formroutinen und des Reports sind abhängig von",
+										"der Anzahl ihrer Statements. Die globalen Attribute des Reports sind als Zylinder dargestellt.",
+										"Erkunden Sie die Visualisierung des Reports und beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI1",
 
-								viewpoint: "600 100 40"		// entspricht /GSA/VISAP_T_TEST_REPORT4
+								viewpoint: "100 300 40"		// entspricht /GSA/VISAP_T_TEST_REPORT
 							},
 
 							{ 	number:	15,
 								
 								text: 	[
-										"Klassen sind als dunkelblaue Gebäude in hellgrauen Stadtteilen, den Paketen, dargestellt.",
-										"Jedes hellblaue Stockwerk ist eine Methode und jeder gelber Schornstein auf dem Dach des Gebäudes ein Attribut.",
-										"Beim Überfahren der Elemente mit der Maus wird der Name in einem Tooltip angezeigt.",
-										"Versuchen Sie sich in der Visualisierung zu bewegen und beenden Sie die Aufgabe wieder über die Schaltfläche."
+										"Funktionsgruppen sind analog zu Klassen als violette Distrikte dargestellt. Auf einem Funktionsgruppen-Distrikt befinden sich Zylinder für die globalen Attribute,",
+										"sowie graue Quader als Gebäude für die Funktionsbausteine und Formroutinen der Funktionsgruppe. Die Gebäude der Funktionsbausteine besitzen eine rechteckige Grundfläche,",
+										"während die Grundfläche der Gebäude der Formroutinen quadratisch ist. Die Höhe beider Gebäudearten ist ebenfalls durch die Anzahl ihrer Statements bestimmt.",
+										"Erkunden Sie die Visualisierung der Funktionsgruppe und beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI1",
 
 								entities : [
-									"ID_42d2a6ad49f93ab4b987b1a9e738425aacb8d2af"	// entspricht /GSA/VISAP_T_TEST_FG2
+									"ID_4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771"	// entspricht /GSA/VISAP_T_TEST_FG1
 								]
 							},
 
 							{ 	number:	16,
 								
 								text: 	[
-										"Klassen sind als dunkelblaue Gebäude in hellgrauen Stadtteilen, den Paketen, dargestellt.",
-										"Jedes hellblaue Stockwerk ist eine Methode und jeder gelber Schornstein auf dem Dach des Gebäudes ein Attribut.",
-										"Beim Überfahren der Elemente mit der Maus wird der Name in einem Tooltip angezeigt.",
-										"Versuchen Sie sich in der Visualisierung zu bewegen und beenden Sie die Aufgabe wieder über die Schaltfläche."
+										"Domänen und Datenelemente sind auf grünen Distrikten dargestellt. Domänen sind hierbei als grüne Zylinder im Zentrum des Distrikts visualisiert.",
+										"Diejenigen Datenelemente, welche von der Domäne aus dem gleichen Paket abgeleitet sind, sind am Rand des Distrikts durch dunkelgrüne Zylinder repräsentiert.",
+										"Außerdem befinden sich die Gebäude der Datenelemente, die vom gleichen eingebauten Typ abgeleitet sind, auf einem gemeinsamen Distrikt ohne Domänengebäude,",
+										"ebenso wie die Gebäude der Datenelemente, die von einer Domäne aus einem anderen Paket abgeleitet sind.",
+										"Erkunden Sie die Visualisierung der Domäne und Datenelemente und beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI1",
 
-								viewpoint: "600 300 40"		// entspricht /GSA/VISAP_T_TEST_DO1
+								viewpoint: "800 280 20"		// entspricht /GSA/VISAP_T_TEST_DO1
 							},
 
 							{ 	number:	17,
 								
 								text: 	[
-										"Klassen sind als dunkelblaue Gebäude in hellgrauen Stadtteilen, den Paketen, dargestellt.",
-										"Jedes hellblaue Stockwerk ist eine Methode und jeder gelber Schornstein auf dem Dach des Gebäudes ein Attribut.",
-										"Beim Überfahren der Elemente mit der Maus wird der Name in einem Tooltip angezeigt.",
-										"Versuchen Sie sich in der Visualisierung zu bewegen und beenden Sie die Aufgabe wieder über die Schaltfläche."
+										"Strukturen sind als hellgrüne Distrikte dargestellt. Auf den hellgrünen Distrikten befinden sich die Gebäude der Komponenten der Struktur, die sogenannten Strukturelemente.",
+										"Dies sind graue Kegel, die am Rand des Struktur-Distrikts positioniert sind. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Struktur abgeleitet,",
+										"befinden sich diese ebenfalls auf dem Struktur-Distrikt. Sie sind dann als rosafarbene Kegel visualisiert.",
+										"Erkunden Sie die Visualisierung der Struktur und beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI1",
@@ -130,6 +135,20 @@ var setup = {
 								entities : [
 									"ID_412a33ae14746612317b013dc23213cd79b5f3f3"	// entspricht /GISA/BWBCI_EXTR_MAC
 								]
+							},
+
+							{ 	number:	18,
+								
+								text: 	[
+										"In diesem Bildausschnitt sehen Sie die Visualisierung von Datenbanktabellen. Diese befinden sich auf einem dunkelblauen Distrikt und sind als flache, braune Quader dargestellt.",
+										"Auf diesem braunen Quader befinden sich türkisfarbene Quader, die die Tabellenelemente, also die Spalten, repräsentieren.", 
+										"Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Tabelle abgeleitet, befinden diese sich wie bei Strukturen auf dem gleichen Distrikt.",
+										"Erkunden Sie die Visualisierung der Tabelle und beenden Sie die Aufgabe wieder über die Schaltfläche."
+								],		
+
+								ui: 	"UI1",
+
+								viewpoint: "680 30 130"	// entspricht /GSA/VISAP_T_T2
 							},
 
 
