@@ -80,7 +80,7 @@
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"none",
+				type:	"turntable",
 				//speed: 10
 			},	
 					

@@ -159,7 +159,9 @@ var experimentController = (function() {
 			moveToEntity();
 		}		
 				
-		setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);		
+		setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);
+
+		application.loadUIConfig(currentStep.ui);		
 	}
 
 	function setNewViewpoint() {		

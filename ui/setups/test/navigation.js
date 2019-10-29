@@ -33,7 +33,7 @@
 
 			macUser: false,
 
-			active:	true
+			active:	false
 		},
 
 		{	name: 	"navigationCamControllerAxes",
@@ -53,7 +53,7 @@
 			setCenterOfRotationFocus: false,
 			showCenterOfRotation: false,
 			macUser: false,
-			active:	false
+			active:	true
 		},
 
 		{	name: 	"navigationWASDController",

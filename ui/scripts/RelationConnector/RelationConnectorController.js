@@ -38,7 +38,7 @@ var relationConnectorController = function(){
 		showDependanceToStandard : true,
 		showChildrenOfMajorElements : true,
 		connectorColor : "0 0 1",
-		connectorSize : 3.0
+		connectorSize : 5.0
 	}
 	
 	

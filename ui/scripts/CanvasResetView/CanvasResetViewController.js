@@ -40,7 +40,8 @@ var canvasResetViewController = (function() {
 	
 
 	function reset(){
-		document.getElementById("x3dElement").runtime.showAll("negZ");
+		//why??		
+		//document.getElementById("x3dElement").runtime.showAll("negZ");
 	}
 	
 	

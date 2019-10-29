@@ -8,7 +8,8 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 5,
 		
-			stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18 ],
+			//stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18 ],
+			stepOrder:	[ 10, 20, 21 ],
 						
 			steps:		[				
 							{ 	number:	10,
@@ -28,13 +29,13 @@ var setup = {
 								
 								text: 	[
 										"Im Folgenden lernen Sie die einzelnen Bestandteile der Visualisierung kennen.",
-										"Die grauen Distrikte repräsentieren die Pakete. Wenn Sie mit der Maus über einen grauen Distrikt hovern, erscheint im Tooltip der Name des Pakets.",
+										"Die grauen Distrikte repräsentieren die Pakete. Wenn Sie die Maus über einen grauen Distrikt bewegen, erscheint im Tooltip der Name des Pakets.",
 										"Auf dem Distrikt befinden sich die Visualisierungen der ABAP-Objekte, die dem entsprechenden Paket zugeordnet sind.",
-										"Dies können Klassen, Datenelemente oder auch die Unterpakete des betrachteten Pakets sein. ",
+										"Dies können Klassen, Datenelemente oder auch die Unterpakete des betrachteten Pakets sein.",
 										"Fahren Sie mit der Maus über einige Bestandteile des Pakets und beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
-								ui: 	"UI0",
+								ui: 	"UI1",
 								
 								entities : [
                                     "ID_919b44a73b780a53b5aaf69ae6a50250facf245c" 	// entspricht /GSA/VISAP_T_TEST
@@ -51,9 +52,9 @@ var setup = {
 										"Fahren Sie mit der Maus über einige Paket-Distrikte und beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
-								ui: 	"UI1",
+								ui: 	"UI2",
 
-								viewpoint : "335 300 4500"
+								viewpoint : "330 550 5500"
 							},
 
 							{ 	number:	13,
@@ -151,6 +152,47 @@ var setup = {
 								viewpoint: "680 30 130"	// entspricht /GSA/VISAP_T_T2
 							},
 
+							{ 	number:	19, // Navigationsmodi
+								
+								text: 	[
+										
+								],		
+
+								ui: 	"UI2",
+
+								viewpoint : "330 550 5500"
+							},
+
+							{ 	number:	20, // Suchleiste
+								
+								text: 	[
+										"Nachdem Sie nun mit der Steuerung in der Metapher vertraut sind, lernen Sie die weiteren Funktionalitäten des UIs kennen.",
+										"Zunächst wird Ihnen die Suchleiste vorgestellt. Wenn Sie das Gebäude eines bestimmten ABAP-Objekts näher untersuchen möchten, geben Sie dessen Bezeichner in der Suchleiste über dem Modell ein. "
+										+ "Besitzt das ABAP-Objekt keinen eindeutigen Bezeichner (wie beispielsweise bei Methoden), empfiehlt es sich, den eindeutigen Bezeichner des übergeordnenten ABAP-Objekts mit einem " 
+										+ "abschließenden \".\" voranzustellen. Soll beispielsweise Methode \"Y\" der Klasse \"X\" untersucht werden, würde der Suchstring so aussehen: \"X.Y\".",
+										"In einem Dropdown-Menü erscheinen bereits bei der Eingabe des Suchbegriffs verschiedene Vorschläge.",
+								],		
+
+								ui: 	"UI3",
+
+								viewpoint : "330 550 5500"
+							},
+
+							{ 	number:	21, // Package Explorer
+								
+								text: 	[
+										"Wie Sie sehen können, sind die einzelnen Paket-Distrikte unterschiedlich verteilt. Die zentralen Distrikte der Visualisierung stellen stets die Pakete der Grundmenge dar.",
+										"Zur Grundmenge gehören diejenigen Pakete, deren Strukturinformationen extrahiert werden sollen. Das ist in diesem Fall das eben betrachtete Paket mit dem Namen \"/GSA/VISAP_T_TEST\".",
+										"Ringförmig um die Grundmenge befinden sich die Paket-Distrikte der kundeneigenen Entwicklungen, die von den Bestandteilen der Grundmenge referenziert werden.",
+										"Wiederum ringförmig um die Grundmenge und den referenzierten, kundeneigenen Entwicklungen sind die von der Grundmenge verwendeten Paket-Distrikte des SAP-Standards dargestellt",
+										"Fahren Sie mit der Maus über einige Paket-Distrikte und beenden Sie die Aufgabe wieder über die Schaltfläche."
+								],		
+
+								ui: 	"UI4",
+
+								viewpoint : "330 550 5500"
+							},
+
 
 			]
 			
@@ -175,6 +217,15 @@ var setup = {
         {	name: 	"canvasFlyToController",			
 			parentLevel: 1
 		},
+
+		{	name:	"searchController",
+		},
+
+		{	name:	"packageExplorerController",
+		},
+		
+		{	name: 	"canvasFilterController" 
+		},
 		
 		
 	],
@@ -188,7 +239,7 @@ var setup = {
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-                type:	"examine",
+                type:	"none",
 				//speed: 10
 			},	
 					
@@ -203,7 +254,45 @@ var setup = {
 					
 					controllers: [					
 						{ name: "experimentController" },
-                        { name: "canvasResetViewController" }	
+                        { name: "canvasResetViewController" },
+					],							
+				},
+				second: {
+					size: "90%",	
+					collapsible: false,
+					
+					
+							
+					canvas: { },
+					
+					controllers: [						
+						{ name: "defaultLogger" },
+					],						
+				}
+			}
+			
+		},
+
+		{	name: "UI1",
+		
+			navigation: {
+				//examine, walk, fly, helicopter, lookAt, turntable, game
+				type:	"none",
+				//speed: 10
+			},	
+					
+		
+							
+			area: {
+				name: "top",
+				orientation: "horizontal",
+				
+				first: {			
+					size: "200px",	
+					
+					controllers: [	
+						{ name: "experimentController" },				
+						{ name: "canvasResetViewController" },
 					],							
 				},
 				second: {
@@ -215,17 +304,14 @@ var setup = {
 					canvas: { },
 					
 					controllers: [
-						
 						{ name: "defaultLogger" },
-                        { name: "canvasHoverController" }								
-
+						{ name: "canvasHoverController" },
 					],						
 				}
 			}
-			
 		},
 
-		{	name: "UI1",
+		{	name: "UI2",
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
@@ -256,16 +342,108 @@ var setup = {
 					canvas: { },
 					
 					controllers: [
-						{ name: "defaultLogger" },											
-
+						{ name: "defaultLogger" },
 						{ name: "canvasHoverController" },
-                        { name: "canvasSelectController" },
-                        { name: "canvasFlyToController" },
 					],						
 				}
 			}
-			
-		}
-	
+		},
+
+		{	name: "UI3",
+		
+			navigation: {
+				//examine, walk, fly, helicopter, lookAt, turntable, game
+				type:	"examine",
+				//speed: 10
+			},	
+					
+		
+							
+			area: {
+				name: "top",
+				orientation: "horizontal",
+				
+				first: {			
+					size: "200px",	
+					
+					controllers: [	
+						{ name: "experimentController" },				
+						{ name: "canvasResetViewController" },
+						{ name: "searchController"},
+					],							
+				},
+				second: {
+					size: "90%",	
+					collapsible: false,
+					
+					
+							
+					canvas: { },
+					
+					controllers: [
+						{ name: "defaultLogger" },
+						{ name: "canvasHoverController" },
+						{ name: "canvasFlyToController" },
+						{ name: "canvasSelectController" },
+					],						
+				}
+			}
+		},
+		
+		{	name: "UI4",
+		
+			navigation: {
+				//examine, walk, fly, helicopter, lookAt, turntable, game
+				type:	"examine",
+				//speed: 10
+			},		
+							
+			area: {
+				name: "top",
+				orientation: "horizontal",
+				
+				first: {			
+					size: "200px",
+					controllers: [	
+						{ name: "experimentController" },				
+						{ name: "canvasResetViewController" },
+						{ name: "searchController"},
+					],							
+				},
+				
+                second: {
+                    size: "80%",
+                    collapsible: false,
+                    area: {
+                        orientation: "vertical",
+                        name: "leftPanel",
+                        first: {                            
+							size: "20%",
+							expanders: [
+								{
+									name: "packageExplorer",
+									title: "Package Explorer",
+									controllers: [
+										{ name: "packageExplorerController" }
+									],
+								},
+							]
+						},
+                        second: {
+							size: "80%",
+							collapsible: false,
+                            name: "canvas",
+                            canvas: {},
+							controllers: [
+								{ name: "defaultLogger" },
+								{ name: "canvasHoverController" },
+								{ name: "canvasFilterController" },
+								{ name: "canvasFlyToController" },
+							],
+                        }
+                    }
+				}			
+			}
+		},	
 	]
 };

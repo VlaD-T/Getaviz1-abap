@@ -23,8 +23,6 @@ var canvasManipulator = (function() {
 	}
 
 	function reset(){
-		document.getElementById("x3dElement").runtime.showAll("negZ");
-		viewpoint.setCenterOfRotation(initialCenterOfRotation);
 	}
 	
 
