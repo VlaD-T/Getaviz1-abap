@@ -170,7 +170,9 @@ var setup = {
 										"Zunächst wird Ihnen die Suchleiste vorgestellt. Wenn Sie das Gebäude eines bestimmten ABAP-Objekts näher untersuchen möchten, geben Sie dessen Bezeichner in der Suchleiste über dem Modell ein. "
 										+ "Besitzt das ABAP-Objekt keinen eindeutigen Bezeichner (wie beispielsweise bei Methoden), empfiehlt es sich, den eindeutigen Bezeichner des übergeordnenten ABAP-Objekts mit einem " 
 										+ "abschließenden \".\" voranzustellen. Soll beispielsweise Methode \"Y\" der Klasse \"X\" untersucht werden, würde der Suchstring so aussehen: \"X.Y\".",
-										"In einem Dropdown-Menü erscheinen bereits bei der Eingabe des Suchbegriffs verschiedene Vorschläge.",
+										"Während der Eingabe des Suchbegriffs erscheinen in einem Dropdown-Menü verschiedene Suchvorschläge in alphanumerischer Reihenfolge. Klicken Sie auf den Bezeichner des gesuchten ABAP-Objekts, " + 
+										"fliegt die Kamera zu dem entsprechenden Gebäude. Dieses wird dann auch rot hervorgehoben.",
+										"Probieren Sie die Suchleiste und suchen beispielsweise nach der Klasse \"/GSA/CL_AQP_HIST\". Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI3",
@@ -181,11 +183,14 @@ var setup = {
 							{ 	number:	21, // Package Explorer
 								
 								text: 	[
-										"Wie Sie sehen können, sind die einzelnen Paket-Distrikte unterschiedlich verteilt. Die zentralen Distrikte der Visualisierung stellen stets die Pakete der Grundmenge dar.",
-										"Zur Grundmenge gehören diejenigen Pakete, deren Strukturinformationen extrahiert werden sollen. Das ist in diesem Fall das eben betrachtete Paket mit dem Namen \"/GSA/VISAP_T_TEST\".",
-										"Ringförmig um die Grundmenge befinden sich die Paket-Distrikte der kundeneigenen Entwicklungen, die von den Bestandteilen der Grundmenge referenziert werden.",
-										"Wiederum ringförmig um die Grundmenge und den referenzierten, kundeneigenen Entwicklungen sind die von der Grundmenge verwendeten Paket-Distrikte des SAP-Standards dargestellt",
-										"Fahren Sie mit der Maus über einige Paket-Distrikte und beenden Sie die Aufgabe wieder über die Schaltfläche."
+										"Als nächstes lernen Sie den Package Explorer kennen. Diesen sehen Sie links neben der Visualisierung. Im Package Explorer finden Sie in einer hierarchischen Ordnung alle ABAP-Objekte, " +
+										"die in der Visualisierung dargestellt sind. In diesem Beispiel sind anfangs nur die Bezeichner aller Oberpakete zu sehen. Klicken Sie auf den Pfeil ganz links von einem Bezeichner, " +
+										"werden die Bezeichner der dem Paket untergeordneten ABAP-Objekte angezeigt.",
+										"Wenn Sie im Package Explorer auf den Bezeichner eines ABAP-Objekts klicken, fliegt die Kamera zu dem ABAP-Objekt und es wird rot hervorgehoben.",
+										"Eine weitere nützliche Funktionalität des Package Explorers besteht darin, Objekte in der Visalisierung ausblenden zu können. Dazu klicken Sie auf das Häkchen links neben dem Bezeichner " +
+										"eines ABAP-Objekts. Anschließend werden dessen Gebäude sowie die Gebäude aller dem selektierten ABAP-Objekt untergeordneten ABAP-Objekte ausgeblendet.",
+										"Lassen Sie die Kamera zu der Klasse \"/GISA/CL_BWBCI_EXTRAC\" aus dem Paket \"/GISA/BWBCI_EXTRACT\" fliegen, indem Sie sie im Package Explorer suchen. Blenden Sie die Klasse vollständig aus.",
+										"Beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI4",
