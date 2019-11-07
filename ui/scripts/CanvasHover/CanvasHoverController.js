@@ -211,16 +211,19 @@ var canvasHoverController = (function() {
 
     }
 	
-	function getTooltipName(entity) {
-        if(entity.type === "Method") {
-			return entity.type + ": " + entity.signature;
-        }
-        
+	function getTooltipName(entity) {		
 		if (entity.type === "Namespace") {
             return "Package: " + entity.name;
-        }
-        
-        return entity.type + ": " + entity.name;        
+        } else {
+			var packages = entity.allParents.filter(parent => parent.type == "Namespace");			
+
+			if(entity.type === "Method") {
+				return "Package: " + packages[0].name //namespace 
+					+ " " + entity.type + ": " + entity.signature;
+			}
+			return "Package: " + packages[0].name //namespace 
+					+ " " + entity.type + ": " + entity.name; 
+		}               
     }
 
     return {
