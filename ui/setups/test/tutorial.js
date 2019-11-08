@@ -8,8 +8,8 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 5,
 		
-			//stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18 ],
-			stepOrder:	[ 10, 21 ],
+			stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ],
+			//stepOrder:	[ 10, 21 ],
 						
 			steps:		[				
 							{ 	number:	10, // allgemeine Einführung
@@ -258,33 +258,16 @@ var setup = {
             },{
                 name: "Table",
                 icon: "scripts/Legend/tutorial/table_district.png",
-            }, {
-                name: "Navigation",
-                icon: "scripts/Legend/images/navigation.png",
-                entries: [
-                    {
-                        name: "Rotate",
-                        icon: "scripts/Legend/images/left.png"
-                    }, {
-                        name: "Center",
-                        icon: "scripts/Legend/images/double.png"
-                    }, {
-                        name: "Move",
-                        icon: "scripts/Legend/images/middle.png"
-                    }, {
-                        name: "Zoom",
-                        icon: "scripts/Legend/images/scrolling.png"
-                    }]
             }],
 		},
 		
-//		{	name: 	"navigationCamControllerPZR",
-//			setCenterOfRotation : false,
-//			setCenterOfRotationFocus: false,
-//			showCenterOfRotation: false,
-//			macUser: false,
-//			active:	true
-//		},
+		{	name: 	"navigationCamControllerPZR",
+			setCenterOfRotation : false,
+			setCenterOfRotationFocus: false,
+			showCenterOfRotation: false,
+			macUser: false,
+			active:	true
+		},
 		
 		
 	],
@@ -391,7 +374,7 @@ var setup = {
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"none",
+				type:	"examine",
 				//speed: 10
 			},	
 					
@@ -530,22 +513,36 @@ var setup = {
                         name: "leftPanel",
                         first: {                            
 							size: "20%",
-							expanders: [
-								{
-									name: "packageExplorer",
-									title: "Package Explorer",
-									controllers: [
-										{ name: "packageExplorerController" }
-									],
+							area: {
+								size: "50%",
+								collapsible: false,
+								orientation: "horizontal",
+								name: "packagePanel",
+								first: {
+									size: "70%",
+									expanders: [
+										{
+											name: "packageExplorer",
+											title: "Package Explorer",
+											controllers: [
+												{ name: "packageExplorerController" }
+											],
+										},
+									]
 								},
-								{
-									name: "legend",
-									title: "Legend",
-									controllers: [
-										{ name: "legendController" }
-									],
-								},
-							]
+								second: {
+									size: "90%",
+									expanders: [								
+										{
+											name: "legend",
+											title: "Legend",
+											controllers: [
+												{ name: "legendController" }
+											],
+										},
+									]
+								}
+							}							
 						},
                         second: {
 							size: "80%",
