@@ -235,7 +235,7 @@ var navigationCamControllerPZR = (function() {
 
 	function mousescroll(eventObject, timestamp){
 
-		var zoomFactor = -2 * eventObject.detail;
+		var zoomFactor = -2 * eventObject.scrollDirection;
 
 		if(controllerConfig.macUser){
 			zoomFactor = zoomFactor * -1;
