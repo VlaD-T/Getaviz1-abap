@@ -5,33 +5,7 @@ var legendController = (function() {
 	let tree;
 	let items = [];
 
-	let icons = {
-	    // circles
-        redCircle: 	        "scripts/Legend/images/circle_red.png",
-        blueCircle: 	    "scripts/Legend/images/circle_blue.png",
-        greenCircle: 	    "scripts/Legend/images/circle_green.png",
-        orangeCircle: 	    "scripts/Legend/images/circle_orange.png",
-        blackCircle: 	    "scripts/Legend/images/circle_black.png",
-        grayCircle: 	    "scripts/Legend/images/circle_gray.png",
-        purpleCircle:       "scripts/Legend/images/circle_purple.png",
-        yellowCircle:       "scripts/Legend/images/circle_yellow.png",
-        lightBlueCircle:    "scripts/Legend/images/circle_blue_light.png",
-        // cylinders
-        blueCylinderHeight: "scripts/Legend/images/cylinder_blue_height.png",
-        orangeCylinderHeight: "scripts/Legend/images/cylinder_orange_height.png",
-        // gradients
-        greenRedGradient: 	"scripts/Legend/images/gradient_green-red.png",
-        // measurements
-        circleWidth:        "scripts/Legend/images/circle_width.png",
-        // mouse navigation
-        navigation:         "scripts/Legend/images/navigation.png",
-        leftMouseButton:    "scripts/Legend/images/left.png",
-        rightMouseButton:   "scripts/Legend/images/right.png",
-        midMouseButton:     "scripts/Legend/images/middle.png",
-        doubleClick:        "scripts/Legend/images/double.png",
-        scrolling:          "scripts/Legend/images/scrolling.png"
-    };
-    var controllerConfig = {
+	var controllerConfig = {
         entries: []
     };
 
@@ -60,7 +34,7 @@ var legendController = (function() {
 	}
 
 	function createItem(entry, parent) {
-        let item = { id: entry.name, parentId: parent, name: entry.name, iconSkin: "zt", icon: icons[entry.icon], open: true, glossary: entry.glossary };
+        let item = { id: entry.name, parentId: parent, name: entry.name, iconSkin: "zt", icon: entry.icon, open: true, glossary: entry.glossary };
         items.push(item);
         if(entry.entries !== undefined) {
             let parentid = entry.name;

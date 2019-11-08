@@ -176,34 +176,6 @@
 				},				
 			]
 		},
-        {
-            name: "legendController",
-            entries: [{
-                name: "Package",
-                icon: "grayCircle"
-            }, {
-                name: "Type",
-                icon: "purpleCircle",
-            }, {
-                name: "Navigation",
-                icon: "navigation",
-                entries: [
-                    {
-                        name: "Rotate",
-                        icon: "leftMouseButton"
-                    }, {
-                        name: "Center",
-                        icon: "doubleClick"
-                    }, {
-                        name: "Move",
-                        icon: "midMouseButton"
-                    }, {
-                        name: "Zoom",
-                        icon: "scrolling"
-                    }]
-            }
-            ],
-        }
 	],
 	
 	
@@ -268,50 +240,17 @@
                                     ]
                                 },
                                 second: {
+                                    collapsible: false,
                                     size: "50%",
-                                    area: {
-                                        orientation: "horizontal",
-                                        name: "legendPanel",
-                                        size: "50%%",
-                                        collapsible: false,
-                                        first: {
-                                            size: "70%",
-                                            expanders: [
-                                                {
-                                                    name: "packageExplorer",
-                                                    title: "Package Explorer",
-                                                    controllers: [
-                                                        {name: "packageExplorerController"}
-                                                    ],
-                                                },
-                                            ]
+                                    expanders: [
+                                        {
+                                            name: "packageExplorer",
+                                            title: "Package Explorer",
+                                            controllers: [
+                                                {name: "packageExplorerController"}
+                                            ],
                                         },
-                                        second: {
-                                            size: "50%",
-                                            area: {
-                                                orientation: "horizontal",
-                                                name: "legendPanel2",
-                                                size: "100%",
-                                                collapsible: false,
-                                                first: {
-                                                    size: "90%",
-                                                    expanders: [
-                                                        {
-                                                            name: "legend",
-                                                            title: "Legend",
-
-                                                            controllers: [
-                                                                {name: "legendController"}
-                                                            ],
-                                                        },
-                                                    ]
-                                                },
-                                                second: {
-
-                                                }
-                                            },
-                                        },
-                                    }
+                                    ]
                                 },
                             },
                         },
