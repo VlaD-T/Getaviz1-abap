@@ -156,9 +156,9 @@ var setup = {
 								
 								text: 	[
 									"Nachdem Sie jetzt alle Bestandteile der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
-									"Durch Drücken der rechten Maustaste und gleichzeitigem Bewegen der Maus wird das Modell um den zentralen Punkt gedreht.",
+									"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus wird das Modell um den zentralen Punkt gedreht.",
 									"Außerdem können Sie in das Modell hinein- beziehungsweise aus dem Modell herauszoomen, indem Sie das Mausrad herunter- beziehungsweise hochscrollen.",
-									"Abschließend ist es durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus möglich, in dem Modell entsprechend der Mausbewegung zu navigieren.",
+									"Abschließend ist es durch Drücken der mittleren Maustaste und gleichzeitigem Bewegen der Maus möglich, in dem Modell entsprechend der Mausbewegung zu navigieren.",
 									"Probieren Sie die einzelnen Steuerungsvarianten aus und navigieren Sie durch das Modell. Beenden Sie anschließend die Aufgabe über die Schaltfläche."
 								],		
 
