@@ -8,8 +8,8 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 5,
 		
-			stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ],
-			//stepOrder:	[ 10, 21 ],
+			//stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ],
+			stepOrder:	[ 10, 22 ],
 						
 			steps:		[				
 							{ 	number:	10, // allgemeine Einführung
@@ -202,17 +202,35 @@ var setup = {
 								viewpoint : "330 550 5500"
 							},
 
+							{ 	number:	22, // Anzeige von Beziehungen
+								
+								text: 	[
+									"Eine weitere nützliche Funktionalität im UI ist das Anzeigen von Beziehungen. Grundsätzlich werden drei Arten von Beziehungen unterschieden. Zum einen gibt es die Aufrufbeziehungen, " +
+									"bei der beispielsweise eine Methode einen Funktionsbaustein aufruft. Außerdem gibt es sogenannte Verwendungsbeziehungen, die sich auf die DDIC-Objekte beziehen. Ist zum Beispiel die " +
+									"Komponente einer Struktur von einem Datenelement abgeleitet, besteht zwischen den beiden eine Verwendungsbeziehung. Die dritte Art von Beziehungen sind Vererbungs- bzw. " +
+									"Erweiterungsbeziehungen, die zwischen Klassen und Interfaces bestehen können.",
+									"Um sich die Beziehungen eines ABAP-Objekts anzeigen zu lassen, müssen Sie entweder das entsprechende Gebäude direkt in der Visualisierung mit Linksklick selektieren, oder sie suchen " + 
+									"das ABAP-Objekt über die Suchleiste bzw. den Package Explorer. Das selektierte Gebäude wird dann wie gewohnt rot hervorgehoben. Die Gebäude der ABAP-Objekte, die mit dem selektierten " +
+									"ABAP-Objekt in Beziehung stehen, werden schwarz dargestellt und durch eine blaue Linie mit dem roten Gebäude verbunden, sofern sie sich nicht auf dem gleichen Distrikt befinden.",
+									"Hierbei werden nicht nur die direkten Beziehungen des selektierten ABAP-Objekts angezeigt, sondern auch die indirekten. Ruft beispielsweise Methode \"A\" die Methode \"B\" und Methode " +
+									"\"B\" die Methode \"C\" auf, wird bei Selektion von \"A\" nicht nur die Beziehung zu \"B\" dargestellt, sondern auch die Beziehung von \"B\" zu \"C\".",
+									"Beenden Sie die Aufgabe wieder über die Schaltfläche."
+								],		
+
+								ui: 	"UI5",
+
+								viewpoint : "330 550 5500"
+							},
+
 
 			]
 			
 		},
 
 		{ 	name: 	"defaultLogger",
-
 			logActionConsole	: false,
 			logEventConsole		: false
-		},		
-
+		},
 		
 		{	name: 	"canvasHoverController",
 		},
@@ -236,7 +254,7 @@ var setup = {
 		{	name: 	"canvasFilterController" 
 		},
 
-		{   name: "legendController",
+		{   name: 	"legendController",
             entries: [{
                 name: "Package",
                 icon: "scripts/Legend/tutorial/package_district.png"
@@ -267,6 +285,20 @@ var setup = {
 			showCenterOfRotation: false,
 			macUser: false,
 			active:	true
+		},
+
+        { 	name: 	"relationConnectorController",
+            showInnerRelations: false,
+            sourceStartAtBorder: false,
+            targetEndAtBorder: false,
+			showDependanceToStandard : true,
+			showChildrenOfMajorElements : true,
+		},
+		
+		{ 	name: 	"relationTransparencyController",
+		},
+			
+		{ 	name: 	"relationHighlightController" 
 		},
 		
 		
@@ -554,6 +586,87 @@ var setup = {
 								{ name: "canvasHoverController" },
 								{ name: "canvasFilterController" },
 								{ name: "canvasFlyToController" },
+							],
+                        }
+                    }
+				}			
+			}
+		},
+
+		{	name: "UI5",
+		
+			navigation: {
+				//examine, walk, fly, helicopter, lookAt, turntable, game
+				type:	"examine",
+				//speed: 10
+			},		
+							
+			area: {
+				name: "top",
+				orientation: "horizontal",
+				
+				first: {			
+					size: "200px",
+					controllers: [	
+						{ name: "experimentController" },				
+						{ name: "canvasResetViewController" },
+						{ name: "searchController"},
+					],							
+				},
+				
+                second: {
+                    size: "80%",
+                    collapsible: false,
+                    area: {
+                        orientation: "vertical",
+                        name: "leftPanel",
+                        first: {                            
+							size: "20%",
+							area: {
+								size: "50%",
+								collapsible: false,
+								orientation: "horizontal",
+								name: "packagePanel",
+								first: {
+									size: "70%",
+									expanders: [
+										{
+											name: "packageExplorer",
+											title: "Package Explorer",
+											controllers: [
+												{ name: "packageExplorerController" }
+											],
+										},
+									]
+								},
+								second: {
+									size: "90%",
+									expanders: [								
+										{
+											name: "legend",
+											title: "Legend",
+											controllers: [
+												{ name: "legendController" }
+											],
+										},
+									]
+								}
+							}							
+						},
+                        second: {
+							size: "80%",
+							collapsible: false,
+                            name: "canvas",
+                            canvas: {},
+							controllers: [
+								{ name: "defaultLogger" },
+								{ name: "canvasHoverController" },
+								{ name: "canvasFilterController" },								
+								{ name: "canvasSelectController" },
+								{ name: "canvasFlyToController" },
+								{ name: "relationConnectorController" },
+								{ name: "relationTransparencyController" },
+								{ name: "relationHighlightController" },
 							],
                         }
                     }
