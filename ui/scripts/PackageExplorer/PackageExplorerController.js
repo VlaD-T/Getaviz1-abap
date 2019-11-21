@@ -189,7 +189,58 @@ var packageExplorerController = (function() {
 		var entities = [];
 		nodes.forEach(function(node){
 			node.checkedOld = node.checked; //fix zTree bug on getChangeCheckedNodes	
-			entities.push(model.getEntityById(node.id));
+			entity = model.getEntityById(node.id);			
+
+			if (entity !== undefined) {				
+				entities.push(entity);
+
+				switch(entity.type) {
+					case "Report":
+						var reportDistrict = {
+							id: entity.id + "_00005"
+						};
+						entities.push(reportDistrict);
+						break;
+					case "Interface":
+						var interfaceDistrict = {
+							id: entity.id + "_000091"
+						};
+						entities.push(interfaceDistrict);
+						break;
+					case "Domain":
+						var domainDistrict = {
+							id: entity.id + "_000031"
+						};
+						entities.push(domainDistrict);
+						break;
+					case "DataElement":
+						var virtualDomainDistrict = {
+							id: entity.id + "_000051"
+						};
+						var virtualDomainBuilding = {
+							id: entity.id + "_0000511"
+						};
+						var dtelDistrict = {
+							id: entity.id + "_000071"
+						};
+						entities.push(virtualDomainDistrict);
+						entities.push(virtualDomainBuilding);
+						entities.push(dtelDistrict);
+						break;
+					case "Table":
+						var tableDistrict = {
+							id: entity.id + "_00007"
+						};
+						entities.push(tableDistrict);
+						break;
+					case "TableType":
+						var tableTypeDistrict = {
+							id: entity.id + "_000081"
+						}
+						entities.push(tableTypeDistrict);
+						break;
+				}
+			}
 		});
 								
 		var applicationEvent = {			
