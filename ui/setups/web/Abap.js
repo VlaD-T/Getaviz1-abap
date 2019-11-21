@@ -31,11 +31,6 @@
 
 		{ 	name: 	"canvasFlyToController" 
 		},
-        {
-            name: 'filterController',
-            devMode: false,
-            configuration: 'default.json'
-        },
 		{	name: 	"searchController" 
 		},
 
@@ -46,7 +41,7 @@
 		},
         { 	name: 	"relationConnectorController",
 
-            showInnerRelations: true,
+            showInnerRelations: false,
             sourceStartAtBorder: true,
             targetEndAtBorder: true,
         },
@@ -221,38 +216,16 @@
                         size: "20%",
                         first: {
                             size: "20%",
-                            area: {
-                                size: "50%",
-                                collapsible: false,
-                                orientation: "horizontal",
-                                name: "packagePanel",
-                                first: {
-                                    collapsible: false,
-                                    size: "45%",
-                                    expanders: [
-                                        {
-                                            name: "filterExplorer",
-                                            title: "Filter",
-                                            controllers: [
-                                                {name: "filterController"}
-                                            ],
-                                        }
-                                    ]
-                                },
-                                second: {
-                                    collapsible: false,
-                                    size: "50%",
-                                    expanders: [
-                                        {
-                                            name: "packageExplorer",
-                                            title: "Package Explorer",
-                                            controllers: [
-                                                {name: "packageExplorerController"}
-                                            ],
-                                        },
-                                    ]
-                                },
-                            },
+                            collapsible: false,
+                            expanders: [
+								{
+									name: "packageExplorer",
+									title: "Package Explorer",
+									controllers: [
+										{ name: "packageExplorerController" }
+									],
+								},
+							]
                         },
                         second: {
                             collapsible: false,
