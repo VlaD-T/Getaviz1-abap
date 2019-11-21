@@ -615,7 +615,7 @@ for (chimney : chimneys) {
             
             //distance between two boxes 
 			var dl = 1.5
-			var dh = 0.6
+			var dh = 1
 			var dw = 1
 			
 			chimney.position.x = (b.position.x - config.getTableFieldsStartX()) + (Sx * (config.getTableFieldsWidth() * dl))
