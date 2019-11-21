@@ -1490,8 +1490,8 @@ public class SettingsConfiguration {
 		return config.getBoolean("city.abap.showDomainDistrict", false);
 	}
 	
-	public boolean isShowDomainDistrictWithNotOriginalElements() {
-		return config.getBoolean("city.abap.showDomainDistrictWithNotOriginalElements", false);
+	public boolean isShowDomainDistrictOnlyWithDtel() {
+		return config.getBoolean("city.abap.showDomainDistrictOnlyWithDtel", false);
 	}
 	
 	public boolean isShowVirtualDomainDistrict() {
@@ -1516,6 +1516,10 @@ public class SettingsConfiguration {
 	
 	public boolean isShowTableDistrict() {
 		return config.getBoolean("city.abap.showTableDistrict", false);
+	}
+	
+	public boolean isShowStrucTablDistrictOnlyWithTtyp( ) {
+		return config.getBoolean("city.abap.showStrucTablDistrictOnlyWithTtyp" , false);
 	}
 	
 	public boolean isShowLocalClassDistrict() {
