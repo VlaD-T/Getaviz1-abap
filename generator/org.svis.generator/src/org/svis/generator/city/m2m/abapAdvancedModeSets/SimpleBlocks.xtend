@@ -88,9 +88,9 @@ class SimpleBlocks implements AdvSet_Interface {
 	'''
 	
 	override getElemFor_Method(Entity entity) '''
-		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
+		<Transform translation='«0 + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks / 2 + " " + 0»'>
 			<Shape>
-				<Box size='«entity.width / 2 +" "+ getHeight(entity.type, entity.buildingParts.length) +" "+ entity.length / 2»'></Box>
+				<Box size='«entity.width / 2 + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks + " " + entity.length / 2»'></Box>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -127,9 +127,9 @@ class SimpleBlocks implements AdvSet_Interface {
 	}
 	
 	override getElemFor_FunctionModule(Entity entity) '''
-		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
+		<Transform translation='«0 + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks / 2 + " " + 0»'>
 			<Shape>
-				<Box size='«(entity.width * 0.9) +" "+ getHeight(entity.type, entity.buildingParts.length) +" "+ (entity.length * 0.6)»'></Box>
+				<Box size='«(entity.width * 0.9) + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks + " " + (entity.length * 0.6)»'></Box>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -138,9 +138,9 @@ class SimpleBlocks implements AdvSet_Interface {
 	'''
 	
 	override getElemFor_Report(Entity entity) '''
-		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
+		<Transform translation='«0 + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks / 2 + " " + 0»'>
 			<Shape>
-				<Box size='«entity.width +" "+ getHeight(entity.type, entity.buildingParts.length) +" "+ entity.length»'></Box>
+				<Box size='«entity.width + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks + " " + entity.length»'></Box>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -149,9 +149,9 @@ class SimpleBlocks implements AdvSet_Interface {
 	'''
 	
 	override getElemFor_Formroutine(Entity entity) '''
-		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
+		<Transform translation='«0 + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks / 2 + " " + 0»'>
 			<Shape>
-				<Box size='«entity.width +" "+ getHeight(entity.type, entity.buildingParts.length) +" "+ (entity.length * 0.9)»'></Box>
+				<Box size='«entity.width + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks + " " + (entity.length * 0.9)»'></Box>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -162,7 +162,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_TableType_ABAPStruc(Entity entity) '''
 		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeight("TT_Struc") / 2) +" "+ 0»'>
 			<Shape>
-				<Cone bottomRadius='«entity.width / 4»' height='«config.getSimpleBlocksHeight("TT_Struc")»' ></Cone>
+				<Cone bottomRadius='«entity.width / 4»' height='«config.getSimpleBlocksHeight("TT_Struc")»'></Cone>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -173,7 +173,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_TableType_Table(Entity entity) '''
 		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeight("TT_Table") / 2) +" "+ 0»'>
 			<Shape>
-				<Cone bottomRadius='«entity.width / 4»' height='«config.getSimpleBlocksHeight("TT_Table")»' ></Cone>
+				<Cone bottomRadius='«entity.width / 4»' height='«config.getSimpleBlocksHeight("TT_Table")»'></Cone>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -184,7 +184,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_TableType(Entity entity) '''
 		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeight("TT_Struc") / 2) +" "+ 0»'>
 			<Shape>
-				<Cone bottomRadius='«entity.width / 4»' height='«config.getSimpleBlocksHeight("TT_Struc")»' ></Cone>
+				<Cone bottomRadius='«entity.width / 4»' height='«config.getSimpleBlocksHeight("TT_Struc")»'></Cone>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -195,7 +195,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_Attribute_Class(Entity entity) '''
 		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
 			<Shape>
-				<Cylinder radius='«entity.width / 6»' height='«getHeight(entity.type, entity.buildingParts.length)»' ></Cylinder>
+				<Cylinder radius='«entity.width / 6»' height='«getHeight(entity.type, entity.buildingParts.length)»'></Cylinder>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -206,7 +206,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_Attribute_FunctionGroup(Entity entity) '''
 		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeight("FAMIX.Attribute_FunctionGroup") / 2) +" "+ 0»'>
 			<Shape>
-				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeight("FAMIX.Attribute_FunctionGroup")»' ></Cylinder>
+				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeight("FAMIX.Attribute_FunctionGroup")»'></Cylinder>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
@@ -217,7 +217,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_Attribute_Report(Entity entity) '''
 		<Transform translation='«0 +" "+ (config.getSimpleBlocksHeight("FAMIX.Attribute_Report") / 2) +" "+ 0»'>
 			<Shape>
-				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeight("FAMIX.Attribute_Report")»' ></Cylinder>
+				<Cylinder radius='«entity.width / 6»' height='«config.getSimpleBlocksHeight("FAMIX.Attribute_Report")»'></Cylinder>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>

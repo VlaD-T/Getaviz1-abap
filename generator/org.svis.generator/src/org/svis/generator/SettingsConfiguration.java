@@ -1908,6 +1908,10 @@ public class SettingsConfiguration {
 		}
 	}
 	
+	public double getScoHeightScaleOfSimpleBlocks() {
+		return config.getDouble("city.abap.sco_height_scale_simpleBlocks", 1);
+	}
+	
 	public double getAdvBuildingBaseHeight(String type) {
 		if (type.equals("FAMIX.Method")) {
 			return config.getDouble("city.abap.method_base_height", 14);
