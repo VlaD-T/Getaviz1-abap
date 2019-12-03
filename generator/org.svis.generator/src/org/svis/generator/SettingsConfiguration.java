@@ -1886,7 +1886,7 @@ public class SettingsConfiguration {
 		}
 	}
 	
-	public double getSimpleBlocksHeigth(String type) {
+	public double getSimpleBlocksHeight(String type) {
 		if (type.equals("FAMIX.DataElement")) {
 			return config.getDouble("city.abap.dataElement_height", 11);
 		} else if (type.equals("FAMIX.Domain")) {
