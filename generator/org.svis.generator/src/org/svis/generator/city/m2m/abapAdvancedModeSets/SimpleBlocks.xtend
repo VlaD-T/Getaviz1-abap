@@ -193,14 +193,14 @@ class SimpleBlocks implements AdvSet_Interface {
 	'''
 	
 	override getElemFor_Attribute_Class(Entity entity) '''
-		<Transform translation='«0 +" "+ (getHeight(entity.type, entity.buildingParts.length) / 2) +" "+ 0»'>
+		<Transform translation='«0 +" "+ entity.height * config.getScoHeightScaleOfSimpleBlocks / 2 +" "+ 0»'>
 			<Shape>
-				<Cylinder radius='«entity.width / 6»' height='«getHeight(entity.type, entity.buildingParts.length)»'></Cylinder>
+				<Cylinder radius='«entity.width / 6»' height='«entity.height * config.getScoHeightScaleOfSimpleBlocks»'></Cylinder>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
 			</Shape>
-		</Transform>	
+		</Transform>
 	'''
 	
 	override getElemFor_Attribute_FunctionGroup(Entity entity) '''
@@ -222,7 +222,7 @@ class SimpleBlocks implements AdvSet_Interface {
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
 			</Shape>
-		</Transform>	
+		</Transform>
 	'''
 	
 	def double getHeight(String type, int partsCounter) {

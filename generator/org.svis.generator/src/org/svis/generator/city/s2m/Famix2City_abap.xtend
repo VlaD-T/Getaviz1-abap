@@ -944,26 +944,23 @@ class Famix2City_abap {
 			newBuilding.parentType = "FAMIX.Class"
 			val dataType = typeOfs.findFirst[element.ref == elem]
 
-		if (dataType === null) {
-			newBuilding.dataCounter = 1.0
-		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXABAPStruc")) {
-			newBuilding.dataCounter = 2.0
-		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXTable") ||
-			dataType.typeOf.ref.getClass.toString.contains("FAMIXTableType")) {
-			newBuilding.dataCounter = 3.0
-		} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXClass")) {
-			newBuilding.dataCounter = 4.0
-		}
-		
-		newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
-		
-		return newBuilding	
+			if (dataType === null || dataType.typeOf.ref.getClass.toString.contains("FAMIXDataElement")) {
+				newBuilding.dataCounter = 1.0
+			} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXABAPStruc")) {
+				newBuilding.dataCounter = 2.0
+			} else if (dataType.typeOf.ref.getClass.toString.contains("FAMIXTable") || dataType.typeOf.ref.getClass.toString.contains("FAMIXTableType") || dataType.typeOf.ref.getClass.toString.contains("FAMIXClass")) {
+				newBuilding.dataCounter = 3.0
+			}
+			
+			newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
+			
+			return newBuilding	
 		
 		} else {
 			newBuilding.parentType = "FAMIX.Interface"
 			newBuilding.visibility = elem.modifiers.findFirst[it == "PRIVATE" || it == "PROTECTED" || it == "PUBLIC"] 
 		
-		return newBuilding	
+			return newBuilding	
 		}		
 	}
 	

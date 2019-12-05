@@ -2094,6 +2094,10 @@ public class SettingsConfiguration {
 		return config.getDouble("city.abap_logarithm_base", 2);
 	}
 	
+	public double getAbapAttributeMinHeight() {
+		return config.getDouble("city.abap_attributes_min_height", 5);
+	}
+	
 	public double getAbapTableShapeHeight() {
 		return config.getDouble("city.abap.table_shape_height", 24);
 	}

@@ -187,10 +187,10 @@ class City2City_abap {
 				b.length = 2 * (config.getAbapAdvBuildingDefSize(b.type) * config.getAbapAdvBuildingScale(b.type))
 				b.height = getScaledHeightofSco(b.dataCounter)
 
-			} else if (b.type == "FAMIX.Attribute") { // Attributes for Classes districts. 
+			} else if (b.type == "FAMIX.Attribute") { // Attributes for class districts. 
 				b.width = getAdvBuildingWidth(b.type, 1.5)
 				b.length = getAdvBuildingLength(b.type, 1.0)				
-				b.height = getScaledHeightofSco(b.dataCounter) // b.dataCounter * multiplicator, to make building higher
+				b.height = getScaledHeightofAttribute(b.dataCounter)
 				b.buildingParts.add(createAdvBuildingBase(b.type))								
 				for (var i = 1; i <= b.height - 1; i++) {
 					b.buildingParts.add(createAdvBuildingFloor(b.type, i))
@@ -464,6 +464,7 @@ class City2City_abap {
 			chimneyCounter++
 		}
 	}
+	
 	def void calculateAdvChimneys(Building b){
 		//advanced chimneys currently only work for reports, tables & interfaces		
 		if (b.type != "FAMIX.Report" && b.type != "FAMIX.Class" && b.type != "FAMIX.Table"){
@@ -481,8 +482,7 @@ class City2City_abap {
 			createAdvChimneys(b)
 		}
 	}
-		
-		
+			
 	def void createAdvChimneys(Building b) {
 		val cityFactory = new CityFactoryImpl
 //		var bWidth   = b.width // 2 -> attributeWidth * 3 (4)
@@ -593,7 +593,7 @@ for (chimney : chimneys) {
 		}		
 	}
 
-     def void createAdvChimneysTable(Building b) {		
+    def void createAdvChimneysTable(Building b) {		
 		val cityFactory = new CityFactoryImpl
 		val chimneys = b.data
 		var chimneyCounter = 0
@@ -687,6 +687,11 @@ for (chimney : chimneys) {
 				return unscaledHeight
 			}
 		}
+	}
+	
+	// currently just for attributes of classes
+	def double getScaledHeightofAttribute(double unscaledHeight) {
+		return unscaledHeight * config.abapAttributeMinHeight
 	}
 	
 	def double getAdvBuildingWidth(String type, double adjustSize) {
