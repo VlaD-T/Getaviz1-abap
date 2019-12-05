@@ -9,19 +9,65 @@ var setup = {
 			taskTime: 5,
 		
 			//stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ],
-			stepOrder:	[ 12, 13, 14, 15 ],
+			stepOrder:	[ 13, 14, 15 ],
 						
             steps:	[				
-                        { 	number:	12, // Klassen
+						{ 	number:	10, // Domänen und Datenelemente
+									
+							text: 	[
+								"Im Folgenden lernen Sie die einzelnen Bestandteile der Visualisierung kennen, beginnend bei den DDIC-Objekten.",
+								"Domänen und Datenelemente sind auf grünen Distrikten dargestellt. Domänen sind hierbei als grüne Zylinder im Zentrum des Distrikts visualisiert. Diejenigen Datenelemente, welche von einer " +
+								"Domäne aus dem gleichen Paket abgeleitet sind, sind am Rand des Distrikts durch dunkelgrüne Zylinder repräsentiert. Außerde, befinden sich die Gebäude der Datenelemente, die vom gleichen " +
+								"eingebauten Typ abgeleitet sind, auf einem gemeinsamen Distrikt ohne Domänengebäude, ebenso wie die Gebäude der Datenelemente, die von einer Domäne aus einem anderen Paket abgeleitet sind",
+								"Erkunden Sie die Visualisierung der Domäne und Datenelemente und beenden Sie die Aufgabe wieder über die Schaltfläche."
+							],		
+
+							ui: 	"UI1",
+
+							viewpoint: "800 280 20"		// entspricht /GSA/VISAP_T_TEST_DO1
+						},
+
+						{ 	number:	11, // Strukturen
+							
+							text: 	[
+								"Strukturen sind als hellgrüne Distrikte dargestellt. Auf den hellgrünen Distrikten befinden sich die Gebäude der Komponenten der Struktur, die sogenannten Strukturelemente. Dies sind " +
+								"graue Kegel, die am Rand des Struktur-Distrikts positioniert sind. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Struktur abgeleitet, befinden sich diese ebenfalls " +
+								"auf dem Struktur-Distrikt. Sie sind dann als rosafarbene Kegel visualisiert.",
+								"Erkunden Sie die Visualisierung der Struktur. Beenden Sie die Aufgabe wieder über die Schaltfläche."
+							],		
+
+							ui: 	"UI1",
+
+							entities : [
+								"ID_412a33ae14746612317b013dc23213cd79b5f3f3"	// entspricht /GISA/BWBCI_EXTR_MAC
+							]
+						},
+
+						{ 	number:	12, // Tabellen
+							
+							text: 	[
+								"In diesem Bildausschnitt sehen Sie die Visualisierung von Datenbanktabellen. Diese befinden sich auf einem dunkelblauen Distrikt und sind als flache, braune Quader dargestellt. Auf " +
+								"diesem braunen Quader befinden sich türkisfarbene Quader, die die Tabellenelemente, also die Spalten, repräsentieren. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von " + 
+								"der Tabelle abgeleitet, befinden diese sich wie bei Strukturen auf dem gleichen Distrikt.",
+								"Erkunden Sie die Visualisierung der Tabelle und beenden Sie die Aufgabe wieder über die Schaltfläche."
+							],		
+
+							ui: 	"UI1",
+
+							viewpoint: "680 30 130"	// entspricht /GSA/VISAP_T_T2
+						},
+				
+						{ 	number:	13, // Klassen
                             
                             text: 	[
-                                "Im Folgenden lernen Sie die einzelnen Bestandteile der Visualisierung kennen.",
-                                "Globale Klassen werden als gelbe Distrikte visualisiert. Auf den gelben Distrikten befinden sich die Bestandteile der Klasse als Gebäude. Methoden sind hierbei als graue Quader " +
+								"Globale Klassen werden als gelbe Distrikte visualisiert. Auf den gelben Distrikten befinden sich die Bestandteile der Klasse als Gebäude. Methoden sind hierbei als graue Quader " +
                                 "dargestellt, deren Höhe abhängig von ihrer Anzahl der Statements ist. Die Attribute der Klasse werden durch Zylinder repräsentiert, deren Höhe wiederum durch die Komplexität " +
-                                "der Information, die das entsprechende Attribut speichert, bestimmt wird.", //TODO Höhenabgrenzung
+								"der Information, die das entsprechende Attribut speichert, bestimmt wird. So ist ein Attribut von elementarem Typ kleiner als die Attribute, die von einem strukturierten Typ sind. " +
+								"Am größten sind diejenigen Attribute, die tabellenartig sind oder eine Referenz auf eine Klasse darstellen.",
                                 "Lokale Klassen werden analog zu globalen visualisiert. Jedoch befinden sie sich nicht direkt auf einem Paketdistrikt wie der Distrikt einer globalen Klasse, sondern sie sind auf " +
                                 "dem Distrikt des definierenden ABAP-Objekts platziert. Dies können neben denen der globalen Klassen auch Distrikte von Funktionsgruppen und Reports sein.",
-                                "Betrachten Sie die Visualisierung der Klasse und beenden Sie die Aufgabe wieder über die Schaltfläche."
+								"Grundsätzlich sollten globale Klassen höchstens eine lokale Klasse besitzen, nämlich für Unit-Tests. ", // to be continued
+								"Betrachten Sie die Visualisierung der Klasse und beenden Sie die Aufgabe wieder über die Schaltfläche."
                             ],		
 
                             ui: 	"UI1",
@@ -31,7 +77,7 @@ var setup = {
                             ]
                         },
 
-                        { 	number:	13, // Klassen-Layout
+                        { 	number:	14, // Klassen-Layout
                             
                             text: 	[
                                 "Außerdem exisitert ein spezielles Anordnungsschema für die Gebäude der Methoden und Attribute:",
@@ -52,15 +98,16 @@ var setup = {
                             ]
                         },
 
-                        { 	number:	14, // Reports
+                        { 	number:	15, // Reports
                             
                             text: 	[
                                 "Reports und ihre Bestandteile sind auf den hellblauen Distrikten dargestellt. Dabei wird ein Report selbst durch einen dunkelblauen Quader im Zentrum des Distrikts repräsentiert.",
                                 "Außerdem befinden sich auf dem Distrikt die Gebäude für die Formroutinen des Reports (graue Quader). Die Höhe der Gebäude der Formroutinen und des Reports sind abhängig von",
 								"der Anzahl ihrer Statements. Die globalen Attribute des Reports sind als Zylinder dargestellt.",
 								"Grundsätzlich sollte die Funktionalität eines Programms durch Objektorientierung gewährleistet werden. Reports sollten nur in begründeten Ausnahmefällen, wie zum Beispiel für Transaktionen, " +
-								"verwendet werden. In diesen Fällen sollte die Funktionalität dennoch in eine lokale Klasse ausgelagert werden, sodass ein Report stets eine lokale Klasse enthalten sollte. Dementsprechend " +
-								"besteht für die Verwendung von Formroutinen keinerlei Notwendigkeit.",
+								"verwendet werden. In diesen Fällen sollte die Funktionalität dennoch in eine lokale Klasse ausgelagert werden, sodass ein Report stets eine lokale Klasse enthalten sollte; im Ausnahmefall " +
+								"auch zwei, wenn die zu realisierende Funktionalität fachlich zu trennen ist. Dementsprechend besteht für die Verwendung von Formroutinen keinerlei Notwendigkeit. Außerdem sollte ein Report " +
+								"so wenig globale Attribute wie möglich besitzen.",
 								"Erkunden Sie die Visualisierung des Reports. Suchen Sie in der gesamten Visualisierung nach mehreren Reports, die die Qualitätsempfehlungen a) vollständig, b) teilweise und c) gar nicht " +
 								"umsetzen. Beenden Sie die Aufgabe wieder über die Schaltfläche."
                             ],		
@@ -70,7 +117,7 @@ var setup = {
                             viewpoint: "100 300 40"		// entspricht /GSA/VISAP_T_TEST_REPORT
                         },
 
-                        { 	number:	15, // Funktionsgruppen
+                        { 	number:	16, // Funktionsgruppen
                             
                             text: 	[
                                 "Funktionsgruppen sind als violette Distrikte dargestellt. Auf einem Funktionsgruppen-Distrikt befinden sich Zylinder für die globalen Attribute, sowie graue Quader als Gebäude für die " +
@@ -78,7 +125,7 @@ var setup = {
 								"quadratisch ist. Die Höhe beider Gebäudearten ist ebenfalls durch die Anzahl ihrer Statements bestimmt.",
 								"Funktionsgruppen und Funktionsbausteine sollten nur noch für RFC und den Aufruf klassischer Dynpros und Selektionsbilder verwendet werden. Dementsprechend sollte eine Funktionsgruppe " +
 								"nicht mehr als zwei Funktionsbausteine enthalten. Die Funktionsbausteine sollten die Verarbeitung sofort an eine globale oder lokale Klasse abgeben, sodass die Funktionsgruppe höchstens " +
-								"eine lokale Klasse enthält. Auf Formroutinen sollte komplett verzichtet werden.",
+								"eine lokale Klasse enthält. Auf Formroutinen sollte komplett verzichtet werden, ebenso sollten so wenig globale Attribute wie möglich verwendet werden.",
 								"Erkunden Sie die Visualisierung der Funktionsgruppe. Suchen Sie in der gesamten Visualisierung nach Funktionsgruppen, die die Qualitätsempfehlungen a) vollständig, b) teilweise und c) " +
 								"gar nicht umsetzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
@@ -88,43 +135,9 @@ var setup = {
                             entities : [
                                 "ID_4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771"	// entspricht /GSA/VISAP_T_TEST_FG1
                             ]
-                        },
-
-                        { 	number:	16, // Domänen und Datenelemente
-                            
-                            text: 	[
-                                "Domänen und Datenelemente sind auf grünen Distrikten dargestellt. Domänen sind hierbei als grüne Zylinder im Zentrum des Distrikts visualisiert.",
-                                "Diejenigen Datenelemente, welche von der Domäne aus dem gleichen Paket abgeleitet sind, sind am Rand des Distrikts durch dunkelgrüne Zylinder repräsentiert.",
-                                "Außerdem befinden sich die Gebäude der Datenelemente, die vom gleichen eingebauten Typ abgeleitet sind, auf einem gemeinsamen Distrikt ohne Domänengebäude,",
-                                "ebenso wie die Gebäude der Datenelemente, die von einer Domäne aus einem anderen Paket abgeleitet sind.",
-                                "Erkunden Sie die Visualisierung der Domäne und Datenelemente und beenden Sie die Aufgabe wieder über die Schaltfläche."
-                            ],		
-
-                            ui: 	"UI1",
-
-                            viewpoint: "800 280 20"		// entspricht /GSA/VISAP_T_TEST_DO1
-                        },
-
-                        { 	number:	17, // Strukturen
-                            
-                            text: 	[
-								"Strukturen sind als hellgrüne Distrikte dargestellt. Auf den hellgrünen Distrikten befinden sich die Gebäude der Komponenten der Struktur, die sogenannten Strukturelemente. Dies sind " +
-								"graue Kegel, die am Rand des Struktur-Distrikts positioniert sind. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Struktur abgeleitet, befinden sich diese " +
-								"ebenfalls auf dem Struktur-Distrikt. Sie sind dann als rosafarbene Kegel visualisiert.",
-								"Eine Struktur sollte stets mindestens zwei Strukturelemente enthalten. Als Richtwert können fünf Strukturelemente angesehen werden, wobei es jedoch nie mehr als zehn sein sollten, um " +
-								"eine sinnvolle Aufteilung der Struktur in Komponenten zu gewährleisten.",
-								"Erkunden Sie die Visualisierung der Struktur. Suchen Sie weitere Strukturen, die a) eine zu große und b) eine passende Anzahl von Strukturelementen aufweisen. Beenden Sie die Aufgabe " +
-								"wieder über die Schaltfläche."
-                            ],		
-
-                            ui: 	"UI1",
-
-                            entities : [
-                                "ID_412a33ae14746612317b013dc23213cd79b5f3f3"	// entspricht /GISA/BWBCI_EXTR_MAC
-                            ]
-                        },
-
-                        { 	number:	18, // Tabellen
+						},
+						
+						{ 	number:	17, // TODO: number of statements
                             
                             text: 	[
                                 "In diesem Bildausschnitt sehen Sie die Visualisierung von Datenbanktabellen. Diese befinden sich auf einem dunkelblauen Distrikt und sind als flache, braune Quader dargestellt.",
@@ -139,7 +152,7 @@ var setup = {
                             ui: 	"UI1",
 
                             viewpoint: "680 30 130"	// entspricht /GSA/VISAP_T_T2
-                        },
+                        },                        
 			]
 			
 		},

@@ -23,7 +23,7 @@ var setup = {
                                 "beispielsweise eine Methode einen Funktionsbaustein, aufruft oder auf eine Datenbanktabelle zugreift. Hierbei werden nicht nur die direkten Beziehungen des selektierten ABAP-Objekts " +
                                 "angezeigt, sondern auch die indirekten. Ruft beispielsweise Methode \"A\" die Methode \"B\" und Methode \"B\" die Methode \"C\" auf, wird bei Selektion von \"A\" nicht nur die Beziehung " +
                                 "zu \"B\" dargestellt, sondern auch die Beziehung von \"B\" zu \"C\".",
-                                "Wählen Sie beispielhaft eine Methode und lassen Sie sich deren Aufrufbeziehungen anzeigen. Verfolgen Sie, welche anderen Quellcodeobjekte und Tabellen die selektierte Methode aufruft." +
+                                "Wählen Sie beispielhaft eine Methode und lassen Sie sich deren Aufrufbeziehungen anzeigen. Verfolgen Sie, welche anderen Quellcodeobjekte und Tabellen die selektierte Methode aufruft. " +
                                 "Beenden Sie die Aufgabe anschließend über die Schaltfläche."
                             ],		
 
@@ -57,88 +57,21 @@ var setup = {
                             
                             text: 	[
 								"Nun kann es sein, dass nicht nur die Verwendungsbeziehungen einzelner Strukturelemente relevant sind, sondern die der ganzen Struktur. Des Weiteren könnte man sich nicht nur für die " +
-								"Beziehungen genau einer Methode interessieren, sondern auch für die aller Bestandteile einer Klasse oder gar eines Pakets. Für diese Szenarien gibt es die Möglichkeit, das entsprechende " +
-								"Objekt zu selektieren.",
-								"umsetzen. Beenden Sie die Aufgabe wieder über die Schaltfläche."
+								"Beziehungen genau einer Methode interessieren, sondern auch für die aller Bestandteile einer Klasse oder gar eines Pakets. Für diese Szenarien gibt es im UI die Möglichkeit, sich die " +
+								"Beziehungen von hierarchisch zusammengehörigen ABAP-Objekten gleichzeitig anzeigen zu lassen. Dazu muss das entsprechende, übergeordnete Objekt, wie beispielsweise eine Klasse, " +
+								"selektiert werden. Dann werden die Verwendungsbeziehungen aller Attribute und die Aufrufbeziehungen aller Methoden der selektierten Klasse angezeigt.",
+								"Mittels der Anzeige von Beziehungen lassen sich die Abhängigkeiten der Objekte der Grundmenge zu anderen Paketen untersuchen. Grundsätzlich sollte gelten, dass die DDIC- und Quellcode" +
+								"objekte vorrangig Beziehungen zu Objekten aus dem eigenen Paket besitzen, da dieses möglichst viele Bestandteile der zu realisierenden Funktionalität kapseln sollte. Weniger Beziehungen " +
+								"sollten zu Objekten anderer Pakete der Grundmenge oder zum SAP-Standard bestehen. Des Weiteren sollten die Objekte der Grundmenge möglichst wenig Beziehungen zu den referenzierten, " +
+								"kundeneigenen Entwicklungen besitzen, weil dies auf Abhängigkeiten fachlich eigentlich getrennter Module hinweist, was im Allgemeinen zu vermeiden ist.",
+								"Betrachten Sie die Klassen von vorhin und schätzen Sie deren Abhängigkeiten ein. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
 
                             ui: 	"UI1",
 
                             viewpoint: "100 300 40"		// entspricht /GSA/VISAP_T_TEST_REPORT
                         },
-
-                        { 	number:	15, // Funktionsgruppen
-                            
-                            text: 	[
-                                "Funktionsgruppen sind als violette Distrikte dargestellt. Auf einem Funktionsgruppen-Distrikt befinden sich Zylinder für die globalen Attribute, sowie graue Quader als Gebäude für die " +
-                                "Funktionsbausteine und Formroutinen der Funktionsgruppe. Die Gebäude der Funktionsbausteine besitzen eine rechteckige Grundfläche, während die Grundfläche der Gebäude der Formroutinen " +
-								"quadratisch ist. Die Höhe beider Gebäudearten ist ebenfalls durch die Anzahl ihrer Statements bestimmt.",
-								"Funktionsgruppen und Funktionsbausteine sollten nur noch für RFC und den Aufruf klassischer Dynpros und Selektionsbilder verwendet werden. Dementsprechend sollte eine Funktionsgruppe " +
-								"nicht mehr als zwei Funktionsbausteine enthalten. Die Funktionsbausteine sollten die Verarbeitung sofort an eine globale oder lokale Klasse abgeben, sodass die Funktionsgruppe höchstens " +
-								"eine lokale Klasse enthält. Auf Formroutinen sollte komplett verzichtet werden.",
-								"Erkunden Sie die Visualisierung der Funktionsgruppe. Suchen Sie in der gesamten Visualisierung nach Funktionsgruppen, die die Qualitätsempfehlungen a) vollständig, b) teilweise und c) " +
-								"gar nicht umsetzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
-                            ],		
-
-                            ui: 	"UI1",
-
-                            entities : [
-                                "ID_4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771"	// entspricht /GSA/VISAP_T_TEST_FG1
-                            ]
-                        },
-
-                        { 	number:	16, // Domänen und Datenelemente
-                            
-                            text: 	[
-                                "Domänen und Datenelemente sind auf grünen Distrikten dargestellt. Domänen sind hierbei als grüne Zylinder im Zentrum des Distrikts visualisiert.",
-                                "Diejenigen Datenelemente, welche von der Domäne aus dem gleichen Paket abgeleitet sind, sind am Rand des Distrikts durch dunkelgrüne Zylinder repräsentiert.",
-                                "Außerdem befinden sich die Gebäude der Datenelemente, die vom gleichen eingebauten Typ abgeleitet sind, auf einem gemeinsamen Distrikt ohne Domänengebäude,",
-                                "ebenso wie die Gebäude der Datenelemente, die von einer Domäne aus einem anderen Paket abgeleitet sind.",
-                                "Erkunden Sie die Visualisierung der Domäne und Datenelemente und beenden Sie die Aufgabe wieder über die Schaltfläche."
-                            ],		
-
-                            ui: 	"UI1",
-
-                            viewpoint: "800 280 20"		// entspricht /GSA/VISAP_T_TEST_DO1
-                        },
-
-                        { 	number:	17, // Strukturen
-                            
-                            text: 	[
-								"Strukturen sind als hellgrüne Distrikte dargestellt. Auf den hellgrünen Distrikten befinden sich die Gebäude der Komponenten der Struktur, die sogenannten Strukturelemente. Dies sind " +
-								"graue Kegel, die am Rand des Struktur-Distrikts positioniert sind. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Struktur abgeleitet, befinden sich diese " +
-								"ebenfalls auf dem Struktur-Distrikt. Sie sind dann als rosafarbene Kegel visualisiert.",
-								"Eine Struktur sollte stets mindestens zwei Strukturelemente enthalten. Als Richtwert können fünf Strukturelemente angesehen werden, wobei es jedoch nie mehr als zehn sein sollten, um " +
-								"eine sinnvolle Aufteilung der Struktur in Komponenten zu gewährleisten.",
-								"Erkunden Sie die Visualisierung der Struktur. Suchen Sie weitere Strukturen, die a) eine zu große und b) eine passende Anzahl von Strukturelementen aufweisen. Beenden Sie die Aufgabe " +
-								"wieder über die Schaltfläche."
-                            ],		
-
-                            ui: 	"UI1",
-
-                            entities : [
-                                "ID_412a33ae14746612317b013dc23213cd79b5f3f3"	// entspricht /GISA/BWBCI_EXTR_MAC
-                            ]
-                        },
-
-                        { 	number:	18, // Tabellen
-                            
-                            text: 	[
-                                "In diesem Bildausschnitt sehen Sie die Visualisierung von Datenbanktabellen. Diese befinden sich auf einem dunkelblauen Distrikt und sind als flache, braune Quader dargestellt.",
-                                "Auf diesem braunen Quader befinden sich türkisfarbene Quader, die die Tabellenelemente, also die Spalten, repräsentieren.", 
-								"Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Tabelle abgeleitet, befinden diese sich wie bei Strukturen auf dem gleichen Distrikt.",
-								"Analog zu Strukturen sollten Tabellen aus mindestens zwei Tabellenelementen bestehen, während als Richtwert für eine optimale Anzahl zehn Tabellenelemente angesehen werden können. Eine " +
-								"Tabelle sollte jedoch nie mehr als zwanzig Tabellenelemente enthalten, da ansonsten eine Aufteilung der Tabelle sinnvoll erscheint.",
-								"Erkunden Sie die Visualisierung der Tabelle. Suchen Sie weitere Tabellen, die a) zu viele Tabellenelemente und b) eine passende Anzahl derer besitzen. Beenden Sie die Aufgabe wieder über " +
-								"die Schaltfläche."
-                            ],		
-
-                            ui: 	"UI1",
-
-                            viewpoint: "680 30 130"	// entspricht /GSA/VISAP_T_T2
-                        },
-			]
-			
+			]			
 		},
 
 		{ 	name: 	"defaultLogger",
