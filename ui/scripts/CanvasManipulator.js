@@ -256,6 +256,11 @@ var canvasManipulator = (function() {
 	}
 
 
+	function setViewPoint(viewPoint){
+		document.getElementById('x3dElement').runtime.canvas.doc._viewarea._scene.getViewpoint()._xmlNode["position"] = viewPoint;
+	}
+
+
 	//Helper
 	function getPart(entity){
 		if (entity.part === undefined){
@@ -330,6 +335,8 @@ var canvasManipulator = (function() {
 
 		setCenterOfRotation				: setCenterOfRotation,
 		getCenterOfEntity				: getCenterOfEntity,
+
+		setViewPoint					: setViewPoint,
 		
 		getElementIds					: getElementIds,
     };    		 

@@ -164,8 +164,8 @@ var experimentController = (function() {
 		application.loadUIConfig(currentStep.ui);		
 	}
 
-	function setNewViewpoint() {		
-		document.getElementById('x3dElement').runtime.canvas.doc._viewarea._scene.getViewpoint()._xmlNode["position"] = currentStep.viewpoint;
+	function setNewViewpoint() {	
+		canvasManipulator.setViewPoint(currentStep.viewpoint);
 	}
 			
 	function previousStep() {
@@ -208,6 +208,7 @@ var experimentController = (function() {
 	function moveToEntity() {
 		var entity = model.getEntityById(currentStep.entities[0]);
 		canvasManipulator.flyToEntity(entity);
+		canvasManipulator.setCenterOfRotation(entity, false);
 	}
 
 	function setStepTexts(textArray, posx, posy, width, height, time){

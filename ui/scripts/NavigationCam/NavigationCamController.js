@@ -1,11 +1,5 @@
 var navigationCamController = (function() {
 	
-	
-
-	var panSpeed = 0.250;
-	var zoomSpeed = 5.000;
-	
-	
 	var isMouseDown = false; 
 	var isLeftMouseDown = false;
 	var isRightMouseDown = false;
@@ -36,28 +30,67 @@ var navigationCamController = (function() {
 	var original_getViewMatrix;
 	var original_animateTo;
 	var original_tick;
+
+	const MOVEMENT_DIRECTIONS = {
+		FORWARD 		: "FORWARD",
+		BACKWARD 		: "BACKWARD",
+		LEFT 			: "LEFT",
+		RIGHT			: "RIGHT"
+	}
+
+	
+	
+	//movment functions
+	var movementFunctions = {
+		forwardOn 		: 	function(){keyDown(movement["forward"])},
+		backwardOn 		:	function(){keyDown(movement["backward"])},
+		leftOn			:	function(){keyDown(movement["left"])},
+		rightOn			: 	function(){keyDown(movement["right"])},
+
+		forwardOff 		: 	function(){keyUp(movement["forward"])},
+		backwardOff 	:	function(){keyUp(movement["backward"])},
+		leftOff			:	function(){keyUp(movement["left"])},
+		rightOff		: 	function(){keyUp(movement["right"])},
+	}
+
+	
 	
 	const NAVIGATION_MODES = {
 		AXES:				"AXES",
 		MOUSE_WASD:			"MOUSE_WASD",
 		LOOK_AT_ROTATE:		"LOOK_AT_ROTATE",
+		PAN_ZOOM_ROTATE:	"PAN_ZOOM_ROTATE",
+		GAME_WASD:			"GAME_WASD"
+	}
+
+	const CENTER_OF_ROTATION_ELEMENT = {
+		NONE:			"NONE",
+		AXES:			"AXES",
+		SPHERE:			"SPHERE",
 	}
     
 	
 	//config parameters	
 	var controllerConfig = {	
 		
-		//NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE
+		//NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE, PAN_ZOOM_ROTATE, GAME_WASD
 		modus: NAVIGATION_MODES.AXES,
 
 		zoomToMousePosition: false,
 		
-		setCenterOfRotation: true,
-		setCenterOfRotationFocus: true,
-		showCenterOfRotation: true,
+		showCenterOfRotation: false,
 
-		macUser: false,
-		active: false
+		//CENTER_OF_ROTATION_ELEMENT - NONE, AXES, SPHERE		
+		centerOfRotationElement:	CENTER_OF_ROTATION_ELEMENT.NONE,
+
+		setCenterOfRotation: 		true,
+		setCenterOfRotationFocus: 	true,	
+		
+		rotationFactor: 0.5,
+		panFactor: 0.5,
+		zoomFactor: 1.5,
+
+		macUser: false
 	}
 
 
@@ -75,9 +108,7 @@ var navigationCamController = (function() {
 	
 	function activate(){
 
-		if(!controllerConfig.active){
-			return;
-		}
+		
 		
 		//get reference of x3dom objects
 		x3domRuntime = document.getElementById('x3dElement').runtime;		
@@ -102,8 +133,30 @@ var navigationCamController = (function() {
 		actionController.actions.mouse.move.subscribe(mousemove);
 
 		actionController.actions.mouse.scroll.subscribe(mousescroll);
-		
 
+		//keybord actions		
+		actionController.actions.keyboard.key[87].down.subscribe(movementFunctions.forwardOn);
+		actionController.actions.keyboard.key[83].down.subscribe(movementFunctions.backwardOn);
+		actionController.actions.keyboard.key[65].down.subscribe(movementFunctions.leftOn);
+		actionController.actions.keyboard.key[68].down.subscribe(movementFunctions.rightOn);
+
+		actionController.actions.keyboard.key[87].during.subscribe(movementFunctions.forwardDuring);
+		actionController.actions.keyboard.key[83].during.subscribe(movementFunctions.backwardDuring);
+		actionController.actions.keyboard.key[65].during.subscribe(movementFunctions.leftDuring);
+		actionController.actions.keyboard.key[68].during.subscribe(movementFunctions.rightDuring);
+
+		actionController.actions.keyboard.key[87].up.subscribe(movementFunctions.forwardOff);
+		actionController.actions.keyboard.key[83].up.subscribe(movementFunctions.backwardOff);
+		actionController.actions.keyboard.key[65].up.subscribe(movementFunctions.leftOff);
+		actionController.actions.keyboard.key[68].up.subscribe(movementFunctions.rightOff);
+		
+		//force frame update while key is pressed 
+		/*
+		actionController.actions.keyboard.key[87].during.subscribe(setUpdateCamera);
+		actionController.actions.keyboard.key[83].during.subscribe(setUpdateCamera);		
+		actionController.actions.keyboard.key[65].during.subscribe(setUpdateCamera);
+		actionController.actions.keyboard.key[68].during.subscribe(setUpdateCamera);	
+		*/
 
 
 		//overwrite viewmatrix function for full control
@@ -118,6 +171,11 @@ var navigationCamController = (function() {
 		viewarea.animateTo 		= animateTo;
 		viewarea.tick 			= tick;
 
+		
+
+		canvasManipulator.setViewPoint = setViewPoint;
+		
+		/*
 		var center = x3dom.fields.SFVec3f.copy(viewpoint.getCenterOfRotation());
 
 		var myCam = getCamMatrix();
@@ -127,13 +185,72 @@ var navigationCamController = (function() {
 		var up = myCam.e1();
 
 		myCam = x3dom.fields.SFMatrix4f.lookAt(from, at, up);
-		myCam = calcOrbit(0, 0);
+		//myCam = calcOrbit(0, 0);	
 
-		setCamMatrix(myCam);		
+		setCamMatrix(myCam);	
+		*/
+		
+		
 
 	}
 
+	function setViewPoint(viewPoint){
+
+		var viewPointArray = viewPoint.split(" ");
+		
+		var myCam = getCamMatrix();
+		var cor = viewpoint.getCenterOfRotation();
+				
+		cor.x = cor.x - myCam._03 + viewPointArray[0];
+		cor.y = cor.y - myCam._13 + viewPointArray[1];
+		cor.z = cor.z - myCam._23 + viewPointArray[2];
+		
+		viewpoint.setCenterOfRotation(cor);
+
+		
+		myCam._03 = parseFloat(viewPointArray[0]);
+    	myCam._13 = parseFloat(viewPointArray[1]);
+    	myCam._23 = parseFloat(viewPointArray[2]);
+		setCamMatrix(myCam);
+	}
+
 	function createCenterOfRotationElement(){
+		switch(controllerConfig.centerOfRotationElement) {
+			case CENTER_OF_ROTATION_ELEMENT.AXES:
+				createAxes()
+			  break;
+			case CENTER_OF_ROTATION_ELEMENT.SPHERE:
+				createSphere();
+			  break;
+			case CENTER_OF_ROTATION_ELEMENT.NONE:
+				//Nothing
+				break;
+			default:					
+		}
+	}
+
+	function createSphere(){
+		centerOfRotationX3DomElement = document.createElement('TRANSFORM');
+
+		var shape = document.createElement('Shape');
+		centerOfRotationX3DomElement.appendChild(shape);
+		
+		var appearance = document.createElement('Appearance');	
+		shape.appendChild(appearance);
+		var material = document.createElement('Material');	
+		material.setAttribute("diffuseColor", "0 0 0");
+		appearance.appendChild(material);	
+		
+				
+		var sphere = document.createElement('Sphere');
+		sphere.setAttribute("radius", "5");
+		shape.appendChild(sphere);
+
+		canvasManipulator.addElement(centerOfRotationX3DomElement);
+	}
+
+	function createAxes(){
+	
 		centerOfRotationX3DomElement = document.createElement('TRANSFORM');
 
 		// Y-Axes
@@ -300,6 +417,9 @@ var navigationCamController = (function() {
 						zoomStepCenter(eventObject.entity, isLeftMouseDown);
 					}				
 				}
+				break;	
+			case NAVIGATION_MODES.PAN_ZOOM_ROTATE:		
+				//Nothing
 				break;
 			default:					
 		}
@@ -330,12 +450,15 @@ var navigationCamController = (function() {
 				switch(controllerConfig.modus) {
 					case NAVIGATION_MODES.AXES:
 						pan(dx, dy);
-					  break;
+					  	break;
 					case NAVIGATION_MODES.MOUSE_WASD:
 						pan(dx, dy);
-					  break;
+					  	break;
 					case NAVIGATION_MODES.LOOK_AT_ROTATE:
 						//Nothing
+						break;
+					case NAVIGATION_MODES.PAN_ZOOM_ROTATE:		
+						pan(dx, dy);
 						break;
 					default:					
 				}
@@ -355,7 +478,10 @@ var navigationCamController = (function() {
 					case NAVIGATION_MODES.LOOK_AT_ROTATE:
 						rotateModel(dx, dy);
 						break;
-					default:						
+					case NAVIGATION_MODES.PAN_ZOOM_ROTATE:		
+						rotateModel(dx, dy);
+						break;
+					default:								
 				}
 			}
 
@@ -398,13 +524,26 @@ var navigationCamController = (function() {
 				}
 			  break;
 			case NAVIGATION_MODES.LOOK_AT_ROTATE:
-					var zoomIn = eventObject.detail < 0;
+				var zoomIn = eventObject.detail < 0;
 
-					if(controllerConfig.macUser){
-						zoomIn = !zoomIn;
-					}
+				if(controllerConfig.macUser){
+					zoomIn = !zoomIn;
+				}
 
-					zoomStepCenter(eventObject.entity, zoomIn);
+				zoomStepCenter(eventObject.entity, zoomIn);
+				break;
+			case NAVIGATION_MODES.PAN_ZOOM_ROTATE:
+				var zoomFactor = -2 * eventObject.detail;
+
+				if(controllerConfig.macUser){
+					zoomFactor = zoomFactor * -1;
+				}
+			
+				if(controllerConfig.zoomToMousePosition){
+					moveByScroll(eventObject, zoomFactor);
+				} else {
+					zoom(zoomFactor);	
+				}
 				break;
 			default:	
 		}
@@ -474,6 +613,9 @@ var navigationCamController = (function() {
 
 	function rotateModel(dx, dy){
 
+		dx = dx * controllerConfig.rotationFactor;
+		dy = dy * controllerConfig.rotationFactor;
+
 		var alpha = (dy * 2 * Math.PI) / viewarea._height;
 		var beta = (dx * 2 * Math.PI) / viewarea._width;
 
@@ -483,6 +625,9 @@ var navigationCamController = (function() {
 	}	
 
 	function rotateCam(dx, dy){
+
+		dx = dx * controllerConfig.rotationFactor;
+		dy = dy * controllerConfig.rotationFactor;
 
 		var alpha = - (dy * 2 * Math.PI) / viewarea._height;
 		var beta = (dx * 2 * Math.PI) / viewarea._width;
@@ -607,10 +752,13 @@ var navigationCamController = (function() {
 
 	function pan(dx, dy){
 
+		dx = dx * controllerConfig.panFactor;
+		dy = dy * controllerConfig.panFactor;
+
 		var myCam = getCamMatrix();
 
 		var d = (viewarea._scene._lastMax.subtract(viewarea._scene._lastMin)).length();
-		d = ((d < x3dom.fields.Eps) ? 1 : d) * panSpeed;
+		d = ((d < x3dom.fields.Eps) ? 1 : d);
 
 		var tx = -d * dx / viewarea._width;
 		var ty =  d * dy / viewarea._height;
@@ -643,15 +791,17 @@ var navigationCamController = (function() {
 
 	function zoom(zoomFactor){
 
+		zoomFactor = zoomFactor * controllerConfig.zoomFactor;
+
 		var myCam = getCamMatrix();
 
 		var d = (viewarea._scene._lastMax.subtract(viewarea._scene._lastMin)).length();
-		d = ((d < x3dom.fields.Eps) ? 1 : d) * zoomSpeed;
+		d = ((d < x3dom.fields.Eps) ? 1 : d);
 		
 		var zoomAmount = d * zoomFactor / viewarea._height;
 
 		//clamp zoomAmount 
-		zoomAmount = Math.min(zoomAmount, 20); //ToDo Config Parameter
+		//zoomAmount = Math.min(zoomAmount, 20); //ToDo Config Parameter
 		
 
 		var up   	= myCam.e1();
@@ -687,13 +837,16 @@ var navigationCamController = (function() {
 
 	function moveByScroll(eventObject, zoomFactor){
 
+		zoomFactor = zoomFactor * controllerConfig.zoomFactor;
+
+
 		var d = (viewarea._scene._lastMax.subtract(viewarea._scene._lastMin)).length();
-		d = ((d < x3dom.fields.Eps) ? 1 : d) * zoomSpeed;
+		d = ((d < x3dom.fields.Eps) ? 1 : d);
 		
 		var zoomAmount = d * zoomFactor / viewarea._height;
 
 		//clamp zoomAmount 
-		zoomAmount = Math.min(zoomAmount, 20); //ToDo Config Parameter
+		//zoomAmount = Math.min(zoomAmount, 20); //ToDo Config Parameter
 
 		
 

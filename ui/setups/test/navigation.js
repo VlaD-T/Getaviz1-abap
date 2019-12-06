@@ -10,6 +10,73 @@
 			logEventConsole		: false
 		},		
 
+
+		{	name: 	"navigationCamController",
+			
+			//NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE, PAN_ZOOM_ROTATE, GAME_WASD			
+			modus: "PAN_ZOOM_ROTATE",
+
+			zoomToMousePosition: true,
+			
+			//CENTER_OF_ROTATION_ELEMENT - NONE, AXES, SPHERE
+			showCenterOfRotation: false,
+			centerOfRotationElement: "SPHERE",
+
+			setCenterOfRotation: true,
+			setCenterOfRotationFocus: true,
+			
+
+			macUser: false,
+		},
+
+
+		{	name: 	"experimentController",
+		
+			taskTextButtonTime: 10,
+			taskTime: 5,
+		
+			stepOrder:	[ 10, 12, 11 ],
+			
+						
+            steps:	[				
+						{ 	number:	10, // Domänen und Datenelemente
+									
+							text: 	[
+								"Test123"
+							],		
+
+							ui: 	"UI0",
+
+							
+						},
+
+						{ 	number:	11, // Strukturen
+							
+							text: 	[
+								"Test456"
+							],		
+
+							ui: 	"UI0",
+
+							
+							entities : [
+                                "ID_9145e2b8ba073950601eee769bf49cee133d99f1"	
+                            ]
+						},
+
+						{ 	number:	12, // Strukturen
+							
+							text: 	[
+								"Test789"
+							],		
+
+							ui: 	"UI0",
+
+							viewpoint: "800 280 20"		
+						},
+			]
+		},
+
 		
 		{	name: 	"canvasHoverController",
 		},
@@ -22,43 +89,7 @@
 
 
 
-		{	name: 	"navigationCamController",
-			modus: "LOOK_AT_ROTATE",
-
-			zoomToMousePosition: true,
-
-			setCenterOfRotation: true,
-			setCenterOfRotationFocus: true,
-			showCenterOfRotation: false,
-
-			macUser: false,
-
-			active:	false
-		},
-
-		{	name: 	"navigationCamControllerAxes",
-			active:	false
-		},
-
-		{	name: 	"navigationCamControllerLAR",
-			active:	false
-		},
-
-		{	name: 	"navigationCamControllerMWASD",
-			active:	false
-		},
-
-		{	name: 	"navigationCamControllerPZR",
-			setCenterOfRotation : false,
-			setCenterOfRotationFocus: false,
-			showCenterOfRotation: false,
-			macUser: false,
-			active:	true
-		},
-
-		{	name: 	"navigationWASDController",
-			active:	false
-		},
+		
 		
 	],
 		
@@ -81,9 +112,10 @@
 				orientation: "horizontal",
 				
 				first: {			
-					size: "10%",	
+					size: "200px",	
 					
-					controllers: [					
+					controllers: [	
+						{ name: "experimentController" },				
 						{ name: "canvasResetViewController" },
 					],							
 				},
@@ -102,12 +134,6 @@
 						{ name: "canvasSelectController" },
 						
 						{ name: "navigationCamController"},
-
-						{ name: "navigationCamControllerAxes" },
-						{ name: "navigationCamControllerLAR" },
-						{ name: "navigationCamControllerMWASD" },
-						{ name:	"navigationCamControllerPZR" },
-						{ name: "navigationWASDController" },
 						
 					],						
 				}
