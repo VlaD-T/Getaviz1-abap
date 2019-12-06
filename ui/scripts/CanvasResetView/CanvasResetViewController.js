@@ -46,7 +46,8 @@ var canvasResetViewController = (function() {
 	
 	
 	function resetApplication() {  
-		application.reset();
+		canvasManipulator.setDefaultView();
+		//application.reset();
 	}
 
 		

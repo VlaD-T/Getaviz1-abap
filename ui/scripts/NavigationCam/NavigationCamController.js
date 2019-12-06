@@ -88,7 +88,7 @@ var navigationCamController = (function() {
 		
 		rotationFactor: 0.5,
 		panFactor: 0.5,
-		zoomFactor: 1.5,
+		zoomFactor: 3.0,
 
 		macUser: false
 	}
@@ -190,8 +190,8 @@ var navigationCamController = (function() {
 		setCamMatrix(myCam);	
 		*/
 		
-		
-
+			
+		setTimeout(canvasManipulator.setDefaultView, 1000);
 	}
 
 	function setViewPoint(viewPoint){
@@ -447,6 +447,8 @@ var navigationCamController = (function() {
 
 			//Left Mouse
 			if(isLeftMouseDown){
+
+
 				switch(controllerConfig.modus) {
 					case NAVIGATION_MODES.AXES:
 						pan(dx, dy);
@@ -493,38 +495,38 @@ var navigationCamController = (function() {
 
 	function mousescroll(eventObject, timestamp){
 
-		
-
 		//Switch Modes
+
+		
 		switch(controllerConfig.modus) {
 			case NAVIGATION_MODES.AXES:
-				var zoomFactor = -2 * eventObject.detail;
+				var zoomDirection = eventObject.scrollDirection;
 
 				if(controllerConfig.macUser){
-					zoomFactor = zoomFactor * -1;
+					zoomDirection = zoomDirection * -1;
 				}
 
 				if(controllerConfig.zoomToMousePosition){
-					moveByScroll(eventObject, zoomFactor);
+					moveByScroll(eventObject, zoomDirection);
 				} else {
-					zoom(zoomFactor);	
+					zoom(zoomDirection);	
 				}
 			  break;
 			case NAVIGATION_MODES.MOUSE_WASD:
-				var zoomFactor = -2 * eventObject.detail;
+				var zoomDirection = eventObject.scrollDirection;
 
 				if(controllerConfig.macUser){
-					zoomFactor = zoomFactor * -1;
+					zoomDirection = zoomDirection * -1;
 				}
 			
 				if(controllerConfig.zoomToMousePosition){
-					moveByScroll(eventObject, zoomFactor);
+					moveByScroll(eventObject, zoomDirection);
 				} else {
-					zoom(zoomFactor);	
+					zoom(zoomDirection);	
 				}
 			  break;
 			case NAVIGATION_MODES.LOOK_AT_ROTATE:
-				var zoomIn = eventObject.detail < 0;
+				var zoomIn = eventObject.scrollDirection < 0;
 
 				if(controllerConfig.macUser){
 					zoomIn = !zoomIn;
@@ -533,21 +535,21 @@ var navigationCamController = (function() {
 				zoomStepCenter(eventObject.entity, zoomIn);
 				break;
 			case NAVIGATION_MODES.PAN_ZOOM_ROTATE:
-				var zoomFactor = -2 * eventObject.detail;
+				var zoomDirection = eventObject.scrollDirection;
 
 				if(controllerConfig.macUser){
-					zoomFactor = zoomFactor * -1;
+					zoomDirection = zoomDirection * -1;
 				}
 			
 				if(controllerConfig.zoomToMousePosition){
-					moveByScroll(eventObject, zoomFactor);
+					moveByScroll(eventObject, zoomDirection);
 				} else {
-					zoom(zoomFactor);	
+					zoom(zoomDirection);	
 				}
 				break;
 			default:	
 		}
-
+		
         
     }
 

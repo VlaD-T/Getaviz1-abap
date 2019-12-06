@@ -160,7 +160,7 @@ var actionController = (function() {
 		
 	
 		//scroll
-		canvas.addEventListener("mousewheel", function(eventObject){
+		canvas.addEventListener("wheel", function(eventObject){
 			
 			scrollAction(actions.mouse.scroll, eventObject);
 
@@ -591,9 +591,9 @@ var actionController = (function() {
 		}
 
 		if(eventObject.deltaY !== undefined) {
-			eventObject.deltaY > 0 ? eventObject.scrollDirection = 1 : eventObject.scrollDirection = -1;
-		} else {
-			eventObject.detail > 0 ? eventObject.scrollDirection = 1 : eventObject.scrollDirection = -1;
+			eventObject.scrollDirection = eventObject.deltaY * -0.1;			
+		} else {			
+			eventObject.scrollDirection = eventObject.detail;			
 		}
 
 		var scrollListeners = action.actionListeners;		

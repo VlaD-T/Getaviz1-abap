@@ -23,6 +23,11 @@ var canvasManipulator = (function() {
 	}
 
 	function reset(){
+		
+	}
+
+	function setDefaultView(){
+		x3domRuntime.showAll("negZ");;
 	}
 	
 
@@ -337,6 +342,7 @@ var canvasManipulator = (function() {
 		getCenterOfEntity				: getCenterOfEntity,
 
 		setViewPoint					: setViewPoint,
+		setDefaultView					: setDefaultView,
 		
 		getElementIds					: getElementIds,
     };    		 
