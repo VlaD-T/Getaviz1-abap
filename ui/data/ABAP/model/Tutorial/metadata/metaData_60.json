@@ -1,0 +1,1000 @@
+[{"id":            "ID_696bdc940e6ca2c99410f10e1fd7239e774600af",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_PREIS.KOR_HERKUNFT",
+"name":          "KOR_HERKUNFT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a8a283faa41aca38315c775db5544bb182721545",
+"structure":	 "ID_6e4d054d512ce4503bcf2d45b77793e9271319cb",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7918b11b690a20cefbf5b39e17471a7b6412d0ba",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_PREIS.KOR_AB",
+"name":          "KOR_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a8a283faa41aca38315c775db5544bb182721545",
+"structure":	 "ID_6e4d054d512ce4503bcf2d45b77793e9271319cb",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6ae0244148d2a24c8a12a6e9d91db3a06571f44c",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_PREIS.KOR_BIS",
+"name":          "KOR_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a8a283faa41aca38315c775db5544bb182721545",
+"structure":	 "ID_6e4d054d512ce4503bcf2d45b77793e9271319cb",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_cffd88fc9a6b07193db3341a8cf9765871e52867",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_PREIS.REF_INPUT_TABLE",
+"name":          "REF_INPUT_TABLE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a8a283faa41aca38315c775db5544bb182721545",
+"structure":	 "ID_6e4d054d512ce4503bcf2d45b77793e9271319cb",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_4d3c4a4b036f704234baa71643ce2674c6e19831",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_PREIS.REF_TIMESTAMP",
+"name":          "REF_TIMESTAMP",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a8a283faa41aca38315c775db5544bb182721545",
+"structure":	 "ID_6e4d054d512ce4503bcf2d45b77793e9271319cb",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_5c9313d3f62b15717eb78df16eaa308348bffa7e",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_PREIS.REF_USER",
+"name":          "REF_USER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a8a283faa41aca38315c775db5544bb182721545",
+"structure":	 "ID_6e4d054d512ce4503bcf2d45b77793e9271319cb",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e7287633f261b9a100172fdcb0bd54df556fbdcd",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_PREIS.REF_RECORD_AKTIV",
+"name":          "REF_RECORD_AKTIV",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a8a283faa41aca38315c775db5544bb182721545",
+"structure":	 "ID_6e4d054d512ce4503bcf2d45b77793e9271319cb",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_1aef04ef201b4189acfdbd1ad8096e69e587ec30",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_29d473014e48ef93a26003edd8a1fe7608efe84b",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.AB",
+"name":          "AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_db245a8cb1ee430a43d44e04edb979285ead73cb",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.REF_NR",
+"name":          "REF_NR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ab3a9002980dfc5f7093204374cba53633a54269",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.VAKTION",
+"name":          "VAKTION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7925fb2982bcb9cf78d05674f6136e8478c25ba0",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.BESTANDTEIL",
+"name":          "BESTANDTEIL",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8361fde0812498d0e3c6fd39eaec9d1a36e13cf2",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.RECHENREGEL",
+"name":          "RECHENREGEL",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8e53ecee999ce4400b30ea4a75d158a6e255e8c0",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.PGD_AB",
+"name":          "PGD_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_88bc10509767efffd3c8e57ad44d3ab4ca304ef8",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.PGD_BIS",
+"name":          "PGD_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_13e01c9768a57c7ad9b1c7ecaa2575927d4cb77b",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.WERT",
+"name":          "WERT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_140b0bda84802571aea012cb25d9987e31eff5ff",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.EINHEIT",
+"name":          "EINHEIT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_1c9f5373d21a9b9409f6609672bf53ca62f205b8",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.HINWEIS",
+"name":          "HINWEIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_5227d470a3852f31f1dd6837149e6d2bec9d9c10",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.BIS",
+"name":          "BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ade14fe496bc7a9190dc7d184ba579a93125bdd4",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.KOR_HERKUNFT",
+"name":          "KOR_HERKUNFT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6a6680a9ed5065bce56c9550e660e11fc4853665",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.KOR_AB",
+"name":          "KOR_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3b70a478440f70bde639478759e06b66e1eb012d",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.KOR_BIS",
+"name":          "KOR_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_9927cd00f0df4ff74cd03ace2533a7803904020a",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.REF_INPUT_TABLE",
+"name":          "REF_INPUT_TABLE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ca24ec8c52ee129de000d786821cc13a27eedcbe",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.REF_TIMESTAMP",
+"name":          "REF_TIMESTAMP",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_21216d1632b36a57bcff3c7aedad183aec70ba60",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.REF_USER",
+"name":          "REF_USER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_9482e9c32ea0d9b27e80c417861e35604b8e6a24",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VA2OP.REF_RECORD_AKTIV",
+"name":          "REF_RECORD_AKTIV",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7a2c36611f3d7ac0923675949ca43244fede229",
+"structure":	 "ID_0f02629cb225b04f38eee92a8d6da794abff8a6a",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6fbe37ca34cb748a3ef8e8eae27c251e8acc31d6",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_b84566442953cfe08b96d8f0e22a29bcf2d9fe62",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.AB",
+"name":          "AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_df5c4ca5125eeddeaa639f9f0ac7c2a91a90df6a",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.REF_NR",
+"name":          "REF_NR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d66518c732642db8d9aca9602f946cbfdffdb71c",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.VERTRAGSOPTION",
+"name":          "VERTRAGSOPTION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ce581e1b187b417c12e3da5d18449344f9a0a930",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.BESTANDTEIL",
+"name":          "BESTANDTEIL",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8ec5ae0b2b9adf33c7c420a411c32ac463ee8198",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.PREISVERSION",
+"name":          "PREISVERSION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_737a8e56c1333dfafd2dd6af95965c860cab21ba",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.RECHENREGEL",
+"name":          "RECHENREGEL",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_59d86750ef5a555eedfd58d079ffe1ca863cf66a",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.PGD_AB",
+"name":          "PGD_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d366f622ee451bdbaa0c378e80355d985a026867",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.PGD_BIS",
+"name":          "PGD_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_44a468516b4b070df15002b8dfc9c2d776e14af8",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.WERT",
+"name":          "WERT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6d59844d41964212879421224b4b492d55c86be4",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.EINHEIT",
+"name":          "EINHEIT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_34186cc999b270b31b4b66aae7a9bd1d9bc4f73c",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.HINWEIS",
+"name":          "HINWEIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7f8d3c45005ba461d7a724f8979eee75c02940ce",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.BIS",
+"name":          "BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_989e1f29b2a5aa314b63d9036b269b073acd42ff",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.KOR_HERKUNFT",
+"name":          "KOR_HERKUNFT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_11b655fb16d2c96b3208c43ec7b4b465224b49ff",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.KOR_AB",
+"name":          "KOR_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f47b2bdf2d2cf1bd18609167d06983b10683f7f5",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.KOR_BIS",
+"name":          "KOR_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ecb2d13e90537150b1c3a942c872929000454d1f",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.REF_INPUT_TABLE",
+"name":          "REF_INPUT_TABLE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_55a3f00e978b442818083a4e89bae91bcc2dbfdf",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.REF_TIMESTAMP",
+"name":          "REF_TIMESTAMP",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_c645ac59bc5ef88db1aac3039684b930719bfb80",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.REF_USER",
+"name":          "REF_USER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_00b0cf82a4acb7a511f2a9ca17c9a2adce348f95",
+"qualifiedName": "/GSA/BEX_AQ./GSA/BEX_Q_VO2OP.REF_RECORD_AKTIV",
+"name":          "REF_RECORD_AKTIV",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_86044535cd4d5affabea52d1194ed8330397ef5b",
+"structure":	 "ID_bd464f4fdbc43b02373c4d6932e26988812bd151",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f4136f15889d9a4c1fea08c241b7273b49bfd2c7",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fe02a5d77f5712e9ffcb05ea19f798ae610ec48c",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.AB",
+"name":          "AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6f8ef5ee7f5f4c637be116875f0988a52b22e914",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.REF_NR",
+"name":          "REF_NR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_da6749191e76784c68db862fc35e86b4e1cccceb",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.NETZ_NR",
+"name":          "NETZ_NR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3e0a666dbeb142ef42d1d62481bc29e5c90bf6f8",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.VNB_NR",
+"name":          "VNB_NR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_66f79713463fe774f748d186a9de2e41fb36114c",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.CTRL_AREA",
+"name":          "CTRL_AREA",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_0a7c9b79f36a74c565479d4e0a129f04746a43f7",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.SETTL_TERR",
+"name":          "SETTL_TERR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e962e45a6a05691500061c2b09ee0fae7ca253bd",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.STATUS",
+"name":          "STATUS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_c97bc8d0ccb540f7461536e4b2e90acf09223e66",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.GRID_NAME",
+"name":          "GRID_NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_4196c9f74dee6727c75008faabd1b5c606cd97a7",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.BIS",
+"name":          "BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_bd7bc3f2a2ff4be68ae156afdfccf85d2d1511bc",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.KOR_HERKUNFT",
+"name":          "KOR_HERKUNFT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_68420d1d7e8f7dd34cfd53927177e703ef29c8e4",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.KOR_AB",
+"name":          "KOR_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_c597260d25ebbf5617e3e359b9783440c1ae7f88",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.KOR_BIS",
+"name":          "KOR_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_05a423edb0055413c60fe59ac73d02c98740e6ca",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.REF_INPUT_TABLE",
+"name":          "REF_INPUT_TABLE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e71946a4d7436f8bb48e6f28aab73ced74dd822f",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.REF_TIMESTAMP",
+"name":          "REF_TIMESTAMP",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_55bcb371fb2fcc9d802ae4444da0727923bb81e0",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.REF_USER",
+"name":          "REF_USER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ee377bf5ae95bb79d9afea0c314605af596f5f21",
+"qualifiedName": "/GSA/BEX_SN./GSA/BEX_S_NETNA.REF_RECORD_AKTIV",
+"name":          "REF_RECORD_AKTIV",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_ef2792074b8dcc61ffa57af8d2f4d3d7407cfe03",
+"structure":	 "ID_d3cf118d489d40d78374a4311c9ea26424d104c3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_30fa384c41423d9fa51cc589ebc5f5747c8f09db",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_bec219d91aaaa4b41b6bdb0ff238df370ddf61ee",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.AB",
+"name":          "AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_814062899c7d54baec82385240dc67dd66cf3da8",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.REF_NR",
+"name":          "REF_NR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_a3a3d0c72ba0beb90c9d73af972fcfdf3d28d89f",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.VNBG",
+"name":          "VNBG",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_96d3d818f8b894e3ee0c9c1fd3d3962fff2a6158",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.TARIFGEBIET",
+"name":          "TARIFGEBIET",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_50ceb98d36d323fda57abde807c11c593c4776be",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.STANDARD",
+"name":          "STANDARD",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e3f95a49b41021ae2ae9b71fce36801162ed5d2e",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.ZAEHLER_ID",
+"name":          "ZAEHLER_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_dd6f2c918f4205b6f23d24449131402e38238ed3",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.ABRECHNUNG_ID",
+"name":          "ABRECHNUNG_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_64813a03f2c6e8d8d4d1c1be1f5f9eed1e9d8987",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.ID",
+"name":          "ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_2a6c5d870bef2cf33fa70ed3d05a8a8d547f0016",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.PRICE_AMOUNT",
+"name":          "PRICE_AMOUNT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_40fcdf88e397fe2a8de212e9b6b33034f22bdb54",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.EINHEIT_ID",
+"name":          "EINHEIT_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_336a01e951f208e6f690cc14f1a05147e7a597ea",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.GENERIERT",
+"name":          "GENERIERT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fea450833a6fadb625393ca649c58667dd80e180",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.HARDWARE_ID",
+"name":          "HARDWARE_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_80fa6729d27ab45590d8e5ec4f63b7eb6ed893c0",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.DIENSTLEISTUNG_ID",
+"name":          "DIENSTLEISTUNG_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8dbabfd5af596d341be4370a80ef2a26242bf920",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.BIS",
+"name":          "BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_2aae928a529ba774f99a778a65148b670bf50c4a",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.KOR_HERKUNFT",
+"name":          "KOR_HERKUNFT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f52f4ef08a2e7c664b87041e18ef82ce589a4b1d",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.KOR_AB",
+"name":          "KOR_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ca032e01652fd9eb8d09d871a92028eb0278a2a1",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.KOR_BIS",
+"name":          "KOR_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_0731ce37e1614912be98d0b354b3eaf9ef6c5908",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.REF_INPUT_TABLE",
+"name":          "REF_INPUT_TABLE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fbed9305e86a4cb8308487d504d6a5bd6fefe21f",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.REF_TIMESTAMP",
+"name":          "REF_TIMESTAMP",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ef9c3b580e6b9099a65e9af152c610e4047c0517",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.REF_USER",
+"name":          "REF_USER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_4d131b3529b757fc78922e9cc00ac6469bd014c2",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_ABENT.REF_RECORD_AKTIV",
+"name":          "REF_RECORD_AKTIV",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b379b08426011df2124f2cbd51910ae97850f8bd",
+"structure":	 "ID_fdd3e2e44b98c0f680fd0b770f1fa8b46df97d3b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8aea21c3a41a543f49e3e8eb4d4ad2d7edc5a0dd",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e8f2dcf8bf594baafcedf465896d95604cfb7d7f",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.AB",
+"name":          "AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_415ffb91ff0d1ed36d651f7b2c9241003c04619d",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.REF_NR",
+"name":          "REF_NR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_453a303e4b80ac9ca75d462b5935a55a401c37fc",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.PREISREGELUNG_ID",
+"name":          "PREISREGELUNG_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_2a160923645af66e019b525695a61ad4a596c191",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.ZAEHLER_ID",
+"name":          "ZAEHLER_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_0532fa1fc84442fcac3940f15b200319dc85e675",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.HARDWARE_ID",
+"name":          "HARDWARE_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7d99da0d5a5cb96f992020a9365a158c1653c498",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.DIENSTLST_ID",
+"name":          "DIENSTLST_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_48fb096dc40ef312f5933aea7c97be92223f7834",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.STANDARD",
+"name":          "STANDARD",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3f24e3325357e8ff1bf3c58002e86fc9fc3eaa80",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.PRICE_AMOUNT",
+"name":          "PRICE_AMOUNT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_de8a0fc4ca2a3ba0ef3ad77866e15c71649ec0cd",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.EINHEIT_ID",
+"name":          "EINHEIT_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_5bccf5ee2c630b5d7915912e934f16595de2250b",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.MESSPREIS_ID",
+"name":          "MESSPREIS_ID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_04ae28896627684a5c51341cbba7ad3dd408ac52",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.BIS",
+"name":          "BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_80f57d90def0cfb1642f8ab874b4dac4757f5d51",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.KOR_HERKUNFT",
+"name":          "KOR_HERKUNFT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d5a9232ba88fdc56cc93916fd061bfaccaa58788",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.KOR_AB",
+"name":          "KOR_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_5b9687b0a3fdfa13e626efe22b8baeb407eb3861",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.KOR_BIS",
+"name":          "KOR_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+}]

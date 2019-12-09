@@ -1,0 +1,1000 @@
+[{"id":            "ID_b19b9129a8a68f61ec3d4546041de45a200e11da",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TA_OBJECT.TO",
+"name":          "TO",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_3f1522d025592284c3a736264c470d52fa878cd0",
+"structure":	 "ID_3820eccabc46f2c4f038c662d6542e8a9bd0de20",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7de3c4ce97535749b34743782da322177b51b53a",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TA_OBJECT.TRANSLTTXT",
+"name":          "TRANSLTTXT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_3f1522d025592284c3a736264c470d52fa878cd0",
+"structure":	 "ID_3820eccabc46f2c4f038c662d6542e8a9bd0de20",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7278edb05df8f8a370ef9f0dc211d8be661ccdb9",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TA_OBJECT.TRKORR",
+"name":          "TRKORR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_3f1522d025592284c3a736264c470d52fa878cd0",
+"structure":	 "ID_3820eccabc46f2c4f038c662d6542e8a9bd0de20",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_c82119e0efa77499ae2f9a07094eb127e7000957",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TA_OBJECT.TYPE",
+"name":          "TYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_3f1522d025592284c3a736264c470d52fa878cd0",
+"structure":	 "ID_3820eccabc46f2c4f038c662d6542e8a9bd0de20",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_dcfe67cfafe3b30aa5ce33438d73f2a3f315c9f0",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TA_OBJECT.UDATE",
+"name":          "UDATE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_3f1522d025592284c3a736264c470d52fa878cd0",
+"structure":	 "ID_3820eccabc46f2c4f038c662d6542e8a9bd0de20",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_52f559202434f951996be8433135978d59c83066",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TA_OBJECT.UNAM",
+"name":          "UNAM",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_3f1522d025592284c3a736264c470d52fa878cd0",
+"structure":	 "ID_3820eccabc46f2c4f038c662d6542e8a9bd0de20",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_444796abff43c26af0fd10523c8d297015dd12f9",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TA_OBJECT.VERSID",
+"name":          "VERSID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_3f1522d025592284c3a736264c470d52fa878cd0",
+"structure":	 "ID_3820eccabc46f2c4f038c662d6542e8a9bd0de20",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_14f832a6d3b4614a68c11421dfaf2f7fa50fb35d",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_REL_CHK_PROBLEM.CHECK_CLASS",
+"name":          "CHECK_CLASS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_db667d12a4034fedb3d483274955503ca4a361e2",
+"structure":	 "ID_f0136ff6dfaf3d2b36507dbdb959b2ec4b55fb23",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_14705e942a35139f394e6d7d0bf737fc0fb9c29a",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_REL_CHK_PROBLEM.COUNT",
+"name":          "COUNT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_db667d12a4034fedb3d483274955503ca4a361e2",
+"structure":	 "ID_f0136ff6dfaf3d2b36507dbdb959b2ec4b55fb23",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_612105768eff7b24a1faa27a5e6e52c9af022fa2",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_REL_CHK_PROBLEM.DISP_CRITICALITY",
+"name":          "DISP_CRITICALITY",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_db667d12a4034fedb3d483274955503ca4a361e2",
+"structure":	 "ID_f0136ff6dfaf3d2b36507dbdb959b2ec4b55fb23",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6c0da9fb620960f05255d18bc9fc076ddb933357",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_REL_CHK_PROBLEM.KIND",
+"name":          "KIND",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_db667d12a4034fedb3d483274955503ca4a361e2",
+"structure":	 "ID_f0136ff6dfaf3d2b36507dbdb959b2ec4b55fb23",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_cccc185fd512faa630b9d86f8d55d3ea2159710e",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_REL_CHK_PROBLEM.OBJNAME",
+"name":          "OBJNAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_db667d12a4034fedb3d483274955503ca4a361e2",
+"structure":	 "ID_f0136ff6dfaf3d2b36507dbdb959b2ec4b55fb23",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_425301fb90a06351709f5fedf37ac51f92ec76f1",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_REL_CHK_PROBLEM.OBJTYPE",
+"name":          "OBJTYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_db667d12a4034fedb3d483274955503ca4a361e2",
+"structure":	 "ID_f0136ff6dfaf3d2b36507dbdb959b2ec4b55fb23",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3149c5e1509d6a05517aef57e3c0bb8853653be3",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_REL_CHK_PROBLEM.REAL_CRITICALITY",
+"name":          "REAL_CRITICALITY",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_db667d12a4034fedb3d483274955503ca4a361e2",
+"structure":	 "ID_f0136ff6dfaf3d2b36507dbdb959b2ec4b55fb23",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_bafe2e3f9ed4f35f91ece5f3ff7c658c0f28dccb",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TSR_TRKORR.HIGH",
+"name":          "HIGH",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_37481c2fb0a5d6d7d1e1f969754c9967c752da4d",
+"structure":	 "ID_43e2c7a71c61bbadca1d46be8db5efc21cbadaff",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_a9897d55a5d63fcfed4abdc777a327fc62cd202b",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TSR_TRKORR.LOW",
+"name":          "LOW",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_37481c2fb0a5d6d7d1e1f969754c9967c752da4d",
+"structure":	 "ID_43e2c7a71c61bbadca1d46be8db5efc21cbadaff",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_10d0b828d80b094aca21ff3767480ed00d74de03",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TSR_TRKORR.OPTION",
+"name":          "OPTION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_37481c2fb0a5d6d7d1e1f969754c9967c752da4d",
+"structure":	 "ID_43e2c7a71c61bbadca1d46be8db5efc21cbadaff",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f04951b21d972c89aeecf9b611f1387e205171c2",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_TSR_TRKORR.SIGN",
+"name":          "SIGN",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_37481c2fb0a5d6d7d1e1f969754c9967c752da4d",
+"structure":	 "ID_43e2c7a71c61bbadca1d46be8db5efc21cbadaff",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_24dfc0cf4993930986deaf9875773f2a25f7d4ca",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.ATTRIBUTES_PRIVATE",
+"name":          "ATTRIBUTES_PRIVATE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7779b9aa037546bdfe8e0fcb2c992f03920701ab",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.ATTRIBUTES_PROTECTED",
+"name":          "ATTRIBUTES_PROTECTED",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_dfdb581490096ce9da02c942c5876571d8b210c6",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.ATTRIBUTES_PUBLIC",
+"name":          "ATTRIBUTES_PUBLIC",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f78aff1eb3597b849f9e385188d843621530a890",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.CLASS_NAME",
+"name":          "CLASS_NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_20dcbb58dcf6348bd9750f653ddc4092226f7cd2",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.INTERFACES_DIRECT",
+"name":          "INTERFACES_DIRECT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_2c60e8762dcdd296569a3654097f628356ea627b",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.INTERFACES_TOTAL",
+"name":          "INTERFACES_TOTAL",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_0eac0bf6bf62f0c914c00617bda8128485b9975a",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.METHODS_INSTANCE",
+"name":          "METHODS_INSTANCE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_72897ce85a5e95bcd968f0a4fe1568e258edeb34",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.METHODS_PRIVATE",
+"name":          "METHODS_PRIVATE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d093ce0baa79230e3ca569af0c0851537ceb921d",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.METHODS_PROTECTED",
+"name":          "METHODS_PROTECTED",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f2336f8baf4ea3f166f6e3677df44373d2cef389",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.METHODS_PUBLIC",
+"name":          "METHODS_PUBLIC",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ec47419112a539c7083d3b1d44a438af4b217633",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_CLASS_METRICS.METHODS_STATIC",
+"name":          "METHODS_STATIC",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_53584939a79a641b754999cf0b76ad9123a4ac42",
+"structure":	 "ID_004be89dd9e070ecb080b9b759e5be29ec24881b",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_a8f57274949b9497397fabf292db942c75858b1f",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.ABSOLUTE_LINE_COUNT",
+"name":          "ABSOLUTE_LINE_COUNT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_17712f715f6e9410d0e3966ea767a8eb6893d551",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.COMMENT_LINE_COUNT",
+"name":          "COMMENT_LINE_COUNT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_5b3b9ee66bee9f4c3e1c3a5b365cacf353a76271",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.END_LINE",
+"name":          "END_LINE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_57dad0a81fc17051c4ad11cee0607daf6bf905bc",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.OBJ_NAME",
+"name":          "OBJ_NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ba25ea168b3713811b950dc686ec9577224cbe3c",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.OBJ_TYPE",
+"name":          "OBJ_TYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8e14483544836a051751d4268da14d30b47cddaf",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.SOBJ_NAME",
+"name":          "SOBJ_NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_dac800680b3abbd743879a97c48f3110dc2f3e9e",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.SOBJ_TYPE",
+"name":          "SOBJ_TYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_5aceceedcb28a48d4b5d406b7ab69c788343848c",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.START_LINE",
+"name":          "START_LINE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_a757edc313e6b1c35d4158788cbf45eded03c17a",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.STATEMENT_COUNT_CODE",
+"name":          "STATEMENT_COUNT_CODE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_cd08183319ea803644cf28a3b3105ddcca8d4765",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_S_OBJECT_METRICS.STATEMENT_COUNT_TOTAL",
+"name":          "STATEMENT_COUNT_TOTAL",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_b7d5aea4f23de458666583ff2af23d539bbc515e",
+"structure":	 "ID_4049da66c1965acdf504363250695627b0a9e32e",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_c53faf20f481170ac35c56d905c1c7bc6a151851",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_EXTX.OBJECTTYPE",
+"name":          "OBJECTTYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_31d4596aaf7504ba33b2b1e75aa1ab1f08180eb3",
+"structure":	 "ID_20cc0e0cb44bfe6e24279db8a9bbdc823e5630b3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_84797b7e0a4928e6fd9410fd4fbddd13906ec21b",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_EXTX.LANGUAGE",
+"name":          "LANGUAGE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_31d4596aaf7504ba33b2b1e75aa1ab1f08180eb3",
+"structure":	 "ID_20cc0e0cb44bfe6e24279db8a9bbdc823e5630b3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_51c9da5ea6ce24317554f1a7255020b61efce2ab",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_EXTX.TEXT",
+"name":          "TEXT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_31d4596aaf7504ba33b2b1e75aa1ab1f08180eb3",
+"structure":	 "ID_20cc0e0cb44bfe6e24279db8a9bbdc823e5630b3",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_56539c253e1758b7e5e46c9da650f83fbcb36eda",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.GENEHMIGUNGSNR",
+"name":          "GENEHMIGUNGSNR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_492e0923ac236d49e216b77e41fba7d79e9d3224",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.USERNAME",
+"name":          "USERNAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_88f8753f9713108fd38dab6a71886537ceb38572",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.AB",
+"name":          "AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_87198178239403498fc9a42cc69eb6a6b3a35f70",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.BIS",
+"name":          "BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_a28006ab76d22d9ba977d92a41e11fd3a9b9ab93",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.PGMID",
+"name":          "PGMID",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6456860530713cd4c075431aa8815e7bbd744e9c",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.OBJECT",
+"name":          "OBJECT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fe3c5789649db16a8c229c55c941820afa13d336",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.OBJ_NAME",
+"name":          "OBJ_NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_26779e20e591553236c3086a23f9c82a9a0d6c47",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.CREDAT",
+"name":          "CREDAT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_668751c5a69c048f7000eb472fb83cc21c657562",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.CRENAME",
+"name":          "CRENAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_cbd74813dc466133b5003b6b226e562fe7b57699",
+"qualifiedName": "/GISA/BWBCI./GISA/BWBCI_MODS.LINE_COMMENT",
+"name":          "LINE_COMMENT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a9d8fbe9698c8454770ce0b4b33c9651573ccb81",
+"structure":	 "ID_6ae71ab65cfa51cf880b7e6ddfc53163c46e359d",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_146c5cdac015d16b7badb414233313f248550039",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.ADMINFIELD",
+"name":          "ADMINFIELD",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_b4f3a72e9c487b3d85459664fabea0471934f26a",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.CHANGED",
+"name":          "CHANGED",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_b18cb2e755375c1b7a76b6250919f2ef9d7edc5a",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.CHANGEDBY",
+"name":          "CHANGEDBY",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_24afdef6d7cc4f1de28b49181a08adae76a86b0b",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.CREATED",
+"name":          "CREATED",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_b210c2bb6bacb78b5668069780474eddaf08529a",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.CREATOR",
+"name":          "CREATOR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_1086cad417415dde05b6600960e69c42608dee1c",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.DATAELEMENT",
+"name":          "DATAELEMENT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_59ee08d517915347a4304ce2845b4e99fe5259bf",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.DATATYPE",
+"name":          "DATATYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_58ff3a236df27887253cd45fbac2a4b9104d015d",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.DECIMALS",
+"name":          "DECIMALS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_5beecebe638467b533a3bbad352a3ad0c53d354d",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.DESCRIPTION",
+"name":          "DESCRIPTION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_21a43a7d76565c10b3e87938e61f49a87d802888",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.DOMNAME",
+"name":          "DOMNAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3d19f121abb37b057aebe35dda94ff7a5e997d39",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.EXPOSURE",
+"name":          "EXPOSURE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_0024af437b68be6e059390e60b79470cf8d6910d",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.INCLUDE",
+"name":          "INCLUDE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d9b9d370e63500f30cc7b351783ddcf93c3274c7",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.ITERATION",
+"name":          "ITERATION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_358d2f91003f3e96a49d8968c2fef65852bdb9c0",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.LENG",
+"name":          "LENG",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_a25bfbe83fb4c59afcced2408557b01478bcc6c7",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.MODIFIER",
+"name":          "MODIFIER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_24d7c348851448f6b709f3b8d0e4576448a5efd8",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.NAME",
+"name":          "NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fc1792dfc7a99060052340e9d1315b865eb1fdfb",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.POSITION_TABLE",
+"name":          "POSITION_TABLE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8b58659a65d3e91f926c50d0e9aacdfb02556216",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.PRECFIELD",
+"name":          "PRECFIELD",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8f61682b01646d0acc1a20714ef6f949027522ba",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.SOURCE_CODE_DEFINED",
+"name":          "SOURCE_CODE_DEFINED",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_71c29f78242b772615751bab4303e1361a7fe74a",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.STRUCTURE",
+"name":          "STRUCTURE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_9b91b235b4967be7e06f120e9aace5c88fb4a4af",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.TABCLASS",
+"name":          "TABCLASS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_0834c9af70f57c1942eac85037eef485045ec5e8",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.TYPE",
+"name":          "TYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_953481879e73446bd682da897f3383f80fc8102f",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.TYPOFRELATION",
+"name":          "TYPOFRELATION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ccf6451139b518461949787f79913f81857b334d",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_ATTR.USING_OBJECTS",
+"name":          "USING_OBJECTS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_a97c4e0742620fef6c6303195a4d1c0d4e93a9d3",
+"structure":	 "ID_c54515459d02d43144208e18f4c8acd73e3aa144",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d8a648bffbb06ab62f854d411c4313fd5b28b8f4",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CALL.NAME",
+"name":          "NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_00204e1a5b3b38239885d598ee136dc54e3b6bba",
+"structure":	 "ID_947b79cc2bf52dea2a768313a83fd95ba8c44a80",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_57fc18e980a76924848cc869f3f944846db6c3a8",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CALL.PARENT",
+"name":          "PARENT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_00204e1a5b3b38239885d598ee136dc54e3b6bba",
+"structure":	 "ID_947b79cc2bf52dea2a768313a83fd95ba8c44a80",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_24df7fdaa1db26d4d2a63935ec95d631e868fdc4",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CALL.REFERENCE",
+"name":          "REFERENCE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_00204e1a5b3b38239885d598ee136dc54e3b6bba",
+"structure":	 "ID_947b79cc2bf52dea2a768313a83fd95ba8c44a80",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_64c9b13863544816fcaee281a8d49b0d5fe3a55e",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CALL.TYPE",
+"name":          "TYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_00204e1a5b3b38239885d598ee136dc54e3b6bba",
+"structure":	 "ID_947b79cc2bf52dea2a768313a83fd95ba8c44a80",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6efdb2dfc5772d65664caee04e8272dfb70e075e",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.CHANGED",
+"name":          "CHANGED",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e029e0ee5e920d3bdc57b4c4d565e7d9c243296e",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.CHANGEDBY",
+"name":          "CHANGEDBY",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_63501943f8f9ca79d1dd5e4c1e4e4331a0c83051",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.CREATED",
+"name":          "CREATED",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6573e935a78c3202de8f455a7319badce37587f2",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.CREATOR",
+"name":          "CREATOR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_4d97191f5c411ff00d73381921c4bef3f6697930",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.DESCRIPTION",
+"name":          "DESCRIPTION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_bffd35cfe0ae6f772a152cc88e1b4f17339e8c38",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.INCLUDE",
+"name":          "INCLUDE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_2e7b1b0462cb3aefc9a1c683989075775454b550",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.INTERFACES",
+"name":          "INTERFACES",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_c8da94b1d74282960e586611ba59407fc9702c2e",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.ITERATION",
+"name":          "ITERATION",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_9915fb59db0eebb38a1a509a482a1e6bc4752041",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.LOCAL",
+"name":          "LOCAL",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_29bfef8bf0fb2f1286562168e327e2ade6729d0e",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.LOCAL_CLASSES",
+"name":          "LOCAL_CLASSES",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_95b8e31796e33d173ee4b9a99d37d4b5576370c5",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.MACROS",
+"name":          "MACROS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_905faf9a27ccc80984d3960bbe133b032b1b45f1",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.MEMBERATTRIBUTES",
+"name":          "MEMBERATTRIBUTES",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3014db2d871674064d98c6019394bb4b57a2799d",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.METHODS",
+"name":          "METHODS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d99870d6a103bff1b678c6b59acf490eaa22c069",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.MODIFIER",
+"name":          "MODIFIER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_59f1bf6c3324d5fd4778ce53a14995e87813e784",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.NAME",
+"name":          "NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_145d298a768db69354c181c25bdd0d198949be18",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.SUPERCLASS",
+"name":          "SUPERCLASS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fabdf8c672eb834d3a79520b2a03a52937d99a51",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.TYPE",
+"name":          "TYPE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fa577180ff035f9ba6528ab650a41671ef30e4d3",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CLASS.USED_AS_REFERENCE",
+"name":          "USED_AS_REFERENCE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_fc1ec67f52e4fcc8b7993a8e4b2e5a3354233aa1",
+"structure":	 "ID_e3e097dc79d8161b2a2448f6c0930a8b081cd013",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f947eb51eeee25f64a4a46deb5d5740523828976",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CSV.CHANGED",
+"name":          "CHANGED",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_804b1a3fb40cdad2188c037e95ef1a2415495221",
+"structure":	 "ID_882c9d3db6863a7b2eef31460600daf3037d17cf",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_084f1592b19fab3da46b784b6a0aab701292ba7a",
+"qualifiedName": "/GISA/BWBCI_EXTRACT./GISA/BWBCI_EXTR_CSV.CHANGED_BY",
+"name":          "CHANGED_BY",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_804b1a3fb40cdad2188c037e95ef1a2415495221",
+"structure":	 "ID_882c9d3db6863a7b2eef31460600daf3037d17cf",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+}]

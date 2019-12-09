@@ -1,0 +1,10 @@
+[{"id":            "ID_f1deb489ff763c72a4037df07f049191dfed88ba",
+"qualifiedName": "/GSA/BEX./GSA/BEX_S_TIME_SLICES_CHECK.SLICE_DATA",
+"name":          "SLICE_DATA",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_7bd56dbda41d30f8e7340e8934f18724b57f6350",
+"structure":	 "ID_d1afc527db34004d13a21a7e49f5abbe69f39a89",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+}]

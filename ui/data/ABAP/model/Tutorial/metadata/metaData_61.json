@@ -1,0 +1,270 @@
+[{"id":            "ID_bb5cd833a0e744bd2d0d2859fb6077cdd20f2dc6",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.REF_INPUT_TABLE",
+"name":          "REF_INPUT_TABLE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_93fdf46e7c767b9cd2e115117ed21f13ee868acb",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.REF_TIMESTAMP",
+"name":          "REF_TIMESTAMP",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_63542b799ba250b5702548cea7660c611aaea51f",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.REF_USER",
+"name":          "REF_USER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_88be686e81f54c095d43257aeea47dc9c0b161ce",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_MPK1.REF_RECORD_AKTIV",
+"name":          "REF_RECORD_AKTIV",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_93e29c2f3ea74b4ee0d2d096391144122a7728d3",
+"structure":	 "ID_2c44217ba90a485a88b5bdd9304d5340fe5fe008",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_b4ef16c9594d15b45bfe1d7dfde5e13a4e87f4bc",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_c94c737e01d881c4684c9c0c3c3cd147d37e30b1",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.AB",
+"name":          "AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e61342b2ace27bba707f90985753f67d4fb793ce",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.REF_NR",
+"name":          "REF_NR",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_9367f4105b7f548845c7155adeb49d26487be1a7",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.VNBG",
+"name":          "VNBG",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_9d4799a5a7e4c6a0b2f5e15ba182e784b28947c5",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.TEILNETZ",
+"name":          "TEILNETZ",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e480bde8ddbc0330587d3ef561f79eaefa60f6d3",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.NETZBEREICH",
+"name":          "NETZBEREICH",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_92b1f327c55f9a6307e306379c6ea1d844628ab6",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.TARIFGEBIET",
+"name":          "TARIFGEBIET",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_5c474c22cce51d66f6f16ef5b73c84bf8f6f2f2c",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.NETZBEREICH_NAME",
+"name":          "NETZBEREICH_NAME",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_70975a3a33072c126afd695abae7d63fbc976fae",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.MARKTGEBIET_1",
+"name":          "MARKTGEBIET_1",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7687dc568c7554d2aa8b1d89a439a803a720ba5e",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.MARKTGEBIET_2",
+"name":          "MARKTGEBIET_2",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_2c8a65cefaa87f20439d9513bac79962df17208c",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.MARKTGEBIET_3",
+"name":          "MARKTGEBIET_3",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6e997ff89182b4d44de85c13abb45668467ae6e8",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.MARKTGEBIET_4",
+"name":          "MARKTGEBIET_4",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_b681914976faf68aebd221ca6925ba6133a5b379",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.STD_GEBIET_MDL",
+"name":          "STD_GEBIET_MDL",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_02f1e5bea9252e1e23aab6be511e8a5a5b00e920",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.STD_GEBIET_MSB",
+"name":          "STD_GEBIET_MSB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_a17980be12f649f6693ed85ee61cdb49ce586118",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.STATUS",
+"name":          "STATUS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_321d12c2eaa2d52f7489468dc98392a09a83ef96",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.BIS",
+"name":          "BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_db54d3c8c71a5c0c3dddb33613ac29ba408791ee",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.KOR_HERKUNFT",
+"name":          "KOR_HERKUNFT",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_c89f4002d89afc117610994071578f43d5676ea7",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.KOR_AB",
+"name":          "KOR_AB",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ad94b1a9f28d145f286d202e2ef30fe3e10bea38",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.KOR_BIS",
+"name":          "KOR_BIS",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fc418421681107f7efa6925711c90faa3240b04c",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.REF_INPUT_TABLE",
+"name":          "REF_INPUT_TABLE",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_646630012985825992aa1339159d409df1c785b8",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.REF_TIMESTAMP",
+"name":          "REF_TIMESTAMP",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3f011ea85a04ffca070c1725c171830b801dde1c",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.REF_USER",
+"name":          "REF_USER",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e6e5adeaa7cdad83187e7971c9e10cfe0c7275b6",
+"qualifiedName": "/GSA/BEX_GN./GSA/BEX_G_NETNA.REF_RECORD_AKTIV",
+"name":          "REF_RECORD_AKTIV",
+"type":          "FAMIX.TableTypeElement",
+"belongsTo":     "ID_087cc912f4dd71fd64467a6977dbb506f6f0ef41",
+"structure":	 "ID_1797dff2748ea5c11e32e3de845673b96c1b89fa",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+}]

@@ -1,0 +1,1000 @@
+[{"id":			 "ID_0d657ad796a35f6dac7a0e017854bd8a02657721",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CONVERT_BEX_TO_EXPORT_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_216d1b02a63f567bfb717df1263b8556a4eac1f7",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_491e99987506983526dd458ddbb679814286f873",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CONVERT_BEX_TO_EXPORT_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_216d1b02a63f567bfb717df1263b8556a4eac1f7",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_d8917e3298df887dad2606ac4d437fca768a7bf1",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CONVERT_BEX_TO_ALV_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_afbb340679d1103b326d316ece47049291811c15",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_0cd3e6fae04a0e50cbafeaa26772ba83b043ef6f",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CONVERT_BEX_TO_ALV_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_afbb340679d1103b326d316ece47049291811c15",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_b40876d8990e971bd2e2f1e2ad377199107da3d2",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CONVERT_EXPORT_TO_BEX_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_b5158f95432ecc33a8848231f253a20302e5a830",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_df0580d5b3419297bb0795e5949ce67c2c800bb6",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CONVERT_EXPORT_TO_BEX_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_b5158f95432ecc33a8848231f253a20302e5a830",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_948bf7b01066191382a48244c3ee51fa72789d34",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DELETE_OLD_BEX_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_09b2c7022d2250d7da5b8a4d87be6f03b25978de",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_ffcfe351b0fdac5d8f8d204046564d1070bb80a3",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DELETE_OLD_BEX_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_09b2c7022d2250d7da5b8a4d87be6f03b25978de",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_dcfe776f4efedb4c60ce47c58075ee231e94959a",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPDATE_BEX_CORRECTION.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_c328e340dd966d895c1b00beecb7ccdf62c30eca",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_81e7615d13b0e6397430bfbf17769db2b9d176e2",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPDATE_BEX_CORRECTION.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_c328e340dd966d895c1b00beecb7ccdf62c30eca",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_acbbecb89cf08b15310775fb13f424ef8b0fae74",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.INSERT_BEX_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_3d8a213a60ffb4da53a35db326639f59de089771",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_af38b1c1ba07594ebfb2acbf746efd8f0952ff52",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.INSERT_BEX_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_3d8a213a60ffb4da53a35db326639f59de089771",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_31e0a028a9f387013af9bfb4221e6aeb61b342be",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DEACTIVATE_BEX_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_6e7933b203b43e98aface689fc3ee5dcad6600d2",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_66723b1ab80b0213ec7ca5c7606dd2a30cdee59e",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DEACTIVATE_BEX_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_6e7933b203b43e98aface689fc3ee5dcad6600d2",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_5c5a2656c5239da57755310e4851b5fda0cbc051",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DEACTIVATE_OR_ACTIVATE_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_a69ae58c3bbe70e39be1c3a768fdbc8a99bbec6b",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_7b13867527b1f1058c8edaf1cc996580db98a08b",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DEACTIVATE_OR_ACTIVATE_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_a69ae58c3bbe70e39be1c3a768fdbc8a99bbec6b",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_fef3c0cabf9b57525084a7385684c74b37ec1a1c",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DEACTIVATE_BEX_PART_OF_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_e80203b40a74923603cda969ff399f7f01637723",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_6f62570437644d4721b266a162d20cc35889917f",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DEACTIVATE_BEX_PART_OF_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_e80203b40a74923603cda969ff399f7f01637723",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_030530430c7800f858c83ff66c5a09385958a1ec",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CREATE_CUSTOMIZING_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_0526ef48e0a898d1623955c12712e2f8adfab935",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_e13376c3d57cf466bbb1e5b8dfbc1586849ae09d",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CREATE_CUSTOMIZING_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_0526ef48e0a898d1623955c12712e2f8adfab935",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_43c7558c6cad9ae73bc2db12b9ef4bcf03b4d071",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPLOAD_ORIGINAL_FILE.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_e0989f1e6ad4ab52c90fda65e11162b9869150b4",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_604c9f70880a080ae825505ad751fde6da520af8",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPLOAD_ORIGINAL_FILE.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_e0989f1e6ad4ab52c90fda65e11162b9869150b4",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_2cf677a4567a1c787edd581dd898449285eff9df",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPLOAD_DELTA_FILE.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_4e0dddac212083e3184da04b92b6e0cdc4926c51",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_397ff4e176057eee3e5bf8936024f8db98bf81c8",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPLOAD_DELTA_FILE.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_4e0dddac212083e3184da04b92b6e0cdc4926c51",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_ff4290a5b839cbb3c0d154e0c1ff4cfb21ca0653",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPLOAD_FILE_LOCAL.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_98c8a280a965f27c82adcfc470baf14f8675a58e",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_ba0075e70e8c0b741d2278cc9a4a40272b43ef55",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPLOAD_FILE_LOCAL.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_98c8a280a965f27c82adcfc470baf14f8675a58e",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_903ba227c12c1e3371f0929f03d5bf8b9dc13661",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPLOAD_FILE_SERVER.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_5ea4cdaef6d8edfe44b7f29c1db824ab4bc3cdd5",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_61073aef8092053306c85227a693c2e3e0844c91",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.UPLOAD_FILE_SERVER.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_5ea4cdaef6d8edfe44b7f29c1db824ab4bc3cdd5",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_5de34098fb80dc620a0633997e1a9c362d5ee468",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DOWNLOAD_BEX_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_8aba9e5bd39b60776e104141e92a6bbc712b67f6",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_e30861784ef1cabed9fa83f93382d9c96013ace7",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DOWNLOAD_BEX_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_8aba9e5bd39b60776e104141e92a6bbc712b67f6",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_a71fd980e13584400889e7a87eb850d9f6684fcc",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DOWNLOAD_BEX_DATA_LOCAL.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_994f1a11ea803d70dff540f902f55ec37b733e0b",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_fecbfc1dd1a5f50fde7aebdefe151c7bca47947a",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DOWNLOAD_BEX_DATA_LOCAL.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_994f1a11ea803d70dff540f902f55ec37b733e0b",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_60fb738483bcb3038a8aa63df5f7c9d15fbdc48d",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DOWNLOAD_BEX_DATA_SERVER.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_7840f8d65a3f96e4d78317e8dd57253d15e7367d",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_b5e42975ec6fcb8128ad1cdc58afb5c339d5b45f",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.DOWNLOAD_BEX_DATA_SERVER.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_7840f8d65a3f96e4d78317e8dd57253d15e7367d",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_852ad76c81fab06b58582ff218cebfb868b876a6",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.SHOW_BEX_DATA.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_ff4fcd352b70c29f1b65c7d1702239a5c4a5f323",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_9382da7d06dd452f6e5756535593956669b1ac7d",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.SHOW_BEX_DATA.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_ff4fcd352b70c29f1b65c7d1702239a5c4a5f323",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_eaec28a39fa8c263acc509a4c785493b068ea844",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.MAP_ORIGINAL_FILE_TO_BEX_TABLE.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_6f13ddc8ef5f91fae248f9156c0d074acbdf5b9a",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_6e17d48d70083e4bcb0e1b2335ad62c94f2204af",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.MAP_ORIGINAL_FILE_TO_BEX_TABLE.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_6f13ddc8ef5f91fae248f9156c0d074acbdf5b9a",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_47372dc0a5d78b785307f5cb1bc5ae6bfe3c501d",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.MAP_DELTA_FILE_TO_BEX_TABLE.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_1a37e6a4d60fbaf8c3214c9af3ff9cdc67c20ba5",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_3423059cbf14595880402382b449343f8d98bd5c",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.MAP_DELTA_FILE_TO_BEX_TABLE.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_1a37e6a4d60fbaf8c3214c9af3ff9cdc67c20ba5",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_96081ec5f774946c7766b23bed372b284e43d4cf",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.PROCESS_BEFORE_UPDATE.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_5785a06f632b4f5005f844189f707d468de35c41",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_8b9e10080360f5bd38dc2c48fd502c4fa8c93aaf",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.PROCESS_BEFORE_UPDATE.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_5785a06f632b4f5005f844189f707d468de35c41",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_d7ada496f6ee0550fd92a3e4063da7c6e7711032",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.PROCESS_AFTER_READING.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_ecacae52b5fb785e1062b2db0471bdc945ba4c11",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_69bd525af9fc5f62e13ba1bd153fc1c0cdd5fc17",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.PROCESS_AFTER_READING.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_ecacae52b5fb785e1062b2db0471bdc945ba4c11",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_afc22e9ff9923f322d32bb744d8e392c39d8378c",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.PROCESS_AFTER_UPDATE.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_ec260321c2fefd15a2d3784a44573a36bf0e1d8d",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_2ce3d57545fedd645352da5e8a5eadbea044ac5d",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.PROCESS_AFTER_UPDATE.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_ec260321c2fefd15a2d3784a44573a36bf0e1d8d",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_68ecbf29bc06f656a27369b8fc67a4396c5a9c1a",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.EXCLUDE_DATA_OUTE_OF_DATE.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_3c7d14ddb0bd985245e72998ff8a1deac94ad8dd",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_b895065ea78dc2bfc5c4ddb677d8f0c0ab250ccb",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.EXCLUDE_DATA_OUTE_OF_DATE.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_3c7d14ddb0bd985245e72998ff8a1deac94ad8dd",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_966d8ae1e56917d010d08a5aa83674ba8e2386a6",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.GET_NEW_REF_NR.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_6aa78b79a6a6611daa2eba520d3d2afb00625fc5",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_d965a463ac183af4828302b14522bb3371cec49f",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.GET_NEW_REF_NR.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_6aa78b79a6a6611daa2eba520d3d2afb00625fc5",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_1e27b17392dabae2f5ba2a767b36d2dfc8a17275",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.LOG_BEGIN.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_26ef44254c3cee20c078e2daedd633e78ddbffe2",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_582e8cbec3ba2aab580eeec3c06842787758c34b",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.LOG_BEGIN.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_26ef44254c3cee20c078e2daedd633e78ddbffe2",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_1c6f6bfeef9fb2d3b7d2efe7091047e586021334",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.LOG_END.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_f313a558e0afd3b77ef512ac4f7dbf6722fb3079",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_2eb42f6f5aa9b4fee8a34200d60567a93cbc72ce",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.LOG_END.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_f313a558e0afd3b77ef512ac4f7dbf6722fb3079",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_82c94c8162f8c3e054a22f415d6f0a62965e6d4b",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.LOG_PROCESS_INPUT_TABLE_BEGIN.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_53ce5857f2c951d6a3c6f8ed84fad4e29be0bb24",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_66fe2e81f5f3877fcb80160ccd0c6d0236b0ff7b",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.LOG_PROCESS_INPUT_TABLE_BEGIN.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_53ce5857f2c951d6a3c6f8ed84fad4e29be0bb24",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_941aeddc9608883c9985a2ce2d7b867f310fbb28",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CONVERT_BY_CUSTOMIZING.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_929372690258622726d738fe0c66d2cdf93df14c",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_a7ae8d1e41c691a72f9f746c3dc482182001a7f7",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.CONVERT_BY_CUSTOMIZING.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_929372690258622726d738fe0c66d2cdf93df14c",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":			 "ID_20f173e65ab241d487b8295214adda3847131e2a",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.GENERATE_FIELDS.MAC_MSG_PUT",
+"name":          "MAC_MSG_PUT",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_08ee3619158cd0c4eebb33ae0161fb57b26f637e",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "16",
+"iteration": 	 "0"
+},{
+"id":			 "ID_93a90a6ecaff7d4147eff30f4a9b1b8a5112bfcc",
+"qualifiedName": "/GSA/BEX./GSA/BEX_UPLOAD.GENERATE_FIELDS.MAC_MESSAGE",
+"name":          "MAC_MESSAGE",
+"type":          "FAMIX.Macro",
+"belongsTo":     "ID_08ee3619158cd0c4eebb33ae0161fb57b26f637e",
+"calls":		 "",
+"calledBy":		 "",
+"numberOfStatements": "12",
+"iteration": 	 "0"
+},{
+"id":            "ID_b57311ff0e08ff28c806efb80bfd63566752a43a",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAC.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_7e6b7c5530ce3326f3a3ecff291473cf0cbbd361",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_dc40b19d71eb00a80ad7bcf2b31df01b46d186a4",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAC.BIMAP_KEY",
+"name":          "BIMAP_KEY",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_7e6b7c5530ce3326f3a3ecff291473cf0cbbd361",
+"dataElement":   "/GSA/BEX_D_BIMAP",
+"typeOf":		 "ID_7b52009b64fd0a2a49e6d8a939753077792b0554",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_4fd02aaf539880819f1a582d31787faea7dfa21d",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAC.DESCRIPTION",
+"name":          "DESCRIPTION",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_7e6b7c5530ce3326f3a3ecff291473cf0cbbd361",
+"dataElement":   "/GSA/BEX_D_CMAPP_DESCRIPTION",
+"typeOf":		 "ID_77d67ab1e3d05296a7131e197d9d3767fb900bad",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_494b558646e128f6319a38e8691e7cc55c7d8165",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_22e59aae82b9222b9f04b47489c28553ef67072b",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.BIMAP_KEY",
+"name":          "BIMAP_KEY",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_BIMAP",
+"typeOf":		 "ID_7b52009b64fd0a2a49e6d8a939753077792b0554",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_592818a361696db26dbd8fd5bde157a87c8a8596",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.VALUE",
+"name":          "VALUE",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_RATEDATA_FIELDVALUE",
+"typeOf":		 "ID_63843e04b0f7a32d94539cf328ed335d39085a56",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_78a72822ca2038493ef79ca4cc4bf311eb0c0023",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.VALUE1",
+"name":          "VALUE1",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_RATEDATA_FIELDVALUE",
+"typeOf":		 "ID_63843e04b0f7a32d94539cf328ed335d39085a56",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_e78a99552c0bfc596d69733d6b52fa9d9d36230c",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.VALUE2",
+"name":          "VALUE2",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_RATEDATA_FIELDVALUE",
+"typeOf":		 "ID_63843e04b0f7a32d94539cf328ed335d39085a56",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ab49f7673a310014d59e742b3827d27ee0674f1c",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.VALUE3",
+"name":          "VALUE3",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_RATEDATA_FIELDVALUE",
+"typeOf":		 "ID_63843e04b0f7a32d94539cf328ed335d39085a56",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7bc7bd7ba80095ecdd5fc25a56e90ecb398511dc",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.GETKEY_VALUE",
+"name":          "GETKEY_VALUE",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_GETKEY_VALUE",
+"typeOf":		 "ID_9741f79aca77af5b5793817bd36737360dcb0a29",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_210d5c796e8acf65fea4acef6ee1411ea96ecee4",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.GETKEY_VALUE1",
+"name":          "GETKEY_VALUE1",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_GETKEY_VALUE",
+"typeOf":		 "ID_9741f79aca77af5b5793817bd36737360dcb0a29",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d4c4b84bd7ec8b73bae95a1acb10f56530282c29",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.GETKEY_VALUE2",
+"name":          "GETKEY_VALUE2",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_GETKEY_VALUE",
+"typeOf":		 "ID_9741f79aca77af5b5793817bd36737360dcb0a29",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f0d6caf672956573ed792304102375c6702ff87f",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_BIMAP.GETKEY_VALUE3",
+"name":          "GETKEY_VALUE3",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_41f448afc82647d1376ad508aec1ebe28826b8f7",
+"dataElement":   "/GSA/BEX_D_GETKEY_VALUE",
+"typeOf":		 "ID_9741f79aca77af5b5793817bd36737360dcb0a29",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_806cd5051e7cba4dd8d1267b65a25f40c9c75278",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_COMP.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_a980942f60e0dc3c0819001b6ce7fcf42942943f",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_6119911aeb69582df95e21c2fb2b082b70efd282",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_COMP.COMPONENT",
+"name":          "COMPONENT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_a980942f60e0dc3c0819001b6ce7fcf42942943f",
+"dataElement":   "/GSA/BEX_D_COMPONENT",
+"typeOf":		 "ID_ccddaf626302032b0414003d6d4ebbfe4b3f99af",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_208c95e1d9ff7633cae5390568868a391aa2b651",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_COMPU.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_bac014abce9fbc2ba56e839e54c7aaa74fb8f4ea",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_70b9075edf6b199f93b50ddce93ea90a4f36ffec",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_COMPU.COMPONENT",
+"name":          "COMPONENT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_bac014abce9fbc2ba56e839e54c7aaa74fb8f4ea",
+"dataElement":   "/GSA/BEX_D_COMPONENT",
+"typeOf":		 "ID_ccddaf626302032b0414003d6d4ebbfe4b3f99af",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_ad2491b2742d13e641c978377a20f5dc27ebd6f6",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_COMPU.USE_CASE",
+"name":          "USE_CASE",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_bac014abce9fbc2ba56e839e54c7aaa74fb8f4ea",
+"dataElement":   "/GSA/BEX_D_USE_CASE",
+"typeOf":		 "ID_dcd7d0e3f3c05153d22d9f1d8caff4ab1b270ffe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7ad2d957d5e51ca09c88183daea2e889f690fdbe",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_COMPU.FM_GETDATA",
+"name":          "FM_GETDATA",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_bac014abce9fbc2ba56e839e54c7aaa74fb8f4ea",
+"dataElement":   "/GSA/BEX_D_FM_GETDATA",
+"typeOf":		 "ID_acf10f2c0a9d00345c2f6be783fc7068fe6a6bff",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_fbb968e2f5e3bac7c0a0ceb14d847e367381e299",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_COMPU.TABLE_NAME",
+"name":          "TABLE_NAME",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_bac014abce9fbc2ba56e839e54c7aaa74fb8f4ea",
+"dataElement":   "/GSA/BEX_D_TABLE_NAME",
+"typeOf":		 "ID_bdab02b526850c0ef562ff382a7d312349c611d3",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8c08849e51e962ed716f8b22cf79c399be5034d7",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_DBASE.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_febf9961f44cdb1dc21df76bbfe159613d100d16",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d8e450ecddc6c0c7fc38e18e581e4e6f5d23d26e",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_DBASE.BEX_DATABASE",
+"name":          "BEX_DATABASE",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_febf9961f44cdb1dc21df76bbfe159613d100d16",
+"dataElement":   "/GSA/BEX_D_DATABASE",
+"typeOf":		 "ID_1185401df4fc07ec0f2e42c538ab6b1bb1388264",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_b8dbc188bd6536ec9d180a55743d3ba6864d8a6e",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_DBASE.NKREIS",
+"name":          "NKREIS",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_febf9961f44cdb1dc21df76bbfe159613d100d16",
+"dataElement":   "/GSA/BEX_D_NUMMERNKREIS_NAME",
+"typeOf":		 "ID_efa260adfcac648aa5df57fc33520b5e0a3fb0c3",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_f52225c40fd5c8341f26f539fa01ec364deb2c1c",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_DBASE.NINTERVALL",
+"name":          "NINTERVALL",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_febf9961f44cdb1dc21df76bbfe159613d100d16",
+"dataElement":   "/GSA/BEX_D_NUMMERNKREIS_NUMMER",
+"typeOf":		 "ID_620807a1bbd690fc48597698e7f449e961505536",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_888f25983db7b083a539d7a6f5d5032d56f19699",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_ENTBE.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_285aac514422017d364752fc5a8ddd551480c3d5",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d09127a8d4c0c1e347fb707bd7bc7db0f3e98bd3",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_ENTBE.UNAME",
+"name":          "UNAME",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_285aac514422017d364752fc5a8ddd551480c3d5",
+"dataElement":   "SYUNAME",
+"typeOf":		 "",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_16152b9e6b8bf8c56a6e2fc87c7fff6505138e94",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EVENT.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_5959ddf778480d6def414be823854d561c30923b",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_d308d6b4db194adea3895170a64b16165c47b59e",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EVENT.TABLE_NAME",
+"name":          "TABLE_NAME",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_5959ddf778480d6def414be823854d561c30923b",
+"dataElement":   "/GSA/BEX_D_TABLE_NAME",
+"typeOf":		 "ID_bdab02b526850c0ef562ff382a7d312349c611d3",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_2e23f0c00fde0bd44f78f44ba09e8c6fd4f20338",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EVENT.ZEITPUNKT",
+"name":          "ZEITPUNKT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_5959ddf778480d6def414be823854d561c30923b",
+"dataElement":   "/GSA/BEX_D_EVENT",
+"typeOf":		 "ID_10d293a95915109e7675b011f404213902624f14",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_825c8bf5dfc889e24c9d9f51874d6007aaca021d",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EVENT.LINE_NUMBER",
+"name":          "LINE_NUMBER",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_5959ddf778480d6def414be823854d561c30923b",
+"dataElement":   "/GSA/BEX_D_LINE_NUMBER",
+"typeOf":		 "ID_9f682df245668969bbcd5395bdc2882591eeecde",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3b442a3870e6ab894b40142a03c4dcba09b1569e",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EVENT.FUNCTION_MODULE",
+"name":          "FUNCTION_MODULE",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_5959ddf778480d6def414be823854d561c30923b",
+"dataElement":   "/GSA/BEX_D_FUNCTION_MODULE",
+"typeOf":		 "ID_f0483f255e0ce2c93d5dfa593f2161b266474869",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_464ed217e6cdf84a1a88bf9f353a08b98b41b562",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EXITS.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_3cd969896e49a6d3326acf33f0c2d8cc38b0d06a",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_1d0291f0b4f32689484c761179a17e260d4d10ae",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EXITS.BEX_DATABASE",
+"name":          "BEX_DATABASE",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_3cd969896e49a6d3326acf33f0c2d8cc38b0d06a",
+"dataElement":   "/GSA/BEX_D_DATABASE",
+"typeOf":		 "ID_1185401df4fc07ec0f2e42c538ab6b1bb1388264",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_be06b8428a051e6cba6c25f2278ee82b32669679",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EXITS.USER_EXIT",
+"name":          "USER_EXIT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_3cd969896e49a6d3326acf33f0c2d8cc38b0d06a",
+"dataElement":   "/GSA/BEX_D_EXIT",
+"typeOf":		 "ID_f5b68d74621aa3616444d8ac07c9052a6030cf31",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_7be3d0351383e0242a83f9848654e6b22f234623",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EXITS.EXIT_FUBA",
+"name":          "EXIT_FUBA",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_3cd969896e49a6d3326acf33f0c2d8cc38b0d06a",
+"dataElement":   "/GSA/BEX_D_EXIT_FUBA",
+"typeOf":		 "ID_142e9ae35ca000441e9ea0566bb96694ed97d0bc",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_033961dc9b8ec055edd3f0cce7718121774ad86c",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_EXITS.LINE_NUMBER",
+"name":          "LINE_NUMBER",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_3cd969896e49a6d3326acf33f0c2d8cc38b0d06a",
+"dataElement":   "/GSA/BEX_D_LINE_NUMBER",
+"typeOf":		 "ID_9f682df245668969bbcd5395bdc2882591eeecde",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_3b8869e35908ee9687690d83c9d2cf05306ddf50",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_FILT.MANDT",
+"name":          "MANDT",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_9eaa000bc0e7d51c144657e366f94aa771b98e41",
+"dataElement":   "MANDT",
+"typeOf":		 "ID_c93042253c40323ad43a4f3e6212ddb097998bfe",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_8b85a698f4dfaf9bddc347de88f9888b69cdaffa",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_FILT.INPUT_TABLE",
+"name":          "INPUT_TABLE",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_9eaa000bc0e7d51c144657e366f94aa771b98e41",
+"dataElement":   "/GSA/BEX_D_INPUT_TABLE",
+"typeOf":		 "ID_8a1beaee63fed318ca54d4f7d18cee4081c68a74",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_eb24664551f8a0d04caf23d6efa95913cc34378c",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_FILT.BEX_TABLE_NAME",
+"name":          "BEX_TABLE_NAME",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_9eaa000bc0e7d51c144657e366f94aa771b98e41",
+"dataElement":   "/GSA/BEX_D_TABLE_NAME",
+"typeOf":		 "ID_bdab02b526850c0ef562ff382a7d312349c611d3",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+},{
+"id":            "ID_aeab2a27fe4d5b98eee7f174a7301f98b85a68e9",
+"qualifiedName": "/GSA/BEX./GSA/BEX_C_FILT.FIELD_NAME",
+"name":          "FIELD_NAME",
+"type":          "FAMIX.TableElement",
+"belongsTo":     "ID_9eaa000bc0e7d51c144657e366f94aa771b98e41",
+"dataElement":   "/GSA/BEX_D_FIELD_NAME",
+"typeOf":		 "ID_5c64cc5d7cc05237d16fa2873e58b5923c489b73",
+"typeUsedBy":	 "",
+"iteration": 	 "0"
+}]
