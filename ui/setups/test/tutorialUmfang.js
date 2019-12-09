@@ -9,7 +9,7 @@ var setup = {
 			taskTime: 5,
 		
 			//stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ],
-			stepOrder:	[ 13, 14, 15 ],
+			stepOrder:	[ 17, 18 ],
 						
             steps:	[				
 						{ 	number:	10, // Domänen und Datenelemente
@@ -61,13 +61,17 @@ var setup = {
                             
                             text: 	[
 								"Globale Klassen werden als gelbe Distrikte visualisiert. Auf den gelben Distrikten befinden sich die Bestandteile der Klasse als Gebäude. Methoden sind hierbei als graue Quader " +
-                                "dargestellt, deren Höhe abhängig von ihrer Anzahl der Statements ist. Die Attribute der Klasse werden durch Zylinder repräsentiert, deren Höhe wiederum durch die Komplexität " +
-								"der Information, die das entsprechende Attribut speichert, bestimmt wird. So ist ein Attribut von elementarem Typ kleiner als die Attribute, die von einem strukturierten Typ sind. " +
-								"Am größten sind diejenigen Attribute, die tabellenartig sind oder eine Referenz auf eine Klasse darstellen.",
+                                "dargestellt, deren Höhe abhängig von ihrer Anzahl der Statements ist. Die Attribute der Klasse werden durch Zylinder repräsentiert, deren Höhe wiederum durch die Komplexität der " +
+								"Information, die das entsprechende Attribut speichert, bestimmt wird. So ist ein Attribut von elementarem Typ kleiner als die Attribute, die von einem strukturierten Typ sind. Am " +
+								"größten sind diejenigen Attribute, die tabellenartig sind oder eine Referenz auf eine Klasse darstellen.",
                                 "Lokale Klassen werden analog zu globalen visualisiert. Jedoch befinden sie sich nicht direkt auf einem Paketdistrikt wie der Distrikt einer globalen Klasse, sondern sie sind auf " +
                                 "dem Distrikt des definierenden ABAP-Objekts platziert. Dies können neben denen der globalen Klassen auch Distrikte von Funktionsgruppen und Reports sein.",
-								"Grundsätzlich sollten globale Klassen höchstens eine lokale Klasse besitzen, nämlich für Unit-Tests. ", // to be continued
-								"Betrachten Sie die Visualisierung der Klasse und beenden Sie die Aufgabe wieder über die Schaltfläche."
+								"Grundsätzlich sollten globale Klassen höchstens eine lokale Klasse besitzen, nämlich für Unit-Tests. Die Funktionalität der Klasse wird in Methoden abgebildet. Dies sollte über mindestens " +
+								"drei Methoden abgewickelt werden. Je nach Granularität der Funktionalität deuten circa 10 Methoden auf eine gute Aufteilung hin. Eine Klasse sollte für gewöhnlich höchstens 15 Methoden " +
+								"enthalten. Die zur Erfüllung der Funktionalität benötigten Daten werden in Attributen gekapselt. Demzufolge sollte eine Klasse etwa 5 Attribute besitzen, jedoch mindestens eines und nicht " +
+								"mehr als 10.",
+								"Betrachten Sie die Visualisierung der Klasse und suchen Sie nach globalen Klassen, die a) einen guten, b) einen mittelmäßigen und c) einen schlechten Umfang an Methoden und Attributen " +
+								"besitzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
 
                             ui: 	"UI1",
@@ -81,13 +85,13 @@ var setup = {
                             
                             text: 	[
                                 "Außerdem exisitert ein spezielles Anordnungsschema für die Gebäude der Methoden und Attribute:",
-								"Die Gebäude der Klassenbestandteile, die privat sind, werden vorrangig im Zentrum des Distrikts angeordnet, da sie nur von innerhalb der Klasse verwendet werden können. Die " +
-								"Gebäude der geschützten und öffentlichen Klassenbestandteile sind hingegen am Rand des Klassendistrikts positioniert.",
+								"Die Gebäude der Klassenbestandteile, die privat sind, werden vorrangig im Zentrum des Distrikts angeordnet, da sie nur von innerhalb der Klasse verwendet werden können. Die Gebäude der " +
+								"geschützten und öffentlichen Klassenbestandteile sind hingegen am Rand des Klassendistrikts positioniert.",
 								"Grundsätzlich sollte für Klassen gelten, dass ein Großteil der Daten und Funktionalitäten privat gekapselt sind. Dementsprechend sollte die Metrik NumberOfStatements von privaten " +
 								"Methoden größer sein als die von öffentlichen Methoden. Überhaupt sollten die öffentlichen Methoden nicht viel Funktionalität beinhalten.",
 								"Ähnliches gilt für die Attribute einer Klasse. Eine Klasse sollte deutlich mehr private als öffentliche Attribute besitzen. Außerdem sollte ab einer Anzahl von 10 skalaren Attributen " +
 								"stattdessen ein strukturiertes Attribut verwendet werden. Genauso sollten mehr als 9 strukturierte Attribute in einem referenziellen Attribut gekapselt werden.",
-								"Betrachten Sie die Visualisierung und suchen Sie nach einer globalen Klasse, die a) eine gute, b) eine schlechte und c) eine mittelmäßige Verteilung von Methoden und Attributen besitzt.",
+								"Betrachten Sie die Visualisierung und suchen Sie nach einer globalen Klasse, die a) eine gute, b) eine mittelmäßige und c) eine schlechte Verteilung von Methoden und Attributen besitzt.",
 								"Beenden Sie die Aufgabe über die Schaltfläche."
                             ],		
 
@@ -101,9 +105,9 @@ var setup = {
                         { 	number:	15, // Reports
                             
                             text: 	[
-                                "Reports und ihre Bestandteile sind auf den hellblauen Distrikten dargestellt. Dabei wird ein Report selbst durch einen dunkelblauen Quader im Zentrum des Distrikts repräsentiert.",
-                                "Außerdem befinden sich auf dem Distrikt die Gebäude für die Formroutinen des Reports (graue Quader). Die Höhe der Gebäude der Formroutinen und des Reports sind abhängig von",
-								"der Anzahl ihrer Statements. Die globalen Attribute des Reports sind als Zylinder dargestellt.",
+                                "Reports und ihre Bestandteile sind auf den hellblauen Distrikten dargestellt. Dabei wird ein Report selbst durch einen dunkelblauen Quader im Zentrum des Distrikts repräsentiert. Außerdem " +
+                                "befinden sich auf dem Distrikt die Gebäude für die Formroutinen des Reports (graue Quader). Die Höhe der Gebäude der Formroutinen und des Reports sind abhängig von der Anzahl ihrer " +
+								"Statements. Die globalen Attribute des Reports sind als Zylinder dargestellt.",
 								"Grundsätzlich sollte die Funktionalität eines Programms durch Objektorientierung gewährleistet werden. Reports sollten nur in begründeten Ausnahmefällen, wie zum Beispiel für Transaktionen, " +
 								"verwendet werden. In diesen Fällen sollte die Funktionalität dennoch in eine lokale Klasse ausgelagert werden, sodass ein Report stets eine lokale Klasse enthalten sollte; im Ausnahmefall " +
 								"auch zwei, wenn die zu realisierende Funktionalität fachlich zu trennen ist. Dementsprechend besteht für die Verwendung von Formroutinen keinerlei Notwendigkeit. Außerdem sollte ein Report " +
@@ -137,22 +141,37 @@ var setup = {
                             ]
 						},
 						
-						{ 	number:	17, // TODO: number of statements
+						{ 	number:	17, // number of statements
                             
                             text: 	[
-                                "In diesem Bildausschnitt sehen Sie die Visualisierung von Datenbanktabellen. Diese befinden sich auf einem dunkelblauen Distrikt und sind als flache, braune Quader dargestellt.",
-                                "Auf diesem braunen Quader befinden sich türkisfarbene Quader, die die Tabellenelemente, also die Spalten, repräsentieren.", 
-								"Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Tabelle abgeleitet, befinden diese sich wie bei Strukturen auf dem gleichen Distrikt.",
-								"Analog zu Strukturen sollten Tabellen aus mindestens zwei Tabellenelementen bestehen, während als Richtwert für eine optimale Anzahl zehn Tabellenelemente angesehen werden können. Eine " +
-								"Tabelle sollte jedoch nie mehr als zwanzig Tabellenelemente enthalten, da ansonsten eine Aufteilung der Tabelle sinnvoll erscheint.",
-								"Erkunden Sie die Visualisierung der Tabelle. Suchen Sie weitere Tabellen, die a) zu viele Tabellenelemente und b) eine passende Anzahl derer besitzen. Beenden Sie die Aufgabe wieder über " +
-								"die Schaltfläche."
+								"Nun kennen Sie alle Bestandteile der Visualisierung. Als nächstes soll die Metrik \"Number of Statements\" betrachtet werden. Die Höhe der Gebäude von Methoden, Reports, Formroutinen " +
+								"und Funktionsbausteinen korreliert linear mit der Anzahl ihrer Code-Statements. Grundsätzlich sollte gelten, dass ein funktionales Quellcodeobjekt nicht mehr als 50 Statements enthält. " +
+								"Demzufolge sind alle ABAP-Objekte, die 50 oder mehr Statements enthalen, als Gebäude mit der größten Höhe dargestellt. Besitzt beispielsweise eine Methode 25 Statements, ist sie " +
+								"entsprechend nur halb so hoch. Als Richtwert für eine guten Anzahl von Statements kann 30 angesehen werden.",
+								"Suchen Sie in der Visualisierung nach Gebäuden von funktionalen Quellcodeobjekten, die a) eine passende und b) eine zu große Anzahl an Statements besitzen. Beenden Sie die Aufgabe wieder " +
+								"über die Schaltfläche"
                             ],		
 
-                            ui: 	"UI1",
+                            ui: 	"UI2",
 
-                            viewpoint: "680 30 130"	// entspricht /GSA/VISAP_T_T2
-                        },                        
+                            viewpoint : "330 550 5500"
+						},
+						
+						{ 	number:	18, // Paketumfang
+                            
+                            text: 	[
+								"Abschließend soll der Umfang von Paketen eingeschätzt werden. Prinzipiell dient ein Paket dazu, ABAP-Objekte, die für einen größeren fachlichen Zweck erstellt wurden, zu modularisieren " +
+								"zu kapseln und zu entkoppeln. Die Funktionalität zur Erreichung des größeren fachlichen Zwecks soll dann auf mehrere Quellcodeobjekten verteilt werden. Dementsprechend sollte ein Paket " +
+								"circa 10 Quellcodeobjekte enthalten, mindestens jedoch 5. Eine Verteilung der Funktionalität sollte dabei auf nicht mehr als 20 Quellcodeobjekte erfolgen, da in diesem Fall eine " +
+								"feingranularere Aufteilung des fachlichen Zwecks in zwei Pakete sinnvoll sein erscheint. Zu der Anzahl der enthaltenen DDIC-Objekte soll keine Empfehlung gegeben werden.",
+								"Suchen Sie in der Visualisierung nach Paketen, die a) zu wenig, b) eine passende Anzahl und c) zu viel Quellcodeobjekte besitzen. Beenden Sie die Aufgabe anschließend wieder über die " +
+								"Schaltfläche" 
+                            ],		
+
+                            ui: 	"UI2",
+
+                            viewpoint : "330 550 5500"
+                        },
 			]
 			
 		},

@@ -15,10 +15,13 @@ var setup = {
 							{ 	number:	10, // allgemeine Einführung
 								
 								text: 	[
-									"Herzlich Willkommen zum Tutorial für die Evaluation von VISAP.",
-									"Dieses Tutorial gibt Ihnen einen Einblick in den bisherigen Stand der Softwarevisualisierung von ABAP.",
-									"Die Visualisierung von ABAP-Quellcode soll dazu dienen, die kundeneigenen Entwicklungen in einem SAP-System unter einem strukturellen Aspekt zu untersuchen.",
-									"Dafür wird die sogenannte Stadtmetapher verwendet, bei der die verschiedenen Bestandteile von ABAP als Distrikte (Stadtteile) oder Gebäude dargestellt werden.",
+									"Herzlich Willkommen zur Evaluation der bisherigen Entwicklungen des Projekts \"VISAP\".",
+									"Am Anfang erhalten Sie eine kurze Einführung in die Softwarevisualisierung von ABAP sowie in die Bestandteile des User Interface. Anschließend lernen Sie die einzelnen Elemente der " +
+									"Visualisierung kennen. Bei manchen Visualisierungen von ABAP-Objekten werden Ihnen Qualitätsempfehlungen für das entsprechende ABAP-Objekt gegeben. Ziel dieser Evaluation soll keine " +
+									"Diskussion der Qualitätsempfehlungen sein, sondern die Überprüfung ebendieser mit dem bisherigen Stand der Softwarevisualisierung. Diesbezüglich wird Ihnen als Aufgabe gestellt, bestimmte " +
+									"Elemente in der Visualisierung zu selektieren.", 
+									"Grundsätzlich soll die Visualisierung von ABAP-Quellcode dazu dienen, die kundeneigenen Entwicklungen in einem SAP-System unter einem strukturellen Aspekt zu untersuchen. Dafür wird die " +
+									"sogenannte Stadtmetapher verwendet, bei der die verschiedenen Bestandteile von ABAP als Distrikte (Stadtteile) oder Gebäude dargestellt werden.",
 									"Betrachten Sie die Visualisierung kurz im Überblick und betätigen Sie anschließend die \"Aufgabe abgeschlossen!\"-Schaltfläche oben rechts zwei mal."
 								],		
 
@@ -28,11 +31,12 @@ var setup = {
 							{ 	number:	11, // Einführung Tooltip
 								
 								text: 	[
-									"Im Folgenden lernen Sie die einzelnen Bestandteile der Visualisierung kennen.",
-									"Die grauen Distrikte repräsentieren die Pakete. Wenn Sie die Maus über einen grauen Distrikt bewegen, erscheint im Tooltip der Name des Pakets.",
-									"Auf dem Distrikt befinden sich die Visualisierungen der ABAP-Objekte, die dem entsprechenden Paket zugeordnet sind.",
-									"Dies können Klassen, Datenelemente oder auch die Unterpakete des betrachteten Pakets sein.",
-									"Fahren Sie mit der Maus über einige Bestandteile des Pakets und beenden Sie die Aufgabe wieder über die Schaltfläche."
+									"Im Folgenden lernen Sie die einzelnen Bestandteile des User Interface kennen.",
+									"In der Visualisierung werden die Distrikte oder Gebäude, die die ABAP-Objekte repräsentieren, stets auf einem grauen Distrikt positioniert, der das enthaltende Paket darstellt. Wenn Sie " +
+									"die Maus über die Bestandteile der Visualisierung bewegen, erscheint ein Tooltip. Dieser Tooltip enthält zum einen den Namen des enthaltenden Pakets. Darunter steht der Typ des " +
+									"repräsentierten ABAP-Objekts sowie anschließend dessen Bezeichner.",
+									"Fahren Sie mit der Maus über einige Bestandteile des Pakets und machen Sie sich damit vertraut, welche Objekttypen alles dargestellt werden können. Beenden Sie die Aufgabe wieder über " +
+									"die Schaltfläche."
 								],		
 
 								ui: 	"UI1",
@@ -58,7 +62,7 @@ var setup = {
 								viewpoint : "330 550 5500"
 							},
 
-							{ 	number:	19, // Navigationsmodi
+							{ 	number:	19, // Navigationsmodi // TODO Beschreibung des neuen Navigationsmodus einbauen
 								
 								text: 	[
 									"Nachdem Sie jetzt alle Bestandteile der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
@@ -77,9 +81,9 @@ var setup = {
 								
 								text: 	[
 									"Nachdem Sie nun mit der Steuerung in der Metapher vertraut sind, lernen Sie die weiteren Funktionalitäten des UIs kennen.",
-									"Zunächst wird Ihnen die Suchleiste vorgestellt. Wenn Sie das Gebäude eines bestimmten ABAP-Objekts näher untersuchen möchten, geben Sie dessen Bezeichner in der Suchleiste über dem Modell ein. "
-									+ "Besitzt das ABAP-Objekt keinen eindeutigen Bezeichner (wie beispielsweise bei Methoden), empfiehlt es sich, den eindeutigen Bezeichner des übergeordnenten ABAP-Objekts mit einem " 
-									+ "abschließenden \".\" voranzustellen. Soll beispielsweise Methode \"Y\" der Klasse \"X\" untersucht werden, würde der Suchstring so aussehen: \"X.Y\".",
+									"Zunächst wird Ihnen die Suchleiste vorgestellt. Wenn Sie das Gebäude eines bestimmten ABAP-Objekts näher untersuchen möchten, geben Sie dessen Bezeichner in der Suchleiste über dem Modell " +
+									"ein. Besitzt das ABAP-Objekt keinen eindeutigen Bezeichner (wie beispielsweise bei Methoden), empfiehlt es sich, den eindeutigen Bezeichner des übergeordnenten ABAP-Objekts mit einem " +
+									"abschließenden \".\" voranzustellen. Soll beispielsweise Methode \"Y\" der Klasse \"X\" untersucht werden, würde der Suchstring so aussehen: \"X.Y\".",
 									"Während der Eingabe des Suchbegriffs erscheinen in einem Dropdown-Menü verschiedene Suchvorschläge in alphanumerischer Reihenfolge. Klicken Sie auf den Bezeichner des gesuchten ABAP-Objekts, " + 
 									"fliegt die Kamera zu dem entsprechenden Gebäude. Dieses wird dann auch rot hervorgehoben.",
 									"Probieren Sie die Suchleiste und suchen beispielsweise nach der Klasse \"/GSA/CL_AQP_HIST\". Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
