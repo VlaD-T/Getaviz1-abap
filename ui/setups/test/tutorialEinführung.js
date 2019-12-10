@@ -8,8 +8,7 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 5,
 		
-			//stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ],
-			stepOrder:	[ 10, 22 ],
+			stepOrder:	[ 10, 11, 12, 13, 14, 15 ],
 						
 			steps:		[				
 							{ 	number:	10, // allgemeine Einführung
@@ -21,7 +20,7 @@ var setup = {
 									"Diskussion der Qualitätsempfehlungen sein, sondern die Überprüfung ebendieser mit dem bisherigen Stand der Softwarevisualisierung. Diesbezüglich wird Ihnen als Aufgabe gestellt, bestimmte " +
 									"Elemente in der Visualisierung zu selektieren.", 
 									"Grundsätzlich soll die Visualisierung von ABAP-Quellcode dazu dienen, die kundeneigenen Entwicklungen in einem SAP-System unter einem strukturellen Aspekt zu untersuchen. Dafür wird die " +
-									"sogenannte Stadtmetapher verwendet, bei der die verschiedenen Bestandteile von ABAP als Distrikte (Stadtteile) oder Gebäude dargestellt werden.",
+									"Stadtmetapher verwendet, bei der die verschiedenen Bestandteile von ABAP als Distrikte (Stadtteile) oder Gebäude dargestellt werden.",
 									"Betrachten Sie die Visualisierung kurz im Überblick und betätigen Sie anschließend die \"Aufgabe abgeschlossen!\"-Schaltfläche oben rechts zwei mal."
 								],		
 
@@ -42,7 +41,7 @@ var setup = {
 								ui: 	"UI1",
 								
 								entities : [
-                                    "ID_919b44a73b780a53b5aaf69ae6a50250facf245c" 	// entspricht /GSA/VISAP_T_TEST
+                                    "ID_4a1fcd61ea91761f22632560b0f27d84e18318fa" 	// entspricht ZI01
 								]
 							},
 
@@ -59,25 +58,25 @@ var setup = {
 
 								ui: 	"UI1",
 
-								viewpoint : "330 550 5500"
+								viewpoint : "4500 2750 20000" // Überblick
 							},
 
-							{ 	number:	19, // Navigationsmodi // TODO Beschreibung des neuen Navigationsmodus einbauen
+							{ 	number:	13, // Navigationsmodi // TODO Beschreibung des neuen Navigationsmodus einbauen
 								
 								text: 	[
 									"Nachdem Sie jetzt alle Bestandteile der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
 									"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus wird das Modell um den zentralen Punkt gedreht.",
-									"Außerdem können Sie in das Modell hinein- beziehungsweise aus dem Modell herauszoomen, indem Sie das Mausrad herunter- beziehungsweise hochscrollen.",
+									"Außerdem können Sie in das Modell hinein- beziehungsweise aus dem Modell herauszoomen, indem Sie die rechte Maustaste gedrückt halten und die Maus bewegen.",
 									"Abschließend ist es durch Drücken der mittleren Maustaste und gleichzeitigem Bewegen der Maus möglich, in dem Modell entsprechend der Mausbewegung zu navigieren.",
 									"Probieren Sie die einzelnen Steuerungsvarianten aus und navigieren Sie durch das Modell. Beenden Sie anschließend die Aufgabe über die Schaltfläche."
 								],		
 
 								ui: 	"UI2",
 
-								viewpoint : "330 550 5500"
+								viewpoint : "4500 2750 20000" // Überblick
 							},
 
-							{ 	number:	20, // Suchleiste
+							{ 	number:	14, // Suchleiste
 								
 								text: 	[
 									"Nachdem Sie nun mit der Steuerung in der Metapher vertraut sind, lernen Sie die weiteren Funktionalitäten des UIs kennen.",
@@ -86,15 +85,15 @@ var setup = {
 									"abschließenden \".\" voranzustellen. Soll beispielsweise Methode \"Y\" der Klasse \"X\" untersucht werden, würde der Suchstring so aussehen: \"X.Y\".",
 									"Während der Eingabe des Suchbegriffs erscheinen in einem Dropdown-Menü verschiedene Suchvorschläge in alphanumerischer Reihenfolge. Klicken Sie auf den Bezeichner des gesuchten ABAP-Objekts, " + 
 									"fliegt die Kamera zu dem entsprechenden Gebäude. Dieses wird dann auch rot hervorgehoben.",
-									"Probieren Sie die Suchleiste und suchen beispielsweise nach der Klasse \"/GSA/CL_AQP_HIST\". Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
+									"Probieren Sie die Suchleiste und suchen beispielsweise nach der Klasse \"ZCL_ZI_CHANGE_PSP_DATE_SRV\". Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI3",
 
-								viewpoint : "330 550 5500"
+								viewpoint : "4500 2750 20000" // Überblick
 							},
 
-							{ 	number:	21, // Package Explorer
+							{ 	number:	15, // Package Explorer
 								
 								text: 	[
 									"Als nächstes lernen Sie den Package Explorer kennen. Diesen sehen Sie links neben der Visualisierung. Im Package Explorer finden Sie in einer hierarchischen Ordnung alle ABAP-Objekte, " +
@@ -103,13 +102,13 @@ var setup = {
 									"Wenn Sie im Package Explorer auf den Bezeichner eines ABAP-Objekts klicken, fliegt die Kamera zu dem ABAP-Objekt und es wird rot hervorgehoben.",
 									"Eine weitere nützliche Funktionalität des Package Explorers besteht darin, Objekte in der Visalisierung ausblenden zu können. Dazu klicken Sie auf das Häkchen links neben dem Bezeichner " +
 									"eines ABAP-Objekts. Anschließend werden dessen Gebäude sowie die Gebäude aller dem selektierten ABAP-Objekt untergeordneten ABAP-Objekte ausgeblendet.",
-									"Lassen Sie die Kamera zu der Klasse \"/GISA/CL_BWBCI_EXTRAC\" aus dem Paket \"/GISA/BWBCI_EXTRACT\" fliegen, indem Sie sie im Package Explorer suchen. Blenden Sie die Klasse vollständig aus.",
+									"Lassen Sie die Kamera zu der Klasse \"ZCL_EXCEL_DRAWING\" aus dem Paket \"ZSD_CWS_PRINT_ABAP2XLSX\" fliegen, indem Sie sie im Package Explorer suchen. Blenden Sie die Klasse vollständig aus.",
 									"Beenden Sie die Aufgabe wieder über die Schaltfläche."
 								],		
 
 								ui: 	"UI4",
 
-								viewpoint : "330 550 5500"
+								viewpoint : "4500 2750 20000" // Überblick
 							},
 			]
 			
@@ -142,13 +141,23 @@ var setup = {
 		{	name: 	"canvasFilterController" 
 		},
 
-		{	name: 	"navigationCamControllerPZR",
-			setCenterOfRotation : false,
-			setCenterOfRotationFocus: false,
-			showCenterOfRotation: false,
-			macUser: false,
-			active:	true
-		},		
+		{   name:   "navigationCamController",
+
+           //NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE, PAN_ZOOM_ROTATE, GAME_WASD
+           modus: "PAN_ZOOM_ROTATE",
+
+           zoomToMousePosition: true,
+
+           //CENTER_OF_ROTATION_ELEMENT - NONE, AXES, SPHERE
+           showCenterOfRotation: false,
+           centerOfRotationElement: "SPHERE",
+
+           setCenterOfRotation: true,
+           setCenterOfRotationFocus: true,
+
+           macUser: false,
+       },
+		
 	],
 	
 	
@@ -253,7 +262,7 @@ var setup = {
                     controllers: [
                         { name: "defaultLogger" },
                         { name: "canvasHoverController" },
-                        //{ name:	"navigationCamControllerPZR" },
+                        { name:	"navigationCamController" },
                     ],
                 }
 			}
@@ -272,7 +281,7 @@ var setup = {
 				orientation: "horizontal",
 				
 				first: {			
-					size: "200px",	
+					size: "220px",	
 					
 					controllers: [	
 						{ name: "experimentController" },				
@@ -290,6 +299,7 @@ var setup = {
                         { name: "canvasHoverController" },
                         { name: "canvasFlyToController" },
                         { name: "canvasSelectController" },
+                        { name:	"navigationCamController" },
                     ],
                 }
 			}
@@ -323,7 +333,7 @@ var setup = {
                         orientation: "vertical",
                         name: "leftPanel",
                         first: {                            
-							size: "70%",
+							size: "20%",
                             expanders: [
                                 {
                                     name: "packageExplorer",
@@ -344,6 +354,7 @@ var setup = {
 								{ name: "canvasHoverController" },
 								{ name: "canvasFilterController" },
 								{ name: "canvasFlyToController" },
+								{ name:	"navigationCamController" },
 							],
                         }
                     }

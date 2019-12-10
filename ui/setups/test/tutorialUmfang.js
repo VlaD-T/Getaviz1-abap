@@ -8,8 +8,7 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 5,
 		
-			//stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ],
-			stepOrder:	[ 17, 18 ],
+			stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18 ],
 						
             steps:	[				
 						{ 	number:	10, // Domänen und Datenelemente
@@ -24,22 +23,24 @@ var setup = {
 
 							ui: 	"UI1",
 
-							viewpoint: "800 280 20"		// entspricht /GSA/VISAP_T_TEST_DO1
+							entities : [
+								"ID_f692c99d949da24597560366512ac7d0e248f657"	// entspricht ZISWF_BOOLEAN
+							]
 						},
 
 						{ 	number:	11, // Strukturen
 							
 							text: 	[
-								"Strukturen sind als hellgrüne Distrikte dargestellt. Auf den hellgrünen Distrikten befinden sich die Gebäude der Komponenten der Struktur, die sogenannten Strukturelemente. Dies sind " +
-								"graue Kegel, die am Rand des Struktur-Distrikts positioniert sind. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Struktur abgeleitet, befinden sich diese ebenfalls " +
-								"auf dem Struktur-Distrikt. Sie sind dann als rosafarbene Kegel visualisiert.",
+								"Strukturen sind als hellgrüne Distrikte dargestellt. Auf den hellgrünen Distrikten befinden sich die Gebäude der Komponenten der Struktur, die Strukturelemente. Dies sind graue Kegel, " +
+								"die am Rand des Struktur-Distrikts positioniert sind. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Struktur abgeleitet, befinden sich diese ebenfalls auf dem " +
+								"Struktur-Distrikt. Sie sind dann als rosafarbene Kegel visualisiert.",
 								"Erkunden Sie die Visualisierung der Struktur. Beenden Sie die Aufgabe wieder über die Schaltfläche."
 							],		
 
 							ui: 	"UI1",
 
 							entities : [
-								"ID_412a33ae14746612317b013dc23213cd79b5f3f3"	// entspricht /GISA/BWBCI_EXTR_MAC
+								"ID_bccbe6849ee2122dde3829d95e5b83a8e83f308c"	// entspricht ZV01_WF_ITEMS_OUT
 							]
 						},
 
@@ -54,7 +55,9 @@ var setup = {
 
 							ui: 	"UI1",
 
-							viewpoint: "680 30 130"	// entspricht /GSA/VISAP_T_T2
+							entities:   [
+                                "ID_657199a569ebda7bf97574afa86a2af421134335" 	// entspricht ZISWF_SERV_KPF
+                            ]
 						},
 				
 						{ 	number:	13, // Klassen
@@ -77,7 +80,7 @@ var setup = {
                             ui: 	"UI1",
 
                             entities:   [
-                                "ID_d20016547f489da25167fa1dbe9a00bfd82298c0" 	// entspricht /GSA/AQP_CL_HIST
+                                "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f" 	// entspricht ZCL_EXCEL_AUTOFILTER
                             ]
                         },
 
@@ -85,12 +88,12 @@ var setup = {
                             
                             text: 	[
                                 "Außerdem exisitert ein spezielles Anordnungsschema für die Gebäude der Methoden und Attribute:",
-								"Die Gebäude der Klassenbestandteile, die privat sind, werden vorrangig im Zentrum des Distrikts angeordnet, da sie nur von innerhalb der Klasse verwendet werden können. Die Gebäude der " +
+								"Die Gebäude der Klassenbestandteile, die privat sind, werden vorrangig im Zentrum des Distrikts angeordnet, da sie nur innerhalb der Klasse verwendet werden können. Die Gebäude der " +
 								"geschützten und öffentlichen Klassenbestandteile sind hingegen am Rand des Klassendistrikts positioniert.",
 								"Grundsätzlich sollte für Klassen gelten, dass ein Großteil der Daten und Funktionalitäten privat gekapselt sind. Dementsprechend sollte die Metrik NumberOfStatements von privaten " +
 								"Methoden größer sein als die von öffentlichen Methoden. Überhaupt sollten die öffentlichen Methoden nicht viel Funktionalität beinhalten.",
 								"Ähnliches gilt für die Attribute einer Klasse. Eine Klasse sollte deutlich mehr private als öffentliche Attribute besitzen. Außerdem sollte ab einer Anzahl von 10 skalaren Attributen " +
-								"stattdessen ein strukturiertes Attribut verwendet werden. Genauso sollten mehr als 9 strukturierte Attribute in einem referenziellen Attribut gekapselt werden.",
+								"stattdessen eine Struktur als Attribut verwendet werden. Genauso sollten mehr als 9 strukturierte Attribute in einem referenziellen Attribut gekapselt werden.",
 								"Betrachten Sie die Visualisierung und suchen Sie nach einer globalen Klasse, die a) eine gute, b) eine mittelmäßige und c) eine schlechte Verteilung von Methoden und Attributen besitzt.",
 								"Beenden Sie die Aufgabe über die Schaltfläche."
                             ],		
@@ -98,7 +101,7 @@ var setup = {
                             ui: 	"UI1",
 
                             entities:   [
-                                "ID_d20016547f489da25167fa1dbe9a00bfd82298c0" 	// entspricht /GSA/AQP_CL_HIST
+                                "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f" 	// entspricht ZCL_EXCEL_AUTOFILTER
                             ]
                         },
 
@@ -118,7 +121,9 @@ var setup = {
 
                             ui: 	"UI1",
 
-                            viewpoint: "100 300 40"		// entspricht /GSA/VISAP_T_TEST_REPORT
+                            entities:   [
+                                "ID_0d3fa981f2e576a7ef02e0fce64799d965807ef0" 	// entspricht ZSD_SAM_KUEND_KONTROLLE_II
+                            ]
                         },
 
                         { 	number:	16, // Funktionsgruppen
@@ -127,9 +132,9 @@ var setup = {
                                 "Funktionsgruppen sind als violette Distrikte dargestellt. Auf einem Funktionsgruppen-Distrikt befinden sich Zylinder für die globalen Attribute, sowie graue Quader als Gebäude für die " +
                                 "Funktionsbausteine und Formroutinen der Funktionsgruppe. Die Gebäude der Funktionsbausteine besitzen eine rechteckige Grundfläche, während die Grundfläche der Gebäude der Formroutinen " +
 								"quadratisch ist. Die Höhe beider Gebäudearten ist ebenfalls durch die Anzahl ihrer Statements bestimmt.",
-								"Funktionsgruppen und Funktionsbausteine sollten nur noch für RFC und den Aufruf klassischer Dynpros und Selektionsbilder verwendet werden. Dementsprechend sollte eine Funktionsgruppe " +
-								"nicht mehr als zwei Funktionsbausteine enthalten. Die Funktionsbausteine sollten die Verarbeitung sofort an eine globale oder lokale Klasse abgeben, sodass die Funktionsgruppe höchstens " +
-								"eine lokale Klasse enthält. Auf Formroutinen sollte komplett verzichtet werden, ebenso sollten so wenig globale Attribute wie möglich verwendet werden.",
+								"Funktionsgruppen und Funktionsbausteine sollten nur noch für RFC und den Aufruf klassischer Dynpros verwendet werden. Dementsprechend sollte eine Funktionsgruppe nicht mehr als zwei " +
+								"Funktionsbausteine enthalten. Die Funktionsbausteine sollten die Verarbeitung sofort an eine globale oder lokale Klasse abgeben, sodass die Funktionsgruppe höchstens eine lokale Klasse " +
+								"enthält. Auf Formroutinen sollte komplett verzichtet werden, ebenso sollten so wenig globale Attribute wie möglich verwendet werden.",
 								"Erkunden Sie die Visualisierung der Funktionsgruppe. Suchen Sie in der gesamten Visualisierung nach Funktionsgruppen, die die Qualitätsempfehlungen a) vollständig, b) teilweise und c) " +
 								"gar nicht umsetzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
@@ -137,7 +142,7 @@ var setup = {
                             ui: 	"UI1",
 
                             entities : [
-                                "ID_4dea1daedbe9dc1d643b0f0eb8ab57c7d532f771"	// entspricht /GSA/VISAP_T_TEST_FG1
+                                "ID_27f7098606ea3a4efc3d54e3cf6bfd09c6c50932"	// entspricht /RZ1/SAM_SD018_CHANGE_INET
                             ]
 						},
 						
@@ -154,23 +159,23 @@ var setup = {
 
                             ui: 	"UI2",
 
-                            viewpoint : "330 550 5500"
+                            viewpoint : "4500 2750 20000" // Überblick
 						},
 						
 						{ 	number:	18, // Paketumfang
                             
                             text: 	[
-								"Abschließend soll der Umfang von Paketen eingeschätzt werden. Prinzipiell dient ein Paket dazu, ABAP-Objekte, die für einen größeren fachlichen Zweck erstellt wurden, zu modularisieren " +
+								"Abschließend soll der Umfang von Paketen eingeschätzt werden. Prinzipiell dient ein Paket dazu, ABAP-Objekte, die für einen größeren fachlichen Zweck erstellt wurden, zu modularisieren, " +
 								"zu kapseln und zu entkoppeln. Die Funktionalität zur Erreichung des größeren fachlichen Zwecks soll dann auf mehrere Quellcodeobjekten verteilt werden. Dementsprechend sollte ein Paket " +
 								"circa 10 Quellcodeobjekte enthalten, mindestens jedoch 5. Eine Verteilung der Funktionalität sollte dabei auf nicht mehr als 20 Quellcodeobjekte erfolgen, da in diesem Fall eine " +
-								"feingranularere Aufteilung des fachlichen Zwecks in zwei Pakete sinnvoll sein erscheint. Zu der Anzahl der enthaltenen DDIC-Objekte soll keine Empfehlung gegeben werden.",
+								"feingranularere Aufteilung des fachlichen Zwecks in zwei Pakete sinnvoll erscheint. Zu der Anzahl der enthaltenen DDIC-Objekte soll keine Empfehlung gegeben werden.",
 								"Suchen Sie in der Visualisierung nach Paketen, die a) zu wenig, b) eine passende Anzahl und c) zu viel Quellcodeobjekte besitzen. Beenden Sie die Aufgabe anschließend wieder über die " +
 								"Schaltfläche" 
                             ],		
 
                             ui: 	"UI2",
 
-                            viewpoint : "330 550 5500"
+                            viewpoint : "4500 2750 20000" // Überblick
                         },
 			]
 			
@@ -228,13 +233,22 @@ var setup = {
             }],
 		},
 		
-		{	name: 	"navigationCamControllerPZR",
-			setCenterOfRotation : false,
-			setCenterOfRotationFocus: false,
-			showCenterOfRotation: false,
-			macUser: false,
-			active:	true
-		},		
+		{   name:    "navigationCamController",
+
+           //NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE, PAN_ZOOM_ROTATE, GAME_WASD
+           modus: "PAN_ZOOM_ROTATE",
+
+           zoomToMousePosition: true,
+
+           //CENTER_OF_ROTATION_ELEMENT - NONE, AXES, SPHERE
+           showCenterOfRotation: false,
+           centerOfRotationElement: "SPHERE",
+
+           setCenterOfRotation: true,
+           setCenterOfRotationFocus: true,
+
+           macUser: false,
+       },	
 	],
 	
 	
@@ -284,7 +298,7 @@ var setup = {
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"none",
+				type:	"examine",
 				//speed: 10
 			},	
 					
@@ -383,7 +397,7 @@ var setup = {
 							controllers: [
 								{ name: "defaultLogger" },
 								{ name: "canvasHoverController" },
-								//{ name:	"navigationCamControllerPZR" },
+								{ name:	"navigationCamController" },
 							],
                         }
                     }
@@ -442,6 +456,7 @@ var setup = {
 								{ name: "canvasHoverController" },
 								{ name: "canvasFlyToController" },
 								{ name: "canvasSelectController" },
+								{ name:	"navigationCamController" },
 							],
                         }
                     }
@@ -519,6 +534,7 @@ var setup = {
 								{ name: "canvasHoverController" },
 								{ name: "canvasFilterController" },
 								{ name: "canvasFlyToController" },
+								{ name:	"navigationCamController" },
 							],
                         }
                     }
@@ -597,6 +613,7 @@ var setup = {
 								{ name: "canvasFilterController" },								
 								{ name: "canvasSelectController" },
 								{ name: "canvasFlyToController" },
+								{ name:	"navigationCamController" },
 							],
                         }
                     }
