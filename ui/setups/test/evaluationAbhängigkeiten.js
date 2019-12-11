@@ -2,7 +2,6 @@ var setup = {
 	
 	controllers: [
 		
-		//experimentController
 		{	name: 	"experimentController",
 		
 			taskTextButtonTime: 10,

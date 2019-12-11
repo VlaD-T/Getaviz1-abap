@@ -2,7 +2,6 @@ var setup = {
 	
 	controllers: [
 		
-		//experimentController
 		{	name: 	"experimentController",
 		
 			taskTextButtonTime: 10,
@@ -49,8 +48,8 @@ var setup = {
 								
 								text: 	[
 									"Wie Sie sehen können, sind die einzelnen Paket-Distrikte unterschiedlich verteilt. Die zentralen Distrikte der Visualisierung stellen stets die Pakete der Grundmenge dar. Zur Grundmenge " +
-									"gehören diejenigen Pakete, deren Strukturinformationen extrahiert werden sollen. Das ist in diesem Fall das eben betrachtete Paket mit dem Namen \"/GSA/VISAP_T_TEST\". Grundsätzlich kann " +
-									"die Grundmenge auch aus mehreren Paketen bestehen, denn je nach Granularität der Analyse können die Pakete von genau einem Modul bis zu allen Paketen eines Namensraums extrahiert werden.",
+									"gehören diejenigen Pakete, deren Strukturinformationen extrahiert werden sollen. Das sind in diesem Fall mehrere Z-Pakete aus dem GT3-System. Grundsätzlich kann die Grundmenge auch aus " +
+									"mehreren Paketen bestehen, denn je nach Granularität der Analyse können die Pakete von genau einem Modul bis zu allen Paketen eines Namensraums extrahiert werden.",
 									"Ringförmig um die Grundmenge befinden sich die Paket-Distrikte der kundeneigenen Entwicklungen, die von den Bestandteilen der Grundmenge referenziert werden.",
 									"Wiederum ringförmig um die Grundmenge und den referenzierten, kundeneigenen Entwicklungen sind die von der Grundmenge verwendeten Paket-Distrikte des SAP-Standards dargestellt",
 									"Fahren Sie mit der Maus über einige Paket-Distrikte und beenden Sie die Aufgabe wieder über die Schaltfläche."
@@ -64,7 +63,7 @@ var setup = {
 							{ 	number:	13, // Navigationsmodi // TODO Beschreibung des neuen Navigationsmodus einbauen
 								
 								text: 	[
-									"Nachdem Sie jetzt alle Bestandteile der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
+									"Nachdem Sie jetzt die Grundzüge der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
 									"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus wird das Modell um den zentralen Punkt gedreht.",
 									"Außerdem können Sie in das Modell hinein- beziehungsweise aus dem Modell herauszoomen, indem Sie die rechte Maustaste gedrückt halten und die Maus bewegen.",
 									"Abschließend ist es durch Drücken der mittleren Maustaste und gleichzeitigem Bewegen der Maus möglich, in dem Modell entsprechend der Mausbewegung zu navigieren.",
@@ -156,8 +155,7 @@ var setup = {
            setCenterOfRotationFocus: true,
 
            macUser: false,
-       },
-		
+        },		
 	],
 	
 	
@@ -165,7 +163,7 @@ var setup = {
 
 	uis: [
 
-		{	name: "UI0",
+		{	name: "UI0", // just a view of the model
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
@@ -201,7 +199,7 @@ var setup = {
 			
 		},
 
-		{	name: "UI1",
+		{	name: "UI1", // hover
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
@@ -234,7 +232,7 @@ var setup = {
 			}
 		},
 
-		{	name: "UI2",
+		{	name: "UI2", // hover + navigation
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
@@ -262,13 +260,12 @@ var setup = {
                     controllers: [
                         { name: "defaultLogger" },
                         { name: "canvasHoverController" },
-                        { name:	"navigationCamController" },
                     ],
                 }
 			}
 		},
 
-		{	name: "UI3",
+		{	name: "UI3", // hover + navigation + search 
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
@@ -299,13 +296,12 @@ var setup = {
                         { name: "canvasHoverController" },
                         { name: "canvasFlyToController" },
                         { name: "canvasSelectController" },
-                        { name:	"navigationCamController" },
                     ],
                 }
 			}
 		},
 		
-		{	name: "UI4",
+		{	name: "UI4", // hover + navigation + search + package explorer
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
@@ -354,7 +350,6 @@ var setup = {
 								{ name: "canvasHoverController" },
 								{ name: "canvasFilterController" },
 								{ name: "canvasFlyToController" },
-								{ name:	"navigationCamController" },
 							],
                         }
                     }

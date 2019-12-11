@@ -151,20 +151,20 @@ var experimentController = (function() {
 		
 		setNextStep();
 
-		if (currentStep.viewpoint) {
+		/*if (currentStep.viewpoint) {
 			setNewViewpoint();
 		}
 
 		if (currentStep.entities) {
 			moveToEntity();
-		}		
+		}*/		
 				
 		setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);
 
-		application.loadUIConfig(currentStep.ui);		
+		//application.loadUIConfig(currentStep.ui);		
 	}
 
-	function setNewViewpoint() {	
+	function setNewViewpoint() {		
 		canvasManipulator.setViewPoint(currentStep.viewpoint);
 	}
 			
@@ -185,6 +185,17 @@ var experimentController = (function() {
 		steps.forEach(function(step){
 			if(step.number == nextStepByStepOrder){
 				currentStep = step;
+
+				application.loadUIConfig(currentStep.ui);
+
+				if (currentStep.viewpoint) {
+					setNewViewpoint();
+				}
+		
+				if (currentStep.entities) {
+					moveToEntity();
+				}				
+
 				return;
 			}
 		});		
@@ -207,7 +218,7 @@ var experimentController = (function() {
 	
 	function moveToEntity() {
 		var entity = model.getEntityById(currentStep.entities[0]);
-		canvasManipulator.flyToEntity(entity);
+		canvasManipulator.flyToEntity(entity);		
 		canvasManipulator.setCenterOfRotation(entity, false);
 	}
 

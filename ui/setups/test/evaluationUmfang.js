@@ -2,7 +2,6 @@ var setup = {
 	
 	controllers: [
 		
-		//experimentController
 		{	name: 	"experimentController",
 		
 			taskTextButtonTime: 10,
@@ -21,11 +20,9 @@ var setup = {
 								"Erkunden Sie die Visualisierung der Domäne und Datenelemente und beenden Sie die Aufgabe wieder über die Schaltfläche."
 							],		
 
-							ui: 	"UI1",
+							ui: 	"UI0",
 
-							entities : [
-								"ID_f692c99d949da24597560366512ac7d0e248f657"	// entspricht ZISWF_BOOLEAN
-							]
+							viewpoint : "8960 2020 -1400"	// entspricht ZISWF_BOOLEAN
 						},
 
 						{ 	number:	11, // Strukturen
@@ -37,7 +34,7 @@ var setup = {
 								"Erkunden Sie die Visualisierung der Struktur. Beenden Sie die Aufgabe wieder über die Schaltfläche."
 							],		
 
-							ui: 	"UI1",
+							ui: 	"UI0",
 
 							entities : [
 								"ID_bccbe6849ee2122dde3829d95e5b83a8e83f308c"	// entspricht ZV01_WF_ITEMS_OUT
@@ -53,7 +50,7 @@ var setup = {
 								"Erkunden Sie die Visualisierung der Tabelle und beenden Sie die Aufgabe wieder über die Schaltfläche."
 							],		
 
-							ui: 	"UI1",
+							ui: 	"UI0",
 
 							entities:   [
                                 "ID_657199a569ebda7bf97574afa86a2af421134335" 	// entspricht ZISWF_SERV_KPF
@@ -77,7 +74,7 @@ var setup = {
 								"besitzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
 
-                            ui: 	"UI1",
+                            ui: 	"UI0",
 
                             entities:   [
                                 "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f" 	// entspricht ZCL_EXCEL_AUTOFILTER
@@ -98,7 +95,7 @@ var setup = {
 								"Beenden Sie die Aufgabe über die Schaltfläche."
                             ],		
 
-                            ui: 	"UI1",
+                            ui: 	"UI0",
 
                             entities:   [
                                 "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f" 	// entspricht ZCL_EXCEL_AUTOFILTER
@@ -119,7 +116,7 @@ var setup = {
 								"umsetzen. Beenden Sie die Aufgabe wieder über die Schaltfläche."
                             ],		
 
-                            ui: 	"UI1",
+                            ui: 	"UI0",
 
                             entities:   [
                                 "ID_0d3fa981f2e576a7ef02e0fce64799d965807ef0" 	// entspricht ZSD_SAM_KUEND_KONTROLLE_II
@@ -139,7 +136,7 @@ var setup = {
 								"gar nicht umsetzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
 
-                            ui: 	"UI1",
+                            ui: 	"UI0",
 
                             entities : [
                                 "ID_27f7098606ea3a4efc3d54e3cf6bfd09c6c50932"	// entspricht /RZ1/SAM_SD018_CHANGE_INET
@@ -157,7 +154,7 @@ var setup = {
 								"über die Schaltfläche"
                             ],		
 
-                            ui: 	"UI2",
+                            ui: 	"UI0",
 
                             viewpoint : "4500 2750 20000" // Überblick
 						},
@@ -173,7 +170,7 @@ var setup = {
 								"Schaltfläche" 
                             ],		
 
-                            ui: 	"UI2",
+                            ui: 	"UI0",
 
                             viewpoint : "4500 2750 20000" // Überblick
                         },
@@ -233,7 +230,7 @@ var setup = {
             }],
 		},
 		
-		{   name:    "navigationCamController",
+		{   name:   "navigationCamController",
 
            //NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE, PAN_ZOOM_ROTATE, GAME_WASD
            modus: "PAN_ZOOM_ROTATE",
@@ -260,214 +257,6 @@ var setup = {
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-                type:	"none",
-				//speed: 10
-			},	
-					
-		
-							
-			area: {
-				name: "top",
-				orientation: "horizontal",
-				
-				first: {			
-					size: "200px",	
-					
-					controllers: [					
-						{ name: "experimentController" },
-                        { name: "canvasResetViewController" },
-					],							
-				},
-				second: {
-					size: "90%",	
-					collapsible: false,
-					
-					
-							
-					canvas: { },
-					
-					controllers: [						
-						{ name: "defaultLogger" },
-					],						
-				}
-			}
-			
-		},
-
-		{	name: "UI1",
-		
-			navigation: {
-				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"examine",
-				//speed: 10
-			},	
-					
-		
-							
-			area: {
-				name: "top",
-				orientation: "horizontal",
-				
-				first: {			
-					size: "200px",	
-					
-					controllers: [	
-						{ name: "experimentController" },				
-						{ name: "canvasResetViewController" },
-					],							
-				},
-				second: {
-                    size: "80%",
-                    collapsible: false,
-                    area: {
-                        orientation: "vertical",
-                        name: "leftPanel",
-                        first: {                            
-							size: "20%",
-							expanders: [
-								{
-									name: "legend",
-									title: "Legend",
-									controllers: [
-										{ name: "legendController" }
-									],
-								},
-							]
-						},
-                        second: {
-							size: "80%",
-							collapsible: false,
-                            name: "canvas",
-                            canvas: {},
-							controllers: [
-								{ name: "defaultLogger" },
-								{ name: "canvasHoverController" },
-							],
-                        }
-                    }
-				}
-			}
-		},
-
-		{	name: "UI2",
-		
-			navigation: {
-				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"examine",
-				//speed: 10
-			},	
-					
-		
-							
-			area: {
-				name: "top",
-				orientation: "horizontal",
-				
-				first: {			
-					size: "200px",	
-					
-					controllers: [	
-						{ name: "experimentController" },				
-						{ name: "canvasResetViewController" },
-					],							
-				},
-				second: {
-                    size: "80%",
-                    collapsible: false,
-                    area: {
-                        orientation: "vertical",
-                        name: "leftPanel",
-                        first: {                            
-							size: "20%",
-							expanders: [
-								{
-									name: "legend",
-									title: "Legend",
-									controllers: [
-										{ name: "legendController" }
-									],
-								},
-							]
-						},
-                        second: {
-							size: "80%",
-							collapsible: false,
-                            name: "canvas",
-                            canvas: {},
-							controllers: [
-								{ name: "defaultLogger" },
-								{ name: "canvasHoverController" },
-								{ name:	"navigationCamController" },
-							],
-                        }
-                    }
-				}
-			}
-		},
-
-		{	name: "UI3",
-		
-			navigation: {
-				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"examine",
-				//speed: 10
-			},	
-					
-		
-							
-			area: {
-				name: "top",
-				orientation: "horizontal",
-				
-				first: {			
-					size: "200px",	
-					
-					controllers: [	
-						{ name: "experimentController" },				
-						{ name: "canvasResetViewController" },
-						{ name: "searchController"},
-					],							
-				},
-				second: {
-                    size: "80%",
-                    collapsible: false,
-                    area: {
-                        orientation: "vertical",
-                        name: "leftPanel",
-                        first: {                            
-							size: "20%",
-							expanders: [
-								{
-									name: "legend",
-									title: "Legend",
-									controllers: [
-										{ name: "legendController" }
-									],
-								},
-							]
-						},
-                        second: {
-							size: "80%",
-							collapsible: false,
-                            name: "canvas",
-                            canvas: {},
-							controllers: [
-								{ name: "defaultLogger" },
-								{ name: "canvasHoverController" },
-								{ name: "canvasFlyToController" },
-								{ name: "canvasSelectController" },
-								{ name:	"navigationCamController" },
-							],
-                        }
-                    }
-				}
-			}
-		},
-		
-		{	name: "UI4",
-		
-			navigation: {
-				//examine, walk, fly, helicopter, lookAt, turntable, game
 				type:	"examine",
 				//speed: 10
 			},		
@@ -477,15 +266,14 @@ var setup = {
 				orientation: "horizontal",
 				
 				first: {			
-					size: "200px",
+					size: "200px",	
+					
 					controllers: [	
 						{ name: "experimentController" },				
 						{ name: "canvasResetViewController" },
-						{ name: "searchController"},
 					],							
 				},
-				
-                second: {
+				second: {
                     size: "80%",
                     collapsible: false,
                     area: {
@@ -493,36 +281,15 @@ var setup = {
                         name: "leftPanel",
                         first: {                            
 							size: "20%",
-							area: {
-								size: "50%",
-								collapsible: false,
-								orientation: "horizontal",
-								name: "packagePanel",
-								first: {
-									size: "70%",
-									expanders: [
-										{
-											name: "packageExplorer",
-											title: "Package Explorer",
-											controllers: [
-												{ name: "packageExplorerController" }
-											],
-										},
-									]
+							expanders: [
+								{
+									name: "legend",
+									title: "Legend",
+									controllers: [
+										{ name: "legendController" }
+									],
 								},
-								second: {
-									size: "90%",
-									expanders: [								
-										{
-											name: "legend",
-											title: "Legend",
-											controllers: [
-												{ name: "legendController" }
-											],
-										},
-									]
-								}
-							}							
+							]
 						},
                         second: {
 							size: "80%",
@@ -532,93 +299,13 @@ var setup = {
 							controllers: [
 								{ name: "defaultLogger" },
 								{ name: "canvasHoverController" },
-								{ name: "canvasFilterController" },
 								{ name: "canvasFlyToController" },
-								{ name:	"navigationCamController" },
+								{ name: "canvasSelectController" }
 							],
                         }
                     }
-				}			
+				}
 			}
 		},
-
-		{	name: "UI5",
-		
-			navigation: {
-				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"examine",
-				//speed: 10
-			},		
-							
-			area: {
-				name: "top",
-				orientation: "horizontal",
-				
-				first: {			
-					size: "200px",
-					controllers: [	
-						{ name: "experimentController" },				
-						{ name: "canvasResetViewController" },
-						{ name: "searchController"},
-					],							
-				},
-				
-                second: {
-                    size: "80%",
-                    collapsible: false,
-                    area: {
-                        orientation: "vertical",
-                        name: "leftPanel",
-                        first: {                            
-							size: "20%",
-							area: {
-								size: "50%",
-								collapsible: false,
-								orientation: "horizontal",
-								name: "packagePanel",
-								first: {
-									size: "70%",
-									expanders: [
-										{
-											name: "packageExplorer",
-											title: "Package Explorer",
-											controllers: [
-												{ name: "packageExplorerController" }
-											],
-										},
-									]
-								},
-								second: {
-									size: "90%",
-									expanders: [								
-										{
-											name: "legend",
-											title: "Legend",
-											controllers: [
-												{ name: "legendController" }
-											],
-										},
-									]
-								}
-							}							
-						},
-                        second: {
-							size: "80%",
-							collapsible: false,
-                            name: "canvas",
-                            canvas: {},
-							controllers: [
-								{ name: "defaultLogger" },
-								{ name: "canvasHoverController" },
-								{ name: "canvasFilterController" },								
-								{ name: "canvasSelectController" },
-								{ name: "canvasFlyToController" },
-								{ name:	"navigationCamController" },
-							],
-                        }
-                    }
-				}			
-			}
-		},	
 	]
 };
