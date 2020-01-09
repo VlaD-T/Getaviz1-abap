@@ -7,56 +7,9 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 5,
 		
-			stepOrder:	[ 10, 11, 12, 13, 14, 15, 16, 17, 18 ],
+			stepOrder:	[ 13, 14, 15, 16, 17, 18 ],
 						
             steps:	[				
-						{ 	number:	10, // Domänen und Datenelemente
-									
-							text: 	[
-								"Im Folgenden lernen Sie die einzelnen Bestandteile der Visualisierung kennen, beginnend bei den DDIC-Objekten.",
-								"Domänen und Datenelemente sind auf grünen Distrikten dargestellt. Domänen sind hierbei als grüne Zylinder im Zentrum des Distrikts visualisiert. Diejenigen Datenelemente, welche von einer " +
-								"Domäne aus dem gleichen Paket abgeleitet sind, sind am Rand des Distrikts durch dunkelgrüne Zylinder repräsentiert. Außerde, befinden sich die Gebäude der Datenelemente, die vom gleichen " +
-								"eingebauten Typ abgeleitet sind, auf einem gemeinsamen Distrikt ohne Domänengebäude, ebenso wie die Gebäude der Datenelemente, die von einer Domäne aus einem anderen Paket abgeleitet sind",
-								"Erkunden Sie die Visualisierung der Domäne und Datenelemente und beenden Sie die Aufgabe wieder über die Schaltfläche."
-							],		
-
-							ui: 	"UI0",
-
-							viewpoint : "8960 2020 -1400"	// entspricht ZISWF_BOOLEAN
-						},
-
-						{ 	number:	11, // Strukturen
-							
-							text: 	[
-								"Strukturen sind als hellgrüne Distrikte dargestellt. Auf den hellgrünen Distrikten befinden sich die Gebäude der Komponenten der Struktur, die Strukturelemente. Dies sind graue Kegel, " +
-								"die am Rand des Struktur-Distrikts positioniert sind. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von der Struktur abgeleitet, befinden sich diese ebenfalls auf dem " +
-								"Struktur-Distrikt. Sie sind dann als rosafarbene Kegel visualisiert.",
-								"Erkunden Sie die Visualisierung der Struktur. Beenden Sie die Aufgabe wieder über die Schaltfläche."
-							],		
-
-							ui: 	"UI0",
-
-							entities : [
-								"ID_bccbe6849ee2122dde3829d95e5b83a8e83f308c"	// entspricht ZV01_WF_ITEMS_OUT
-							]
-						},
-
-						{ 	number:	12, // Tabellen
-							
-							text: 	[
-								"In diesem Bildausschnitt sehen Sie die Visualisierung von Datenbanktabellen. Diese befinden sich auf einem dunkelblauen Distrikt und sind als flache, braune Quader dargestellt. Auf " +
-								"diesem braunen Quader befinden sich türkisfarbene Quader, die die Tabellenelemente, also die Spalten, repräsentieren. Sind ein oder mehrere Tabellentypen aus dem gleichen Paket von " + 
-								"der Tabelle abgeleitet, befinden diese sich wie bei Strukturen auf dem gleichen Distrikt.",
-								"Erkunden Sie die Visualisierung der Tabelle und beenden Sie die Aufgabe wieder über die Schaltfläche."
-							],		
-
-							ui: 	"UI0",
-
-							entities:   [
-                                "ID_657199a569ebda7bf97574afa86a2af421134335" 	// entspricht ZISWF_SERV_KPF
-                            ]
-						},
-				
 						{ 	number:	13, // Klassen
                             
                             text: 	[
@@ -76,9 +29,9 @@ var setup = {
 
                             ui: 	"UI0",
 
-                            entities:   [
-                                "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f" 	// entspricht ZCL_EXCEL_AUTOFILTER
-                            ]
+                           /* entities:   [
+                                "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f"	// entspricht ZCL_EXCEL_AUTOFILTER
+                            ]*/
                         },
 
                         { 	number:	14, // Klassen-Layout
@@ -146,17 +99,17 @@ var setup = {
 						{ 	number:	17, // number of statements
                             
                             text: 	[
-								"Nun kennen Sie alle Bestandteile der Visualisierung. Als nächstes soll die Metrik \"Number of Statements\" betrachtet werden. Die Höhe der Gebäude von Methoden, Reports, Formroutinen " +
-								"und Funktionsbausteinen korreliert linear mit der Anzahl ihrer Code-Statements. Grundsätzlich sollte gelten, dass ein funktionales Quellcodeobjekt nicht mehr als 50 Statements enthält. " +
-								"Demzufolge sind alle ABAP-Objekte, die 50 oder mehr Statements enthalen, als Gebäude mit der größten Höhe dargestellt. Besitzt beispielsweise eine Methode 25 Statements, ist sie " +
-								"entsprechend nur halb so hoch. Als Richtwert für eine guten Anzahl von Statements kann 30 angesehen werden.",
-								"Suchen Sie in der Visualisierung nach Gebäuden von funktionalen Quellcodeobjekten, die a) eine passende und b) eine zu große Anzahl an Statements besitzen. Beenden Sie die Aufgabe wieder " +
-								"über die Schaltfläche"
+								"Als nächstes soll die Metrik \"Number of Statements\" betrachtet werden. Die Höhe der Gebäude von Methoden, Reports, Formroutinen und Funktionsbausteinen korreliert linear mit der " +
+								"Anzahl ihrer Code-Statements. Grundsätzlich sollte gelten, dass ein funktionales Quellcodeobjekt nicht mehr als 50 Statements enthält. Demzufolge sind alle ABAP-Objekte, die 50 oder " +
+								"mehr Statements enthalen, als Gebäude mit der größten Höhe dargestellt. Besitzt beispielsweise eine Methode 25 Statements, ist sie entsprechend nur halb so hoch. Als Richtwert für eine " +
+								"gute Anzahl von Statements kann 30 angesehen werden.",
+								"Suchen Sie in der Visualisierung nach Gebäuden von funktionalen Quellcodeobjekten, die a) eine passende und b) eine zu große Anzahl an Statements besitzen. Beenden Sie die Aufgabe " +
+								"wieder über die Schaltfläche"
                             ],		
 
                             ui: 	"UI0",
 
-                            viewpoint : "4500 2750 20000" // Überblick
+                            viewpoint : "4500 2000 17000" // Überblick
 						},
 						
 						{ 	number:	18, // Paketumfang
@@ -172,7 +125,7 @@ var setup = {
 
                             ui: 	"UI0",
 
-                            viewpoint : "4500 2750 20000" // Überblick
+                            viewpoint : "4500 2000 17000" // Überblick
                         },
 			]
 			
@@ -192,14 +145,8 @@ var setup = {
 		{ 	name: 	"canvasResetViewController" 
         },
 
-        {	name: 	"canvasFlyToController",			
+        {	name: 	"canvasFlyToController",
 			parentLevel: 1
-		},
-
-		{	name:	"searchController",
-		},
-
-		{	name:	"packageExplorerController",
 		},
 		
 		{	name: 	"canvasFilterController" 
@@ -229,23 +176,6 @@ var setup = {
                 icon: "scripts/Legend/tutorial/table_district.png",
             }],
 		},
-		
-		{   name:   "navigationCamController",
-
-           //NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE, PAN_ZOOM_ROTATE, GAME_WASD
-           modus: "PAN_ZOOM_ROTATE",
-
-           zoomToMousePosition: true,
-
-           //CENTER_OF_ROTATION_ELEMENT - NONE, AXES, SPHERE
-           showCenterOfRotation: false,
-           centerOfRotationElement: "SPHERE",
-
-           setCenterOfRotation: true,
-           setCenterOfRotationFocus: true,
-
-           macUser: false,
-       },	
 	],
 	
 	
