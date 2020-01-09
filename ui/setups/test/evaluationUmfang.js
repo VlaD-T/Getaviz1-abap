@@ -14,13 +14,13 @@ var setup = {
                             
                             text: 	[
 								"Globale Klassen werden als gelbe Distrikte visualisiert. Auf den gelben Distrikten befinden sich die Bestandteile der Klasse als Gebäude. Methoden sind hierbei als graue Quader " +
-                                "dargestellt, deren Höhe abhängig von ihrer Anzahl der Statements ist. Die Attribute der Klasse werden durch Zylinder repräsentiert, deren Höhe wiederum durch die Komplexität der " +
+                                "dargestellt, deren Höhe abhängig von der Anzahl ihrer Statements ist. Die Attribute der Klasse werden durch Zylinder repräsentiert, deren Höhe wiederum durch die Komplexität der " +
 								"Information, die das entsprechende Attribut speichert, bestimmt wird. So ist ein Attribut von elementarem Typ kleiner als die Attribute, die von einem strukturierten Typ sind. Am " +
-								"größten sind diejenigen Attribute, die tabellenartig sind oder eine Referenz auf eine Klasse darstellen.",
+								"größten sind diejenigen Attribute, die tabellenartig oder eine Referenz auf eine Klasse sind.",
                                 "Lokale Klassen werden analog zu globalen visualisiert. Jedoch befinden sie sich nicht direkt auf einem Paketdistrikt wie der Distrikt einer globalen Klasse, sondern sie sind auf " +
-                                "dem Distrikt des definierenden ABAP-Objekts platziert. Dies können neben denen der globalen Klassen auch Distrikte von Funktionsgruppen und Reports sein.",
+                                "dem Distrikt des definierenden ABAP-Objekts platziert. Dies können neben denen der globalen Klassen auch Distrikte von Funktionsgruppen oder Reports sein.",
 								"Grundsätzlich sollten globale Klassen höchstens eine lokale Klasse besitzen, nämlich für Unit-Tests. Die Funktionalität der Klasse wird in Methoden abgebildet. Dies sollte über mindestens " +
-								"drei Methoden abgewickelt werden. Je nach Granularität der Funktionalität deuten circa 10 Methoden auf eine gute Aufteilung hin. Eine Klasse sollte für gewöhnlich höchstens 15 Methoden " +
+								"drei Methoden realisiert werden. Je nach Granularität der Funktionalität implizieren circa 10 Methoden eine gute Aufteilung. Eine Klasse sollte für gewöhnlich höchstens 15 Methoden " +
 								"enthalten. Die zur Erfüllung der Funktionalität benötigten Daten werden in Attributen gekapselt. Demzufolge sollte eine Klasse etwa 5 Attribute besitzen, jedoch mindestens eines und nicht " +
 								"mehr als 10.",
 								"Betrachten Sie die Visualisierung der Klasse und suchen Sie nach globalen Klassen, die a) einen guten, b) einen mittelmäßigen und c) einen schlechten Umfang an Methoden und Attributen " +
@@ -40,8 +40,8 @@ var setup = {
                                 "Außerdem exisitert ein spezielles Anordnungsschema für die Gebäude der Methoden und Attribute:",
 								"Die Gebäude der Klassenbestandteile, die privat sind, werden vorrangig im Zentrum des Distrikts angeordnet, da sie nur innerhalb der Klasse verwendet werden können. Die Gebäude der " +
 								"geschützten und öffentlichen Klassenbestandteile sind hingegen am Rand des Klassendistrikts positioniert.",
-								"Grundsätzlich sollte für Klassen gelten, dass ein Großteil der Daten und Funktionalitäten privat gekapselt sind. Dementsprechend sollte die Metrik NumberOfStatements von privaten " +
-								"Methoden größer sein als die von öffentlichen Methoden. Überhaupt sollten die öffentlichen Methoden nicht viel Funktionalität beinhalten.",
+								"Grundsätzlich sollte für Klassen gelten, dass ein Großteil der Daten und Funktionalitäten privat gekapselt ist. Dementsprechend sollte die Metrik \"NumberOfStatements\" von privaten " +
+								"Methoden größer sein als die von öffentlichen Methoden. Überhaupt sollten die öffentlichen Methoden wenig Funktionalität enthalten.",
 								"Ähnliches gilt für die Attribute einer Klasse. Eine Klasse sollte deutlich mehr private als öffentliche Attribute besitzen. Außerdem sollte ab einer Anzahl von 10 skalaren Attributen " +
 								"stattdessen eine Struktur als Attribut verwendet werden. Genauso sollten mehr als 9 strukturierte Attribute in einem referenziellen Attribut gekapselt werden.",
 								"Betrachten Sie die Visualisierung und suchen Sie nach einer globalen Klasse, die a) eine gute, b) eine mittelmäßige und c) eine schlechte Verteilung von Methoden und Attributen besitzt.",
@@ -116,10 +116,10 @@ var setup = {
                             
                             text: 	[
 								"Abschließend soll der Umfang von Paketen eingeschätzt werden. Prinzipiell dient ein Paket dazu, ABAP-Objekte, die für einen größeren fachlichen Zweck erstellt wurden, zu modularisieren, " +
-								"zu kapseln und zu entkoppeln. Die Funktionalität zur Erreichung des größeren fachlichen Zwecks soll dann auf mehrere Quellcodeobjekten verteilt werden. Dementsprechend sollte ein Paket " +
+								"zu kapseln und zu entkoppeln. Die Funktionalität zur Erreichung des größeren, fachlichen Zwecks soll dann auf mehrere Quellcodeobjekte verteilt werden. Dementsprechend sollte ein Paket " +
 								"circa 10 Quellcodeobjekte enthalten, mindestens jedoch 5. Eine Verteilung der Funktionalität sollte dabei auf nicht mehr als 20 Quellcodeobjekte erfolgen, da in diesem Fall eine " +
-								"feingranularere Aufteilung des fachlichen Zwecks in zwei Pakete sinnvoll erscheint. Zu der Anzahl der enthaltenen DDIC-Objekte soll keine Empfehlung gegeben werden.",
-								"Suchen Sie in der Visualisierung nach Paketen, die a) zu wenig, b) eine passende Anzahl und c) zu viel Quellcodeobjekte besitzen. Beenden Sie die Aufgabe anschließend wieder über die " +
+								"feingranularere Aufteilung des fachlichen Zwecks in zwei Pakete sinnvoll erscheint.",
+								"Suchen Sie in der Visualisierung nach Paketen, die a) zu wenige, b) eine passende Anzahl und c) zu viele Quellcodeobjekte besitzen. Beenden Sie die Aufgabe anschließend wieder über die " +
 								"Schaltfläche" 
                             ],		
 

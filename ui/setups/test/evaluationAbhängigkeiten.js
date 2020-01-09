@@ -13,13 +13,13 @@ var setup = {
                         { 	number:	10, // Anzeigen von Aufrufbeziehungen
                             
                             text: 	[
-                                "Im UI ist das Anzeigen von Beziehungen möglich. Um sich die Beziehungen eines ABAP-Objekts anzeigen zu lassen, müssen Sie das entsprechende Gebäude direkt in der Visualisierung mit " +
+                                "Im UI ist das Anzeigen von Beziehungen möglich. Um sich die Beziehungen eines ABAP-Objekts anzeigen zu lassen, müssen Sie das entsprechende Gebäude in der Visualisierung mit " +
                                 "Linksklick selektieren. Das selektierte Gebäude wird dann rot hervorgehoben. Die Gebäude der ABAP-Objekte, die mit dem selektierten ABAP-Objekt in Beziehung stehen, werden schwarz " +
                                 "dargestellt und durch eine blaue Linie mit dem roten Gebäude verbunden, sofern sie sich nicht auf dem gleichen Distrikt befinden.",
-                                "Grundsätzlich werden drei Arten von Beziehungen unterschieden wobei jedoch für diese Evaluation lediglich die Aufrufbeziehungen relevant sind. Diese entstehen, wenn ein Quellcodeobjekt " +
-                                "ein anderes Quellcodeobjekt, beispielsweise eine Methode einen Funktionsbaustein, aufruft oder auf eine Datenbanktabelle zugreift. Hierbei werden nicht nur die direkten Beziehungen des " +
-                                "selektierten ABAP-Objekts angezeigt, sondern auch die indirekten. Ruft beispielsweise Methode \"A\" die Methode \"B\" und Methode \"B\" die Methode \"C\" auf, wird bei Selektion von " +
-                                "\"A\" nicht nur die Beziehung zu \"B\" dargestellt, sondern auch die Beziehung von \"B\" zu \"C\".",
+                                "Grundsätzlich werden drei Arten von Beziehungen unterschieden, wobei jedoch für diese Evaluation lediglich die Aufrufbeziehungen relevant sind. Diese entstehen, wenn ein Quellcodeobjekt " +
+                                "ein anderes Quellcodeobjekt, beispielsweise eine Methode einen Funktionsbaustein, aufruft. Hierbei werden nicht nur die direkten Beziehungen des selektierten ABAP-Objekts angezeigt, " +
+                                "sondern auch die indirekten. Ruft beispielsweise Methode \"A\" die Methode \"B\" und Methode \"B\" die Methode \"C\" auf, wird bei Selektion von \"A\" nicht nur die Beziehung zu " +
+                                "\"B\" dargestellt, sondern auch die Beziehung von \"B\" zu \"C\".",
                                 "Wählen Sie beispielhaft eine Methode und lassen Sie sich deren Aufrufbeziehungen anzeigen. Verfolgen Sie, welche anderen Quellcodeobjekte und Tabellen die selektierte Methode aufruft. " +
                                 "Beenden Sie die Aufgabe anschließend über die Schaltfläche."
                             ],		
@@ -35,7 +35,7 @@ var setup = {
                             
                             text: 	[
 								"Nun kann es sein, dass nicht nur die Beziehungen einzelner Methoden relevant sind, sondern die aller Methoden einer bestimmten Klasse. Für diese Szenarien gibt es im UI die Möglichkeit, " +
-								"sich die Beziehungen von hierarchisch zusammengehörigen ABAP-Objekten gleichzeitig anzeigen zu lassen. Dazu muss das entsprechende, übergeordnete Objekt, wie beispielsweise eine Klasse, " +
+								"die Beziehungen von hierarchisch zusammengehörigen ABAP-Objekten gleichzeitig anzuzeigen. Dazu muss das entsprechende, übergeordnete Objekt, wie beispielsweise eine Klasse, " +
 								"selektiert werden. Dann werden die Aufrufbeziehungen aller Methoden der selektierten Klasse angezeigt.",
 								"Mittels der Anzeige von Beziehungen lassen sich die Abhängigkeiten der Objekte der Grundmenge zu anderen Paketen untersuchen. Grundsätzlich sollte gelten, dass die Quellcodeobjekte vorrangig" +
 								"Beziehungen zu Objekten aus dem eigenen Paket besitzen, da dieses möglichst viele Bestandteile der zu realisierenden Funktionalität kapseln sollte. Weniger Beziehungen sollten zu Objekten " +

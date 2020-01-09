@@ -16,7 +16,8 @@ var setup = {
 									"Herzlich Willkommen zur Evaluation der bisherigen Entwicklungen des Projekts \"VISAP\".",
 									"Für die Visualisierung von ABAP-Quellcode wird die Stadtmetapher verwendet, bei der die verschiedenen Bestandteile von ABAP als Distrikte (Stadtteile) oder Gebäude dargestellt werden. " +
 									"Alle repräsentierten ABAP-Objekte werden stets auf einem grauen Distrikt positioniert, der das enthaltende Paket darstellt. Wenn Sie die Maus über die Bestandteile der Visualisierung " +
-									"bewegen, erscheint ein Tooltip. Dieser Tooltip enthält den Namen des enthaltenden Pakets. Darunter steht der Typ des repräsentierten ABAP-Objekts sowie anschließend desen Bezeichner.",
+									"bewegen, erscheint ein Tooltip. Der Tooltip enthält Informationen zu dem ABAP-Objekt, welches durch das entsprechende Gebäude oder Distrikt repräsentiert wird. In der ersten Zeile "+
+									"steht der Name des enthaltenden Pakets und darunter der Typ sowie der Bezeichner des ABAP-Objekts.",
 									"Betrachten Sie die Visualisierung und finden Sie heraus, welches ABAP-Objekt durch den großen, violetten Distrikt repräsentiert wird und zu welchem Paket es gehört. Betätigen Sie " +
 									"anschließend die \"Aufgabe abgeschlossen!\"-Schaltfläche oben rechts zwei mal."
 								],		
@@ -31,7 +32,7 @@ var setup = {
 							{ 	number:	11, // Paket-Layout
 								
 								text: 	[
-									"Die zentralen Distrikte der Visualisierung stellen stets die Pakete der Grundmenge dar. Zur Grundmenge gehören diejenigen Pakete, deren Strukturinformationen extrahiert werden sollen. " +
+									"Die zentralen Distrikte der Visualisierung stellen die Pakete der Grundmenge dar. Zur Grundmenge gehören diejenigen Pakete, deren Strukturinformationen extrahiert werden sollen. " +
 									"Das sind in diesem Fall mehrere Z-Pakete aus dem GT3-System. Je nach Granularität der geforderten Analyse kann die Grundmenge aus Paketen genau eines Moduls bis zu allen Paketen eines " + 
 									"Namensraums bestehen. Ringförmig um die Grundmenge befinden sich die Paket-Distrikte der kundeneigenen Entwicklungen, die von den Bestandteilen der Grundmenge referenziert werden.",
 									"Wiederum ringförmig um die Grundmenge und den referenzierten, kundeneigenen Entwicklungen sind die von der Grundmenge verwendeten Paket-Distrikte des SAP-Standards dargestellt",
@@ -49,9 +50,9 @@ var setup = {
 								
 								text: 	[
 									"Nachdem Sie jetzt die Grundzüge der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
-									"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus wird das Modell um den zentralen Punkt gedreht.",
-									"Außerdem können Sie in das Modell hinein- beziehungsweise aus dem Modell herauszoomen, indem Sie die rechte Maustaste gedrückt halten und die Maus bewegen.",
-									"Abschließend ist es durch Drücken der mittleren Maustaste und gleichzeitigem Bewegen der Maus möglich, in dem Modell entsprechend der Mausbewegung zu navigieren.",
+									"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus wird das Modell um einen festen Punkt gedreht.",
+									"Außerdem können Sie in das Modell hinein- beziehungsweise aus dem Modell herauszoomen, indem Sie mit dem Mausrad hoch- beziehungsweise herunterscrollen.",
+									"Abschließend ist es durch Drücken der mittleren Maustaste/des Mausrads und gleichzeitigem Bewegen der Maus möglich, in dem Modell entsprechend der Mausbewegung zu navigieren.",
 									"Probieren Sie die einzelnen Steuerungsvarianten aus und navigieren Sie zum größten Distrikt des SAP-Standards. Beenden Sie anschließend die Aufgabe über die Schaltfläche."
 								],		
 
