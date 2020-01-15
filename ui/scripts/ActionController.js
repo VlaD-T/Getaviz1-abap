@@ -160,19 +160,19 @@ var actionController = (function() {
 		
 	
 		//scroll
-		canvas.addEventListener("wheel", function(eventObject){
+		// canvas.addEventListener("wheel", function(eventObject){
 			
-			scrollAction(actions.mouse.scroll, eventObject);
+		// 	scrollAction(actions.mouse.scroll, eventObject);
 
-			if(actions.mouse.scroll.bubbles){
-				return true;
-			}
+		// 	if(actions.mouse.scroll.bubbles){
+		// 		return true;
+		// 	}
 
-			eventObject.cancelBubble = true;
-			eventObject.cancelable = false;
-            eventObject.stopPropagation();
-			return false;
-		}, true);
+		// 	eventObject.cancelBubble = true;
+		// 	// eventObject.cancelable = false;
+        //     eventObject.stopPropagation();
+		// 	return false;
+		// }, true);
 
 
 		//scroll FF
