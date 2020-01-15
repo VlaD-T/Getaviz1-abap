@@ -7,10 +7,10 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 5,
 		
-			stepOrder:	[ 13, 14, 15, 16, 17, 18 ],
+			stepOrder:	[ 10, 11, 12, 13, 14, 15 ],
 						
             steps:	[				
-						{ 	number:	13, // Klassen
+						{ 	number:	10, // Klassen
                             
                             text: 	[
 								"Globale Klassen werden als gelbe Distrikte visualisiert. Auf den gelben Distrikten befinden sich die Bestandteile der Klasse als Gebäude. Methoden sind hierbei als graue Quader " +
@@ -29,12 +29,17 @@ var setup = {
 
                             ui: 	"UI0",
 
-                           /* entities:   [
-                                "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f"	// entspricht ZCL_EXCEL_AUTOFILTER
-                            ]*/
+							viewpoint : { 										// Überblick
+								position: "-10612.86652 13430.80462 4497.83854",
+								orientation: "-0.35719 -0.863 -0.35727 1.71781",
+							},
+
+                            entities:   [
+                                "ID_b186da1c5fe66a4d4a1150cc4127d824524560b5"	// entspricht ZCL_EXCEL_AUTOFILTER
+                            ]
                         },
 
-                        { 	number:	14, // Klassen-Layout
+                        { 	number:	11, // Klassen-Layout
                             
                             text: 	[
                                 "Außerdem exisitert ein spezielles Anordnungsschema für die Gebäude der Methoden und Attribute:",
@@ -50,12 +55,17 @@ var setup = {
 
                             ui: 	"UI0",
 
+							viewpoint : { 										// Überblick
+								position: "-10612.86652 13430.80462 4497.83854",
+								orientation: "-0.35719 -0.863 -0.35727 1.71781",
+							},
+
                             entities:   [
-                                "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f" 	// entspricht ZCL_EXCEL_AUTOFILTER
+                                "ID_b186da1c5fe66a4d4a1150cc4127d824524560b5" 	// entspricht ZCL_EXCEL_AUTOFILTER
                             ]
                         },
 
-                        { 	number:	15, // Reports
+                        { 	number:	12, // Reports
                             
                             text: 	[
                                 "Reports und ihre Bestandteile sind auf den hellblauen Distrikten dargestellt. Dabei wird ein Report selbst durch einen dunkelblauen Quader im Zentrum des Distrikts repräsentiert. Außerdem " +
@@ -69,14 +79,19 @@ var setup = {
 								"umsetzen. Beenden Sie die Aufgabe wieder über die Schaltfläche."
                             ],		
 
-                            ui: 	"UI0",
+							ui: 	"UI0",
+							
+							viewpoint : { 										// Überblick
+								position: "-10612.86652 13430.80462 4497.83854",
+								orientation: "-0.35719 -0.863 -0.35727 1.71781",
+							},
 
                             entities:   [
                                 "ID_0d3fa981f2e576a7ef02e0fce64799d965807ef0" 	// entspricht ZSD_SAM_KUEND_KONTROLLE_II
                             ]
                         },
 
-                        { 	number:	16, // Funktionsgruppen
+                        { 	number:	13, // Funktionsgruppen
                             
                             text: 	[
                                 "Funktionsgruppen sind als violette Distrikte dargestellt. Auf einem Funktionsgruppen-Distrikt befinden sich Zylinder für die globalen Attribute, sowie graue Quader als Gebäude für die " +
@@ -89,14 +104,19 @@ var setup = {
 								"gar nicht umsetzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
 
-                            ui: 	"UI0",
+							ui: 	"UI0",
+							
+							viewpoint : { 										// Überblick
+								position: "-10612.86652 13430.80462 4497.83854",
+								orientation: "-0.35719 -0.863 -0.35727 1.71781",
+							},
 
                             entities : [
-                                "ID_27f7098606ea3a4efc3d54e3cf6bfd09c6c50932"	// entspricht /RZ1/SAM_SD018_CHANGE_INET
+                                "ID_1e627bbdcff730a946cb466b40db63af3a48e41a"	// entspricht /RZ1/SAM_SD018_CHANGE_INET
                             ]
 						},
 						
-						{ 	number:	17, // number of statements
+						{ 	number:	14, // number of statements
                             
                             text: 	[
 								"Als nächstes soll die Metrik \"Number of Statements\" betrachtet werden. Die Höhe der Gebäude von Methoden, Reports, Formroutinen und Funktionsbausteinen korreliert linear mit der " +
@@ -109,23 +129,29 @@ var setup = {
 
                             ui: 	"UI0",
 
-                            viewpoint : "4500 2000 17000" // Überblick
+                            viewpoint : { 										// Überblick
+								position: "-10612.86652 13430.80462 4497.83854",
+								orientation: "-0.35719 -0.863 -0.35727 1.71781",
+							},
 						},
 						
-						{ 	number:	18, // Paketumfang
+						{ 	number:	15, // Paketumfang
                             
                             text: 	[
 								"Abschließend soll der Umfang von Paketen eingeschätzt werden. Prinzipiell dient ein Paket dazu, ABAP-Objekte, die für einen größeren fachlichen Zweck erstellt wurden, zu modularisieren, " +
 								"zu kapseln und zu entkoppeln. Die Funktionalität zur Erreichung des größeren, fachlichen Zwecks soll dann auf mehrere Quellcodeobjekte verteilt werden. Dementsprechend sollte ein Paket " +
 								"circa 10 Quellcodeobjekte enthalten, mindestens jedoch 5. Eine Verteilung der Funktionalität sollte dabei auf nicht mehr als 20 Quellcodeobjekte erfolgen, da in diesem Fall eine " +
 								"feingranularere Aufteilung des fachlichen Zwecks in zwei Pakete sinnvoll erscheint.",
-								"Suchen Sie in der Visualisierung nach Paketen, die a) zu wenige, b) eine passende Anzahl und c) zu viele Quellcodeobjekte besitzen. Beenden Sie die Aufgabe anschließend wieder über die " +
-								"Schaltfläche" 
+								"Suchen Sie in der Visualisierung im Bereich der Grundmenge nach Paketen, die a) zu wenige, b) eine passende Anzahl und c) zu viele Quellcodeobjekte besitzen. Beenden Sie die Aufgabe " +
+								"anschließend wieder über die Schaltfläche" 
                             ],		
 
                             ui: 	"UI0",
 
-                            viewpoint : "4500 2000 17000" // Überblick
+                            viewpoint : { 										// Überblick
+								position: "-10612.86652 13430.80462 4497.83854",
+								orientation: "-0.35719 -0.863 -0.35727 1.71781",
+							},
                         },
 			]
 			
@@ -165,16 +191,25 @@ var setup = {
             },{
                 name: "Function Group",
                 icon: "scripts/Legend/tutorial/functionGroup_district.png",
-            },{
-                name: "Domain/Data Element",
-                icon: "scripts/Legend/tutorial/domain_district.png",
-            },{
-                name: "Structure",
-                icon: "scripts/Legend/tutorial/structure_district.png",
-            },{
-                name: "Table",
-                icon: "scripts/Legend/tutorial/table_district.png",
             }],
+		},
+
+		{	name: 	"navigationCamController",
+			
+			//NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE, PAN_ZOOM_ROTATE, GAME_WASD			
+			modus: "PAN_ZOOM_ROTATE",
+
+			zoomToMousePosition: true,
+			
+			//CENTER_OF_ROTATION_ELEMENT - NONE, AXES, SPHERE
+			showCenterOfRotation: false,
+			centerOfRotationElement: "SPHERE",
+
+			setCenterOfRotation: true,
+			setCenterOfRotationFocus: true,
+			
+
+			macUser: false,
 		},
 	],
 	
@@ -230,7 +265,8 @@ var setup = {
 								{ name: "defaultLogger" },
 								{ name: "canvasHoverController" },
 								{ name: "canvasFlyToController" },
-								{ name: "canvasSelectController" }
+								{ name: "canvasSelectController" },
+								// { name: "navigationCamController"},
 							],
                         }
                     }

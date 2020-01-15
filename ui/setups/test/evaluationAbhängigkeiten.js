@@ -20,14 +20,19 @@ var setup = {
                                 "ein anderes Quellcodeobjekt, beispielsweise eine Methode einen Funktionsbaustein, aufruft. Hierbei werden nicht nur die direkten Beziehungen des selektierten ABAP-Objekts angezeigt, " +
                                 "sondern auch die indirekten. Ruft beispielsweise Methode \"A\" die Methode \"B\" und Methode \"B\" die Methode \"C\" auf, wird bei Selektion von \"A\" nicht nur die Beziehung zu " +
                                 "\"B\" dargestellt, sondern auch die Beziehung von \"B\" zu \"C\".",
-                                "Wählen Sie beispielhaft eine Methode und lassen Sie sich deren Aufrufbeziehungen anzeigen. Verfolgen Sie, welche anderen Quellcodeobjekte und Tabellen die selektierte Methode aufruft. " +
+                                "Wählen Sie die Methode \"GET_FACTSHEETS_FOR_POS()\" und lassen Sie sich deren Aufrufbeziehungen anzeigen. Verfolgen Sie, welche anderen Quellcodeobjekte die selektierte Methode aufruft. " +
                                 "Beenden Sie die Aufgabe anschließend über die Schaltfläche."
                             ],		
 
                             ui: 	"UI0",
 
+                            viewpoint : { 										// Überblick
+								position: "-10612.86652 13430.80462 4497.83854",
+								orientation: "-0.35719 -0.863 -0.35727 1.71781",
+							},
+
                             entities:   [
-                                "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f" 	// entspricht ZCL_EXCEL_AUTOFILTER
+                                "ID_e1555ff6e58f7c140d426090c542252906cecf66" 	// entspricht ZCL_GM_FACTSHEET_CALCULATOR
                             ]
                         },
 
@@ -35,19 +40,24 @@ var setup = {
                             
                             text: 	[
 								"Nun kann es sein, dass nicht nur die Beziehungen einzelner Methoden relevant sind, sondern die aller Methoden einer bestimmten Klasse. Für diese Szenarien gibt es im UI die Möglichkeit, " +
-								"die Beziehungen von hierarchisch zusammengehörigen ABAP-Objekten gleichzeitig anzuzeigen. Dazu muss das entsprechende, übergeordnete Objekt, wie beispielsweise eine Klasse, " +
-								"selektiert werden. Dann werden die Aufrufbeziehungen aller Methoden der selektierten Klasse angezeigt.",
-								"Mittels der Anzeige von Beziehungen lassen sich die Abhängigkeiten der Objekte der Grundmenge zu anderen Paketen untersuchen. Grundsätzlich sollte gelten, dass die Quellcodeobjekte vorrangig" +
-								"Beziehungen zu Objekten aus dem eigenen Paket besitzen, da dieses möglichst viele Bestandteile der zu realisierenden Funktionalität kapseln sollte. Weniger Beziehungen sollten zu Objekten " +
-								"anderer Pakete der Grundmenge oder zum SAP-Standard bestehen. Des Weiteren sollten die Objekte der Grundmenge möglichst wenig Beziehungen zu den referenzierten, kundeneigenen Entwicklungen " +
-								"besitzen, weil dies auf Abhängigkeiten fachlich eigentlich getrennter Module hinweist, was im Allgemeinen zu vermeiden ist.",
+								"die Beziehungen von hierarchisch zusammengehörigen ABAP-Objekten gleichzeitig anzuzeigen. Dazu muss das entsprechende, übergeordnete Objekt, wie beispielsweise eine Klasse, selektiert " +
+								"werden. Dann werden die Aufrufbeziehungen aller Methoden der selektierten Klasse angezeigt.",
+								"Mittels der Anzeige von Beziehungen lassen sich die Abhängigkeiten der Objekte der Grundmenge zu anderen Paketen untersuchen. Grundsätzlich sollte gelten, dass die Quellcodeobjekte " +
+								"vorrangig Beziehungen zu Objekten aus dem eigenen Paket besitzen, da dieses möglichst viele Bestandteile der zu realisierenden Funktionalität kapseln sollte. Weniger Beziehungen sollten zu " +
+								"Objekten anderer Pakete der Grundmenge oder zum SAP-Standard bestehen. Des Weiteren sollten die Objekte der Grundmenge möglichst wenig Beziehungen zu den referenzierten, kundeneigenen " +
+								"Entwicklungen besitzen, weil dies auf Abhängigkeiten fachlich eigentlich getrennter Module hinweist, was im Allgemeinen zu vermeiden ist.",
 								"Betrachten Sie die Klassen von vorhin und schätzen Sie deren Abhängigkeiten ein. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
 
                             ui: 	"UI0",
 
+                            viewpoint : { 										// Überblick
+								position: "-10612.86652 13430.80462 4497.83854",
+								orientation: "-0.35719 -0.863 -0.35727 1.71781",
+							},
+
                             entities:   [
-                                "ID_02615d941a7cc8a8dc867ab3bcdc6da1fdb8338f" 	// entspricht ZCL_EXCEL_AUTOFILTER
+                                "ID_0ea84be9f8e11d2684eccf7239bce2cacfb6ac79" 	// entspricht ZGM_SERVICE_DELIVERY (erstmal nur ein Paket, da die Klassen aus evaluationUmfang betrachtet werden sollen)
                             ]
                         },
 			]			
@@ -87,15 +97,6 @@ var setup = {
             },{
                 name: "Function Group",
                 icon: "scripts/Legend/tutorial/functionGroup_district.png",
-            },{
-                name: "Domain/Data Element",
-                icon: "scripts/Legend/tutorial/domain_district.png",
-            },{
-                name: "Structure",
-                icon: "scripts/Legend/tutorial/structure_district.png",
-            },{
-                name: "Table",
-                icon: "scripts/Legend/tutorial/table_district.png",
             }],
 		},
 
@@ -112,6 +113,24 @@ var setup = {
 			
 		{ 	name: 	"relationHighlightController" 
 		},
+
+		{	name: 	"navigationCamController",
+			
+			//NAVIGATION_MODES - AXES, MOUSE_WASD, LOOK_AT_ROTATE, PAN_ZOOM_ROTATE, GAME_WASD			
+			modus: "PAN_ZOOM_ROTATE",
+
+			zoomToMousePosition: true,
+			
+			//CENTER_OF_ROTATION_ELEMENT - NONE, AXES, SPHERE
+			showCenterOfRotation: false,
+			centerOfRotationElement: "SPHERE",
+
+			setCenterOfRotation: true,
+			setCenterOfRotationFocus: true,
+			
+
+			macUser: false,
+		},
 	],
 	
 	
@@ -123,11 +142,9 @@ var setup = {
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"none",
+				type:	"examine",
 				//speed: 10
-			},	
-					
-		
+			},
 							
 			area: {
 				name: "top",
@@ -173,6 +190,7 @@ var setup = {
 								{ name:	"relationConnectorController" },
 								{ name:	"relationHighlightController" },
 								{ name:	"relationTransparencyController" },
+								// { name: "navigationCamController"},
 							],
                         }
                     }

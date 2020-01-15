@@ -12,6 +12,8 @@ var canvasManipulator = (function() {
 	let viewpoint;
 	let initialCenterOfRotation;
 
+	var viewPointCounter = 1;
+
 
 	function initialize(){
 
@@ -262,7 +264,17 @@ var canvasManipulator = (function() {
 
 
 	function setViewPoint(viewPoint){
-		document.getElementById('x3dElement').runtime.canvas.doc._viewarea._scene.getViewpoint()._xmlNode["position"] = viewPoint;
+		var newViewpoint = document.createElement("Viewpoint");
+		var newViewpointId = "newViewpoint_" + viewPointCounter;
+		viewPointCounter++;
+
+		newViewpoint.setAttribute("id", newViewpointId);
+		newViewpoint.setAttribute("centerOfRotation", "0 0 0");
+		newViewpoint.setAttribute("position", viewPoint.position);
+		newViewpoint.setAttribute("orientation", viewPoint.orientation);
+
+		document.getElementById("scene").appendChild(newViewpoint);
+		document.getElementById(newViewpointId).setAttribute("set_bind", "true");
 	}
 
 
