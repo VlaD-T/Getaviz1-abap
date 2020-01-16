@@ -54,7 +54,7 @@ var setup = {
 
 						},
 
-						{ 	number:	12, // Navigationsmodi
+						{ 	number:	12, // Navigationsmodi 		TODO: Beschreibung auf PZR umstellen
 							
 							text: 	[
 								"Nachdem Sie jetzt die Grundzüge der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
@@ -157,7 +157,7 @@ var setup = {
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"examine",
+				type:	"none",
 				//speed: 10
 			},	
 				
@@ -181,7 +181,7 @@ var setup = {
                     controllers: [
                         { name: "defaultLogger" },
                         { name: "canvasHoverController" },
-						// { name: "navigationCamController"},
+						{ name: "navigationCamController"},
                     ],
                 }
 			}

@@ -142,7 +142,7 @@ var setup = {
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"examine",
+				type:	"none",
 				//speed: 10
 			},
 							
@@ -190,7 +190,7 @@ var setup = {
 								{ name:	"relationConnectorController" },
 								{ name:	"relationHighlightController" },
 								{ name:	"relationTransparencyController" },
-								// { name: "navigationCamController"},
+								{ name: "navigationCamController"},
 							],
                         }
                     }

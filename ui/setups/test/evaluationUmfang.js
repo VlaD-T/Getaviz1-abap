@@ -222,7 +222,7 @@ var setup = {
 		
 			navigation: {
 				//examine, walk, fly, helicopter, lookAt, turntable, game
-				type:	"examine",
+				type:	"none",
 				//speed: 10
 			},		
 							
@@ -266,7 +266,7 @@ var setup = {
 								{ name: "canvasHoverController" },
 								{ name: "canvasFlyToController" },
 								{ name: "canvasSelectController" },
-								// { name: "navigationCamController"},
+								{ name: "navigationCamController"},
 							],
                         }
                     }
