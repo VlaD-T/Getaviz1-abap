@@ -10,6 +10,8 @@ var navigationCamController = (function() {
 	var mousePosX;
 	var mousePosY;
 
+	var viewPointCounter = 1;
+
 	var angleX = 0.0;
 	var angleY = 0.0;
 
@@ -196,21 +198,29 @@ var navigationCamController = (function() {
 
 	function setViewPoint(viewPoint){
 
-		var viewPointArray = viewPoint.split(" ");
-		
-		var myCam = getCamMatrix();
+		var newViewpoint = document.createElement("Viewpoint");
+		var newViewpointId = "newViewpoint_" + viewPointCounter;
+		viewPointCounter++;
+
+		newViewpoint.setAttribute("id", newViewpointId);
+		newViewpoint.setAttribute("centerOfRotation", "0 0 0");
+		newViewpoint.setAttribute("position", viewPoint.position);
+		newViewpoint.setAttribute("orientation", viewPoint.orientation);
+
+		document.getElementById("scene").appendChild(newViewpoint);
+
+		var viewPointPositionArray = viewPoint.position.split(" ");
+
+		var myCam = newViewpoint._x3domNode._viewMatrix;
 		var cor = viewpoint.getCenterOfRotation();
 				
-		cor.x = cor.x - myCam._03 + viewPointArray[0];
-		cor.y = cor.y - myCam._13 + viewPointArray[1];
-		cor.z = cor.z - myCam._23 + viewPointArray[2];
-		
+		cor.x = cor.x - myCam._03 + viewPointPositionArray[0];
+		cor.y = cor.y - myCam._13 + viewPointPositionArray[1];
+		cor.z = cor.z - myCam._23 + viewPointPositionArray[2];
+
 		viewpoint.setCenterOfRotation(cor);
 
-		
-		myCam._03 = parseFloat(viewPointArray[0]);
-    	myCam._13 = parseFloat(viewPointArray[1]);
-    	myCam._23 = parseFloat(viewPointArray[2]);
+		myCam = myCam.inverse();
 		setCamMatrix(myCam);
 	}
 
