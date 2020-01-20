@@ -54,13 +54,13 @@ var setup = {
 
 						},
 
-						{ 	number:	12, // Navigationsmodi 		TODO: Beschreibung auf PZR umstellen
+						{ 	number:	12, // Navigationsmodi
 							
 							text: 	[
 								"Nachdem Sie jetzt die Grundzüge der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
-								"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus wird das Modell um einen festen Punkt gedreht.",
-								"Außerdem können Sie in das Modell hinein- beziehungsweise aus dem Modell herauszoomen, indem Sie mit dem Mausrad hoch- beziehungsweise herunterscrollen.",
-								"Abschließend ist es durch Drücken der mittleren Maustaste/des Mausrads und gleichzeitigem Bewegen der Maus möglich, in dem Modell entsprechend der Mausbewegung zu navigieren.",
+								"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus navigieren Sie entsprechend der Mausbewegung in dem Modell.",
+								"Außerdem können Sie die Kamera schwenken, indem Sie die rechte Maustaste gedrückt halten und die Maus bewegen.",
+								"Abschließend ist es durch Scrollen des Mausrads möglich, in das Modell hinein- beziehungsweise aus dem Modell herauszuzoomen.",
 								"Probieren Sie die einzelnen Steuerungsvarianten aus und navigieren Sie zum größten Distrikt des SAP-Standards. Beenden Sie anschließend die Aufgabe über die Schaltfläche."
 							],		
 
