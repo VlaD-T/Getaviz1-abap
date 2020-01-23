@@ -89,7 +89,7 @@ var experimentController = (function() {
 		taskDialogOkButton.id = "button_ok";
 		taskDialogOkButton.value = "OK";
 		taskDialogOkButton.type = "button";		
-		taskDialogTextDiv.appendChild(taskDialogOkButton);	
+		taskDialogTextDiv.appendChild(taskDialogOkButton);
 							
 	}
 	
@@ -118,12 +118,13 @@ var experimentController = (function() {
 		});
 						
 		//initialize first step
-		setNextStep();
-		setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);		
+		setTimeout(function() {
+			setNextStep();
+			setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);		
+			}, 5000);		
 		
 		setTimeout(taskTimer, 1000);
-	}
-	
+	}	
 	
 	function taskSolvedButtonClick(event) {
 
@@ -150,21 +151,11 @@ var experimentController = (function() {
 		stopTaskTimer();
 		
 		setNextStep();
-
-		/*if (currentStep.viewpoint) {
-			setNewViewpoint();
-		}
-
-		if (currentStep.entities) {
-			moveToEntity();
-		}*/		
 				
 		setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);
-
-		//application.loadUIConfig(currentStep.ui);		
 	}
 
-	function setNewViewpoint() {		
+	function setNewViewpoint() {
 		canvasManipulator.setViewPoint(currentStep.viewpoint);
 	}
 			
@@ -193,7 +184,7 @@ var experimentController = (function() {
 				}
 		
 				if (currentStep.entities) {
-					moveToEntity();
+					setTimeout(function() {moveToEntity();}, 2000);
 				}				
 
 				return;
