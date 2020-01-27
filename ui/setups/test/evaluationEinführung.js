@@ -13,11 +13,10 @@ var setup = {
 						{ 	number:	10, // Einführung Tooltip
 							
 							text: 	[
-								"Herzlich Willkommen zur Evaluation der bisherigen Entwicklungen des Projekts \"VISAP\".",
+								"Herzlich Willkommen zur Evaluation des aktuellen Stands des Projekts \"VISAP\".",
 								"Für die Visualisierung von ABAP-Quellcode wird die Stadtmetapher verwendet, bei der die verschiedenen Bestandteile von ABAP als Distrikte (Stadtteile) oder Gebäude dargestellt werden. " +
-								"Alle repräsentierten ABAP-Objekte werden stets auf einem grauen Distrikt positioniert, der das enthaltende Paket darstellt. Wenn Sie die Maus über die Bestandteile der Visualisierung " +
-								"bewegen, erscheint ein Tooltip. Der Tooltip enthält Informationen zu dem ABAP-Objekt, welches durch das entsprechende Gebäude oder Distrikt repräsentiert wird. In der ersten Zeile "+
-								"steht der Name des enthaltenden Pakets und darunter der Typ sowie der Bezeichner des ABAP-Objekts.",
+								"Alle Gebäude der dargestellten ABAP-Objekte sind auf einem Distrikt positioniert, der das Oberobjekt beziehungsweise das zugehörige Paket repräsentiert. Wenn Sie die Maus über die " + 
+								"Bestandteile der Visualisierung bewegen, erscheint ein Tooltip mit zusätzlichen Informationen zum ABAP-Objekt, wie der Name des zugehörigen Pakets, der Objekttyp und der Bezeichner.",
 								"Betrachten Sie die Visualisierung und finden Sie heraus, welches ABAP-Objekt durch den großen, violetten Distrikt repräsentiert wird und zu welchem Paket es gehört. Betätigen Sie " +
 								"anschließend die \"Aufgabe abgeschlossen!\"-Schaltfläche oben rechts zwei mal."
 							],		
@@ -37,12 +36,11 @@ var setup = {
 						{ 	number:	11, // Paket-Layout
 							
 							text: 	[
-								"Die zentralen Distrikte der Visualisierung stellen die Pakete der Grundmenge dar. Zur Grundmenge gehören diejenigen Pakete, deren Strukturinformationen extrahiert werden sollen. " +
-								"Das sind in diesem Fall mehrere Z-Pakete aus dem GT3-System. Je nach Granularität der geforderten Analyse kann die Grundmenge aus Paketen genau eines Moduls bis zu allen Paketen eines " + 
-								"Namensraums bestehen. Ringförmig um die Grundmenge befinden sich die Paket-Distrikte der kundeneigenen Entwicklungen, die von den Bestandteilen der Grundmenge referenziert werden.",
-								"Wiederum ringförmig um die Grundmenge und den referenzierten, kundeneigenen Entwicklungen sind die von der Grundmenge verwendeten Paket-Distrikte des SAP-Standards dargestellt",
+								"Die zentralen Distrikte der Visualisierung stellen die Pakete der Grundmenge dar, die analysiert werden sollen. Für die Evaluation sind dies mehrere Z-Pakete aus dem GT3-System. " +
+								"Ringförmig um die Grundmenge befinden sich die grauen Paket-Distrikte der kundeneigenen Entwicklungen, die von den Objekten der Grundmenge referenziert werden.",
+								"Wiederum ringförmig um diese referenzierten, kundeneigenen Entwicklungen sind die von der Grundmenge verwendeten, grauen Paket-Distrikte des SAP-Standards dargestellt",
 								"Fahren Sie mit der Maus über einige Paket-Distrikte und bestimmen Sie den Namen des größten Pakets, welches zu den kundeneigenen Entwicklungen aber nicht zur Grundmenge gehört. "+
-								"Beenden Sie die Aufgabe wieder über die Schaltfläche."
+								"Beenden Sie die Aufgabe wieder über die Schaltfläche rechts oben."
 							],		
 
 							ui: 	"UI0",
@@ -57,10 +55,9 @@ var setup = {
 						{ 	number:	12, // Navigationsmodi
 							
 							text: 	[
-								"Nachdem Sie jetzt die Grundzüge der Metapher kennengelernt haben, werden Sie mit der Steuerung vertraut gemacht.",
-								"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus navigieren Sie entsprechend der Mausbewegung in dem Modell.",
-								"Außerdem können Sie die Kamera schwenken, indem Sie die rechte Maustaste gedrückt halten und die Maus bewegen.",
-								"Abschließend ist es durch Scrollen des Mausrads möglich, in das Modell hinein- beziehungsweise aus dem Modell herauszuzoomen.",
+								"Um das Modell um einen festen Punkt zu drehen, müssen Sie die linke Maustaste gedrückt halten und dabei die Maus bewegen.",
+								"Das Hinein- beziehungsweise Herauszoomen aus dem Modell erfolgt über die Drehung des Mausrads nach vorn beziehungsweise nach hinten.",
+								"Durch Drücken der mittleren Maustaste beziehungsweise des Mausrads und gleichzeitigem Bewegen der Maus kann das Modell verschoben werden.",
 								"Probieren Sie die einzelnen Steuerungsvarianten aus und navigieren Sie zum größten Distrikt des SAP-Standards. Beenden Sie anschließend die Aufgabe über die Schaltfläche."
 							],		
 
@@ -94,6 +91,22 @@ var setup = {
 		},
 
 		{	name: 	"canvasFilterController" 
+		},
+
+		{   name: 	"legendController",
+            entries: [{
+                name: "Package",
+                icon: "scripts/Legend/tutorial/package_district.png"
+            }, {
+                name: "Class",
+                icon: "scripts/Legend/tutorial/class_district.png",
+            },{
+                name: "Report",
+                icon: "scripts/Legend/tutorial/report_district.png",
+            },{
+                name: "Function Group",
+                icon: "scripts/Legend/tutorial/functionGroup_district.png",
+            }],
 		},
 
 		{	name: 	"navigationCamController",
@@ -143,12 +156,32 @@ var setup = {
 				second: {
                     size: "80%",
                     collapsible: false,
-                    name: "canvas",
-                    canvas: {},
-                    controllers: [
-                        { name: "defaultLogger" },
-                        { name: "canvasHoverController" },
-                    ],
+                    area: {
+                        orientation: "vertical",
+                        name: "leftPanel",
+                        first: {                            
+							size: "20%",
+							expanders: [
+								{
+									name: "legend",
+									title: "Legend",
+									controllers: [
+										{ name: "legendController" }
+									],
+								},
+							]
+						},
+                        second: {
+							size: "80%",
+							collapsible: false,
+                            name: "canvas",
+                            canvas: {},
+							controllers: [
+								{ name: "defaultLogger" },
+								{ name: "canvasHoverController" },
+							],
+                        }
+                    }
 				}
 			}
 		},
@@ -176,14 +209,34 @@ var setup = {
 				second: {
                     size: "80%",
                     collapsible: false,
-                    name: "canvas",
-                    canvas: {},
-                    controllers: [
-                        { name: "defaultLogger" },
-                        { name: "canvasHoverController" },
-						{ name: "navigationCamController"},
-                    ],
-                }
+                    area: {
+                        orientation: "vertical",
+                        name: "leftPanel",
+                        first: {                            
+							size: "20%",
+							expanders: [
+								{
+									name: "legend",
+									title: "Legend",
+									controllers: [
+										{ name: "legendController" }
+									],
+								},
+							]
+						},
+                        second: {
+							size: "80%",
+							collapsible: false,
+                            name: "canvas",
+                            canvas: {},
+							controllers: [
+								{ name: "defaultLogger" },
+								{ name: "canvasHoverController" },
+								{ name: "navigationCamController"},
+							],
+                        }
+                    }
+				}
 			}
 		},
 	]

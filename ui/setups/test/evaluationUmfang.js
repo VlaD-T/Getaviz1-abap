@@ -14,17 +14,14 @@ var setup = {
                             
                             text: 	[
 								"Globale Klassen werden als gelbe Distrikte visualisiert. Auf den gelben Distrikten befinden sich die Bestandteile der Klasse als Gebäude. Methoden sind hierbei als graue Quader " +
-                                "dargestellt, deren Höhe abhängig von der Anzahl ihrer Statements ist. Die Attribute der Klasse werden durch Zylinder repräsentiert, deren Höhe wiederum durch die Komplexität der " +
-								"Information, die das entsprechende Attribut speichert, bestimmt wird. So ist ein Attribut von elementarem Typ kleiner als die Attribute, die von einem strukturierten Typ sind. Am " +
-								"größten sind diejenigen Attribute, die tabellenartig oder eine Referenz auf eine Klasse sind.",
-                                "Lokale Klassen werden analog zu globalen visualisiert. Jedoch befinden sie sich nicht direkt auf einem Paketdistrikt wie der Distrikt einer globalen Klasse, sondern sie sind auf " +
-                                "dem Distrikt des definierenden ABAP-Objekts platziert. Dies können neben denen der globalen Klassen auch Distrikte von Funktionsgruppen oder Reports sein.",
-								"Grundsätzlich sollten globale Klassen höchstens eine lokale Klasse besitzen, nämlich für Unit-Tests. Die Funktionalität der Klasse wird in Methoden abgebildet. Dies sollte über mindestens " +
-								"drei Methoden realisiert werden. Je nach Granularität der Funktionalität implizieren circa 10 Methoden eine gute Aufteilung. Eine Klasse sollte für gewöhnlich höchstens 15 Methoden " +
-								"enthalten. Die zur Erfüllung der Funktionalität benötigten Daten werden in Attributen gekapselt. Demzufolge sollte eine Klasse etwa 5 Attribute besitzen, jedoch mindestens eines und nicht " +
-								"mehr als 10.",
-								"Betrachten Sie die Visualisierung der Klasse und suchen Sie nach globalen Klassen, die a) einen guten, b) einen mittelmäßigen und c) einen schlechten Umfang an Methoden und Attributen " +
-								"besitzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
+                                "dargestellt, deren Höhe abhängig von der Anzahl ihrer Statements ist. Die Attribute der Klasse werden durch schwarze Zylinder repräsentiert, deren Höhe wiederum durch den Typ des " +
+								"des Attributs bestimmt wird. Attribute von elementarem Typ werden kleiner als die Attribute von strukturierten Typen dargestellt. Am größten sind Attribute, die eine interne Tabelle oder " +
+								"eine Klassenreferenz darstellen.",
+                                "Im Gegensatz zu globalen Klassen befinden sich lokale Klassen auf den Distrikten ihrer übergeordneten ABAP-Objekte. Dies können neben globalen Klassen auch Funktionsgruppen oder Reports " +
+                                "sein. Grundsätzlich sollten globale Klassen höchstens eine lokale Klasse für Unit-Tests besitzen. Die Funktionalität der Klasse sollte über mindestens drei Methoden realisiert werden. Je " +
+								"nach Funktionalität sollten Klassen etwa 10, jedoch nicht mehr als 15 Methoden besitzen.",
+								"Betrachten Sie die Visualisierung der Klasse der Grundmenge und suchen Sie nach globalen Klassen, die a) einen guten, b) einen mittelmäßigen und c) einen schlechten Umfang an Methoden und " +
+								"Attributen besitzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
 
                             ui: 	"UI0",
@@ -42,10 +39,10 @@ var setup = {
                         { 	number:	11, // Klassen-Layout
                             
                             text: 	[
-                                "Außerdem exisitert ein spezielles Anordnungsschema für die Gebäude der Methoden und Attribute:",
-								"Die Gebäude der Klassenbestandteile, die privat sind, werden vorrangig im Zentrum des Distrikts angeordnet, da sie nur innerhalb der Klasse verwendet werden können. Die Gebäude der " +
-								"geschützten und öffentlichen Klassenbestandteile sind hingegen am Rand des Klassendistrikts positioniert.",
-								"Grundsätzlich sollte für Klassen gelten, dass ein Großteil der Daten und Funktionalitäten privat gekapselt ist. Dementsprechend sollte die Metrik \"NumberOfStatements\" von privaten " +
+                                "Für die Gebäude der Methoden und Attribute exisitert ein spezielles Anordnungsschema:",
+								"Die Gebäude der privaten Klassenbestandteile werden vorrangig im Zentrum des Distrikts angeordnet, da sie nur innerhalb der Klasse verwendet werden können. Die Gebäude der öffentlichen " +
+								"Klassenbestandteile sind hingegen am Rand des Klassendistrikts positioniert.",
+								"Grundsätzlich gilt für Klassen, dass der Großteil der Daten und Funktionalitäten privat gehalten werden soll. Dementsprechend sollte die Metrik \"Number Of Statements\" von privaten " +
 								"Methoden größer sein als die von öffentlichen Methoden. Überhaupt sollten die öffentlichen Methoden wenig Funktionalität enthalten.",
 								"Ähnliches gilt für die Attribute einer Klasse. Eine Klasse sollte deutlich mehr private als öffentliche Attribute besitzen. Außerdem sollte ab einer Anzahl von 10 skalaren Attributen " +
 								"stattdessen eine Struktur als Attribut verwendet werden. Genauso sollten mehr als 9 strukturierte Attribute in einem referenziellen Attribut gekapselt werden.",
@@ -68,14 +65,12 @@ var setup = {
                         { 	number:	12, // Reports
                             
                             text: 	[
-                                "Reports und ihre Bestandteile sind auf den hellblauen Distrikten dargestellt. Dabei wird ein Report selbst durch einen dunkelblauen Quader im Zentrum des Distrikts repräsentiert. Außerdem " +
-                                "befinden sich auf dem Distrikt die Gebäude für die Formroutinen des Reports (graue Quader). Die Höhe der Gebäude der Formroutinen und des Reports sind abhängig von der Anzahl ihrer " +
-								"Statements. Die globalen Attribute des Reports sind als Zylinder dargestellt.",
-								"Grundsätzlich sollte die Funktionalität eines Programms durch Objektorientierung gewährleistet werden. Reports sollten nur in begründeten Ausnahmefällen, wie zum Beispiel für Transaktionen, " +
-								"verwendet werden. In diesen Fällen sollte die Funktionalität dennoch in eine lokale Klasse ausgelagert werden, sodass ein Report stets eine lokale Klasse enthalten sollte; im Ausnahmefall " +
-								"auch zwei, wenn die zu realisierende Funktionalität fachlich zu trennen ist. Dementsprechend besteht für die Verwendung von Formroutinen keinerlei Notwendigkeit. Außerdem sollte ein Report " +
-								"so wenig globale Attribute wie möglich besitzen.",
-								"Erkunden Sie die Visualisierung des Reports. Suchen Sie in der gesamten Visualisierung nach mehreren Reports, die die Qualitätsempfehlungen a) vollständig, b) teilweise und c) gar nicht " +
+                                "Reports und ihre Bestandteile sind auf den hellblauen Distrikten dargestellt. Im Zentrum des Distrikts steht der Report selbst noch einmal als dunkelblauer Quader. Darum befinden sich die " +
+                                "die Gebäude für die Formroutinen des Reports (graue Quader) und die globalen Attribute als Zylinder. Die Höhe der Gebäude der Formroutinen und des Reports ist wie bei Klassen abhängig von " +
+								"der Metrik \"Number Of Statements\".",
+								"Reports sollten ausschließlich als aufrufendes Element für Funktionalität aus Klassen eingesetzt werden. Die dafür notwendige Funktionalität sollte in einer lokalen Klasse gehalten werden. " +
+								"Formroutinen oder globale Attribute werden somit nicht benötigt und sollten vermieden werden.",
+								"Erkunden Sie die Visualisierung des Reports. Suchen Sie in der gesamten Visualisierung nach mehreren Reports, die die Qualitätskriterien a) vollständig, b) teilweise und c) gar nicht " +
 								"umsetzen. Beenden Sie die Aufgabe wieder über die Schaltfläche."
                             ],		
 
@@ -94,12 +89,12 @@ var setup = {
                         { 	number:	13, // Funktionsgruppen
                             
                             text: 	[
-                                "Funktionsgruppen sind als violette Distrikte dargestellt. Auf einem Funktionsgruppen-Distrikt befinden sich Zylinder für die globalen Attribute, sowie graue Quader als Gebäude für die " +
+                                "Funktionsgruppen sind als violette Distrikte dargestellt. Auf einem Funktionsgruppen-Distrikt befinden sich Zylinder für die globalen Attribute sowie graue Quader als Gebäude für die " +
                                 "Funktionsbausteine und Formroutinen der Funktionsgruppe. Die Gebäude der Funktionsbausteine besitzen eine rechteckige Grundfläche, während die Grundfläche der Gebäude der Formroutinen " +
-								"quadratisch ist. Die Höhe beider Gebäudearten ist ebenfalls durch die Anzahl ihrer Statements bestimmt.",
-								"Funktionsgruppen und Funktionsbausteine sollten nur noch für RFC und den Aufruf klassischer Dynpros verwendet werden. Dementsprechend sollte eine Funktionsgruppe nicht mehr als zwei " +
-								"Funktionsbausteine enthalten. Die Funktionsbausteine sollten die Verarbeitung sofort an eine globale oder lokale Klasse abgeben, sodass die Funktionsgruppe höchstens eine lokale Klasse " +
-								"enthält. Auf Formroutinen sollte komplett verzichtet werden, ebenso sollten so wenig globale Attribute wie möglich verwendet werden.",
+								"quadratisch ist. Die Höhe beider Gebäudearten ist wieder durch die Metrik \"Number Of Statements\" bestimmt.",
+								"Funktionsgruppen sollten nur noch für RFC und den Aufruf klassischer Dynpros in Popups verwendet werden. Dementsprechend sollte eine Funktionsgruppe nicht mehr als zwei Funktionsbausteine " +
+								"enthalten. Die Funktionsbausteine sollten die Verarbeitung sofort an eine globale oder lokale Klasse abgeben, sodass die Funktionsgruppe höchstens eine lokale Klasse enthält. Auf " +
+								"Formroutinen und globale Attribute sollte dagegen komplett verzichtet werden.",
 								"Erkunden Sie die Visualisierung der Funktionsgruppe. Suchen Sie in der gesamten Visualisierung nach Funktionsgruppen, die die Qualitätsempfehlungen a) vollständig, b) teilweise und c) " +
 								"gar nicht umsetzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
                             ],		
@@ -121,10 +116,10 @@ var setup = {
                             text: 	[
 								"Als nächstes soll die Metrik \"Number of Statements\" betrachtet werden. Die Höhe der Gebäude von Methoden, Reports, Formroutinen und Funktionsbausteinen korreliert linear mit der " +
 								"Anzahl ihrer Code-Statements. Grundsätzlich sollte gelten, dass ein funktionales Quellcodeobjekt nicht mehr als 50 Statements enthält. Demzufolge sind alle ABAP-Objekte, die 50 oder " +
-								"mehr Statements enthalen, als Gebäude mit der größten Höhe dargestellt. Besitzt beispielsweise eine Methode 25 Statements, ist sie entsprechend nur halb so hoch. Als Richtwert für eine " +
+								"mehr Statements enthalten, als Gebäude mit der größten Höhe dargestellt. Besitzt beispielsweise eine Methode 25 Statements, ist sie entsprechend nur halb so hoch. Als Richtwert für eine " +
 								"gute Anzahl von Statements kann 30 angesehen werden.",
 								"Suchen Sie in der Visualisierung nach Gebäuden von funktionalen Quellcodeobjekten, die a) eine passende und b) eine zu große Anzahl an Statements besitzen. Beenden Sie die Aufgabe " +
-								"wieder über die Schaltfläche"
+								"wieder über die Schaltfläche."
                             ],		
 
                             ui: 	"UI0",
@@ -138,12 +133,12 @@ var setup = {
 						{ 	number:	15, // Paketumfang
                             
                             text: 	[
-								"Abschließend soll der Umfang von Paketen eingeschätzt werden. Prinzipiell dient ein Paket dazu, ABAP-Objekte, die für einen größeren fachlichen Zweck erstellt wurden, zu modularisieren, " +
-								"zu kapseln und zu entkoppeln. Die Funktionalität zur Erreichung des größeren, fachlichen Zwecks soll dann auf mehrere Quellcodeobjekte verteilt werden. Dementsprechend sollte ein Paket " +
-								"circa 10 Quellcodeobjekte enthalten, mindestens jedoch 5. Eine Verteilung der Funktionalität sollte dabei auf nicht mehr als 20 Quellcodeobjekte erfolgen, da in diesem Fall eine " +
-								"feingranularere Aufteilung des fachlichen Zwecks in zwei Pakete sinnvoll erscheint.",
+								"Abschließend soll der Umfang von Paketen eingeschätzt werden. Prinzipiell dient ein Paket dazu, ABAP-Objekte, die für einen größeren fachlichen Zweck erstellt wurden, zu modularisieren. " +
+								"Die Funktionalität zur Erreichung des größeren fachlichen Zwecks soll dann auf mehrere Quellcodeobjekte verteilt werden. Dementsprechend sollte ein Paket circa 10 Quellcodeobjekte " +
+								"enthalten, mindestens jedoch 5. Eine Verteilung der Funktionalität sollte dabei auf nicht mehr als 20 Quellcodeobjekte erfolgen, da in diesem Fall eine feinere Aufteilung in mehrere " +
+								"Pakete zu prüfen ist.",
 								"Suchen Sie in der Visualisierung im Bereich der Grundmenge nach Paketen, die a) zu wenige, b) eine passende Anzahl und c) zu viele Quellcodeobjekte besitzen. Beenden Sie die Aufgabe " +
-								"anschließend wieder über die Schaltfläche" 
+								"anschließend wieder über die Schaltfläche." 
                             ],		
 
                             ui: 	"UI0",
