@@ -102,7 +102,8 @@ var relationTransparencyController = (function() {
 		if (controllerConfig.showDependanceToStandard) {
 			if (majorSCElements.includes(entity.type)) {
 				if (entity.type == "Class" || entity.type == "Interface") {
-					relatedEntities = relatedEntities.concat(entity.superTypes);
+					// Momentan für die Evaluation auskommentiert, nach Abschluss oder bei Bedarf bitte wieder entkommentieren
+					// relatedEntities = relatedEntities.concat(entity.superTypes);
 					// relatedEntities = relatedEntities.concat(entity.subTypes);
 					relatedEntities = relatedEntities.concat(entity.children);
 				} else if (entity.type == "Report") {
@@ -181,7 +182,7 @@ var relationTransparencyController = (function() {
 					return;
 				}
 	
-				//skipping recursive calls of newSourceEntity
+				//skip recursive calls of newSourceEntity
 				if (relatedEntity == newSourceEntity)
 					return;
 	
@@ -218,7 +219,8 @@ var relationTransparencyController = (function() {
 			}
 		} else if (minorSCElements.includes(entity.type)) {
 			if (entity.type == "Attribute") {
-				newRelatedEntities = newRelatedEntities.concat(entity.typeOf);
+				// Momentan für die Evaluation auskommentiert, nach Abschluss oder bei Bedarf bitte wieder entkommentieren
+				// newRelatedEntities = newRelatedEntities.concat(entity.typeOf);
 			} else {
 				newRelatedEntities = newRelatedEntities.concat(entity.calls);
 			}
