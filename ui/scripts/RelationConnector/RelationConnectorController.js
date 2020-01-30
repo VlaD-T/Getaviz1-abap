@@ -253,13 +253,22 @@ var relationConnectorController = function(){
 				}	
 			}
 
-			//skipping recursive calls of newSourceEntity
+			//skip recursive calls of newSourceEntity
 			if (relatedEntity == newSourceEntity)
 				return;
 
+			//add the relation to the relation map
+			if (relatedEntitiesMap.has(newSourceEntity)) {
+				relatedEntitiesMap.get(newSourceEntity).push(relatedEntity);
+			} else {
+				relatedEntitiesMap.set(newSourceEntity, [relatedEntity]);
+			}
+
 			if (!dontDrawConnector) {
+				
 				// draw connector only for not-inner relations
-				if(isTargetChildOfSourceParent(relatedEntity, newSourceEntity) == false){
+				if(isTargetChildOfSourceParent(relatedEntity, newSourceEntity) == false) {
+					
 					//create scene element
 					var connector = createConnector(newSourceEntity, relatedEntity);
 					
@@ -285,13 +294,7 @@ var relationConnectorController = function(){
 					relation.source = newSourceEntity;
 					relation.target = relatedEntity;
 					
-					relations.push(relation);
-
-					if (relatedEntitiesMap.has(newSourceEntity)) {
-						relatedEntitiesMap.get(newSourceEntity).push(relatedEntity);
-					} else {
-						relatedEntitiesMap.set(newSourceEntity, [relatedEntity]);
-					}				
+					relations.push(relation);			
 				}
 			}
 			
