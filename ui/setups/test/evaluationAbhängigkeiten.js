@@ -5,7 +5,7 @@ var setup = {
 		{	name: 	"experimentController",
 		
 			taskTextButtonTime: 10,
-			taskTime: 5,
+			taskTime: 3,
 		
 			stepOrder:	[ 10, 11 ],
 						
@@ -30,7 +30,7 @@ var setup = {
 							},
 
                             entities:   [
-                                "ID_e1555ff6e58f7c140d426090c542252906cecf66" 	// entspricht ZCL_GM_FACTSHEET_CALCULATOR
+                                "ID_c109a87493f1d48b8489f0d6fe0b4ecfff56a2f6" 	// entspricht ZCL_GM_FACTSHEET_CALCULATOR - GET_FACTSHEETS_FOR_POS()
                             ]
                         },
 
@@ -72,6 +72,9 @@ var setup = {
 		},	
 
 		{ 	name: 	"canvasResetViewController" 
+		},
+		
+		{ 	name: 	"searchController" 
         },
 
 		{	name: 	"canvasFlyToController",
@@ -148,11 +151,12 @@ var setup = {
 				orientation: "horizontal",
 				
 				first: {			
-					size: "200px",	
+					size: "250px",	
 					
 					controllers: [	
 						{ name: "experimentController" },				
 						{ name: "canvasResetViewController" },
+						{ name: "searchController" },
 					],							
 				},
 				second: {
@@ -185,7 +189,7 @@ var setup = {
 								{ name: "canvasSelectController" },
 								{ name: "canvasFlyToController" },
 								{ name:	"relationConnectorController" },
-								{ name:	"relationHighlightController" },
+								//{ name:	"relationHighlightController" },
 								{ name:	"relationTransparencyController" },
 								{ name: "navigationCamController"},
 							],

@@ -5,7 +5,7 @@ var setup = {
 		{	name: 	"experimentController",
 		
 			taskTextButtonTime: 10,
-			taskTime: 5,
+			taskTime: 3,
 		
 			stepOrder:	[ 10, 11, 12, 13, 14, 15 ],
 						
@@ -32,7 +32,7 @@ var setup = {
 							},
 
                             entities:   [
-                                "ID_b186da1c5fe66a4d4a1150cc4127d824524560b5"	// entspricht ZCL_EXCEL_AUTOFILTER
+                                "ID_e971f662a36dd7189595b1541ff549eb18d373f7"	// entspricht ZCL_GM_SERVICE_DELIVERY
                             ]
                         },
 
@@ -58,7 +58,7 @@ var setup = {
 							},
 
                             entities:   [
-                                "ID_b186da1c5fe66a4d4a1150cc4127d824524560b5" 	// entspricht ZCL_EXCEL_AUTOFILTER
+                                "ID_e971f662a36dd7189595b1541ff549eb18d373f7" 	// entspricht ZCL_GM_SERVICE_DELIVERY
                             ]
                         },
 
@@ -128,6 +128,10 @@ var setup = {
 								position: "-10612.86652 13430.80462 4497.83854",
 								orientation: "-0.35719 -0.863 -0.35727 1.71781",
 							},
+
+							entities : [
+								"ID_4a1fcd61ea91761f22632560b0f27d84e18318fa" 	// entspricht ZI01
+							]
 						},
 						
 						{ 	number:	15, // Paketumfang
@@ -147,6 +151,10 @@ var setup = {
 								position: "-10612.86652 13430.80462 4497.83854",
 								orientation: "-0.35719 -0.863 -0.35727 1.71781",
 							},
+
+							entities : [
+								"ID_4a1fcd61ea91761f22632560b0f27d84e18318fa" 	// entspricht ZI01
+							]
                         },
 			]
 			

@@ -5,7 +5,7 @@ var setup = {
 		{	name: 	"experimentController",
 		
 			taskTextButtonTime: 10,
-			taskTime: 5,
+			taskTime: 3,
 		
 			stepOrder:	[ 10, 11, 12 ],
 						
@@ -54,10 +54,10 @@ var setup = {
 
 						{ 	number:	12, // Navigationsmodi
 							
-							text: 	[
-								"Um das Modell um einen festen Punkt zu drehen, müssen Sie die linke Maustaste gedrückt halten und dabei die Maus bewegen.",
-								"Das Hinein- beziehungsweise Herauszoomen aus dem Modell erfolgt über die Drehung des Mausrads nach vorn beziehungsweise nach hinten.",
-								"Durch Drücken der mittleren Maustaste beziehungsweise des Mausrads und gleichzeitigem Bewegen der Maus kann das Modell verschoben werden.",
+							text: 	[							
+								"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus kann das Modell verschoben werden.",
+								"Außerdem können Sie die Kamera schwenken, indem Sie die rechte Maustaste gedrückt halten und die Maus bewegen.",
+								"Das Hinein- beziehungsweise Herauszoomen aus dem Modell erfolgt über die Drehung des Mausrads nach vorn beziehungsweise nach hinten.",								
 								"Probieren Sie die einzelnen Steuerungsvarianten aus und navigieren Sie zum größten Distrikt des SAP-Standards. Beenden Sie anschließend die Aufgabe über die Schaltfläche."
 							],		
 
@@ -67,6 +67,10 @@ var setup = {
 								position: "-10612.86652 13430.80462 4497.83854",
 								orientation: "-0.35719 -0.863 -0.35727 1.71781",
 							},
+
+							entities : [
+								"ID_4a1fcd61ea91761f22632560b0f27d84e18318fa" 	// entspricht ZI01
+							]
 						},
 			]
 			
