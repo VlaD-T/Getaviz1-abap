@@ -118,12 +118,15 @@ var experimentController = (function() {
 		});
 						
 		//initialize first step
+		if(stepTime != 0){
+			startTaskTimer(stepTime);		
+		}
 		setTimeout(function() {
 			setNextStep();
 			setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);		
 			}, 5000);		
 		
-		setTimeout(taskTimer, 1000);
+		//setTimeout(taskTimer, 1000);
 	}	
 	
 	function taskSolvedButtonClick(event) {
@@ -132,8 +135,8 @@ var experimentController = (function() {
             $("#taskSolvedButton")[0].value = "Sure?"
             setTimeout(resetSolvedButton, 3000);
         } else {
-
-            nextStep();
+			taskTimer();
+			//nextStep();
         }
     }
 
@@ -151,6 +154,8 @@ var experimentController = (function() {
 		stopTaskTimer();
 		
 		setNextStep();
+
+		startTaskTimer(stepTime);
 				
 		setStepTexts(currentStep.text, 100, 100, 1000, 300, stepTextTime);
 	}
@@ -272,7 +277,7 @@ var experimentController = (function() {
 	
 			
 	
-	//timout after task time
+	//timeout after task time
 	//**********************
 	
 	var taskTimerOn = false;
@@ -280,7 +285,7 @@ var experimentController = (function() {
 	
 	function taskTimer(){
 				
-		setTimeout(taskTimer, 1000);
+		//setTimeout(taskTimer, 1000);
 		
 		if(!taskTimerOn){			
 			return;
@@ -292,8 +297,8 @@ var experimentController = (function() {
 	}
 	
 		
-	function startTaskTimer(timeoutInMin){
-		timeOutTime = Date.now() + ( timeoutInMin * 60 * 1000);	
+	function startTaskTimer(timeoutInSec){
+		timeOutTime = Date.now() + ( timeoutInSec * 1000);	
 		taskTimerOn = true;
 	}
 	
