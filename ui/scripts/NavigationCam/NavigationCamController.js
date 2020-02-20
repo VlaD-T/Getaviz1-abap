@@ -198,6 +198,7 @@ var navigationCamController = (function() {
 
 	function setViewPoint(viewPoint){
 
+		
 		var newViewpoint = document.createElement("Viewpoint");
 		var newViewpointId = "newViewpoint_" + viewPointCounter;
 		viewPointCounter++;
@@ -209,16 +210,19 @@ var navigationCamController = (function() {
 
 		document.getElementById("scene").appendChild(newViewpoint);
 
-		var viewPointPositionArray = viewPoint.position.split(" ");
-
 		var myCam = newViewpoint._x3domNode._viewMatrix;
+
+		/*
+		var viewPointPositionArray = viewPoint.position.split(" ");
+		
 		var cor = viewpoint.getCenterOfRotation();
 				
-		cor.x = cor.x - myCam._03 + viewPointPositionArray[0];
-		cor.y = cor.y - myCam._13 + viewPointPositionArray[1];
-		cor.z = cor.z - myCam._23 + viewPointPositionArray[2];
+		cor.x = cor.x - myCam._03 + parseFloat(viewPointPositionArray[0]);
+		cor.y = cor.y - myCam._13 + parseFloat(viewPointPositionArray[1]);
+		cor.z = cor.z - myCam._23 + parseFloat(viewPointPositionArray[2]);
 
 		viewpoint.setCenterOfRotation(cor);
+		*/
 
 		myCam = myCam.inverse();
 		setCamMatrix(myCam);
