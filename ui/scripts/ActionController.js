@@ -160,7 +160,7 @@ var actionController = (function() {
 		
 	
 		//scroll
-		canvas.addEventListener("wheel", function(eventObject){
+		canvas.addEventListener("mousewheel", function(eventObject){
 			
 			scrollAction(actions.mouse.scroll, eventObject);
 
@@ -169,7 +169,7 @@ var actionController = (function() {
 			}
 
 			eventObject.cancelBubble = true;
-			// eventObject.cancelable = false;
+			//eventObject.cancelable = false;
             eventObject.stopPropagation();
 			return false;
 		}, true);

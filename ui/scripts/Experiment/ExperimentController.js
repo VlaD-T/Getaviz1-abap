@@ -180,21 +180,28 @@ var experimentController = (function() {
 		
 		steps.forEach(function(step){
 			if(step.number == nextStepByStepOrder){
+				var lastStep = currentStep;
 				currentStep = step;
 
-				application.loadUIConfig(currentStep.ui);
+				if(lastStep && lastStep.ui != currentStep.ui){
+					application.loadUIConfig(currentStep.ui);					
+				} 			
 
-				if (currentStep.viewpoint) {
-					setNewViewpoint();
-				}
-		
-				if (currentStep.entities) {
-					setTimeout(function() {moveToEntity();}, 2000);
-				}				
+				setViewpointOfCurrentStep();
 
 				return;
 			}
 		});		
+	}
+
+	function setViewpointOfCurrentStep(){
+		if (currentStep.viewpoint) {
+			setNewViewpoint();
+		}
+
+		if (currentStep.entities) {
+			setTimeout(function() {moveToEntity();}, 2000);
+		}	
 	}
 	
 	function setPreviousStep() {

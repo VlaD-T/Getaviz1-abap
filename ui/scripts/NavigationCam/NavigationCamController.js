@@ -177,23 +177,6 @@ var navigationCamController = (function() {
 
 		canvasManipulator.setViewPoint = setViewPoint;
 		
-		/*
-		var center = x3dom.fields.SFVec3f.copy(viewpoint.getCenterOfRotation());
-
-		var myCam = getCamMatrix();
-
-		var from = myCam.e3();
-		var at = center;
-		var up = myCam.e1();
-
-		myCam = x3dom.fields.SFMatrix4f.lookAt(from, at, up);
-		//myCam = calcOrbit(0, 0);	
-
-		setCamMatrix(myCam);	
-		*/
-		
-			
-		setTimeout(canvasManipulator.setDefaultView, 1000);
 	}
 
 	function setViewPoint(viewPoint){
@@ -564,6 +547,7 @@ var navigationCamController = (function() {
 			default:	
 		}
 		
+
         
     }
 

@@ -126,7 +126,7 @@ var setup = {
 
 			setCenterOfRotation: true,
 			setCenterOfRotationFocus: true,
-			
+			zoomFactor: 1.0,
 
 			macUser: false,
 		},
