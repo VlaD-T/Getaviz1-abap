@@ -189,6 +189,10 @@ var experimentController = (function() {
 
 				setViewpointOfCurrentStep();
 
+				relationConnectorController.reset();
+				relationTransparencyController.reset();
+				canvasSelectController.reset();
+
 				return;
 			}
 		});		
