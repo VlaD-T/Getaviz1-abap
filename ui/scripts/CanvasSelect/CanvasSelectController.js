@@ -144,7 +144,7 @@ var canvasSelectController = (function() {
 	
 	function onEntitySelected(applicationEvent) {	
 		
-		var entity = applicationEvent.entities[0];	
+		var entity = applicationEvent.entities[0];
 		
 		var selectedEntities = events.selected.getEntities();		
 		
