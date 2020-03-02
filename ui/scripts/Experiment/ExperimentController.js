@@ -207,10 +207,6 @@ var experimentController = (function() {
 
 				setViewpointOfCurrentStep();
 
-<<<<<<< HEAD
-				//erstmal nur provisorisch
-=======
->>>>>>> branch 'dev_max' of https://github.com/VlaD-T/Getaviz1-abap.git
 				relationConnectorController.reset();
 				relationTransparencyController.reset();
 				canvasSelectController.reset();
@@ -309,7 +305,6 @@ var experimentController = (function() {
 		}
 		if (lastSelectedEntity != undefined) {
 			setTimeout(function() {
-				//var entity = model.getEntityById(lastSelectedEntity);
 				canvasManipulator.flyToEntity(lastSelectedEntity);		
 				canvasManipulator.setCenterOfRotation(lastSelectedEntity, false);}, 1000);
 		}
