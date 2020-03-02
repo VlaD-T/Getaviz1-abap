@@ -207,7 +207,10 @@ var experimentController = (function() {
 
 				setViewpointOfCurrentStep();
 
+<<<<<<< HEAD
 				//erstmal nur provisorisch
+=======
+>>>>>>> branch 'dev_max' of https://github.com/VlaD-T/Getaviz1-abap.git
 				relationConnectorController.reset();
 				relationTransparencyController.reset();
 				canvasSelectController.reset();

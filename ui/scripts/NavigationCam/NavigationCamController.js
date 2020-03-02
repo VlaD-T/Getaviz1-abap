@@ -92,6 +92,8 @@ var navigationCamController = (function() {
 		panFactor: 0.5,
 		zoomFactor: 3.0,
 
+		cameraYPositionMinimum: 1000,
+
 		macUser: false
 	}
 
@@ -503,7 +505,7 @@ var navigationCamController = (function() {
 					zoomDirection = zoomDirection * -1;
 				}
 
-				if(controllerConfig.zoomToMousePosition){
+				if(controllerConfig.zoomToMousePosition && zoomDirection > 0){
 					moveByScroll(eventObject, zoomDirection);
 				} else {
 					zoom(zoomDirection);	
@@ -516,7 +518,7 @@ var navigationCamController = (function() {
 					zoomDirection = zoomDirection * -1;
 				}
 			
-				if(controllerConfig.zoomToMousePosition){
+				if(controllerConfig.zoomToMousePosition && zoomDirection > 0){
 					moveByScroll(eventObject, zoomDirection);
 				} else {
 					zoom(zoomDirection);	
@@ -538,7 +540,7 @@ var navigationCamController = (function() {
 					zoomDirection = zoomDirection * -1;
 				}
 			
-				if(controllerConfig.zoomToMousePosition){
+				if(controllerConfig.zoomToMousePosition && zoomDirection > 0){
 					moveByScroll(eventObject, zoomDirection);
 				} else {
 					zoom(zoomDirection);	
@@ -566,6 +568,13 @@ var navigationCamController = (function() {
 	}
 
 	function setCamMatrix(newCamMatrix){
+
+		var from = newCamMatrix.e3();
+
+		if(newCamMatrix._13 < controllerConfig.cameraYPositionMinimum){
+			newCamMatrix._13 = controllerConfig.cameraYPositionMinimum;
+		}
+
 		camMatrix = newCamMatrix.copy();
 		viewMatrix = camMatrix.inverse();
 

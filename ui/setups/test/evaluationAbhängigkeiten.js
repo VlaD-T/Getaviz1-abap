@@ -77,9 +77,9 @@ var setup = {
 		{ 	name: 	"searchController" 
         },
 
-		{	name: 	"canvasFlyToController",
-			parentLevel: 1
-		},
+		// {	name: 	"canvasFlyToController",
+		// 	parentLevel: 1
+		// },
 		
 		{	name: 	"canvasFilterController" 
 		},
