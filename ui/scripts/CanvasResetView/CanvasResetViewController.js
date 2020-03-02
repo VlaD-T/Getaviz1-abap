@@ -5,7 +5,6 @@ var canvasResetViewController = (function() {
 		button : true,
 	};
 	
-	
 	function initialize(setupConfig){	
 
 		application.transferConfigParams(setupConfig, controllerConfig);		
@@ -34,7 +33,7 @@ var canvasResetViewController = (function() {
             let $resetViewButton = $("#resetViewButton").jqxButton({ theme: "metro"});
 
 			//$("#resetViewButton").jqxButton({ theme: "metro"});
-            $resetViewButton.click(resetApplication);
+			$resetViewButton.click(resetApplication);
 		}
     }
 	

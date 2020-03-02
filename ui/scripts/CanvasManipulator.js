@@ -24,12 +24,11 @@ var canvasManipulator = (function() {
 		initialCenterOfRotation = viewpoint.getCenterOfRotation();
 	}
 
-	function reset(){
-		
+	function reset(){		
 	}
 
 	function setDefaultView(){
-		x3domRuntime.showAll("negZ");;
+		x3domRuntime.showAll("negZ");
 	}
 	
 
@@ -44,7 +43,7 @@ var canvasManipulator = (function() {
 
 		const parts = multiPart.getParts(entityIds);
 		if(parts === null){
-			events.log.error.publish({ text: "CanvasManipualtor - highlightEntities - parts for entityIds not found"});
+			events.log.error.publish({ text: "CanvasManipulator - highlightEntities - parts for entityIds not found"});
 			return;
 		}
 
@@ -62,7 +61,7 @@ var canvasManipulator = (function() {
 
 		const parts = multiPart.getParts(entityIds);
 		if(parts === null){
-			events.log.error.publish({ text: "CanvasManipualtor - unhighlightEntities - parts for entityIds not found"});
+			events.log.error.publish({ text: "CanvasManipulator - unhighlightEntities - parts for entityIds not found"});
 			return;
 		}
 
@@ -85,7 +84,7 @@ var canvasManipulator = (function() {
 
 		const parts = multiPart.getParts(entityIds);
 		if(parts === null){
-			events.log.error.publish({ text: "CanvasManipualtor - changeTransparencyOfEntities - parts for entityIds not found"});
+			events.log.error.publish({ text: "CanvasManipulator - changeTransparencyOfEntities - parts for entityIds not found"});
 			return;
 		}
 		setTransparency(parts, value);
@@ -112,7 +111,7 @@ var canvasManipulator = (function() {
 		oldTransparencyMap.forEach(function(entityIds, oldTransparency, map){
 			const parts = multiPart.getParts(entityIds);
 			if(parts === null){
-				events.log.error.publish({ text: "CanvasManipualtor - resetTransparencyOfEntities - parts for entityIds not found"});
+				events.log.error.publish({ text: "CanvasManipulator - resetTransparencyOfEntities - parts for entityIds not found"});
 				return;
 			}	
 			setTransparency(parts, oldTransparency);
@@ -136,7 +135,7 @@ var canvasManipulator = (function() {
 
 		const parts = multiPart.getParts(entityIds);
 		if(parts === null){
-			events.log.error.publish({ text: "CanvasManipualtor - changeColorOfEntities - parts for entityIds not found"});
+			events.log.error.publish({ text: "CanvasManipulator - changeColorOfEntities - parts for entityIds not found"});
 			return;
 		}
 		setColor(parts, color);
@@ -164,7 +163,7 @@ var canvasManipulator = (function() {
 		oldColorMap.forEach(function(entitiyIds, oldColor, map){
 			const parts = multiPart.getParts(entitiyIds);
 			if(parts === undefined){
-				events.log.error.publish({ text: "CanvasManipualtor - resetColorOfEntities - parts for entityIds not found"});
+				events.log.error.publish({ text: "CanvasManipulator - resetColorOfEntities - parts for entityIds not found"});
 				return;
 			}
 			setColor(parts, oldColor);
@@ -179,7 +178,7 @@ var canvasManipulator = (function() {
 
 		const parts = multiPart.getParts(entityIds);
 		if(parts === undefined){
-			events.log.error.publish({ text: "CanvasManipualtor - hideEntities - parts for entityIds not found"});
+			events.log.error.publish({ text: "CanvasManipulator - hideEntities - parts for entityIds not found"});
 			return;
 		}
 		setVisibility(parts, false);
@@ -194,7 +193,7 @@ var canvasManipulator = (function() {
 
 		const parts = multiPart.getParts(entityIds);
 		if(parts === undefined){
-			events.log.error.publish({ text: "CanvasManipualtor - showEntities - parts for entityIds not found"});
+			events.log.error.publish({ text: "CanvasManipulator - showEntities - parts for entityIds not found"});
 			return;
 		}
 		setVisibility(parts, true);
@@ -205,7 +204,7 @@ var canvasManipulator = (function() {
 	function flyToEntity(entity){
 	    const part = getPart(entity);
 		if (part === undefined) {
-			events.log.error.publish({ text: "CanvasManipualtor - resetColflyToEntityorOfEntities - parts for entityIds not found"});
+			events.log.error.publish({ text: "CanvasManipulator - flyToEntity - parts for entityIds not found"});
 			return;
 		}
 		

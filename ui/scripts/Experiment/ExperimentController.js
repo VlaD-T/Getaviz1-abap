@@ -11,10 +11,13 @@ var experimentController = (function() {
 	var stepTime = 0;
 	var stepTextTime = 0;
 
+	var lastSelectedEntity;
+
 	var controllerConfig = {
 		showBackButton: false,
 		showSureButton: true,
 		showPopup: false,
+		showFlyBackButton: true,
 	};
 
 
@@ -38,7 +41,8 @@ var experimentController = (function() {
 		
 		//events
 		events.marked.on.subscribe(onEntityMarked);
-		events.marked.off.subscribe(onEntityMarked);
+		events.marked.off.subscribe(onEntityMarked);		
+		events.selected.on.subscribe(onEntitySelected);
 		
 		//container div
 		experimentControllerDiv = document.createElement("DIV");
@@ -65,7 +69,16 @@ var experimentController = (function() {
             backButton.value = 'Back';
             backButton.type = 'button';
             experimentHeaderDiv.appendChild(backButton);
-        }
+		}
+		
+		if(controllerConfig.showFlyBackButton){	
+			// style and position
+			let taskDialogOkButton = document.createElement("INPUT");
+			taskDialogOkButton.id = "flyBackButton";
+			taskDialogOkButton.value = "Fly back to the last selected Entity";
+			taskDialogOkButton.type = "button";		
+			experimentHeaderDiv.appendChild(taskDialogOkButton);
+		}
 		
 		//taskdialog
 		var taskDialogDiv = document.createElement("DIV");
@@ -105,7 +118,12 @@ var experimentController = (function() {
 		if(controllerConfig.showBackButton) {
             $('#backButton').jqxButton({theme: 'metro'});
             $('#backButton').click(backButtonClick);
-        }
+		}
+		
+		if(controllerConfig.showFlyBackButton){	
+			let $flyBackButton = $("#flyBackButton").jqxButton({ theme: "metro"});
+			$flyBackButton.click(flyToLastSelectedEntity);
+		}
 		
 		//taskdialog
 		$("#taskDialog").jqxWindow({ height: 1000, width: 700, theme: 'metro', isModal: true, autoOpen: false, resizable: false, showCloseButton: false, okButton: $('#button_ok') });
@@ -275,6 +293,21 @@ var experimentController = (function() {
 		//set task field
 		$("#taskFieldText").html(text);	
 		$("#taskFieldText").css("text-transform", "none");		
+	}
+	
+	function onEntitySelected(applicationEvent) {
+		lastSelectedEntity = applicationEvent.entities[0];
+	}
+
+	function flyToLastSelectedEntity() {
+		if (currentStep.viewpoint) {
+			setNewViewpoint();
+		}
+		if (lastSelectedEntity != undefined) {
+			setTimeout(function() {
+				canvasManipulator.flyToEntity(lastSelectedEntity);		
+				canvasManipulator.setCenterOfRotation(lastSelectedEntity, false);}, 1000);
+		}
 	}
 	
 	
