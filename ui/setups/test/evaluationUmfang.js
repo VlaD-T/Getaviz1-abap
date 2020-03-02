@@ -210,7 +210,7 @@ var setup = {
 
 			setCenterOfRotation: true,
 			setCenterOfRotationFocus: true,
-			zoomFactor: 1.0,
+			zoomFactor: 0.7,
 
 			macUser: false,
 		},

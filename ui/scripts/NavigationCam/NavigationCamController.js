@@ -92,7 +92,7 @@ var navigationCamController = (function() {
 		panFactor: 0.5,
 		zoomFactor: 3.0,
 
-		cameraYPositionMinimum: 1000,
+		cameraYPositionMinimum: 100,
 
 		macUser: false
 	}
@@ -178,7 +178,24 @@ var navigationCamController = (function() {
 		
 
 		canvasManipulator.setViewPoint = setViewPoint;
+		canvasManipulator.flyToEntity = flyToEntity;
 		
+	}
+
+
+	//TODO Auslagern in setCenterOfRotation
+	var zoomToElementLocked = false;
+
+	function flyToEntity(entity){
+	    const part = multiPart.getParts([entity.id]);
+		if (part === undefined) {
+			events.log.error.publish({ text: "CanvasManipualtor - flyToEntityorOfEntities - parts for entityIds not found"});
+			return;
+		}
+		
+		zoomToElementLocked = true;
+
+		part.fit();		
 	}
 
 	function setViewPoint(viewPoint){
@@ -196,18 +213,6 @@ var navigationCamController = (function() {
 		document.getElementById("scene").appendChild(newViewpoint);
 
 		var myCam = newViewpoint._x3domNode._viewMatrix;
-
-		/*
-		var viewPointPositionArray = viewPoint.position.split(" ");
-		
-		var cor = viewpoint.getCenterOfRotation();
-				
-		cor.x = cor.x - myCam._03 + parseFloat(viewPointPositionArray[0]);
-		cor.y = cor.y - myCam._13 + parseFloat(viewPointPositionArray[1]);
-		cor.z = cor.z - myCam._23 + parseFloat(viewPointPositionArray[2]);
-
-		viewpoint.setCenterOfRotation(cor);
-		*/
 
 		myCam = myCam.inverse();
 		setCamMatrix(myCam);
@@ -372,7 +377,7 @@ var navigationCamController = (function() {
 			//center of rotation
 			if(controllerConfig.setCenterOfRotation && !controllerConfig.setCenterOfRotationFocus){
 				if(eventObject.entity){
-					setCenterOfRotation(eventObject.entity, false);
+					setCenterOfRotationAtEntity(eventObject.entity, false);
 				}
 			}
 
@@ -392,7 +397,7 @@ var navigationCamController = (function() {
 				var mousePressedTime = mouseUpTime - mouseDownTime;
 
 				if(mousePressedTime < 100){
-					setCenterOfRotation(eventObject.entity, true);
+					setCenterOfRotationAtEntity(eventObject.entity, true);
 				}
 				
 			}
@@ -505,11 +510,16 @@ var navigationCamController = (function() {
 					zoomDirection = zoomDirection * -1;
 				}
 
-				if(controllerConfig.zoomToMousePosition && zoomDirection > 0){
+				zoom(zoomDirection);	
+				
+				/* moveByScroll funktioniert mit minimaler y-Grenze nicht
+				da Rotationszentrum sich dann ebenfalls nicht unter y-Grenze verschieben darf				
+				if(controllerConfig.zoomToMousePosition && zoomDirection > 0 && !zoomToElementLocked){
 					moveByScroll(eventObject, zoomDirection);
 				} else {
 					zoom(zoomDirection);	
 				}
+				*/
 			  break;
 			case NAVIGATION_MODES.MOUSE_WASD:
 				var zoomDirection = eventObject.scrollDirection;
@@ -518,11 +528,16 @@ var navigationCamController = (function() {
 					zoomDirection = zoomDirection * -1;
 				}
 			
-				if(controllerConfig.zoomToMousePosition && zoomDirection > 0){
+				zoom(zoomDirection);	
+				
+				/* moveByScroll funktioniert mit minimaler y-Grenze nicht
+				da Rotationszentrum sich dann ebenfalls nicht unter y-Grenze verschieben darf				
+				if(controllerConfig.zoomToMousePosition && zoomDirection > 0 && !zoomToElementLocked){
 					moveByScroll(eventObject, zoomDirection);
 				} else {
 					zoom(zoomDirection);	
 				}
+				*/
 			  break;
 			case NAVIGATION_MODES.LOOK_AT_ROTATE:
 				var zoomIn = eventObject.scrollDirection < 0;
@@ -540,11 +555,16 @@ var navigationCamController = (function() {
 					zoomDirection = zoomDirection * -1;
 				}
 			
-				if(controllerConfig.zoomToMousePosition && zoomDirection > 0){
+				zoom(zoomDirection);	
+				
+				/* moveByScroll funktioniert mit minimaler y-Grenze nicht
+				da Rotationszentrum sich dann ebenfalls nicht unter y-Grenze verschieben darf				
+				if(controllerConfig.zoomToMousePosition && zoomDirection > 0 && !zoomToElementLocked){
 					moveByScroll(eventObject, zoomDirection);
 				} else {
 					zoom(zoomDirection);	
 				}
+				*/
 				break;
 			default:	
 		}
@@ -572,6 +592,7 @@ var navigationCamController = (function() {
 		var from = newCamMatrix.e3();
 
 		if(newCamMatrix._13 < controllerConfig.cameraYPositionMinimum){
+			return;
 			newCamMatrix._13 = controllerConfig.cameraYPositionMinimum;
 		}
 
@@ -585,11 +606,21 @@ var navigationCamController = (function() {
 		}
 	}
 
-	function setCenterOfRotation(entity, setFocus){
+	function setCenterOfRotation(vector){		
+		
+		if(vector.y < controllerConfig.cameraYPositionMinimum){
+	//			return;
+	//		vector.y = controllerConfig.cameraYPositionMinimum;
+		}
+
+		viewpoint.setCenterOfRotation(vector);
+	}
+
+	function setCenterOfRotationAtEntity(entity, setFocus){
 				
 		var centerOfPart = canvasManipulator.getCenterOfEntity(entity);
 
-		viewpoint.setCenterOfRotation(centerOfPart);
+		setCenterOfRotation(centerOfPart);
 
 		if(setFocus){
 			var myCam = getCamMatrix();
@@ -748,7 +779,7 @@ var navigationCamController = (function() {
 			up = up.negate();
 
 
-		viewpoint.setCenterOfRotation(offset);
+		setCenterOfRotation(offset);
 
 		return x3dom.fields.SFMatrix4f.lookAt(from, offset, up);
 	}
@@ -760,6 +791,9 @@ var navigationCamController = (function() {
 //*********************
 
 	function pan(dx, dy){
+
+		//TODO Auslagern in setCenterOfRotation
+		zoomToElementLocked = false;
 
 		dx = dx * controllerConfig.panFactor;
 		dy = dy * controllerConfig.panFactor;
@@ -785,7 +819,7 @@ var navigationCamController = (function() {
 		var cor = viewpoint.getCenterOfRotation();
 		cor = cor.addScaled(up, ty);
 		cor = cor.addScaled(s, tx);
-		viewpoint.setCenterOfRotation(cor);
+		setCenterOfRotation(cor);
 
 		// update camera matrix with lookAt() and invert
 		myCam = x3dom.fields.SFMatrix4f.lookAt(from, cor, up);
@@ -832,9 +866,8 @@ var navigationCamController = (function() {
 		// events.log.info.publish({ text: "ZoomDistance: " + zoomedFromDistance});
 		
 		if(zoomedFromDistance < 20) { //ToDo Config Parameter
-			
 			cor = cor.addScaled(lastDir, zoomAmount);
-			viewpoint.setCenterOfRotation(cor);
+			setCenterOfRotation(cor);
 		}
 
 
@@ -942,7 +975,7 @@ var navigationCamController = (function() {
         var newFrom = from.addScaled(dir, zoomAmount);
 		var newat = at.addScaled(dir, zoomAmount);
 
-		viewpoint.setCenterOfRotation(newat);
+		//setCenterOfRotation(newat);
 
 		myCam = x3dom.fields.SFMatrix4f.lookAt(newFrom, newat, up);
 
@@ -970,7 +1003,7 @@ var navigationCamController = (function() {
         var newFrom = from.addScaled(dir, zoomAmount);
 		var newat = at.addScaled(dir, zoomAmount);
 
-		viewpoint.setCenterOfRotation(newat);
+		//setCenterOfRotation(newat);
 
 		myCam = x3dom.fields.SFMatrix4f.lookAt(newFrom, newat, up);
 		
@@ -983,7 +1016,7 @@ var navigationCamController = (function() {
 		var centerOfPart = canvasManipulator.getCenterOfEntity(entity);		
 		// var currentCenter = x3dom.fields.SFVec3f.copy(viewpoint.getCenterOfRotation());
 
-		viewpoint.setCenterOfRotation(centerOfPart);
+		setCenterOfRotation(centerOfPart);
 
 		if(oldCenterElement != null){
 			if(!oldCenterElement.selected && !oldCenterElement.marked){ 
