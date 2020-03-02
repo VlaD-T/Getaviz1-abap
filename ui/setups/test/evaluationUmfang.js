@@ -7,21 +7,16 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 3,
 		
-			stepOrder:	[ 10, 11, 12, 13, 14, 15 ],
+			// stepOrder:	[ 10, 11, 12, 13, 14, 15 ],
+			stepOrder:	[ 15 ],
 						
             steps:	[				
 						{ 	number:	10, // Klassen
                             
                             text: 	[
-								"Globale Klassen werden als gelbe Distrikte visualisiert. Auf den gelben Distrikten befinden sich die Bestandteile der Klasse als Gebäude. Methoden sind hierbei als graue Quader " +
-                                "dargestellt, deren Höhe abhängig von der Anzahl ihrer Statements ist. Die Attribute der Klasse werden durch schwarze Zylinder repräsentiert, deren Höhe wiederum durch den Typ des " +
-								"des Attributs bestimmt wird. Attribute von elementarem Typ werden kleiner als die Attribute von strukturierten Typen dargestellt. Am größten sind Attribute, die eine interne Tabelle oder " +
-								"eine Klassenreferenz darstellen.",
-                                "Im Gegensatz zu globalen Klassen befinden sich lokale Klassen auf den Distrikten ihrer übergeordneten ABAP-Objekte. Dies können neben globalen Klassen auch Funktionsgruppen oder Reports " +
-                                "sein. Grundsätzlich sollten globale Klassen höchstens eine lokale Klasse für Unit-Tests besitzen. Die Funktionalität der Klasse sollte über mindestens drei Methoden realisiert werden. Je " +
-								"nach Funktionalität sollten Klassen etwa 10, jedoch nicht mehr als 15 Methoden besitzen.",
-								"Betrachten Sie die Visualisierung der Klasse der Grundmenge und suchen Sie nach globalen Klassen, die a) einen guten, b) einen mittelmäßigen und c) einen schlechten Umfang an Methoden und " +
-								"Attributen besitzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
+								"<b>Umfang von Klassenbestandteilen</b><br/><br/>",
+								"Methoden:&emsp;&emsp;&emsp;mindestens <b>3</b>, optimal <b>10</b>, maximal <b>15</b><br/>",
+								"lokale Klassen:&emsp;maximal <b>1</b>",
                             ],		
 
                             ui: 	"UI0",
@@ -39,15 +34,11 @@ var setup = {
                         { 	number:	11, // Klassen-Layout
                             
                             text: 	[
-                                "Für die Gebäude der Methoden und Attribute exisitert ein spezielles Anordnungsschema:",
-								"Die Gebäude der privaten Klassenbestandteile werden vorrangig im Zentrum des Distrikts angeordnet, da sie nur innerhalb der Klasse verwendet werden können. Die Gebäude der öffentlichen " +
-								"Klassenbestandteile sind hingegen am Rand des Klassendistrikts positioniert.",
-								"Grundsätzlich gilt für Klassen, dass der Großteil der Daten und Funktionalitäten privat gehalten werden soll. Dementsprechend sollte die Metrik \"Number Of Statements\" von privaten " +
-								"Methoden größer sein als die von öffentlichen Methoden. Überhaupt sollten die öffentlichen Methoden wenig Funktionalität enthalten.",
-								"Ähnliches gilt für die Attribute einer Klasse. Eine Klasse sollte deutlich mehr private als öffentliche Attribute besitzen. Außerdem sollte ab einer Anzahl von 10 skalaren Attributen " +
-								"stattdessen eine Struktur als Attribut verwendet werden. Genauso sollten mehr als 9 strukturierte Attribute in einem referenziellen Attribut gekapselt werden.",
-								"Betrachten Sie die Visualisierung und suchen Sie nach einer globalen Klasse, die a) eine gute, b) eine mittelmäßige und c) eine schlechte Verteilung von Methoden und Attributen besitzt.",
-								"Beenden Sie die Aufgabe über die Schaltfläche."
+								"<b>Verteilung von Klassenbestandteilen</b><br/><br/>",
+								"öffentliche Member:&emsp;Positionierung <b>am Rand</b> des Distrikts",
+								"private Member:&emsp;&emsp;&ensp;Positionierung <b>im Zentrum</b> des Distrikts<br/>",
+								"Methoden:&emsp;&emsp;&emsp;&emsp;&emsp;NOS <b>privater</b> Methoden <b>></b> NOS <b>öffentlicher</b> Methoden",
+								"Attribute:&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;<b>10 skalare</b> Attribute ==> <b>1 strukturiertes</b> Attribut, <b>10 strukturierte</b> Attribute ==> <b>1 referenzielles</b> Attribut",
                             ],		
 
                             ui: 	"UI0",
@@ -65,13 +56,10 @@ var setup = {
                         { 	number:	12, // Reports
                             
                             text: 	[
-                                "Reports und ihre Bestandteile sind auf den hellblauen Distrikten dargestellt. Im Zentrum des Distrikts steht der Report selbst noch einmal als dunkelblauer Quader. Darum befinden sich die " +
-                                "die Gebäude für die Formroutinen des Reports (graue Quader) und die globalen Attribute als Zylinder. Die Höhe der Gebäude der Formroutinen und des Reports ist wie bei Klassen abhängig von " +
-								"der Metrik \"Number Of Statements\".",
-								"Reports sollten ausschließlich als aufrufendes Element für Funktionalität aus Klassen eingesetzt werden. Die dafür notwendige Funktionalität sollte in einer lokalen Klasse gehalten werden. " +
-								"Formroutinen oder globale Attribute werden somit nicht benötigt und sollten vermieden werden.",
-								"Erkunden Sie die Visualisierung des Reports. Suchen Sie in der gesamten Visualisierung nach mehreren Reports, die die Qualitätskriterien a) vollständig, b) teilweise und c) gar nicht " +
-								"umsetzen. Beenden Sie die Aufgabe wieder über die Schaltfläche."
+								"<b>Umfang von Reportbestandteilen</b><br/><br/>",
+								"Formroutinen:&emsp;&emsp;&nbsp;optimal <b>keine</b><br/>",
+								"globale Attribute:&emsp;optimal <b>keine</b><br/>",
+								"lokale Klassen:&emsp;&ensp;&nbsp;maximal <b>1</b>"
                             ],		
 
 							ui: 	"UI0",
@@ -89,14 +77,11 @@ var setup = {
                         { 	number:	13, // Funktionsgruppen
                             
                             text: 	[
-                                "Funktionsgruppen sind als violette Distrikte dargestellt. Auf einem Funktionsgruppen-Distrikt befinden sich Zylinder für die globalen Attribute sowie graue Quader als Gebäude für die " +
-                                "Funktionsbausteine und Formroutinen der Funktionsgruppe. Die Gebäude der Funktionsbausteine besitzen eine rechteckige Grundfläche, während die Grundfläche der Gebäude der Formroutinen " +
-								"quadratisch ist. Die Höhe beider Gebäudearten ist wieder durch die Metrik \"Number Of Statements\" bestimmt.",
-								"Funktionsgruppen sollten nur noch für RFC und den Aufruf klassischer Dynpros in Popups verwendet werden. Dementsprechend sollte eine Funktionsgruppe nicht mehr als zwei Funktionsbausteine " +
-								"enthalten. Die Funktionsbausteine sollten die Verarbeitung sofort an eine globale oder lokale Klasse abgeben, sodass die Funktionsgruppe höchstens eine lokale Klasse enthält. Auf " +
-								"Formroutinen und globale Attribute sollte dagegen komplett verzichtet werden.",
-								"Erkunden Sie die Visualisierung der Funktionsgruppe. Suchen Sie in der gesamten Visualisierung nach Funktionsgruppen, die die Qualitätsempfehlungen a) vollständig, b) teilweise und c) " +
-								"gar nicht umsetzen. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
+								"<b>Umfang von Funktionsgruppenbestandteilen</b><br/><br/>",								
+								"Funktionsbausteine:&emsp;maximal <b>2</b>",
+								"Formroutinen:&emsp;&emsp;&emsp;&ensp;&nbsp;optimal <b>keine</b>",
+								"globale Attribute:&emsp;&emsp;&ensp;optimal <b>keine</b>",
+								"lokale Klassen:&emsp;&emsp;&emsp;&nbsp;maximal <b>1</b>"
                             ],		
 
 							ui: 	"UI0",
@@ -114,12 +99,9 @@ var setup = {
 						{ 	number:	14, // number of statements
                             
                             text: 	[
-								"Als nächstes soll die Metrik \"Number of Statements\" betrachtet werden. Die Höhe der Gebäude von Methoden, Reports, Formroutinen und Funktionsbausteinen korreliert linear mit der " +
-								"Anzahl ihrer Code-Statements. Grundsätzlich sollte gelten, dass ein funktionales Quellcodeobjekt nicht mehr als 50 Statements enthält. Demzufolge sind alle ABAP-Objekte, die 50 oder " +
-								"mehr Statements enthalten, als Gebäude mit der größten Höhe dargestellt. Besitzt beispielsweise eine Methode 25 Statements, ist sie entsprechend nur halb so hoch. Als Richtwert für eine " +
-								"gute Anzahl von Statements kann 30 angesehen werden.",
-								"Suchen Sie in der Visualisierung nach Gebäuden von funktionalen Quellcodeobjekten, die a) eine passende und b) eine zu große Anzahl an Statements besitzen. Beenden Sie die Aufgabe " +
-								"wieder über die Schaltfläche."
+								"<b>Umfang von Quellcode-Objekten</b><br/><br/>",								
+								"Quellcode-Objekte:&emsp;Methoden, Reports, Formroutinen, Funktionsbausteine<br/>",
+								"Höhe:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;optimal <b>30</b>, maximal <b>50</b>"
                             ],		
 
                             ui: 	"UI0",
@@ -137,12 +119,9 @@ var setup = {
 						{ 	number:	15, // Paketumfang
                             
                             text: 	[
-								"Abschließend soll der Umfang von Paketen eingeschätzt werden. Prinzipiell dient ein Paket dazu, ABAP-Objekte, die für einen größeren fachlichen Zweck erstellt wurden, zu modularisieren. " +
-								"Die Funktionalität zur Erreichung des größeren fachlichen Zwecks soll dann auf mehrere Quellcodeobjekte verteilt werden. Dementsprechend sollte ein Paket circa 10 Quellcodeobjekte " +
-								"enthalten, mindestens jedoch 5. Eine Verteilung der Funktionalität sollte dabei auf nicht mehr als 20 Quellcodeobjekte erfolgen, da in diesem Fall eine feinere Aufteilung in mehrere " +
-								"Pakete zu prüfen ist.",
-								"Suchen Sie in der Visualisierung im Bereich der Grundmenge nach Paketen, die a) zu wenige, b) eine passende Anzahl und c) zu viele Quellcodeobjekte besitzen. Beenden Sie die Aufgabe " +
-								"anschließend wieder über die Schaltfläche." 
+								"<b>Umfang von Paketbestandteilen</b><br/><br/>",								
+								"Quellcode-Objekte:&emsp;Methoden, Reports, Formroutinen, Funktionsbausteine<br/>",
+								"Anzahl:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;mindestens <b>5</b>, optimal <b>10</b>, maximal <b>20</b><br/>",
                             ],		
 
                             ui: 	"UI0",
@@ -169,10 +148,7 @@ var setup = {
 		},
 
 		{	name: 	"canvasSelectController" 
-		},	
-
-		{ 	name: 	"canvasResetViewController" 
-        },
+		},
 
         {	name: 	"canvasFlyToController",
 			parentLevel: 1
@@ -234,11 +210,10 @@ var setup = {
 				orientation: "horizontal",
 				
 				first: {			
-					size: "200px",	
+					size: "175px",	
 					
 					controllers: [	
-						{ name: "experimentController" },				
-						{ name: "canvasResetViewController" },
+						{ name: "experimentController" },
 					],							
 				},
 				second: {
@@ -248,7 +223,7 @@ var setup = {
                         orientation: "vertical",
                         name: "leftPanel",
                         first: {                            
-							size: "20%",
+							size: "10%",
 							expanders: [
 								{
 									name: "legend",
@@ -260,7 +235,7 @@ var setup = {
 							]
 						},
                         second: {
-							size: "80%",
+							size: "90%",
 							collapsible: false,
                             name: "canvas",
                             canvas: {},

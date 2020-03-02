@@ -85,10 +85,7 @@ var setup = {
 		},
 
 		{	name: 	"canvasSelectController" 
-		},	
-
-		{ 	name: 	"canvasResetViewController" 
-        },
+		},
 
         {	name: 	"canvasFlyToController",
 			parentLevel: 1
@@ -150,11 +147,10 @@ var setup = {
 				orientation: "horizontal",
 				
 				first: {			
-					size: "200px",	
+					size: "175px",	
 					
 					controllers: [	
-						{ name: "experimentController" },				
-						{ name: "canvasResetViewController" },
+						{ name: "experimentController" },
 					],							
 				},
 				second: {
@@ -164,7 +160,7 @@ var setup = {
                         orientation: "vertical",
                         name: "leftPanel",
                         first: {                            
-							size: "20%",
+							size: "10%",
 							expanders: [
 								{
 									name: "legend",
@@ -176,7 +172,7 @@ var setup = {
 							]
 						},
                         second: {
-							size: "80%",
+							size: "90%",
 							collapsible: false,
                             name: "canvas",
                             canvas: {},
@@ -217,7 +213,7 @@ var setup = {
                         orientation: "vertical",
                         name: "leftPanel",
                         first: {                            
-							size: "20%",
+							size: "10%",
 							expanders: [
 								{
 									name: "legend",
@@ -229,7 +225,7 @@ var setup = {
 							]
 						},
                         second: {
-							size: "80%",
+							size: "90%",
 							collapsible: false,
                             name: "canvas",
                             canvas: {},

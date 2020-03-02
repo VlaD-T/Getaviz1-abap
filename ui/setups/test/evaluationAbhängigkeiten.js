@@ -14,10 +14,10 @@ var setup = {
                             
                             text: 	[
 								"Um sich die Aufrufbeziehungen eines ABAP-Objekts anzeigen zu lassen, müssen Sie das entsprechende Gebäude in der Visualisierung mit Linksklick selektieren. Das selektierte Gebäude, " +
-								"beispielsweise eine Methode, wird dann rot hervorgehoben. Alle in Beziehung stehenden Gebäude werden schwarz hervorgehoben. Sofern sie sich nicht auf dem gleichen Distrikt befinden, " +
-                                "werden sie zudem durch eine blaue Linie mit dem roten Gebäude verbunden. Hierbei werden nicht nur die direkten Beziehungen des selektierten ABAP-Objekts angezeigt, sondern auch die " +
-                                "indirekten. Ruft beispielsweise Methode \"A\" die Methode \"B\" und Methode \"B\" die Methode \"C\" auf, wird bei Selektion von \"A\" nicht nur die Beziehung zu \"B\" dargestellt, " +
-                                "sondern auch die Beziehung von \"B\" zu \"C\".",
+								"beispielsweise eine Methode, wird dann rot hervorgehoben. Alle Gebäude, die nicht mit dem selektierten Gebäude in Beziehung stehen, werden transparent dargestellt. Sofern sie sich nicht " +
+                                " auf dem gleichen Distrikt befinden, werden sie zudem durch eine blaue Linie mit dem roten Gebäude verbunden. Hierbei werden nicht nur die direkten Beziehungen des selektierten ABAP-Objekts " +
+                                "angezeigt, sondern auch die indirekten. Ruft beispielsweise Methode \"A\" die Methode \"B\" und Methode \"B\" die Methode \"C\" auf, wird bei Selektion von \"A\" nicht nur die Beziehung zu " +
+                                "\"B\" dargestellt, sondern auch die Beziehung von \"B\" zu \"C\".",
                                 "Wählen Sie die Methode \"GET_FACTSHEETS_FOR_POS()\" und lassen Sie sich deren Aufrufbeziehungen anzeigen. Verfolgen Sie, welche anderen Quellcodeobjekte die selektierte Methode aufruft. " +
                                 "Beenden Sie die Aufgabe anschließend über die Schaltfläche."
                             ],		
@@ -37,13 +37,11 @@ var setup = {
                         { 	number:	11, // kaskadierende Abbildung
                             
                             text: 	[
-								"Sind nicht nur die Beziehungen einzelner Methoden relevant, sondern beispielsweise die aller Methoden einer bestimmten Klasse, so kann dies ebenfalls visualisiert werden. Dazu muss das " +
-								"entsprechend übergeordnete Objekt, im Beispiel also die Klasse, selektiert werden.",
-								"Mittels der Anzeige von Beziehungen lassen sich die Abhängigkeiten der Objekte der Grundmenge zu anderen Paketen untersuchen. Grundsätzlich sollte gelten, dass die Quellcodeobjekte " +
-								"vorrangig Beziehungen zu Objekten aus dem eigenen Paket besitzen, da dieses möglichst viele Bestandteile der zu realisierenden Funktionalität kapseln sollte. Weniger Beziehungen sollten zu " +
-								"Objekten anderer Pakete der Grundmenge oder zum SAP-Standard bestehen. Des Weiteren sollten die Objekte der Grundmenge möglichst wenig Beziehungen zu den referenzierten, kundeneigenen " +
-								"Entwicklungen besitzen, weil dies auf Abhängigkeiten fachlich getrennter Module hinweist.",
-								"Betrachten Sie die Klassen von vorhin und schätzen Sie deren Abhängigkeiten ein. Beenden Sie anschließend die Aufgabe wieder über die Schaltfläche."
+								"<b>Abhängigkeiten</b><br/>",
+								"... zum eigenen Paket:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>viele</b><br/>",
+								"... zur Grundmenge:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>wenige</b><br/>",
+								"... zum referenzierten, kundeneigenen Entwicklungen:&emsp;<b>keine</b><br/>",
+								"... zum SAP-Standard:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>wenige</b>",
                             ],		
 
                             ui: 	"UI0",
@@ -69,17 +67,10 @@ var setup = {
 		},
 
 		{	name: 	"canvasSelectController" 
-		},	
-
-		{ 	name: 	"canvasResetViewController" 
 		},
 		
 		{ 	name: 	"searchController" 
         },
-
-		// {	name: 	"canvasFlyToController",
-		// 	parentLevel: 1
-		// },
 		
 		{	name: 	"canvasFilterController" 
 		},
@@ -109,9 +100,6 @@ var setup = {
 		},
 		
 		{ 	name: 	"relationTransparencyController",
-		},
-			
-		{ 	name: 	"relationHighlightController" 
 		},
 
 		{	name: 	"navigationCamController",
@@ -151,11 +139,10 @@ var setup = {
 				orientation: "horizontal",
 				
 				first: {			
-					size: "250px",	
+					size: "225px",	
 					
 					controllers: [	
-						{ name: "experimentController" },				
-						{ name: "canvasResetViewController" },
+						{ name: "experimentController" },
 						{ name: "searchController" },
 					],							
 				},
@@ -166,7 +153,7 @@ var setup = {
                         orientation: "vertical",
                         name: "leftPanel",
                         first: {                            
-							size: "20%",
+							size: "10%",
 							expanders: [
 								{
 									name: "legend",
@@ -178,7 +165,7 @@ var setup = {
 							]
 						},
                         second: {
-							size: "80%",
+							size: "90%",
 							collapsible: false,
                             name: "canvas",
                             canvas: {},
@@ -187,9 +174,7 @@ var setup = {
 								{ name: "canvasHoverController" },
 								{ name: "canvasFilterController" },								
 								{ name: "canvasSelectController" },
-								{ name: "canvasFlyToController" },
 								{ name:	"relationConnectorController" },
-								//{ name:	"relationHighlightController" },
 								{ name:	"relationTransparencyController" },
 								{ name: "navigationCamController"},
 							],
