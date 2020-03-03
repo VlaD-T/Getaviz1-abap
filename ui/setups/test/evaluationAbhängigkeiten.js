@@ -13,13 +13,8 @@ var setup = {
                         { 	number:	10, // Anzeigen von Aufrufbeziehungen
                             
                             text: 	[
-								"Um sich die Aufrufbeziehungen eines ABAP-Objekts anzeigen zu lassen, müssen Sie das entsprechende Gebäude in der Visualisierung mit Linksklick selektieren. Das selektierte Gebäude, " +
-								"beispielsweise eine Methode, wird dann rot hervorgehoben. Alle Gebäude, die nicht mit dem selektierten Gebäude in Beziehung stehen, werden transparent dargestellt. Sofern sie sich nicht " +
-                                " auf dem gleichen Distrikt befinden, werden sie zudem durch eine blaue Linie mit dem roten Gebäude verbunden. Hierbei werden nicht nur die direkten Beziehungen des selektierten ABAP-Objekts " +
-                                "angezeigt, sondern auch die indirekten. Ruft beispielsweise Methode \"A\" die Methode \"B\" und Methode \"B\" die Methode \"C\" auf, wird bei Selektion von \"A\" nicht nur die Beziehung zu " +
-                                "\"B\" dargestellt, sondern auch die Beziehung von \"B\" zu \"C\".",
-                                "Wählen Sie die Methode \"GET_FACTSHEETS_FOR_POS()\" und lassen Sie sich deren Aufrufbeziehungen anzeigen. Verfolgen Sie, welche anderen Quellcodeobjekte die selektierte Methode aufruft. " +
-                                "Beenden Sie die Aufgabe anschließend über die Schaltfläche."
+								"<b>Anzeigen von Aufrufbeziehungen</b><br/><br/>",
+                                "Wählen Sie die Methode <b>\"GET_FACTSHEETS_FOR_POS()\"</b> und lassen Sie sich deren Aufrufbeziehungen anzeigen."
                             ],		
 
                             ui: 	"UI0",

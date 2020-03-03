@@ -13,12 +13,6 @@ var setup = {
 						{ 	number:	10, // Einführung Tooltip
 							
 							text: 	[
-								"Herzlich Willkommen zur Evaluation des aktuellen Stands des Projekts \"VISAP\".",
-								"Für die Visualisierung von ABAP-Quellcode wird die Stadtmetapher verwendet, bei der die verschiedenen Bestandteile von ABAP als Distrikte (Stadtteile) oder Gebäude dargestellt werden. " +
-								"Alle Gebäude der dargestellten ABAP-Objekte sind auf einem Distrikt positioniert, der das Oberobjekt beziehungsweise das zugehörige Paket repräsentiert. Wenn Sie die Maus über die " + 
-								"Bestandteile der Visualisierung bewegen, erscheint ein Tooltip mit zusätzlichen Informationen zum ABAP-Objekt, wie der Name des zugehörigen Pakets, der Objekttyp und der Bezeichner.",
-								"Betrachten Sie die Visualisierung und finden Sie heraus, welches ABAP-Objekt durch den großen, violetten Distrikt repräsentiert wird und zu welchem Paket es gehört. Betätigen Sie " +
-								"anschließend die \"Aufgabe abgeschlossen!\"-Schaltfläche oben rechts zwei mal."
 							],		
 
 							ui: 	"UI0",
@@ -36,11 +30,6 @@ var setup = {
 						{ 	number:	11, // Paket-Layout
 							
 							text: 	[
-								"Die zentralen Distrikte der Visualisierung stellen die Pakete der Grundmenge dar, die analysiert werden sollen. Für die Evaluation sind dies mehrere Z-Pakete aus dem GT3-System. " +
-								"Ringförmig um die Grundmenge befinden sich die grauen Paket-Distrikte der kundeneigenen Entwicklungen, die von den Objekten der Grundmenge referenziert werden.",
-								"Wiederum ringförmig um diese referenzierten, kundeneigenen Entwicklungen sind die von der Grundmenge verwendeten, grauen Paket-Distrikte des SAP-Standards dargestellt",
-								"Fahren Sie mit der Maus über einige Paket-Distrikte und bestimmen Sie den Namen des größten Pakets, welches zu den kundeneigenen Entwicklungen aber nicht zur Grundmenge gehört. "+
-								"Beenden Sie die Aufgabe wieder über die Schaltfläche rechts oben."
 							],		
 
 							ui: 	"UI0",
@@ -54,11 +43,7 @@ var setup = {
 
 						{ 	number:	12, // Navigationsmodi
 							
-							text: 	[							
-								"Durch Drücken der linken Maustaste und gleichzeitigem Bewegen der Maus kann das Modell verschoben werden.",
-								"Außerdem können Sie die Kamera schwenken, indem Sie die rechte Maustaste gedrückt halten und die Maus bewegen.",
-								"Das Hinein- beziehungsweise Herauszoomen aus dem Modell erfolgt über die Drehung des Mausrads nach vorn beziehungsweise nach hinten.",								
-								"Probieren Sie die einzelnen Steuerungsvarianten aus und navigieren Sie zum größten Distrikt des SAP-Standards. Beenden Sie anschließend die Aufgabe über die Schaltfläche."
+							text: 	[
 							],		
 
 							ui: 	"UI1",

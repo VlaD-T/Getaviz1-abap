@@ -7,8 +7,7 @@ var setup = {
 			taskTextButtonTime: 10,
 			taskTime: 3,
 		
-			// stepOrder:	[ 10, 11, 12, 13, 14, 15 ],
-			stepOrder:	[ 15 ],
+			stepOrder:	[ 10, 11, 12, 13, 14, 15 ],
 						
             steps:	[				
 						{ 	number:	10, // Klassen
