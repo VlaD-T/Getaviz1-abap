@@ -607,7 +607,7 @@ var navigationCamController = (function() {
 	}
 
 	function setCenterOfRotation(vector){		
-		
+		//vector.y = 0;
 		if(vector.y < controllerConfig.cameraYPositionMinimum){
 	//			return;
 	//		vector.y = controllerConfig.cameraYPositionMinimum;
@@ -870,10 +870,16 @@ var navigationCamController = (function() {
 			setCenterOfRotation(cor);
 		}
 
+		if (cor.y <= 0) {
+			//update camera matrix with lookAt() and invert again
+			myCam = x3dom.fields.SFMatrix4f.lookAt(zoomedFrom, cor, up);
+		} else {
+			var intersectionWithGround = calculateIntersectionWithGround(zoomedFrom, lastDir);
+			myCam = x3dom.fields.SFMatrix4f.lookAt(zoomedFrom, intersectionWithGround, up);
+		}
 
-		// update camera matrix with lookAt() and invert again
-		myCam = x3dom.fields.SFMatrix4f.lookAt(zoomedFrom, cor, up);
 		setCamMatrix(myCam);
+		
 	}
 
 
@@ -1072,10 +1078,21 @@ var navigationCamController = (function() {
 	}
 
 
+//*********************
+//* Calculation Helper
+//*********************
 
-	
+	function calculateIntersectionWithGround(supportVector, directionVector) {
+				
+		// initialization
+		var intersection = new x3dom.fields.SFVec3f(0, 0, 0);
 
+		intersection.x = supportVector.x - (directionVector.x / directionVector.y) * supportVector.y;
+		intersection.y = 0;
+		intersection.z = supportVector.z - (directionVector.z / directionVector.y) * supportVector.y;
 
+		return intersection;
+	}
 
 	
 
