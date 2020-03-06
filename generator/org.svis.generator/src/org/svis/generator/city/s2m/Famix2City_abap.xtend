@@ -741,7 +741,12 @@ class Famix2City_abap {
 			]
 		}  
 	     
-		cityDocument.entities += newDistrict
+		// no empty districts
+		if (newDistrict.entities.length != 0) {
+			cityDocument.entities += newDistrict
+		}		
+		
+		// why?? 
 		return newDistrict
 	}
 	
