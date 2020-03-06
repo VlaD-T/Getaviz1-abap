@@ -129,7 +129,7 @@ class SimpleBlocks implements AdvSet_Interface {
 	override getElemFor_FunctionModule(Entity entity) '''
 		<Transform translation='«0 + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks / 2 + " " + 0»'>
 			<Shape>
-				<Box size='«(entity.width * 0.9) + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks + " " + (entity.length * 0.6)»'></Box>
+				<Box size='«entity.width + " " + entity.height * config.getScoHeightScaleOfSimpleBlocks + " " + (entity.length * 0.5)»'></Box>
 				<Appearance>
 					<Material diffuseColor='«getColor(entity.type)»' transparency='«entity.transparency»'></Material>
 				</Appearance>
