@@ -69,7 +69,9 @@ var setup = {
 		{	name: 	"canvasHoverController",
 		},
 
-		{	name: 	"canvasSelectController" 
+		{	name: 	"canvasSelectController",
+			
+			color:	"darkgreen"
 		},
 
         {	name: 	"canvasFlyToController",
@@ -217,7 +219,8 @@ var setup = {
 							controllers: [
 								{ name: "defaultLogger" },
 								{ name: "canvasHoverController" },
-								{ name: "navigationCamController"},
+								{ name: "navigationCamController"},								
+								{ name: "canvasSelectController" },
 							],
                         }
                     }

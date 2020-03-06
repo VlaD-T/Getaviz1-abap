@@ -61,7 +61,9 @@ var setup = {
 		{	name: 	"canvasHoverController",
 		},
 
-		{	name: 	"canvasSelectController" 
+		{	name: 	"canvasSelectController",
+			
+			color: 	"darkgreen"
 		},
 		
 		{ 	name: 	"searchController" 

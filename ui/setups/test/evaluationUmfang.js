@@ -34,10 +34,10 @@ var setup = {
                             
                             text: 	[
 								"<b>Verteilung von Klassenbestandteilen</b><br/><br/>",
-								"öffentliche Member:&emsp;Positionierung <b>am Rand</b> des Distrikts",
-								"private Member:&emsp;&emsp;&ensp;Positionierung <b>im Zentrum</b> des Distrikts<br/>",
-								"Methoden:&emsp;&emsp;&emsp;&emsp;&emsp;NOS <b>privater</b> Methoden <b>></b> NOS <b>öffentlicher</b> Methoden",
-								"Attribute:&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;<b>10 skalare</b> Attribute ==> <b>1 strukturiertes</b> Attribut, <b>10 strukturierte</b> Attribute ==> <b>1 referenzielles</b> Attribut",
+								"öffentliche Member:&emsp;&emsp;&emsp;&emsp;&ensp;Positionierung <b>am Rand</b> des Distrikts",
+								"private/geschützte Member:&emsp;Positionierung <b>im Zentrum</b> des Distrikts<br/>",
+								"Methoden:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;NOS <b>privater</b> Methoden <b>></b> NOS <b>öffentlicher</b> Methoden",
+								"Attribute:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<b>10 skalare</b> Attribute ==> <b>1 strukturiertes</b> Attribut, <b>10 strukturierte</b> Attribute ==> <b>1 referenzielles</b> Attribut",
                             ],		
 
                             ui: 	"UI0",
@@ -119,7 +119,7 @@ var setup = {
                             
                             text: 	[
 								"<b>Umfang von Paketbestandteilen</b><br/><br/>",								
-								"Quellcode-Objekte:&emsp;Methoden, Reports, Formroutinen, Funktionsbausteine<br/>",
+								"Quellcode-Objekte:&emsp;Klassen, Reports, Funktionsgruppen<br/>",
 								"Anzahl:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;mindestens <b>5</b>, optimal <b>10</b>, maximal <b>20</b><br/>",
                             ],		
 
@@ -146,7 +146,9 @@ var setup = {
 		{	name: 	"canvasHoverController",
 		},
 
-		{	name: 	"canvasSelectController" 
+		{	name: 	"canvasSelectController",
+			
+			color: 	"darkgreen"
 		},
 
         {	name: 	"canvasFlyToController",
