@@ -377,7 +377,7 @@ class Famix2City_abap {
 					newDomainDistrict.entities += toBuilding(level + 2)
 				]
 				
-				newDistrict.entities.add(newDomainDistrict)					 
+				newDistrict.entities.add(newDomainDistrict)			 
 			]
 		}
 		 

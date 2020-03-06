@@ -198,14 +198,20 @@ var canvasHoverController = (function() {
 		var entity = applicationEvent.entities[0];
 		
 		if(entity.marked && entity.selected){
-			canvasManipulator.highlightEntities([entity], controllerConfig.hoverColor);	
+			canvasManipulator.highlightEntities([entity], controllerConfig.hoverColor);
 		} else {
-			if(!entity.selected){
-				canvasManipulator.unhighlightEntities([entity]);			
+			// if(!entity.selected){
+			// 	canvasManipulator.unhighlightEntities([entity]);			
+			// }
+			// if(entity.type === "Namespace"){
+			//     canvasManipulator.unhighlightEntities([entity]);
+			// }
+			
+			canvasManipulator.unhighlightEntities([entity]);
+
+			if (entity.selected) {
+				canvasManipulator.highlightEntities([entity], canvasSelectController.controllerConfig.color);
 			}
-			if(entity.type === "Namespace"){
-			    canvasManipulator.unhighlightEntities([entity]);
-            }
         }
 		
 		$("#tooltip").css("display", "none");
