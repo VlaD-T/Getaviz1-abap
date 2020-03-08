@@ -239,7 +239,8 @@ var canvasSelectController = (function() {
         initialize			: initialize,
 		reset				: reset,
 		activate			: activate,
-		SELECTION_MODES		: SELECTION_MODES
+		SELECTION_MODES		: SELECTION_MODES,
+		controllerConfig	: controllerConfig
     };    
 })();
 
